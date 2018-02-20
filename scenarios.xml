@@ -70,26 +70,26 @@
         </createReport>
     </scenario>
     <scenario>
-        <name>EN16931 CIUS XRechnung (CII)</name>
+        <name>EN16931 CIUS XRechnung (CII uncoupled)</name>
         <namespace prefix="rsm">urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100</namespace>
         <namespace prefix="ram">urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100</namespace>
         <match>/rsm:CrossIndustryInvoice[starts-with(rsm:ExchangedDocumentContext/ram:GuidelineSpecifiedDocumentContextParameter/ram:ID, 'urn:cen.eu:en16931:2017') or                                         starts-with(rsm:ExchangedDocumentContext/ram:GuidelineSpecifiedDocumentContextParameter/ram:ID, 'urn:ce.eu:en16931:2017')]</match>
         <validateWithXmlSchema>
             <resource>
-                <name>XML Schema for UN/CEFACT XML (SCRDM - CII)</name>
-                <location>resources/xrechnung/cii/xsd/CrossIndustryInvoice_100pD16B.xsd</location>
+                <name>XML Schema for UN/CEFACT XML (SCRDM - CII uncoupled)</name>
+                <location>resources/cii/16b/xsd/CrossIndustryInvoice_100pD16B.xsd</location>
             </resource>
         </validateWithXmlSchema>
         <validateWithSchematron>
             <resource>
                 <name>Schematron rules for EN16931 (CII)</name>
-                <location>resources/xrechnung/cii/xsl/EN16931-CII-validation.xsl</location>
+                <location>resources/cii/16b/xsl/EN16931-CII-validation.xsl</location>
             </resource>
         </validateWithSchematron>
         <validateWithSchematron>
             <resource>
                 <name>Schematron rules for CIUS XRechnung (CII)</name>
-                <location>resources/xrechnung/cii/xsl/XRechnung-CII-validation.xsl</location>
+                <location>resources/xrechnung/1.1/xsl/XRechnung-CII-validation.xsl</location>
             </resource>
         </validateWithSchematron>
         <createReport>
