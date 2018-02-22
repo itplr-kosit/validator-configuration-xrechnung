@@ -1,7 +1,7 @@
 <project name="xrechnung-validation-configuration" default="compile" basedir=".">
     <description>Build the XRechnung validation configuration for KoSIT validationtool</description>
     <!-- set global properties for this build -->
-    <!-- directory structure following Standard Directory Layout -->
+    <!-- main build directories -->
     <property name="src.dir" location="${basedir}/src"/>
     <property name="test.src.dir" location="${src.dir}/test"/>
     <property name="test.resource.dir" location="${test.dir}/resources"/>
@@ -19,15 +19,15 @@
     <property name="ubl.schema.zip" value="UBL-2.1.zip"/>
     <property name="cen.rules.zip" value="validation-1.0.0.zip"/>
     <property name="xrechnung.rules.zip" value="xrechnung-1_1-schematron-2017-12-19.zip"/>
-    <!-- Resource directories -->
-    <property name="schema.dir" value="${basedir}/../../xsd"/>
-    <property name="test.docs.dir" value="${test.src.dir}/instances"/>
-    <property name="reports.dir" value="${basedir}/reports"/>
     <!-- root/work directory where KoSIT validationtool expects Schema(s)-and trons -->
     <property name="repository.dir" location="${build.dir}"/>
     <property name="resource.dir" location="${repository.dir}/resources"/>
-    <target name="init">
-        <!-- Create the time stamp -->
+    <!-- Resource directories -->
+    <property name="reports.schema.dir" location="${resource.dir}/xsd"/>
+    <property name="test.docs.dir" location="${test.src.dir}/instances"/>
+    <property name="reports.dir" location="${basedir}/reports"/>
+    <target name="init" description="Initializes build directory structure and ISO timestamp">
+        <!-- Create timestamps -->
         <tstamp>
             <format property="build.date" pattern="yyyy-MM-dd" />
         </tstamp>
@@ -38,10 +38,10 @@
         <mkdir dir="${lib.dir}"/>
         <mkdir dir="${dist.dir}"/>
     </target>
-    <target name="init-test" depends="init">
+    <target name="init-test" depends="init" description="Initializes test directory structure">
         <mkdir dir="${build.dir}/test"/>
     </target>
-    <target name="prepare-saxon" depends="init" description="Download Saxon-HE">
+    <target name="prepare-saxon" depends="init" description="Download Saxon-HE and add jar to library directory">
         <get src="https://sourceforge.net/projects/saxon/files/Saxon-HE/9.8/SaxonHE9-8-0-8J.zip/download" dest="${download.dir}/SaxonHE9-8-0-8J.zip" verbose="true" skipexisting="true" usetimestamp="true"/>
         <unzip src="${download.dir}/SaxonHE9-8-0-8J.zip" dest="${lib.dir}">
             <patternset>
@@ -50,25 +50,25 @@
             <flattenmapper/>
         </unzip>
     </target>
-    <target name="prepare-validationtool" depends="init" description="Download and setup KoSIT validation tool">
+    <target name="prepare-validationtool" depends="init" description="Download KoSIT validation tool and add jar to library directory">
         <get src="https://github.com/itplr-kosit/validationtool/releases/download/validationtool-1_0_1/validationtool-dist-1.0.1-standalone.zip" dest="${download.dir}" verbose="true" skipexisting="true" usetimestamp="true"/>
         <unzip src="${download.dir}/validationtool-dist-1.0.1-standalone.zip" dest="${lib.dir}">
             <patternset>
-                <include name="**/validationtool-1.0.1-standalone.jar"/>
+                <include name="**/${validationtool.jar}"/>
             </patternset>
             <flattenmapper/>
         </unzip>
     </target>
-    <target name="retrieve-cen-rules" depends="init" >
+    <target name="retrieve-cen-rules" depends="init" description="Download CEN business rules (schematron) to download directory">
         <get src="https://github.com/CenPC434/validation/archive/${cen.rules.zip}" dest="${download.dir}" verbose="true" skipexisting="true" usetimestamp="true"/>
     </target>
-    <target name="retrieve-xrechnung-rules" depends="init">
+    <target name="retrieve-xrechnung-rules" depends="init" description="Download XRechnung business rules (schematron) to download directory">
         <get src="https://github.com/itplr-kosit/xrechnung-artefacts/releases/download/xrechnung-1_1-schematron-2017-12-19/${xrechnung.rules.zip}" dest="${download.dir}" verbose="true" skipexisting="true" usetimestamp="true"/>
     </target>
-    <target name="retrieve-ubl-schema" depends="init" description="Download UBL schemas and rules">
+    <target name="retrieve-ubl-schema" depends="init" description="Download UBL schemas to download directory">
         <get src="http://docs.oasis-open.org/ubl/os-UBL-2.1/${ubl.schema.zip}" dest="${download.dir}" verbose="true" skipexisting="true" usetimestamp="true"/>
     </target>
-    <target name="retrieve-cii-schema" depends="init" description="Download UN/CEFACT CII schemas">
+    <target name="retrieve-cii-schema" depends="init" description="Download UN/CEFACT CII schemas to download directory">
         <get src="http://www.unece.org/fileadmin/DAM/cefact/xml_schemas/${cii.schema.zip}" dest="${download.dir}" verbose="true" skipexisting="true" usetimestamp="true"/>
         <unzip src="${download.dir}/${cii.schema.zip}" dest="${download.dir}">
             <patternset>
@@ -78,11 +78,18 @@
         </unzip>
     </target>
     <target name="retrieve-all-schema-rules" depends="retrieve-ubl-schema,retrieve-cen-rules,retrieve-xrechnung-rules,retrieve-cii-schema" description="Retrieves all 3rd party XSDs and XSLTs"/>
-    <target name="compile" depends="retrieve-all-schema-rules,prepare-saxon,prepare-validationtool" description="Compile XSDs and XSLTs">
+    <target name="compile" depends="retrieve-all-schema-rules,prepare-saxon,prepare-validationtool" description="Compile XSDs and XSLTs into validation configuration conformat repository directory">
         <echo>Compiling Schemas and XSLTs ...</echo>
         <copy file="scenarios.xml" todir="${repository.dir}"/>
         <copy file="${src.dir}/default-report.xsl" todir="${resource.dir}"/>
         <copy file="${src.dir}/xrechnung-report.xsl" todir="${resource.dir}"/>
+        <!-- Following unzip also creates ${resource.dir}/xsd directory-->
+        <unzip src="${lib.dir}/${validationtool.jar}" dest="${resource.dir}">
+            <patternset>
+                <include name="xsd/scenarios.xsd"/>
+            </patternset>
+        </unzip>
+        <copy file="${src.dir}/report.xsd" todir="${resource.dir}/xsd"/>
         <unzip src="${download.dir}/${ubl.schema.zip}" dest="${resource.dir}/ubl/2.1/xsd">
             <patternset>
                 <include name="xsdrt/**/*.xsd"/>
@@ -93,7 +100,6 @@
             <patternset>
                 <include name="validation-validation-1.0.0/ubl/xslt/EN16931-UBL-model.xslt"/>
                 <include name="validation-validation-1.0.0/cii/xslt/EN16931-CII-validation.xslt"/>
-                
             </patternset>
             <flattenmapper/>
         </unzip>
@@ -110,11 +116,12 @@
             <flattenmapper/>
         </unzip>
         <!-- according to https://www.saxonica.com/html/documentation/using-xsl/xsltfromant.html-->
+        <!-- customize CEN schematron rules for UBL -->
         <xslt in="${download.dir}/EN16931-UBL-model.xslt" out="${resource.dir}/ubl/2.1/xsl/EN16931-UBL-validation.xsl" style="${src.dir}/remove-dead-apply-templates.xsl">
             <classpath location="${lib.dir}/${saxon.jar}" />
             <factory name="net.sf.saxon.TransformerFactoryImpl"/>
         </xslt>
-        
+        <!-- customize CEN schematron rules for CII -->
         <xslt in="${download.dir}/EN16931-CII-validation.xslt" out="${resource.dir}/cii/16b/xsl/EN16931-CII-validation.xsl" style="${src.dir}/remove-dead-apply-templates.xsl">
             <classpath location="${lib.dir}/${saxon.jar}" />
             <factory name="net.sf.saxon.TransformerFactoryImpl"/>
@@ -122,7 +129,7 @@
     </target>
     <target name="test" depends="compile,init-test" description="Test XRechnung Configuration">
         <echo>Creating validation reports ...</echo>
-        <java jar="${lib.dir}/${validationtool.jar}" failonerror="yes" fork="yes" dir="${build.dir}">
+        <java jar="${lib.dir}/${validationtool.jar}" failonerror="false" fork="yes" dir="${build.dir}">
             <arg value="-s"/>
             <arg value="scenarios.xml"/>
             <!--
@@ -137,10 +144,18 @@
         </java>
         <echo>Schema validating reports ...</echo>
         <schemavalidate fullchecking="yes" failonerror="yes">
-            <schema namespace="http://www.xoev.de/de/validator/varl/1" file="${schema.dir}/report.xsd"/>
+            <schema namespace="http://www.xoev.de/de/validator/varl/1" file="${reports.schema.dir}/report.xsd"/>
             <fileset dir="${reports.dir}" includes="*.xml"/>
         </schemavalidate>
         <echo>Schematron validating reports ...</echo>
+        <xslt style="${src.dir}/report.sch.xsl" includes="${reports.dir}/*.xml" destdir="${reports.dir}">
+            <classpath location="${lib.dir}/${saxon.jar}" />
+            <factory name="net.sf.saxon.TransformerFactoryImpl"/>
+            <!-- 
+            <fileset dir="${reports.dir}" includes="*.xml"/>
+            -->
+        </xslt>
+        <!-- 
         <apply executable="java" failonerror="yes">
             <arg value="-classpath"/>
             <arg value="saxon9he.jar"/>
@@ -149,9 +164,9 @@
             <srcfile/>
             <fileset dir="${reports.dir}" includes="*.xml"/>
         </apply>
+        -->
     </target>
-    <target name="dist" depends="init, compile" description="generate the distribution">
-        
+    <target name="dist" depends="init, compile" description="Generate the distribution">
         <zip destfile="${dist.dir}/xrechnung_1.1_${build.date}.zip" basedir="${build.dir}" excludes="download/**,test"/>
     </target>
     <target name="clean" description="clean up">
