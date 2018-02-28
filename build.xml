@@ -78,7 +78,7 @@
         </unzip>
     </target>
     <target name="retrieve-all-schema-rules" depends="retrieve-ubl-schema,retrieve-cen-rules,retrieve-xrechnung-rules,retrieve-cii-schema" description="Retrieves all 3rd party XSDs and XSLTs"/>
-    <target name="compile" depends="retrieve-all-schema-rules,prepare-saxon,prepare-validationtool" description="Compile XSDs and XSLTs into validation configuration conformat repository directory">
+    <target name="compile" depends="retrieve-all-schema-rules,prepare-saxon" description="Compile XSDs and XSLTs into validation configuration conformat repository directory">
         <echo>Compiling Schemas and XSLTs ...</echo>
         <copy file="scenarios.xml" todir="${repository.dir}"/>
         <copy file="${src.dir}/default-report.xsl" todir="${resource.dir}"/>
@@ -127,7 +127,7 @@
             <factory name="net.sf.saxon.TransformerFactoryImpl"/>
         </xslt>
     </target>
-    <target name="test" depends="compile,init-test" description="Test XRechnung Configuration">
+    <target name="test" depends="compile,init-test,prepare-validationtool" description="Test XRechnung Configuration">
         <echo>Creating validation reports ...</echo>
         <java jar="${lib.dir}/${validationtool.jar}" failonerror="false" fork="yes" dir="${build.dir}">
             <arg value="-s"/>
@@ -151,20 +151,7 @@
         <xslt style="${src.dir}/report.sch.xsl" includes="${reports.dir}/*.xml" destdir="${reports.dir}">
             <classpath location="${lib.dir}/${saxon.jar}" />
             <factory name="net.sf.saxon.TransformerFactoryImpl"/>
-            <!-- 
-            <fileset dir="${reports.dir}" includes="*.xml"/>
-            -->
         </xslt>
-        <!-- 
-        <apply executable="java" failonerror="yes">
-            <arg value="-classpath"/>
-            <arg value="saxon9he.jar"/>
-            <arg value="net.sf.saxon.Transform"/>
-            <arg value="-xsl:${schema.dir}/report.sch.xsl"/>
-            <srcfile/>
-            <fileset dir="${reports.dir}" includes="*.xml"/>
-        </apply>
-        -->
     </target>
     <target name="dist" depends="init, compile" description="Generate the distribution">
         <zip destfile="${dist.dir}/xrechnung_1.1_${build.date}.zip" basedir="${build.dir}" excludes="download/**,test"/>
