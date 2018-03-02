@@ -94,7 +94,7 @@
     <target name="retrieve-all-schema-rules"
         depends="retrieve-ubl-schema,retrieve-cen-rules,retrieve-xrechnung-rules,retrieve-cii-schema"
         description="Retrieves all 3rd party XSDs and XSLTs"/>
-    <target name="compile" depends="retrieve-all-schema-rules,prepare-saxon"
+    <target name="compile" depends="retrieve-all-schema-rules,prepare-saxon,prepare-validationtool"
         description="Compile XSDs and XSLTs into validation configuration conformat repository directory">
         <echo>Compiling Schemas and XSLTs ...</echo>
         <copy file="scenarios.xml" todir="${repository.dir}"/>
