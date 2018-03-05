@@ -20,7 +20,10 @@
     <property name="cen.download.url.prefix" value="https://github.com/CenPC434/validation/archive"/>
     <property name="cen.rules.zip" value="master.zip"/>
     <property name="cen.download.url" value="${cen.download.url.prefix}/${cen.rules.zip}"/>
-    <property name="xrechnung.rules.zip" value="xrechnung-1_1-schematron-2017-12-19.zip"/>
+    <property name="xrechnung.build.date" value="2017-12-19"/>
+    <property name="xrechnung.download.url.prefix" value="https://github.com/itplr-kosit/xrechnung-artefacts/releases/download/xrechnung-1_1-schematron-${xrechnung.build.date}"/>
+    <property name="xrechnung.rules.zip" value="xrechnung-1_1-schematron-${xrechnung.build.date}.zip"/>
+    <property name="xrechnung.download.url" value="${xrechnung.download.url.prefix}/${xrechnung.rules.zip}"/>
     <!-- root/work directory where KoSIT validationtool expects Schema(s)-and trons -->
     <property name="repository.dir" location="${build.dir}"/>
     <property name="resource.dir" location="${repository.dir}/resources"/>
@@ -77,7 +80,7 @@
     <target name="retrieve-xrechnung-rules" depends="init"
         description="Download XRechnung business rules (schematron) to download directory">
         <get
-            src="https://github.com/itplr-kosit/xrechnung-artefacts/releases/download/xrechnung-1_1-schematron-2017-12-19/${xrechnung.rules.zip}"
+            src="${xrechnung.download.url}"
             dest="${download.dir}" verbose="true" skipexisting="true" usetimestamp="true"/>
     </target>
     <target name="retrieve-ubl-schema" depends="init"
@@ -103,9 +106,12 @@
     <target name="compile-scenario" depends="init">
         <filter token="build.date" value="${build.date}"/>
         <filter token="cen.download.url" value="${cen.download.url}"/>
+        <filter token="xrechnung.download.url" value="${xrechnung.download.url}"/>
+        <filter token="xrechnung.version" value="${xrechnung.version}"/>
+        <filter token="xrechnung.build.date" value="${xrechnung.build.date}"/>
         <copy file="scenarios.xml" todir="${repository.dir}" failonerror="true" filtering="true"/>
     </target>
-    <target name="compile" depends="retrieve-all-schema-rules,prepare-saxon,prepare-validationtool"
+    <target name="compile" depends="compile-scenario,retrieve-all-schema-rules,prepare-saxon,prepare-validationtool"
         description="Compile XSDs and XSLTs into validation configuration conformat repository directory">
         <echo>Compiling Schemas and XSLTs ...</echo>
         
