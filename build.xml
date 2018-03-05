@@ -111,6 +111,7 @@
         <filter token="xrechnung.build.date" value="${xrechnung.build.date}"/>
         <copy file="scenarios.xml" todir="${repository.dir}" failonerror="true" filtering="true"/>
     </target>
+    
     <target name="compile" depends="compile-scenario,retrieve-all-schema-rules,prepare-saxon,prepare-validationtool"
         description="Compile XSDs and XSLTs into validation configuration conformat repository directory">
         <echo>Compiling Schemas and XSLTs ...</echo>
@@ -182,10 +183,10 @@
             <factory name="net.sf.saxon.TransformerFactoryImpl"/>
         </xslt>
     </target>
-    <target name="init-test" depends="init" description="Initializes test directory structure">
+    <target name="init-test" depends="init, compile-scenario" description="Initializes test directory structure">
         <mkdir dir="${build.dir}/test"/>
         <!-- customize scenarios.xml fir testing purpose -->
-        <xslt in="${basedir}/scenarios.xml" out="${test.build.dir}/scenarios.xml"
+        <xslt in="${repository.dir}/scenarios.xml" out="${test.build.dir}/scenarios.xml"
             style="${src.dir}/create-test-scenario.xsl">
             <classpath location="${lib.dir}/${saxon.jar}"/>
             <factory name="net.sf.saxon.TransformerFactoryImpl"/>
@@ -220,7 +221,7 @@
             <factory name="net.sf.saxon.TransformerFactoryImpl"/>
         </xslt>
     </target>
-    <target name="dist" depends="init, compile" description="Generate the distribution">
+    <target name="dist" depends="test" description="Generate the distribution">
         <zip destfile="${dist.dir}/xrechnung_1.1_${build.date}.zip" basedir="${build.dir}"
             excludes="download/**,test"/>
     </target>
