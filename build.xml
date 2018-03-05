@@ -17,7 +17,7 @@
     <property name="cii.schema.zip" value="D16B_SCRDM__Subset__CII.zip"/>
     <property name="cii.schema.uncoupled.zip" value="d16b-cii-uncoupled.zip"/>
     <property name="ubl.schema.zip" value="UBL-2.1.zip"/>
-    <property name="cen.rules.zip" value="validation-1.0.0.zip"/>
+    <property name="cen.rules.zip" value="master.zip"/>
     <property name="xrechnung.rules.zip" value="xrechnung-1_1-schematron-2017-12-19.zip"/>
     <!-- root/work directory where KoSIT validationtool expects Schema(s)-and trons -->
     <property name="repository.dir" location="${build.dir}"/>
@@ -115,11 +115,27 @@
         </unzip>
         <unzip src="${download.dir}/${cen.rules.zip}" dest="${download.dir}">
             <patternset>
-                <include name="validation-validation-1.0.0/ubl/xslt/EN16931-UBL-model.xslt"/>
-                <include name="validation-validation-1.0.0/cii/xslt/EN16931-CII-validation.xslt"/>
+                <include name="*/ubl/xslt/EN16931-UBL-model.xslt"/>
+                <include name="*/cii/xslt/EN16931-CII-validation.xslt"/>
             </patternset>
             <flattenmapper/>
         </unzip>
+            <fail message="Could not extract CEN schematron rules from ${download.dir}/${cen.rules.zip}">
+                <condition>
+                    <and>
+                        <not>
+                            <available file="${download.dir}/EN16931-UBL-model.xslt"/>
+
+                        </not>
+                        <not>
+                            <available file="${download.dir}/EN16931-CII-validation.xslt"/>
+
+                        </not>
+                    </and>
+                </condition>
+
+            </fail>
+        
         <unzip src="${download.dir}/${xrechnung.rules.zip}" dest="${resource.dir}/xrechnung/1.1/xsl">
             <patternset>
                 <include name="**/XRechnung*.xsl"/>
