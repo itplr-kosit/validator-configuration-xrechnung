@@ -1,5 +1,5 @@
 <project name="xrechnung-validation-configuration" default="compile" basedir=".">
-    <description>Build the XRechnung validation configuration for KoSIT validationtool</description>
+    <description>Build the XRechnung validation configuration for ITPLR-KoSIT validator</description>
     <!-- set global properties for this build -->
     <!-- main build directories -->
     <property name="src.dir" location="${basedir}/src"/>
@@ -17,7 +17,9 @@
     <property name="cii.schema.zip" value="D16B_SCRDM__Subset__CII.zip"/>
     <property name="cii.schema.uncoupled.zip" value="d16b-cii-uncoupled.zip"/>
     <property name="ubl.schema.zip" value="UBL-2.1.zip"/>
+    <property name="cen.download.url.prefix" value="https://github.com/CenPC434/validation/archive"/>
     <property name="cen.rules.zip" value="master.zip"/>
+    <property name="cen.download.url" value="${cen.download.url.prefix}/${cen.rules.zip}"/>
     <property name="xrechnung.rules.zip" value="xrechnung-1_1-schematron-2017-12-19.zip"/>
     <!-- root/work directory where KoSIT validationtool expects Schema(s)-and trons -->
     <property name="repository.dir" location="${build.dir}"/>
@@ -31,6 +33,9 @@
         <tstamp>
             <format property="build.date" pattern="yyyy-MM-dd"/>
         </tstamp>
+        
+        
+        
         <echo>Build date: ${build.date}</echo>
         <!-- Create the build directory structure used by compile -->
         <mkdir dir="${build.dir}"/>
@@ -66,7 +71,7 @@
     </target>
     <target name="retrieve-cen-rules" depends="init"
         description="Download CEN business rules (schematron) to download directory">
-        <get src="https://github.com/CenPC434/validation/archive/${cen.rules.zip}"
+        <get src="${cen.download.url}"
             dest="${download.dir}" verbose="true" skipexisting="true" usetimestamp="true"/>
     </target>
     <target name="retrieve-xrechnung-rules" depends="init"
@@ -94,10 +99,17 @@
     <target name="retrieve-all-schema-rules"
         depends="retrieve-ubl-schema,retrieve-cen-rules,retrieve-xrechnung-rules,retrieve-cii-schema"
         description="Retrieves all 3rd party XSDs and XSLTs"/>
+    
+    <target name="compile-scenario" depends="init">
+        <filter token="build.date" value="${build.date}"/>
+        <filter token="cen.download.url" value="${cen.download.url}"/>
+        <copy file="scenarios.xml" todir="${repository.dir}" failonerror="true" filtering="true"/>
+    </target>
     <target name="compile" depends="retrieve-all-schema-rules,prepare-saxon,prepare-validationtool"
         description="Compile XSDs and XSLTs into validation configuration conformat repository directory">
         <echo>Compiling Schemas and XSLTs ...</echo>
-        <copy file="scenarios.xml" todir="${repository.dir}"/>
+        
+        
         <copy file="${src.dir}/default-report.xsl" todir="${resource.dir}"/>
         <copy file="${src.dir}/xrechnung-report.xsl" todir="${resource.dir}"/>
         <!-- Following unzip also creates ${resource.dir}/xsd directory-->
