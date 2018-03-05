@@ -228,7 +228,7 @@
         </xslt>
     </target>
     <target name="dist" depends="test" description="Generate the distribution">
-        <zip destfile="${dist.dir}/xrechnung_1.1_${build.date}.zip" basedir="${build.dir}"
+        <zip destfile="${dist.dir}/validator-configuration-xrechnung_${xrechnung.version}_${build.date}.zip" basedir="${build.dir}"
             excludes="download/**,test"/>
     </target>
     <target name="clean" description="clean up">
