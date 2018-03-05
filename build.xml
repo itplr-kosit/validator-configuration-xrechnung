@@ -16,7 +16,11 @@
     <property name="saxon.jar" value="saxon9he.jar"/>
     <property name="cii.schema.zip" value="D16B_SCRDM__Subset__CII.zip"/>
     <property name="cii.schema.uncoupled.zip" value="d16b-cii-uncoupled.zip"/>
-    <property name="ubl.schema.zip" value="UBL-2.1.zip"/>
+    <property name="ubl.version" value="2.1"/>
+    <property name="ubl.download.url.prefix" value="http://docs.oasis-open.org/ubl/os-UBL-${ubl.version}/"/>
+    
+    <property name="ubl.schema.zip" value="UBL-${ubl.version}.zip"/>
+    <property name="ubl.download.url" value="${ubl.download.url.prefix}/${ubl.schema.zip}"/>
     <property name="cen.download.url.prefix" value="https://github.com/CenPC434/validation/archive"/>
     <property name="cen.rules.zip" value="master.zip"/>
     <property name="cen.download.url" value="${cen.download.url.prefix}/${cen.rules.zip}"/>
@@ -85,7 +89,7 @@
     </target>
     <target name="retrieve-ubl-schema" depends="init"
         description="Download UBL schemas to download directory">
-        <get src="http://docs.oasis-open.org/ubl/os-UBL-2.1/${ubl.schema.zip}"
+        <get src="${ubl.download.url}"
             dest="${download.dir}" verbose="true" skipexisting="true" usetimestamp="true"/>
     </target>
     <target name="retrieve-cii-schema" depends="init"
@@ -109,6 +113,8 @@
         <filter token="xrechnung.download.url" value="${xrechnung.download.url}"/>
         <filter token="xrechnung.version" value="${xrechnung.version}"/>
         <filter token="xrechnung.build.date" value="${xrechnung.build.date}"/>
+        <filter token="ubl.version" value="${ubl.version}"/>
+        <filter token="ubl.download.url" value="${ubl.download.url}}"/>
         <copy file="scenarios.xml" todir="${repository.dir}" failonerror="true" filtering="true"/>
     </target>
     

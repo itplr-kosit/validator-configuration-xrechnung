@@ -12,6 +12,12 @@
     </description>
     <scenario>
          <name>EN16931 CIUS XRechnung (UBL Invoice)</name>
+        <description><p>Validierung von UBL Invoice version @ubl.version@</p>
+            <p>Dieses Scenario enthält UBL Invoice @ubl.version@ XML Schema und Schematron-Regeln der EN16931:2017 und XRechnung @xrechnung.version@ </p>
+            <p>Download von UBL XML Schema am @build.date@ von @ubl.download.url@</p>
+            <p>Download von UBL Schematron Rules am @build.date@ von @cen.download.url@</p>
+            <p>Download von XRechnung Schematron Rules am @build.date@ von @xrechnung.download.url@</p>
+        </description>
         <namespace prefix="cbc">urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2</namespace>
         <namespace prefix="invoice">urn:oasis:names:specification:ubl:schema:xsd:Invoice-2</namespace>
         <match>/invoice:Invoice[starts-with(cbc:CustomizationID, 'urn:cen.eu:en16931:2017') or starts-with(cbc:CustomizationID, 'urn:ce.eu:en16931:2017')]</match>
