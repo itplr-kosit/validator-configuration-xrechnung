@@ -11,8 +11,7 @@
         </xsl:copy>
     </xsl:template>
     
-    <!-- TODO: <xsl:template match="cbc:CompanyID/@schemeID[not(ancestor::cac:PartyTaxScheme)]" mode="M13" priority="1011"> wird noch nicht erkannt-->
-    <xsl:template match="xsl:template[matches(@match,'@\w+$')]/xsl:apply-templates[@select='*']"/>
+    <xsl:template match="xsl:template[matches(@match,'.*@\w+(\[[^\[]*\])?$')]/xsl:apply-templates[@select='*']"/>
     
     <xsl:template match="svrl:fired-rule"/>
     
