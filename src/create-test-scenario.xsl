@@ -23,7 +23,7 @@
             
             <xsl:element name="customLevel">
                 <xsl:attribute name="level">warning</xsl:attribute>
-                <xsl:text>BR-CL-04</xsl:text>
+                <xsl:text>BR-09</xsl:text>
             </xsl:element>
             
         </xsl:copy>
