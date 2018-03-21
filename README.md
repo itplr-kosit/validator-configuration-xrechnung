@@ -65,4 +65,4 @@ Here you can [download the latest release](https://github.com/itplr-kosit/valida
 
 ## Build from Scratch
 
-This repository contains an ANT `build.xml` which allows downloading all neccessary tools and artefacts for creating this validator configuration for XRechnung. It can also allows to test the configuration against a few UBL and UN/CEFACT documents and creates a release zip file.  
+This repository contains an ANT `build.xml` which allows downloading all neccessary tools and artefacts for creating this validator configuration for XRechnung. It also allows testing the configuration against a few UBL and UN/CEFACT documents and creates a release zip file.  
