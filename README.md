@@ -9,7 +9,7 @@ In particular:
 * [Schematron of EN16931:2017](https://github.com/CenPC434/validation)
 * [Schematron of CIUS XRechnung](https://github.com/itplr-kosit/xrechnung-artefacts/)
 * [XML Schema of UBL Invoice and CreditNote version 2.1](http://docs.oasis-open.org/ubl/os-UBL-2.1/)
-* [XML SChema of UN/CEFACT uncoupled version 16b](http://www.unece.org/cefact/xml_schemas/index.html)
+* [XML Schema of UN/CEFACT uncoupled version 16b](http://www.unece.org/cefact/xml_schemas/index.html)
 
 ## Usage
 
@@ -24,12 +24,14 @@ In an empty directory:
 curl -L 'https://github.com/itplr-kosit/validator/releases/download/validationtool-1_0_1/validationtool-dist-1.0.1-standalone.zip' --output validator.zip
 
 # download configuration
- curl -L 'https://github.com/itplr-kosit/validator-configuration-xrechnung/releases/download/release-2018-03-05/validator-configuration-xrechnung_1.1_2018-03-05.zip' --output validator-configura
+curl -L 'https://github.com/itplr-kosit/validator-configuration-xrechnung/releases/download/release-2018-03-05/validator-configuration-xrechnung_1.1_2018-03-05.zip' --output validator-configura
 tion.zip
 
 # download a test document
- curl -L 'https://raw.githubusercontent.com/itplr-kosit/xrechnung-testsuite/master/instances/01.01a-INVOICE_ubl.xml' --output ubl.xml
+curl -L 'https://raw.githubusercontent.com/itplr-kosit/xrechnung-testsuite/master/instances/01.01a-INVOICE_ubl.xml' --output ubl.xml
+# show content of directory
 ls
+# should show something like this:
 ubl.xml validator.zip  validator-configuration.zip
 ```
 
@@ -65,4 +67,4 @@ Here you can [download the latest release](https://github.com/itplr-kosit/valida
 
 ## Build from Scratch
 
-This repository contains an ANT `build.xml` which allows downloading all neccessary tools and artefacts for creating this validator configuration for XRechnung. It can also allows to test the configuration against a few UBL and UN/CEFACT documents and creates a release zip file.  
+This repository contains an ANT `build.xml` which allows downloading all neccessary tools and artefacts for creating this validator configuration for XRechnung. It also allows testing the configuration against a few UBL and UN/CEFACT documents and creates a release zip file.  
