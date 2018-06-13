@@ -111,13 +111,16 @@ It looks for each schematron assert id if a translation with the same id is pres
 Therefore if an assertion with `id=BR-CL-03` is found
 
 ```xml
-<assert test="<!-- left out -->" id="BR-CL-03" flag="fatal">Die angegebene Waehrung muss ein gueltiges Kuerzel aus der ISO Codeliste 4217 sein. Z.B. EUR fuer Euro.</assert>
+<assert test="<!-- left out -->" id="BR-CL-03" flag="fatal">
+[BR-CL-03]-currencyID MUST be coded using ISO code list 4217 alpha-3
+</assert>
 
 ```
 it will replace the text content of the assert element with the text contennt of the tr element in `<tr:what id="BR-CL-03">`:
 
+```xml
 <tr:what id="BR-CL-03">
   <tr:to xml:lang="de">Die angegebene Waehrung muss ein gueltiges Kuerzel aus der ISO Codeliste 4217 sein. Z.B. EUR fuer Euro.</tr:to>
 </tr:what>
-
+```
 Otherwise the assert text content is not changed.
