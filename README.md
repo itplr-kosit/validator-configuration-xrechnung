@@ -68,7 +68,7 @@ Here you can [download the latest release](https://github.com/itplr-kosit/valida
 ## Build from Scratch
 
 This repository contains an ANT `build.xml` which allows downloading all neccessary tools and artefacts for creating this validator configuration for XRechnung.
-```
+```shell
 ant complie
 ```
 
@@ -108,15 +108,14 @@ the translation is implemented using the `./src/translations/schematron-assert-m
 
 It looks for each schematron assert id if a translation with the same id is present in the `xrechnung-schematron-translations.xml`.
 
-Therefore if an assertion with `id=BR-CL-03` is found
+Therefore, if an assertion with `id=BR-CL-03` is found
 
 ```xml
 <assert test="<!-- left out -->" id="BR-CL-03" flag="fatal">
 [BR-CL-03]-currencyID MUST be coded using ISO code list 4217 alpha-3
 </assert>
-
 ```
-it will replace the text content of the assert element with the text contennt of the tr element in `<tr:what id="BR-CL-03">`:
+it will replace the text content of the assert element with the text content of the `tr` element in `<tr:what id="BR-CL-03">`:
 
 ```xml
 <tr:what id="BR-CL-03">
