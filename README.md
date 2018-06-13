@@ -69,7 +69,7 @@ Here you can [download the latest release](https://github.com/itplr-kosit/valida
 
 This repository contains an ANT `build.xml` which allows downloading all neccessary tools and artefacts for creating this validator configuration for XRechnung.
 ```shell
-ant complie
+ant compile
 ```
 
 It also allows testing the configuration against a few UBL and UN/CEFACT documents and creates a release zip file.
