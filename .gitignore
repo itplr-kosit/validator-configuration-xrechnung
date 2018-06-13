@@ -3,3 +3,5 @@ build
 lib
 reports
 .vscode
+validator-configuration-xrechnung.xpr
+src/translations/*.xml
