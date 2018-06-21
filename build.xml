@@ -26,9 +26,10 @@
 
     <property name="ubl.schema.zip" value="UBL-${ubl.version}.zip"/>
     <property name="ubl.download.url" value="${ubl.download.url.prefix}/${ubl.schema.zip}"/>
-    <property name="cen.download.url.prefix" value="https://github.com/CenPC434/validation/archive"/>
-    <property name="cen.rules.zip" value="master.zip"/>
-    <property name="cen.download.url" value="${cen.download.url.prefix}/${cen.rules.zip}"/>
+    <property name="cen.release-version" value="1.0.0"/>
+    <property name="cen.download.url.prefix" value="https://github.com/CenPC434/validation/releases/download/validation-${cen.release-version}"/>
+    <property name="cen.rules.ubl.zip" value="en16031-ubl-${cen.release-version}.zip"/>
+    <property name="cen.rules.cii.zip" value="en16031-cii-${cen.release-version}.zip"/>
     <property name="xrechnung.build.date" value="2017-12-19"/>
     <property name="xrechnung.download.url.prefix"
         value="https://github.com/itplr-kosit/xrechnung-artefacts/releases/download/xrechnung-1_1-schematron-${xrechnung.build.date}"/>
@@ -125,7 +126,7 @@
 
     <target name="sch">
         <schematron-compile
-            schematron="${download.dir}/validation-master/ubl/schematron/EN16931-UBL-model.sch"
+            schematron="${download.dir}/validation-validation-${cen.release-version}/ubl/schematron/EN16931-UBL-model.sch"
             workdir="${build.dir}/schematron"/>
     </target>
 
@@ -173,9 +174,17 @@
     </target>
     <target name="retrieve-cen-rules" depends="init"
         description="Download CEN business rules (schematron) to download directory">
-        <get src="${cen.download.url}" dest="${download.dir}" verbose="true" skipexisting="true"
-            usetimestamp="true"/>
-        <unzip src="${download.dir}/${cen.rules.zip}" dest="${download.dir}">
+        <get src="${cen.download.url.prefix}/${cen.rules.ubl.zip}" dest="${download.dir}" verbose="true" skipexisting="true"
+             usetimestamp="true"/>
+        <get src="${cen.download.url.prefix}/${cen.rules.cii.zip}" dest="${download.dir}" verbose="true" skipexisting="true"
+             usetimestamp="true"/>
+        <unzip src="${download.dir}/${cen.rules.ubl.zip}" dest="${download.dir}">
+            <patternset>
+                <include name="*/ubl/schematron/**/*.sch"/>
+                <include name="*/cii/schematron/**/*.sch"/>
+            </patternset>
+        </unzip>
+        <unzip src="${download.dir}/${cen.rules.cii.zip}" dest="${download.dir}">
             <patternset>
                 <include name="*/ubl/schematron/**/*.sch"/>
                 <include name="*/cii/schematron/**/*.sch"/>
@@ -185,7 +194,7 @@
         <path id="schematron-path">
             <fileset dir="${download.dir}" includes="*/*/schematron/*.sch"/>
         </path>
-        <fail message="Could not extract CEN schematron rules from ${download.dir}/${cen.rules.zip}">
+        <fail message="Could not extract CEN schematron rules from ${download.dir}/${cen.rules.ubl.zip}">
             <condition>
                 <not>
                     <available file="EN16931-UBL-model.sch">
@@ -194,7 +203,7 @@
                 </not>
             </condition>
         </fail>
-        <fail message="Could not extract file EN16931-CII-validation.sch">
+        <fail message="Could not extract file EN16931-CII-validation.sch from ${download.dir}/${cen.rules.cii.zip}">
             <condition>
                 <not>
                     <available file="EN16931-CII-validation.sch">
@@ -258,11 +267,11 @@
     <target name="compile-cen-rules" depends="retrieve-cen-rules,translate-schematron-rules,prepare-saxon">
 
         <schematron-compile
-            schematron="${download.dir}/validation-master/ubl/schematron/EN16931-UBL-model.sch"
+            schematron="${download.dir}/validation-validation-${cen.release-version}/ubl/schematron/EN16931-UBL-model.sch"
             insuffix="sch" workdir="${build.dir}/schematron" outdir="${build.dir}"/>
 
         <schematron-compile
-            schematron="${download.dir}/validation-master/cii/schematron/EN16931-CII-validation.sch"
+            schematron="${download.dir}/validation-validation-${cen.release-version}/cii/schematron/EN16931-CII-validation.sch"
             insuffix="sch" workdir="${build.dir}/schematron" outdir="${build.dir}"/>
 
         <!-- Creating schematron now usins Saxon 9he-->
@@ -284,7 +293,9 @@
     </target>
     <target name="compile-scenario" depends="init">
         <filter token="build.date" value="${build.date}"/>
-        <filter token="cen.download.url" value="${cen.download.url}"/>
+        <filter token="cen.release-version" value="${cen.release-version}"/>
+        <filter token="cen.download.ubl.url" value="${cen.download.url.prefix}/${cen.rules.ubl.zip}"/>
+        <filter token="cen.download.cii.url" value="${cen.download.url.prefix}/${cen.rules.cii.zip}"/>
         <filter token="xrechnung.download.url" value="${xrechnung.download.url}"/>
         <filter token="xrechnung.version" value="${xrechnung.version}"/>
         <filter token="xrechnung.build.date" value="${xrechnung.build.date}"/>

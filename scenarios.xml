@@ -7,7 +7,7 @@
     <date>@build.date@</date>
     <description>
         <p>Prüfung von Dokumenten auf Konformität zum Standard XRechnung 1.1 (https://www.xoev.de/de/xrechnung/1_1).</p>
-        <p>Diese Konfiguration enthält die Schematron-Regeln der EN16931:2017 mit dem Stand vom @build.date@ (@cen.download.url@).</p>
+        <p>Diese Konfiguration enthält die Schematron-Regeln der EN16931:2017 mit dem Stand vom @build.date@ (@cen.release-version@).</p>
         <p>Diese Konfiguration enthält die Schematron-Regeln der CIUS XRechnung @xrechnung.version@ mit dem Stand @xrechnung.build.date@ (https://github.com/itplr-kosit/xrechnung-artefacts/releases/tag/xrechnung-1_1-schematron-@xrechnung.build.date@). </p>
     </description>
     <scenario>
@@ -16,7 +16,7 @@
             <p>Validierung von UBL Invoice version @ubl.version@</p>
             <p>Dieses Scenario enthält UBL Invoice @ubl.version@ XML Schema und Schematron-Regeln der EN16931:2017 und XRechnung @xrechnung.version@ </p>
             <p>Download von UBL XML Schema am @build.date@ von @ubl.download.url@</p>
-            <p>Download von UBL Schematron Rules am @build.date@ von @cen.download.url@</p>
+            <p>Download von UBL Schematron Rules am @build.date@ von @cen.download.ubl.url@/ @cen.download.cii.url@</p>
             <p>Download von XRechnung Schematron Rules am @build.date@ von @xrechnung.download.url@</p>
         </description>
         <namespace prefix="cbc">urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2</namespace>
@@ -55,7 +55,7 @@
             <p>Validierung von UBL CrediteNote version @ubl.version@</p>
             <p>Dieses Scenario enthält UBL Invoice @ubl.version@ XML Schema und Schematron-Regeln der EN16931:2017 und XRechnung @xrechnung.version@ </p>
             <p>Download von UBL XML Schema am @build.date@ von @ubl.download.url@</p>
-            <p>Download von UBL Schematron Rules am @build.date@ von @cen.download.url@</p>
+            <p>Download von UBL Schematron Rules am @build.date@ von @cen.download.ubl.url@</p>
             <p>Download von XRechnung Schematron Rules am @build.date@ von @xrechnung.download.url@</p>
         </description>
         <namespace prefix="cbc">urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2</namespace>
@@ -92,7 +92,7 @@
             <p>Validierung von UN/CEFACT XML (SCRDM - CII uncoupled) Version @cii.version@</p>
             <p>Dieses Scenario enthält UN/CEFACT (SCRDM - CII uncoupled) @cii.version@ XML Schema und Schematron-Regeln der EN16931:2017 und XRechnung @xrechnung.version@ </p>
             <p>Download von CII uncoupled XML Schema am @build.date@ von @cii.download.url@</p>
-            <p>Download von CII Schematron Rules am @build.date@ von @cen.download.url@</p>
+            <p>Download von CII Schematron Rules am @build.date@ von @cen.download.cii.url@</p>
             <p>Download von XRechnung Schematron Rules am @build.date@ von @xrechnung.download.url@</p>
         </description>
         <namespace prefix="rsm">urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100</namespace>
