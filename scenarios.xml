@@ -31,7 +31,7 @@
         <validateWithSchematron>
             <resource>
                 <name>Schematron rules for EN16931 (UBL)</name>
-                <location>resources/ubl/2.1/xsl/EN16931-UBL-validation.xsl</location>
+                <location>resources/ubl/2.1/xsl/EN16931-UBL-validation.@locale@.xsl</location>
             </resource>
         </validateWithSchematron>
         <validateWithSchematron>
@@ -70,7 +70,7 @@
         <validateWithSchematron>
             <resource>
                 <name>Schematron rules for EN16931 (UBL)</name>
-                <location>resources/ubl/2.1/xsl/EN16931-UBL-validation.xsl</location>
+                <location>resources/ubl/2.1/xsl/EN16931-UBL-validation.@locale@.xsl</location>
             </resource>
         </validateWithSchematron>
         <validateWithSchematron>
@@ -107,7 +107,7 @@
         <validateWithSchematron>
             <resource>
                 <name>Schematron rules for EN16931 (CII)</name>
-                <location>resources/cii/16b/xsl/EN16931-CII-validation.xsl</location>
+                <location>resources/cii/16b/xsl/EN16931-CII-validation.@locale@.xsl</location>
             </resource>
         </validateWithSchematron>
         <validateWithSchematron>

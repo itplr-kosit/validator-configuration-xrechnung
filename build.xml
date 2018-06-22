@@ -393,7 +393,7 @@
         description="Initializes test directory structure">
         <mkdir dir="${build.dir}/test"/>
         <!-- customize scenarios.xml fir testing purpose -->
-        <xslt in="${repository.dir}/scenarios.xml" out="${test.build.dir}/scenarios.xml"
+        <xslt in="${repository.dir}/scenarios.en.xml" out="${test.build.dir}/scenarios.en.xml"
             style="${src.dir}/create-test-scenario.xsl">
             <classpath location="${lib.dir}/${saxon.jar}"/>
             <factory name="net.sf.saxon.TransformerFactoryImpl"/>
