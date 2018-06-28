@@ -7,3 +7,6 @@ validator-configuration-xrechnung.xpr
 
 src/translations/*.xml
 !src/translations/*example.xml
+
+.idea
+*.iml

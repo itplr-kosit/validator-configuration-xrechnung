@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<messages>
+    <message id="BR-52">Jedes zusätzliche unterstützende Dokument muss eine entsprechende Referenz haben (BT-122).
+    </message>
+    <message id="BR-CO-25">Falls der Betrag für die Zahlung (BT-115) positiv ist müssen entweder das Zahlungsdatum
+        (BT-9) oder die Zahlungsbedingungen (BT-20) angegeben werden.
+    </message>
+</messages>

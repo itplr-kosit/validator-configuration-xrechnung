@@ -1,6 +1,10 @@
 <project name="xrechnung-validation-configuration" default="compile" basedir=".">
     <description>Build the XRechnung validation configuration for ITPLR-KoSIT
         validator</description>
+
+    <!-- We need antcontrib -->
+    <taskdef resource="net/sf/antcontrib/antcontrib.properties"/>
+
     <!-- set global properties for this build -->
     <!-- main build directories -->
     <property name="src.dir" location="${basedir}/src"/>
@@ -26,9 +30,10 @@
 
     <property name="ubl.schema.zip" value="UBL-${ubl.version}.zip"/>
     <property name="ubl.download.url" value="${ubl.download.url.prefix}/${ubl.schema.zip}"/>
-    <property name="cen.download.url.prefix" value="https://github.com/CenPC434/validation/archive"/>
-    <property name="cen.rules.zip" value="master.zip"/>
-    <property name="cen.download.url" value="${cen.download.url.prefix}/${cen.rules.zip}"/>
+    <property name="cen.release-version" value="1.0.0"/>
+    <property name="cen.download.url.prefix" value="https://github.com/CenPC434/validation/releases/download/validation-${cen.release-version}"/>
+    <property name="cen.rules.ubl.zip" value="en16031-ubl-${cen.release-version}.zip"/>
+    <property name="cen.rules.cii.zip" value="en16031-cii-${cen.release-version}.zip"/>
     <property name="xrechnung.build.date" value="2017-12-19"/>
     <property name="xrechnung.download.url.prefix"
         value="https://github.com/itplr-kosit/xrechnung-artefacts/releases/download/xrechnung-1_1-schematron-${xrechnung.build.date}"/>
@@ -125,7 +130,7 @@
 
     <target name="sch">
         <schematron-compile
-            schematron="${download.dir}/validation-master/ubl/schematron/EN16931-UBL-model.sch"
+            schematron="${download.dir}/validation-validation-${cen.release-version}/ubl/schematron/EN16931-UBL-model.sch"
             workdir="${build.dir}/schematron"/>
     </target>
 
@@ -134,9 +139,6 @@
         <tstamp>
             <format property="build.date" pattern="yyyy-MM-dd"/>
         </tstamp>
-
-        <!-- Determine presence of a translation file to conditionally execute translate-cen-rules task -->
-        <available file="${src.dir}/translations/xrechnung-schematron-translations.xml" property="translation.avalailable"/>
 
         <echo>Build date: ${build.date}</echo>
         <!-- Create the build directory structure used by compile -->
@@ -173,9 +175,17 @@
     </target>
     <target name="retrieve-cen-rules" depends="init"
         description="Download CEN business rules (schematron) to download directory">
-        <get src="${cen.download.url}" dest="${download.dir}" verbose="true" skipexisting="true"
-            usetimestamp="true"/>
-        <unzip src="${download.dir}/${cen.rules.zip}" dest="${download.dir}">
+        <get src="${cen.download.url.prefix}/${cen.rules.ubl.zip}" dest="${download.dir}" verbose="true" skipexisting="true"
+             usetimestamp="true"/>
+        <get src="${cen.download.url.prefix}/${cen.rules.cii.zip}" dest="${download.dir}" verbose="true" skipexisting="true"
+             usetimestamp="true"/>
+        <unzip src="${download.dir}/${cen.rules.ubl.zip}" dest="${download.dir}">
+            <patternset>
+                <include name="*/ubl/schematron/**/*.sch"/>
+                <include name="*/cii/schematron/**/*.sch"/>
+            </patternset>
+        </unzip>
+        <unzip src="${download.dir}/${cen.rules.cii.zip}" dest="${download.dir}">
             <patternset>
                 <include name="*/ubl/schematron/**/*.sch"/>
                 <include name="*/cii/schematron/**/*.sch"/>
@@ -185,7 +195,7 @@
         <path id="schematron-path">
             <fileset dir="${download.dir}" includes="*/*/schematron/*.sch"/>
         </path>
-        <fail message="Could not extract CEN schematron rules from ${download.dir}/${cen.rules.zip}">
+        <fail message="Could not extract CEN schematron rules from ${download.dir}/${cen.rules.ubl.zip}">
             <condition>
                 <not>
                     <available file="EN16931-UBL-model.sch">
@@ -194,7 +204,7 @@
                 </not>
             </condition>
         </fail>
-        <fail message="Could not extract file EN16931-CII-validation.sch">
+        <fail message="Could not extract file EN16931-CII-validation.sch from ${download.dir}/${cen.rules.cii.zip}">
             <condition>
                 <not>
                     <available file="EN16931-CII-validation.sch">
@@ -233,58 +243,95 @@
         depends="retrieve-ubl-schema,retrieve-cen-rules,retrieve-xrechnung-rules,retrieve-cii-schema"
         description="Retrieves all 3rd party XSDs and XSLTs"/>
 
-    <target name="translate-schematron-rules" depends="retrieve-cen-rules,prepare-saxon" if="translation.avalailable">
-        
-        <xslt extension=".sch.tr" useimplicitfileset="false" failonerror="true" failonnoresources="true"
-            failontransformationerror="true"
-            style="${src.dir}/translations/schematron-assert-message-translator.xsl"
-            destdir="${download.dir}">
+    <target name="extract-default-validation-messages" depends="retrieve-cen-rules,prepare-saxon">
+        <xslt extension=".messages.xml" failonerror="true" failonnoresources="true" failontransformationerror="true"
+              style="${src.dir}/translations/extract-validation-messages.xsl"
+              basedir="${download.dir}/validation-validation-${cen.release-version}"
+              includes="**/*.sch"
+              destdir="${build.dir}/i18n/default">
             <classpath location="${lib.dir}/${saxon.jar}"/>
             <factory name="net.sf.saxon.TransformerFactoryImpl"/>
-            <fileset dir="${download.dir}" casesensitive="yes">
-                <include name="*/*/schematron/*/*.sch"/>
+        </xslt>
+    </target>
+
+    <target name="generate-translation-xslts" depends="prepare-saxon">
+        <xslt extension=".tr.xml" failonerror="true" failonnoresources="true" failontransformationerror="true"
+              style="${src.dir}/translations/generate-translation-transformation.xsl"
+              basedir="${src.dir}/translations/i18n"
+              includes="*/messages.xml"
+              destdir="${build.dir}/i18n">
+            <classpath location="${lib.dir}/${saxon.jar}"/>
+            <factory name="net.sf.saxon.TransformerFactoryImpl"/>
+        </xslt>
+    </target>
+
+    <target name="localize-and-compile-schematron-rules" if="dir">
+        <basename property="locale" file="${dir}"/>
+        <echo>Localizing schematron rules for locale "${locale}" using messages found in ${dir}</echo>
+        <property name="locale.out.dir" value="${build.dir}/i18n/out/${locale}"/>
+
+        <copy todir="${locale.out.dir}">
+            <fileset dir="${download.dir}/validation-validation-${cen.release-version}"/>
+        </copy>
+
+        <xslt extension=".sch.tr" useimplicitfileset="false" failonerror="true" failonnoresources="true"
+              failontransformationerror="true"
+              style="${src.dir}/translations/schematron-assert-message-translator.xsl"
+              destdir="${locale.out.dir}">
+            <param name="translations-uri" type="STRING" expression="${dir}/messages.tr.xml"/>
+
+            <classpath location="${lib.dir}/${saxon.jar}"/>
+            <factory name="net.sf.saxon.TransformerFactoryImpl"/>
+
+            <fileset dir="${locale.out.dir}" casesensitive="yes">
+                <include name="**/schematron/*/*.sch"/>
             </fileset>
         </xslt>
-        
-        <move todir="${download.dir}" includeemptydirs="false">
-            <fileset dir="${download.dir}">
-                <include name="*/*/schematron/*/*.sch.tr"/>
+
+        <delete>
+            <fileset dir="${locale.out.dir}">
+                <include name="*/schematron/*/*.sch"/>
+            </fileset>
+        </delete>
+
+        <move todir="${locale.out.dir}" includeemptydirs="false">
+            <fileset dir="${locale.out.dir}">
+                <include name="*/schematron/*/*.sch.tr"/>
             </fileset>
             <mapper type="glob" from="*.sch.tr" to="*.sch"/>
         </move>
 
-    </target>
-
-    <target name="compile-cen-rules" depends="retrieve-cen-rules,translate-schematron-rules,prepare-saxon">
+        <schematron-compile
+                schematron="${locale.out.dir}/ubl/schematron/EN16931-UBL-model.sch"
+                insuffix="sch" workdir="${locale.out.dir}" outdir="${locale.out.dir}"/>
 
         <schematron-compile
-            schematron="${download.dir}/validation-master/ubl/schematron/EN16931-UBL-model.sch"
-            insuffix="sch" workdir="${build.dir}/schematron" outdir="${build.dir}"/>
+                schematron="${locale.out.dir}/cii/schematron/EN16931-CII-validation.sch"
+                insuffix="sch" workdir="${locale.out.dir}" outdir="${locale.out.dir}"/>
 
-        <schematron-compile
-            schematron="${download.dir}/validation-master/cii/schematron/EN16931-CII-validation.sch"
-            insuffix="sch" workdir="${build.dir}/schematron" outdir="${build.dir}"/>
-
-        <!-- Creating schematron now usins Saxon 9he-->
-        <!-- according to https://www.saxonica.com/html/documentation/using-xsl/xsltfromant.html-->
-        <!-- customize CEN schematron rules for UBL -->
-        <xslt in="${build.dir}/EN16931-UBL-model.xslt"
-            out="${resource.dir}/ubl/2.1/xsl/EN16931-UBL-validation.xsl"
-            style="${src.dir}/remove-dead-apply-templates.xsl">
+        <xslt in="${locale.out.dir}/EN16931-UBL-model.xslt"
+              out="${resource.dir}/ubl/2.1/xsl/EN16931-UBL-validation.${locale}.xsl"
+              style="${src.dir}/remove-dead-apply-templates.xsl">
             <classpath location="${lib.dir}/${saxon.jar}"/>
             <factory name="net.sf.saxon.TransformerFactoryImpl"/>
         </xslt>
-        <!-- customize CEN schematron rules for CII -->
-        <xslt in="${build.dir}/EN16931-CII-validation.xslt"
-            out="${resource.dir}/cii/16b/xsl/EN16931-CII-validation.xsl"
-            style="${src.dir}/remove-dead-apply-templates.xsl">
+        <xslt in="${locale.out.dir}/EN16931-CII-validation.xslt"
+              out="${resource.dir}/cii/16b/xsl/EN16931-CII-validation.${locale}.xsl"
+              style="${src.dir}/remove-dead-apply-templates.xsl">
             <classpath location="${lib.dir}/${saxon.jar}"/>
             <factory name="net.sf.saxon.TransformerFactoryImpl"/>
         </xslt>
+
+        <antcall target="compile-scenario">
+            <param name="locale" value="${locale}"/>
+        </antcall>
     </target>
-    <target name="compile-scenario" depends="init">
+
+    <target name="compile-scenario" depends="init" if="locale">
         <filter token="build.date" value="${build.date}"/>
-        <filter token="cen.download.url" value="${cen.download.url}"/>
+        <filter token="cen.release-version" value="${cen.release-version}"/>
+        <filter token="cen.download.ubl.url" value="${cen.download.url.prefix}/${cen.rules.ubl.zip}"/>
+        <filter token="cen.download.cii.url" value="${cen.download.url.prefix}/${cen.rules.cii.zip}"/>
         <filter token="xrechnung.download.url" value="${xrechnung.download.url}"/>
         <filter token="xrechnung.version" value="${xrechnung.version}"/>
         <filter token="xrechnung.build.date" value="${xrechnung.build.date}"/>
@@ -292,14 +339,25 @@
         <filter token="ubl.download.url" value="${ubl.download.url}}"/>
         <filter token="cii.version" value="${cii.version}"/>
         <filter token="cii.download.url" value="${cii.download.url}"/>
-        <copy file="scenarios.xml" todir="${repository.dir}" failonerror="true" filtering="true"/>
+        <filter token="locale" value="${locale}"/>
+        <copy file="scenarios.xml" tofile="${repository.dir}/scenarios.${locale}.xml" failonerror="true" filtering="true"/>
+    </target>
+
+    <target name="translate-and-compile-schematron-rules" depends="generate-translation-xslts,retrieve-cen-rules,prepare-saxon">
+        <delete dir="${build.dir}/i18n/out"/>
+        <foreach target="localize-and-compile-schematron-rules" param="dir">
+            <path>
+                <dirset dir="${build.dir}/i18n">
+                    <include name="*"/>
+                </dirset>
+            </path>
+        </foreach>
     </target>
 
     <target name="compile"
-        depends="compile-scenario,retrieve-all-schema-rules,compile-cen-rules,prepare-saxon,prepare-validationtool"
+        depends="retrieve-all-schema-rules,translate-and-compile-schematron-rules,prepare-saxon,prepare-validationtool"
         description="Compile XSDs and XSLTs into validation configuration conformant repository directory">
         <echo>Compiling Schemas and XSLTs ...</echo>
-
 
         <copy file="${src.dir}/default-report.xsl" todir="${resource.dir}"/>
         <copy file="${src.dir}/xrechnung-report.xsl" todir="${resource.dir}"/>
@@ -335,19 +393,19 @@
         description="Initializes test directory structure">
         <mkdir dir="${build.dir}/test"/>
         <!-- customize scenarios.xml fir testing purpose -->
-        <xslt in="${repository.dir}/scenarios.xml" out="${test.build.dir}/scenarios.xml"
+        <xslt in="${repository.dir}/scenarios.en.xml" out="${test.build.dir}/scenarios.en.xml"
             style="${src.dir}/create-test-scenario.xsl">
             <classpath location="${lib.dir}/${saxon.jar}"/>
             <factory name="net.sf.saxon.TransformerFactoryImpl"/>
         </xslt>
     </target>
+
     <target name="test" depends="compile,init-test,prepare-validationtool"
         description="Test XRechnung Configuration">
         <echo>Creating validation reports ...</echo>
         <java jar="${lib.dir}/${validationtool.jar}" failonerror="yes" fork="yes" dir="${build.dir}">
             <arg value="-s"/>
-            <arg value="${test.build.dir}/scenarios.xml"/>
-
+            <arg value="${test.build.dir}/scenarios.en.xml"/>
             <arg value="-r"/>
             <arg value="${build.dir}"/>
             <arg value="-h"/>
@@ -357,6 +415,7 @@
             <arg value="${reports.dir}"/>
             <arg value="${test.docs.dir}/*.xml"/>
         </java>
+
         <echo>Schema validating reports ...</echo>
         <schemavalidate fullchecking="yes" failonerror="yes">
             <schema namespace="http://www.xoev.de/de/validator/varl/1"
