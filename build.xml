@@ -380,7 +380,7 @@
         <!-- Delete the ${build} and ${dist} directory trees -->
         <delete  verbose="true" includeEmptyDirs="true" >
             <fileset dir="${build.dir}">
-                <exclude name="download"/>
+                <exclude name="download/**"/>
             </fileset>
         </delete>
         <delete dir="${dist.dir}"/>
