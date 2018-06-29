@@ -25,8 +25,10 @@
 
     <property name="ubl.schema.zip" value="UBL-${ubl.version}.zip"/>
     <property name="ubl.download.url" value="${ubl.download.url.prefix}/${ubl.schema.zip}"/>
-    <property name="cen.download.url.prefix" value="https://github.com/CenPC434/validation/archive"/>
-    <property name="cen.rules.zip" value="master.zip"/>
+    <property name="cen.rules.version" value="1.1.0"/>
+    <property name="cen.download.url.prefix" value="https://github.com/CenPC434/validation/releases/download/validation-${cen.rules.version}/"/>
+    <!-- switch to master.zip if do not want to use released zips 16931-*-${cen.rules.version}.zip-->
+    <property name="cen.rules.zip" value="16931-*-${cen.rules.version}.zip"/>
     <property name="cen.download.url" value="${cen.download.url.prefix}/${cen.rules.zip}"/>
     <property name="xrechnung.build.date" value="2017-12-19"/>
     <property name="xrechnung.download.url.prefix"
@@ -44,6 +46,10 @@
     <property name="reports.dir" location="${basedir}/reports"/>
 
 
+    <condition property="cen.master.target">
+        <equals arg1="${cen.rules.zip}" arg2="master.zip"/>
+    </condition>
+
     <macrodef name="xslt-saxon">
         <sequential>
             <fail message="Not implemented yet"/>
@@ -52,7 +58,7 @@
 
 
     <macrodef name="schematron-compile" description="Compiles Schematron to XSLT using Saxon">
-        <attribute name="schematron" description="Schematron file to compile."/>
+        <attribute name="schematron" description="Schematron file to compile." />
 
         <attribute name="workdir"
             description="Base directory in which to download Schematron Skeleton and keep intermediaries."/>
@@ -165,11 +171,28 @@
             <flattenmapper/>
         </unzip>
     </target>
-    <target name="retrieve-cen-rules" depends="init"
+    
+    <target name="retrieve-cen-rules" depends="retrieve-cen-rules-from-master,retrieve-cen-rules-from-release,init">
+        
+    </target>
+    
+    <target name="retrieve-cen-rules-from-master" depends="init" if="${cen.master.target}"
         description="Download CEN business rules (schematron) to download directory">
-        <get src="${cen.download.url}" dest="${download.dir}" verbose="true" skipexisting="true"
+        <get src="https://github.com/CenPC434/validation/archive/master.zip" dest="${download.dir}" verbose="true" skipexisting="true"
             usetimestamp="true"/>
     </target>
+    
+    <target name="retrieve-cen-rules-from-release" depends="init" unless="${cen.master.target}"
+        description="Download CEN business rules (schematron) to download directory">
+        
+        <!-- download UBL specific rules -->
+        <get src="${cen.download.url.prefix}/en16931-ubl-${cen.rules.version}.zip" dest="${download.dir}" verbose="true" skipexisting="true"
+            usetimestamp="true"/>
+        <!-- download CII specific rules -->
+        <get src="${cen.download.url.prefix}/en16931-cii-${cen.rules.version}.zip" dest="${download.dir}" verbose="true" skipexisting="true"
+            usetimestamp="true"/>
+    </target>
+    
     <target name="retrieve-xrechnung-rules" depends="init"
         description="Download XRechnung business rules (schematron) to download directory">
         <get src="${xrechnung.download.url}" dest="${download.dir}" verbose="true"
@@ -196,18 +219,47 @@
         description="Retrieves all 3rd party XSDs and XSLTs"/>
 
 
-    <target name="compile-cen-rules" depends="retrieve-cen-rules,prepare-saxon">
-        <unzip src="${download.dir}/${cen.rules.zip}" dest="${download.dir}">
-            <patternset>
-                <include name="*/ubl/schematron/**/*.sch"/>
-                <include name="*/cii/schematron/**/*.sch"/>
-            </patternset>
+    <target name="compile-cen-rules" depends="retrieve-cen-rules,prepare-saxon" description="Works for zip from master and release zips">
+        
+        <fail message="No cen rule zip files available!">
+            <condition>
+                <not>
+                    <or>
+                        <resourceexists>
+                            <file file="${download.dir}/master.zip"/>
+                        </resourceexists>
+                        <and>
+                            <resourceexists>
+                                <file file="${download.dir}/en16931-cii-${cen.rules.version}.zip"/>
+                            </resourceexists>
+                            <resourceexists>
+                                <file file="${download.dir}/en16931-ubl-${cen.rules.version}.zip"/>
+                            </resourceexists>
+                            
+                        </and>
+                    </or>
+                </not>
+            </condition>
+        </fail>
+        
+        <unzip dest="${download.dir}" failonemptyarchive="true" >
+            <fileset dir="${download.dir}" >
+                <include name="en16931-*-${cen.rules.version}.zip"/>
+                <include name="master.zip"/>
+            </fileset>
+            <!--<patternset>
+                <include name="schematron/UBL/*.sch"/>
+                <include name="**schematron/CII/*.sch"/>
+                <include name="**schematron/codelist/*.sch"/>
+                <include name="schematron/*.sch"/>
+            </patternset>-->
+            <regexpmapper from=".*/(schematron/.*\.sch$$)" to="\1"/>
         </unzip>
         <!-- Testing if important files were unzipped -->
         <path id="schematron-path">
-            <fileset dir="${download.dir}" includes="*/*/schematron/*.sch"/>
+            <fileset dir="${download.dir}" includes="**schematron/**.sch"/>
         </path>
-        <fail message="Could not extract CEN schematron rules from ${download.dir}/${cen.rules.zip}">
+        <fail message="Could not extract CEN schematron rules file EN16931-UBL-model.sch does not exist in ${download.dir}">
             <condition>
                 <not>
                     <available file="EN16931-UBL-model.sch">
@@ -228,11 +280,11 @@
 
 
         <schematron-compile
-            schematron="${download.dir}/validation-master/ubl/schematron/EN16931-UBL-model.sch"
+            schematron="${download.dir}/schematron/EN16931-UBL-model.sch"
             insuffix="sch" workdir="${build.dir}/schematron" outdir="${build.dir}"/>
 
         <schematron-compile
-            schematron="${download.dir}/validation-master/cii/schematron/EN16931-CII-validation.sch"
+            schematron="${download.dir}/schematron/EN16931-CII-validation.sch"
             insuffix="sch" workdir="${build.dir}/schematron" outdir="${build.dir}"/>
 
         <!-- Creating schematron now usins Saxon 9he-->
