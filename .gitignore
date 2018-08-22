@@ -3,3 +3,4 @@ build
 lib
 reports
 .vscode
+*.xpr
