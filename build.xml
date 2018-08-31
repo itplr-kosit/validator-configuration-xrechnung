@@ -29,8 +29,8 @@
     <!-- switch to master.zip if do not want to use released zips 16931-*-${cen.rules.version}.zip-->
     <property name="cen.rules.zip" value="16931-*-${cen.rules.version}.zip"/>
     <property name="cen.download.url" value="${cen.download.url.prefix}/${cen.rules.zip}"/>
-    <property name="xrechnung.build.date" value="2018-08-22"/>
-    <property name="xrechnung.download.url.prefix" value="https://github.com/itplr-kosit/xrechnung-schematron/releases/download/pre-release-${xrechnung.build.date}"/>
+    <property name="xrechnung.build.date" value="2018-08-31"/>
+    <property name="xrechnung.download.url.prefix" value="https://github.com/itplr-kosit/xrechnung-schematron/releases/download/release-${xrechnung.build.date}"/>
 
     <property name="xrechnung.rules.zip" value="xrechnung-1.1-schematron-${xrechnung.build.date}.zip"/>
     <property name="xrechnung.download.url" value="${xrechnung.download.url.prefix}/${xrechnung.rules.zip}"/>
