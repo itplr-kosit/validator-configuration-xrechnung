@@ -11,7 +11,11 @@
     <property name="test.src.dir" location="${src.dir}/test"/>
     <property name="test.build.dir" location="${build.dir}/test"/>
     <!-- Naming -->
-    <property name="xrechnung.version" value="1.1"/>
+    <property name="xrechnung.version.major.minor" value="1.2"/>
+    <property name="xrechnung.version" value="${xrechnung.version.major.minor}.0"/>
+    <property name="cen.spec.id" value="urn:cen.eu:en16931:2017"/>   
+    <property name="xrechnung.spec.id"
+        value="${cen.spec.id}#compliant#urn:xoev-de:kosit:standard:xrechnung_${xrechnung.version.major.minor}"/>
     <property name="dist.name" value="xrechnung-${xrechnung.version}-validation-configuration"/>
     <property name="validationtool.jar" value="validationtool-1.0.1-standalone.jar"/>
     <property name="saxon.jar" value="saxon9he.jar"/>
@@ -25,14 +29,22 @@
     <property name="ubl.schema.zip" value="UBL-${ubl.version}.zip"/>
     <property name="ubl.download.url" value="${ubl.download.url.prefix}/${ubl.schema.zip}"/>
     <property name="cen.rules.version" value="1.1.0"/>
-    <property name="cen.download.url.prefix" value="https://github.com/CenPC434/validation/releases/download/validation-${cen.rules.version}/"/>
+    <property name="cen.download.url.prefix" value="https://github.com/CenPC434/validation/releases/download/validation-${cen.rules.version}"/>
+    <property name="cen.download.url.ubl"
+        value="${cen.download.url.prefix}/en16931-ubl-${cen.rules.version}.zip"/>
+    <property name="cen.download.url.cii"
+        value="${cen.download.url.prefix}/en16931-cii-${cen.rules.version}.zip"/>
     <!-- switch to master.zip if do not want to use released zips 16931-*-${cen.rules.version}.zip-->
     <property name="cen.rules.zip" value="16931-*-${cen.rules.version}.zip"/>
-    <property name="cen.download.url" value="${cen.download.url.prefix}/${cen.rules.zip}"/>
+    
+    <!-- XRechnung Schematron Rules section -->
+    <!-- build date might get deprecated in future: check on this -->
     <property name="xrechnung.build.date" value="2018-08-31"/>
-    <property name="xrechnung.download.url.prefix" value="https://github.com/itplr-kosit/xrechnung-schematron/releases/download/release-${xrechnung.build.date}"/>
+    <property name="xrechnung.rules.version.major.minor" value="1.2"/>
+    <property name="xrechnung.rules.version.full" value="${xrechnung.rules.version.major.minor}.0"/>
+    <property name="xrechnung.download.url.prefix" value="https://github.com/itplr-kosit/xrechnung-schematron/releases/download/release-${xrechnung.rules.version.full}"/>
 
-    <property name="xrechnung.rules.zip" value="xrechnung-1.1-schematron-${xrechnung.build.date}.zip"/>
+    <property name="xrechnung.rules.zip" value="xrechnung-${xrechnung.version}-schematron-${xrechnung.rules.version.full}.zip"/>
     <property name="xrechnung.download.url" value="${xrechnung.download.url.prefix}/${xrechnung.rules.zip}"/>
     <!-- root/work directory where KoSIT validationtool expects Schema(s)-and trons -->
     <property name="repository.dir" location="${build.dir}"/>
@@ -152,9 +164,9 @@
     <target name="retrieve-cen-rules-from-release" depends="init" unless="${cen.master.target}" description="Download CEN business rules (schematron) to download directory">
 
         <!-- download UBL specific rules -->
-        <get src="${cen.download.url.prefix}/en16931-ubl-${cen.rules.version}.zip" dest="${download.dir}" verbose="true" skipexisting="true" usetimestamp="true"/>
+        <get src="${cen.download.url.ubl}" dest="${download.dir}" verbose="true" skipexisting="true" usetimestamp="true"/>
         <!-- download CII specific rules -->
-        <get src="${cen.download.url.prefix}/en16931-cii-${cen.rules.version}.zip" dest="${download.dir}" verbose="true" skipexisting="true" usetimestamp="true"/>
+        <get src="${cen.download.url.cii}" dest="${download.dir}" verbose="true" skipexisting="true" usetimestamp="true"/>
     </target>
 
     <target name="retrieve-xrechnung-rules" depends="init" description="Download XRechnung business rules (schematron) to download directory">
@@ -177,7 +189,7 @@
 
     <target name="compile-cen-rules" depends="retrieve-cen-rules,prepare-saxon" description="Works for zip from master and release zips">
 
-        <fail message="No cen rule zip files available!">
+        <fail message="No cen rule zip files available :(!">
             <condition>
                 <not>
                     <or>
@@ -254,10 +266,19 @@
     </target>
     <target name="compile-scenario" depends="init">
         <filter token="build.date" value="${build.date}"/>
-        <filter token="cen.download.url" value="${cen.download.url}"/>
+        <filter token="cen.spec.id" value="${cen.spec.id}"/>
+        <filter token="cen.rules.version" value="${cen.rules.version}"/>
+        <filter token="cen.download.url.ubl" value="${cen.download.url.ubl}"/>
+        <filter token="cen.download.url.cii" value="${cen.download.url.cii}"/>
+        <!-- This is actually the schematron part of it -->
         <filter token="xrechnung.download.url" value="${xrechnung.download.url}"/>
-        <filter token="xrechnung.version" value="${xrechnung.version}"/>
+        <filter token="xrechnung.rules.version.full"
+            value="${xrechnung.rules.version.full}"/>
+        <filter token="xrechnung.rules.version.major.minor" value="${xrechnung.rules.version.major.minor}"/>
         <filter token="xrechnung.build.date" value="${xrechnung.build.date}"/>
+        <!-- This is actually the specification part of it -->
+        <filter token="xrechnung.version" value="${xrechnung.version}"/>
+        <filter token="xrechnung.spec.id" value="${xrechnung.spec.id}"/>
         <filter token="ubl.version" value="${ubl.version}"/>
         <filter token="ubl.download.url" value="${ubl.download.url}}"/>
         <filter token="cii.version" value="${cii.version}"/>
@@ -285,7 +306,8 @@
             <cutdirsmapper dirs="1"/>
         </unzip>
 
-        <unzip src="${download.dir}/${xrechnung.rules.zip}" dest="${resource.dir}/xrechnung/1.1/xsl">
+        <unzip src="${download.dir}/${xrechnung.rules.zip}"
+            dest="${resource.dir}/xrechnung/${xrechnung.version}/xsl">
             <patternset>
                 <include name="**/XRechnung*.xsl"/>
             </patternset>

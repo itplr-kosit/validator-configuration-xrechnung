@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Invoice  xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2"
- xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2"
- xmlns:qdt="urn:oasis:names:specification:ubl:schema:xsd:QualifiedDataTypes-2"
- xmlns:udt="urn:oasis:names:specification:ubl:schema:xsd:UnqualifiedDataTypes-2"
- xmlns:ccts="urn:un:unece:uncefact:documentation:2"
- xmlns="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2">
-    <cbc:CustomizationID>urn:cen.eu:en16931:2017</cbc:CustomizationID>
+<Invoice
+    xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2"
+    xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2"
+    xmlns:qdt="urn:oasis:names:specification:ubl:schema:xsd:QualifiedDataTypes-2"
+    xmlns:udt="urn:oasis:names:specification:ubl:schema:xsd:UnqualifiedDataTypes-2"
+    xmlns:ccts="urn:un:unece:uncefact:documentation:2"
+    xmlns="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2">
+    <cbc:CustomizationID>urn:cen.eu:en16931:2017#compliant#urn:xoev-de:kosit:standard:xrechnung_1.2</cbc:CustomizationID>
     <cbc:ID>12115118</cbc:ID>
     <cbc:IssueDate>2015-01-09</cbc:IssueDate>
     <cbc:DueDate>2015-01-09</cbc:DueDate>
     <cbc:InvoiceTypeCode>380</cbc:InvoiceTypeCode>
-    <cbc:Note>Alle leveringen zijn franco. Alle prijzen zijn incl. BTW. Betalingstermijn: 14 dagen netto. Prijswijzigingen voorbehouden. Op al onze aanbiedingen, leveringen en overeenkomsten zijn van toepassing in de algemene verkoop en leveringsvoorwaarden. Gedeponeerd bij de K.v.K. te Amsterdam 25-04-'85##Delivery terms</cbc:Note>
+    <cbc:Note>Alle leveringen zijn franco. Alle prijzen zijn incl. BTW.
+        Betalingstermijn: 14 dagen netto. Prijswijzigingen voorbehouden. Op al
+        onze aanbiedingen, leveringen en overeenkomsten zijn van toepassing in
+        de algemene verkoop en leveringsvoorwaarden. Gedeponeerd bij de K.v.K.
+        te Amsterdam 25-04-'85##Delivery terms</cbc:Note>
     <cbc:DocumentCurrencyCode>EUR</cbc:DocumentCurrencyCode>
     <cbc:BuyerReference>A test buyer reference</cbc:BuyerReference>
     <cac:AccountingSupplierParty>
@@ -37,7 +42,7 @@
             <cac:Contact>
                 <cbc:Name>Testname</cbc:Name>
                 <cbc:Telephone>Testname</cbc:Telephone>
-                <cbc:ElectronicMail>test@test.de</cbc:ElectronicMail>                
+                <cbc:ElectronicMail>test@test.de</cbc:ElectronicMail>
             </cac:Contact>
         </cac:Party>
     </cac:AccountingSupplierParty>
@@ -61,7 +66,7 @@
                 <cbc:Name>Dhr. J BLOKKER</cbc:Name>
             </cac:Contact>
         </cac:Party>
-   </cac:AccountingCustomerParty>
+    </cac:AccountingCustomerParty>
     <cac:PaymentMeans>
         <cbc:PaymentMeansCode>30</cbc:PaymentMeansCode>
         <cbc:PaymentID>Deb. 10202 / Fact. 12115118</cbc:PaymentID>
@@ -102,7 +107,8 @@
         </cac:TaxSubtotal>
     </cac:TaxTotal>
     <cac:LegalMonetaryTotal>
-        <cbc:LineExtensionAmount currencyID="EUR">229.60</cbc:LineExtensionAmount>
+        <cbc:LineExtensionAmount currencyID="EUR"
+            >229.60</cbc:LineExtensionAmount>
         <cbc:TaxExclusiveAmount currencyID="EUR">229.60</cbc:TaxExclusiveAmount>
         <cbc:TaxInclusiveAmount currencyID="EUR">250.33</cbc:TaxInclusiveAmount>
         <cbc:PayableAmount currencyID="EUR">250.33</cbc:PayableAmount>
@@ -110,7 +116,8 @@
     <cac:InvoiceLine>
         <cbc:ID>1</cbc:ID>
         <cbc:InvoicedQuantity unitCode="EA">2</cbc:InvoicedQuantity>
-        <cbc:LineExtensionAmount currencyID="EUR">19.90</cbc:LineExtensionAmount>
+        <cbc:LineExtensionAmount currencyID="EUR"
+            >19.90</cbc:LineExtensionAmount>
         <cac:Item>
             <cbc:Name>PATAT FRITES 10MM 10KG</cbc:Name>
             <cac:SellersItemIdentification>
@@ -123,7 +130,7 @@
                     <cbc:ID>VAT</cbc:ID>
                 </cac:TaxScheme>
             </cac:ClassifiedTaxCategory>
-       </cac:Item>
+        </cac:Item>
         <cac:Price>
             <cbc:PriceAmount currencyID="EUR">9.95</cbc:PriceAmount>
         </cac:Price>
@@ -173,7 +180,8 @@
     <cac:InvoiceLine>
         <cbc:ID>4</cbc:ID>
         <cbc:InvoicedQuantity unitCode="EA">2</cbc:InvoicedQuantity>
-        <cbc:LineExtensionAmount currencyID="EUR">14.46</cbc:LineExtensionAmount>
+        <cbc:LineExtensionAmount currencyID="EUR"
+            >14.46</cbc:LineExtensionAmount>
         <cac:Item>
             <cbc:Name>FRITESSAUS 3 LRR</cbc:Name>
             <cac:SellersItemIdentification>
@@ -194,7 +202,8 @@
     <cac:InvoiceLine>
         <cbc:ID>5</cbc:ID>
         <cbc:InvoicedQuantity unitCode="EA">1</cbc:InvoicedQuantity>
-        <cbc:LineExtensionAmount currencyID="EUR">35.00</cbc:LineExtensionAmount>
+        <cbc:LineExtensionAmount currencyID="EUR"
+            >35.00</cbc:LineExtensionAmount>
         <cac:Item>
             <cbc:Name>KOFFIE BLIK 3,5KG SNELF </cbc:Name>
             <cac:SellersItemIdentification>
@@ -215,7 +224,8 @@
     <cac:InvoiceLine>
         <cbc:ID>6</cbc:ID>
         <cbc:InvoicedQuantity unitCode="EA">1</cbc:InvoicedQuantity>
-        <cbc:LineExtensionAmount currencyID="EUR">35.00</cbc:LineExtensionAmount>
+        <cbc:LineExtensionAmount currencyID="EUR"
+            >35.00</cbc:LineExtensionAmount>
         <cac:Item>
             <cbc:Name>KOFFIE 3.5 KG BLIK STAND </cbc:Name>
             <cac:SellersItemIdentification>
@@ -236,7 +246,8 @@
     <cac:InvoiceLine>
         <cbc:ID>7</cbc:ID>
         <cbc:InvoicedQuantity unitCode="EA">1</cbc:InvoicedQuantity>
-        <cbc:LineExtensionAmount currencyID="EUR">10.65</cbc:LineExtensionAmount>
+        <cbc:LineExtensionAmount currencyID="EUR"
+            >10.65</cbc:LineExtensionAmount>
         <cac:Item>
             <cbc:Name>SUIKERKLONT</cbc:Name>
             <cac:SellersItemIdentification>
@@ -278,7 +289,8 @@
     <cac:InvoiceLine>
         <cbc:ID>9</cbc:ID>
         <cbc:InvoicedQuantity unitCode="EA">3</cbc:InvoicedQuantity>
-        <cbc:LineExtensionAmount currencyID="EUR">14.37</cbc:LineExtensionAmount>
+        <cbc:LineExtensionAmount currencyID="EUR"
+            >14.37</cbc:LineExtensionAmount>
         <cac:Item>
             <cbc:Name>BLOCKNOTE A5 </cbc:Name>
             <cac:SellersItemIdentification>
@@ -320,7 +332,8 @@
     <cac:InvoiceLine>
         <cbc:ID>11</cbc:ID>
         <cbc:InvoicedQuantity unitCode="EA">2</cbc:InvoicedQuantity>
-        <cbc:LineExtensionAmount currencyID="EUR">16.58</cbc:LineExtensionAmount>
+        <cbc:LineExtensionAmount currencyID="EUR"
+            >16.58</cbc:LineExtensionAmount>
         <cac:Item>
             <cbc:Name>CHIPS PAP KLEINE ZAKJES</cbc:Name>
             <cac:SellersItemIdentification>
@@ -383,7 +396,8 @@
     <cac:InvoiceLine>
         <cbc:ID>14</cbc:ID>
         <cbc:InvoicedQuantity unitCode="EA">1</cbc:InvoicedQuantity>
-        <cbc:LineExtensionAmount currencyID="EUR">10.80</cbc:LineExtensionAmount>
+        <cbc:LineExtensionAmount currencyID="EUR"
+            >10.80</cbc:LineExtensionAmount>
         <cac:Item>
             <cbc:Name>KRAT BIER </cbc:Name>
             <cac:SellersItemIdentification>
@@ -467,7 +481,8 @@
     <cac:InvoiceLine>
         <cbc:ID>18</cbc:ID>
         <cbc:InvoicedQuantity unitCode="EA">1</cbc:InvoicedQuantity>
-        <cbc:LineExtensionAmount currencyID="EUR">18.63</cbc:LineExtensionAmount>
+        <cbc:LineExtensionAmount currencyID="EUR"
+            >18.63</cbc:LineExtensionAmount>
         <cac:Item>
             <cbc:Name>BALPENNEN 50 ST BLAUW </cbc:Name>
             <cac:SellersItemIdentification>
@@ -488,7 +503,8 @@
     <cac:InvoiceLine>
         <cbc:ID>19</cbc:ID>
         <cbc:InvoicedQuantity unitCode="EA">6</cbc:InvoicedQuantity>
-        <cbc:LineExtensionAmount currencyID="EUR">102.12</cbc:LineExtensionAmount>
+        <cbc:LineExtensionAmount currencyID="EUR"
+            >102.12</cbc:LineExtensionAmount>
         <cac:Item>
             <cbc:Name>EM FRITUURVET </cbc:Name>
             <cac:SellersItemIdentification>
@@ -509,7 +525,8 @@
     <cac:InvoiceLine>
         <cbc:ID>20</cbc:ID>
         <cbc:InvoicedQuantity unitCode="EA">6</cbc:InvoicedQuantity>
-        <cbc:LineExtensionAmount currencyID="EUR">-109.98</cbc:LineExtensionAmount>
+        <cbc:LineExtensionAmount currencyID="EUR"
+            >-109.98</cbc:LineExtensionAmount>
         <cac:Item>
             <cbc:Name>FRITUUR VET 10 KG RETOUR </cbc:Name>
             <cac:SellersItemIdentification>

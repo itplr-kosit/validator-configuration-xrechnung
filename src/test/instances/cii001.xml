@@ -2,13 +2,13 @@
 <!-- Example 1: Invoice with multiple line items for EN16931 -->
 <!-- Timestamp: 2017-08-24 00:00:00 +0200 -->
 <rsm:CrossIndustryInvoice xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100"
- xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100"
- xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100"
- xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100">
+    xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100"
+    xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100"
+    xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100"
+    xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100">
     <rsm:ExchangedDocumentContext>
         <ram:GuidelineSpecifiedDocumentContextParameter>
-            <ram:ID>urn:cen.eu:en16931:2017</ram:ID>
+            <ram:ID>urn:cen.eu:en16931:2017#compliant#urn:xoev-de:kosit:standard:xrechnung_1.2</ram:ID>
         </ram:GuidelineSpecifiedDocumentContextParameter>
     </rsm:ExchangedDocumentContext>
     <rsm:ExchangedDocument>
@@ -18,8 +18,13 @@
             <udt:DateTimeString format="102">20150109</udt:DateTimeString>
         </ram:IssueDateTime>
         <ram:IncludedNote>
-            <ram:Content>Alle leveringen zijn franco. Alle prijzen zijn incl. BTW. Betalingstermijn: 14 dagen netto. Prijswijzigingen voorbehouden. Op al onze aanbiedingen, leveringen en overeenkomsten zijn van toepassing in de algemene verkoop en leveringsvoorwaarden. Gedeponeerd bij de K.v.K. te Amsterdam 25-04-'85.</ram:Content>
-            <ram:SubjectCode>AAR</ram:SubjectCode>            
+            <ram:Content>Alle leveringen zijn franco. Alle prijzen zijn incl.
+                BTW. Betalingstermijn: 14 dagen netto. Prijswijzigingen
+                voorbehouden. Op al onze aanbiedingen, leveringen en
+                overeenkomsten zijn van toepassing in de algemene verkoop en
+                leveringsvoorwaarden. Gedeponeerd bij de K.v.K. te Amsterdam
+                25-04-'85.</ram:Content>
+            <ram:SubjectCode>AAR</ram:SubjectCode>
         </ram:IncludedNote>
     </rsm:ExchangedDocument>
     <rsm:SupplyChainTradeTransaction>
@@ -595,7 +600,8 @@
         </ram:ApplicableHeaderTradeAgreement>
         <ram:ApplicableHeaderTradeDelivery/>
         <ram:ApplicableHeaderTradeSettlement>
-            <ram:PaymentReference>Deb. 10202 / Fact. 12115118</ram:PaymentReference>
+            <ram:PaymentReference>Deb. 10202 / Fact.
+                12115118</ram:PaymentReference>
             <ram:InvoiceCurrencyCode>EUR</ram:InvoiceCurrencyCode>
             <ram:SpecifiedTradeSettlementPaymentMeans>
                 <ram:TypeCode>30</ram:TypeCode>
@@ -624,7 +630,10 @@
                 <ram:RateApplicablePercent>21</ram:RateApplicablePercent>
             </ram:ApplicableTradeTax>
             <ram:SpecifiedTradePaymentTerms>
-                <ram:DueDateDateTime><udt:DateTimeString format="102">20150109</udt:DateTimeString></ram:DueDateDateTime>
+                <ram:DueDateDateTime>
+                    <udt:DateTimeString format="102"
+                        >20150109</udt:DateTimeString>
+                </ram:DueDateDateTime>
             </ram:SpecifiedTradePaymentTerms>
             <ram:SpecifiedTradeSettlementHeaderMonetarySummation>
                 <ram:LineTotalAmount>229.6</ram:LineTotalAmount>

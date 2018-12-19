@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CreditNote xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2"
+<CreditNote
+    xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2"
     xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2"
     xmlns:qdt="urn:oasis:names:specification:ubl:schema:xsd:QualifiedDataTypes-2"
-    xmlns:udt="urn:oasis:names:specification:ubl:schema:xsd:UnqualifiedDataTypes-2" xmlns:ccts="urn:un:unece:uncefact:documentation:2"
+    xmlns:udt="urn:oasis:names:specification:ubl:schema:xsd:UnqualifiedDataTypes-2"
+    xmlns:ccts="urn:un:unece:uncefact:documentation:2"
     xmlns="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2">
-    <cbc:CustomizationID>urn:cen.eu:en16931:2017</cbc:CustomizationID>
+    <cbc:CustomizationID>urn:cen.eu:en16931:2017#compliant#urn:xoev-de:kosit:standard:xrechnung_1.2</cbc:CustomizationID>
     <cbc:ID>12115118</cbc:ID>
     <cbc:IssueDate>2015-01-09</cbc:IssueDate>
     <cbc:CreditNoteTypeCode>326</cbc:CreditNoteTypeCode>
     <cbc:DocumentCurrencyCode>EUR</cbc:DocumentCurrencyCode>
-    
+
     <cac:AccountingSupplierParty>
         <cac:Party>
             <cac:PostalAddress>
@@ -98,7 +100,8 @@
         </cac:TaxSubtotal>
     </cac:TaxTotal>
     <cac:LegalMonetaryTotal>
-        <cbc:LineExtensionAmount currencyID="EUR">229.60</cbc:LineExtensionAmount>
+        <cbc:LineExtensionAmount currencyID="EUR"
+            >229.60</cbc:LineExtensionAmount>
         <cbc:TaxExclusiveAmount currencyID="EUR">229.60</cbc:TaxExclusiveAmount>
         <cbc:TaxInclusiveAmount currencyID="EUR">250.33</cbc:TaxInclusiveAmount>
         <cbc:PayableAmount currencyID="EUR">250.33</cbc:PayableAmount>
