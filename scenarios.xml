@@ -6,16 +6,17 @@
     <author>KoSIT</author>
     <date>@build.date@</date>
     <description>
-        <p>Prüfung von Dokumenten auf Konformität zum Standard XRechnung @xrechnung.version@
+        <p>Prüfung von Dokumenten auf Konformität zum Standard XRechnung
+            @xrechnung.version@
             (https://www.xoev.de/die_standards/xrechnung-14741).</p>
         <p>Diese Konfiguration enthält die Schematron-Regeln der @cen.spec.id@
-            in der Version @cen.rules.version@ mit dem Stand vom @build.date@ (https://github.com/CenPC434/validation/releases).</p>
+            in der Version @cen.rules.version@ mit dem Stand vom @build.date@
+            (https://github.com/CenPC434/validation/releases).</p>
         <p>Diese Konfiguration enthält die Schematron-Regeln der CIUS XRechnung
             @xrechnung.version@ in der Version @xrechnung.rules.version.full@
-            (@xrechnung.download.url@).
-        </p>
+            (@xrechnung.download.url@). </p>
     </description>
-    
+
     <scenario>
         <name>EN16931 CIUS XRechnung (UBL Invoice)</name>
         <description>
@@ -34,8 +35,9 @@
             >urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2</namespace>
         <namespace prefix="invoice"
             >urn:oasis:names:specification:ubl:schema:xsd:Invoice-2</namespace>
-        <match>/invoice:Invoice[starts-with(cbc:CustomizationID,
-            '@xrechnung.spec.id@')]</match>
+
+        <match>/invoice:Invoice[ starts-with(cbc:CustomizationID,
+            '@xrechnung.spec.id@') ]</match>
         <validateWithXmlSchema>
             <resource>
                 <name>XML Schema for UBL 2.1 Invoice</name>
