@@ -2,7 +2,7 @@
 
 [Validator](https://github.com/itplr-kosit/validator) configuration for Universal Business Language (UBL) and UN/CEFACT Invoice and CreditNote documents against EN16931:2017 and the German [Core Invoice Usage Specification (CIUS) XRechnung](https://www.xoev.de/die_standards/xrechnung-14741).
 
-It contains all necessary XML Schema and Schematrons to validate UBL and CII invoice XML documents for conformity with [CIUS XRechnung](https://www.xoev.de/die_standards/xrechnung-14741).
+It contains all necessary XML Schema and Schematron rules to validate UBL and CII invoice XML documents for conformity with [CIUS XRechnung](https://www.xoev.de/die_standards/xrechnung-14741).
 
 In particular:
 
@@ -24,8 +24,7 @@ In an empty directory:
 curl -L 'https://github.com/itplr-kosit/validator/releases/download/validationtool-1_0_1/validationtool-dist-1.0.1-standalone.zip' --output validator.zip
 
 # download configuration
-curl -L 'https://github.com/itplr-kosit/validator-configuration-xrechnung/releases/download/release-2018-03-05/validator-configuration-xrechnung_1.2.0_2018-12-19.zip' --output validator-configura
-tion.zip
+curl -L 'https://github.com/itplr-kosit/validator-configuration-xrechnung/releases/download/release-2018-03-05/validator-configuration-xrechnung_1.2.0_2018-12-19.zip' --output validator-configuration.zip
 
 # download a test document
 curl -L 'https://raw.githubusercontent.com/itplr-kosit/xrechnung-testsuite/master/instances/01.01a-INVOICE_ubl.xml' --output ubl.xml
@@ -37,7 +36,7 @@ ubl.xml validator.zip  validator-configuration.zip
 
 2. Unzip
 
-```
+```shell
 unzip validator.zip
 unzip validator-configuration.zip
 ```
@@ -49,7 +48,6 @@ java -jar validationtool-1.0.1-standalone.jar -s scenarios.xml  -h ubl.xml
 ```
 
 Validation reports are then written to `${test-document-file-name}-report.xml` and `${test-document-file-name}-report.html` e.g. `ubl-report.xml` and `ubl-report.html` according to above example.
-
 
 ## Versioning
 
