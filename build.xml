@@ -34,13 +34,14 @@
     <property name="ubl.schema.zip" value="UBL-${ubl.version}.zip"/>
     <property name="ubl.download.url"
         value="${ubl.download.url.prefix}/${ubl.schema.zip}"/>
-    <property name="cen.rules.version" value="1.1.0"/>
+    <property name="cen.rules.version" value="1.2.0"/>
+    <property name="cen.rules.version.download" value="120"/>
     <property name="cen.download.url.prefix"
         value="https://github.com/CenPC434/validation/releases/download/validation-${cen.rules.version}"/>
     <property name="cen.download.url.ubl"
-        value="${cen.download.url.prefix}/en16931-ubl-${cen.rules.version}.zip"/>
+        value="${cen.download.url.prefix}/en16931-ubl-${cen.rules.version.download}.zip"/>
     <property name="cen.download.url.cii"
-        value="${cen.download.url.prefix}/en16931-cii-${cen.rules.version}.zip"/>
+        value="${cen.download.url.prefix}/en16931-cii-${cen.rules.version.download}.zip"/>
     <!-- switch to master.zip if do not want to use released zips 16931-*-${cen.rules.version}.zip-->
     <property name="cen.rules.zip" value="16931-*-${cen.rules.version}.zip"/>
 
@@ -271,12 +272,12 @@
                         <and>
                             <resourceexists>
                                 <file
-                                    file="${download.dir}/en16931-cii-${cen.rules.version}.zip"
+                                    file="${download.dir}/en16931-cii-${cen.rules.version.download}.zip"
                                 />
                             </resourceexists>
                             <resourceexists>
                                 <file
-                                    file="${download.dir}/en16931-ubl-${cen.rules.version}.zip"
+                                    file="${download.dir}/en16931-ubl-${cen.rules.version.download}.zip"
                                 />
                             </resourceexists>
 
