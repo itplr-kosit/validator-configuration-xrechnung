@@ -163,7 +163,7 @@
 
     <target name="sch">
         <schematron-compile
-            schematron="${download.dir}/validation-master/ubl/schematron/EN16931-UBL-model.sch"
+            schematron="${download.dir}/validation-master/ubl/schematron/EN16931-UBL-validation.sch"
             workdir="${build.dir}/schematron"/>
     </target>
 
@@ -289,7 +289,7 @@
 
         <unzip dest="${download.dir}" failonemptyarchive="true">
             <fileset dir="${download.dir}">
-                <include name="en16931-*-${cen.rules.version}.zip"/>
+                <include name="en16931-*-${cen.rules.version.download}.zip"/>
                 <include name="master.zip"/>
             </fileset>
             <!--<patternset>
@@ -305,10 +305,10 @@
             <fileset dir="${download.dir}" includes="**schematron/**.sch"/>
         </path>
         <fail
-            message="Could not extract CEN schematron rules file EN16931-UBL-model.sch does not exist in ${download.dir}">
+            message="Could not extract CEN schematron rules file EN16931-UBL-validation.sch does not exist in ${download.dir}">
             <condition>
                 <not>
-                    <available file="EN16931-UBL-model.sch">
+                    <available file="EN16931-UBL-validation.sch">
                         <filepath refid="schematron-path"/>
                     </available>
                 </not>
@@ -326,7 +326,7 @@
 
 
         <schematron-compile
-            schematron="${download.dir}/schematron/EN16931-UBL-model.sch"
+            schematron="${download.dir}/schematron/EN16931-UBL-validation.sch"
             insuffix="sch" workdir="${build.dir}/schematron"
             outdir="${build.dir}"/>
 
@@ -338,7 +338,7 @@
         <!-- Creating schematron now usins Saxon 9he-->
         <!-- according to https://www.saxonica.com/html/documentation/using-xsl/xsltfromant.html-->
         <!-- customize CEN schematron rules for UBL -->
-        <xslt in="${build.dir}/EN16931-UBL-model.xslt"
+        <xslt in="${build.dir}/EN16931-UBL-validation.xslt"
             out="${resource.dir}/ubl/2.1/xsl/EN16931-UBL-validation.xsl"
             style="${src.dir}/remove-dead-apply-templates.xsl">
             <classpath location="${lib.dir}/${saxon.jar}"/>
