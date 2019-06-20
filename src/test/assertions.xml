@@ -12,8 +12,7 @@
              <a:assertion report-doc="ubl001.xml"
                           test="format-dateTime(rep:report/rep:timestamp, '[Y0001][M01][D01]') = format-date(current-date(),'[Y0001][M01][D01]')"
                           >Timestamp is today</a:assertion>
-             <a:assertion report-doc="ubl001.xml"
-                          test="rep:report/rep:documentIdentification/rep:documentHash/rep:hashValue = 'vd0XAjT/JvrjQgo1W+aNR7HK9DdIbPReIkY9pvUu8EI='"
+    <a:assertion report-doc="ubl001.xml" test="rep:report/rep:documentIdentification/rep:documentHash/rep:hashValue = 'vd0XAjT/JvrjQgo1W+aNR7HK9DdIbPReIkY9pvUu8EI='"
                           >Document hash matches</a:assertion>
              <a:assertion report-doc="ubl001.xml"
                           test="contains(rep:report/rep:documentIdentification/rep:documentReference, 'ubl001')"
@@ -953,7 +952,7 @@
                           rejection</a:assertion>
              <a:assertion report-doc="cii001.xml"
                           test="not(rep:report/@valid = 'true')">Report has
-                          status valid</a:assertion>
+                          status false</a:assertion>
              <a:assertion report-doc="cii001.xml"
                           test="format-dateTime(rep:report/rep:timestamp, '[Y0001][M01][D01]') = format-date(current-date(),'[Y0001][M01][D01]')"
                           >Timestamp is today</a:assertion>
@@ -1008,14 +1007,14 @@
              <a:assertion report-doc="cii001.xml"
                           test="not(rep:report/rep:scenarioMatched/rep:validationStepResult[@id = 'val-sch.1']/@valid = 'true')"
                           >First schematron validation has status
-                          valid</a:assertion>
+                          false</a:assertion>
              <a:assertion report-doc="cii001.xml"
                           test="rep:report/rep:scenarioMatched/rep:validationStepResult[@id = 'val-sch.1']/rep:message[@level = 'error']"
                           >First schematron validatation has error
                           message</a:assertion>
              <a:assertion report-doc="cii001.xml"
-                          test="rep:report/rep:scenarioMatched/rep:validationStepResult[@id = 'val-sch.1']/rep:message[@level = 'warning']"
-                          >First schematron validatation has warning
+                          test="rep:report/rep:scenarioMatched/rep:validationStepResult[@id = 'val-sch.1']/rep:message[@level = 'error']"
+                          >First schematron validatation has error
                           message</a:assertion>
              <a:assertion report-doc="cii001.xml"
                           test="not(rep:report/rep:scenarioMatched/rep:validationStepResult[@id = 'val-sch.1']/rep:message[@level = 'information'])"
