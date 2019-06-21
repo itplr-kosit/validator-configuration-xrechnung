@@ -199,3 +199,10 @@
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
+-----
+Der Standard XRechnung steht unter dem Lizenzabkommen (englischsprachige Originalquelle: https://ec.europa.eu/cefdigital/wiki/display/CEFDIGITAL/Obtaining+a+copy+of+the+European+standard+on+eInvoicing) der Europäischen Kommission (EK) und dem Europäischen Komitee für Normung (CEN):
+
+Der europäische Standard zur elektronischen Rechnungsstellung (EN 16931) wird vom CEN durch Beauftragung der EK entwickelt und veröffentlicht. Die Urheberrechte am Standard liegen beim CEN, Kopien des Standards werden über die nationalen Standardisierungsorganisationen vertrieben.
+Das Abkommen zwischen EK und CEN besagt, dass im Rahmen der geistigen Eigentumsrechte (IPR) am Standard das semantische Datenmodell der Kernelemente einer elektronischen Rechnung (EN 16931-1:2017) und den zwei mandatorischen Syntaxen (CEN/TS 16931-2:2017) unentgeltlich über das Deutsche Institut für Normung (DIN) in ihrer Rolle als nationale Standardisierungsorganisation zu beziehen sind.
+Der Standard XRechnung ist eine Implementierung dieses Datenmodelles und der zwei mandatorischen Syntaxen und die Vervielfältigung ist durch die Genehmigung von CEN und DIN als Urheberrechtsträger gestattet.
+CEN und DIN übernehmen keine Garantie für den Inhalt und die Implementierung dieser Derivate und im Zweifelsfalle ist immer auf die offiziell autorisierten Dokumente des semantischen Datenmodells und der zwei mandatorischen Syntaxen zurückzugreifen, welche durch das DIN zur Verfügung gestellt werden.
