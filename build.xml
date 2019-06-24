@@ -12,7 +12,7 @@
     <property name="test.build.dir" location="${build.dir}/test" />
     <!-- Naming -->
     <property name="xrechnung.version.major.minor" value="1.2" />
-    <property name="xrechnung.version" value="${xrechnung.version.major.minor}.0" />
+    <property name="xrechnung.version" value="${xrechnung.version.major.minor}.1" />
     <property name="cen.spec.id" value="urn:cen.eu:en16931:2017" />
     <property name="xrechnung.spec.id" value="${cen.spec.id}#compliant#urn:xoev-de:kosit:standard:xrechnung_${xrechnung.version.major.minor}" />
     <property name="dist.name" value="xrechnung-${xrechnung.version}-validation-configuration" />
@@ -35,9 +35,9 @@
     <property name="cen.rules.zip" value="16931-*-${cen.rules.version}.zip" />
     <!-- XRechnung Schematron Rules section -->
     <!-- build date might get deprecated in future: check on this -->
-    <property name="xrechnung.build.date" value="2018-08-31" />
+    <property name="xrechnung.build.date" value="2019-06-28" />
     <property name="xrechnung.rules.version.major.minor" value="1.2" />
-    <property name="xrechnung.rules.version.full" value="${xrechnung.rules.version.major.minor}.0" />
+    <property name="xrechnung.rules.version.full" value="${xrechnung.rules.version.major.minor}.1" />
     <property name="xrechnung.download.url.prefix" value="https://github.com/itplr-kosit/xrechnung-schematron/releases/download/release-${xrechnung.rules.version.full}" />
     <property name="xrechnung.rules.zip" value="xrechnung-${xrechnung.version}-schematron-${xrechnung.rules.version.full}.zip" />
     <property name="xrechnung.download.url" value="${xrechnung.download.url.prefix}/${xrechnung.rules.zip}" />
