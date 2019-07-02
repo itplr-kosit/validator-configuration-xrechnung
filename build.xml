@@ -283,7 +283,7 @@
             <factory name="net.sf.saxon.TransformerFactoryImpl" />
         </xslt>
     </target>
-    <target name="test" depends="compile,init-test,prepare-validationtool" description="Test XRechnung Configuration">
+    <target name="test" depends="compile,init-test,prepare-validationtool" description="Test XRechnung Configuration" unless="skip.tests">
         <echo>Creating validation reports ...</echo>
         <java jar="${lib.dir}/${validationtool.jar}" failonerror="yes" fork="yes" dir="${build.dir}">
             <arg value="-s" />
