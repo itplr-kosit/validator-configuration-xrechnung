@@ -26,7 +26,7 @@
     <property name="ubl.download.url.prefix" value="http://docs.oasis-open.org/ubl/os-UBL-${ubl.version}/" />
     <property name="ubl.schema.zip" value="UBL-${ubl.version}.zip" />
     <property name="ubl.download.url" value="${ubl.download.url.prefix}/${ubl.schema.zip}" />
-    <property name="cen.rules.version" value="1.2.1" />
+    <property name="cen.rules.version" value="1.2.3" />
     <property name="cen.rules.version.download" value="${cen.rules.version}" />
     <property name="cen.download.url.prefix" value="https://github.com/CenPC434/validation/releases/download/validation-${cen.rules.version}" />
     <property name="cen.download.url.ubl" value="${cen.download.url.prefix}/en16931-ubl-${cen.rules.version.download}.zip" />
@@ -308,6 +308,8 @@
             <factory name="net.sf.saxon.TransformerFactoryImpl" />
         </xslt>
     </target>
+    
+
     <target name="dist" depends="test" description="Generate the distribution">
         <copy todir="${build.dir}">
             <fileset dir="${basedir}">
