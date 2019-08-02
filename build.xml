@@ -296,7 +296,7 @@
             <arg value="${test.src.dir}/assertions.xml" />
             <arg value="-o" />
             <arg value="${reports.dir}" />
-            <arg value="${test.docs.dir}/*.xml" />
+            <arg value="${test.docs.dir}" />
         </java>
         <echo>Schema validating reports ...</echo>
         <schemavalidate fullchecking="yes" failonerror="yes">
