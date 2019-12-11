@@ -12,7 +12,8 @@
              <a:assertion report-doc="ubl001.xml"
                           test="format-dateTime(rep:report/rep:timestamp, '[Y0001][M01][D01]') = format-date(current-date(),'[Y0001][M01][D01]')"
                           >Timestamp is today</a:assertion>
-    <a:assertion report-doc="ubl001.xml" test="rep:report/rep:documentIdentification/rep:documentHash/rep:hashValue = 'vd0XAjT/JvrjQgo1W+aNR7HK9DdIbPReIkY9pvUu8EI='"
+             <a:assertion report-doc="ubl001.xml"
+                          test="rep:report/rep:documentIdentification/rep:documentHash/rep:hashValue = 'gxpfb2Lf2DdSXE5JVBdC3POU24qYKh9/xM7+uZhY4sY='"
                           >Document hash matches</a:assertion>
              <a:assertion report-doc="ubl001.xml"
                           test="contains(rep:report/rep:documentIdentification/rep:documentReference, 'ubl001')"

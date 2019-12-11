@@ -286,7 +286,8 @@
             <factory name="net.sf.saxon.TransformerFactoryImpl" />
         </xslt>
     </target>
-    <target name="test" depends="compile,init-test,prepare-validationtool" description="Test XRechnung Configuration" unless="skip.tests">
+    <target name="test" depends="compile,init-test,prepare-validationtool"
+        description="Test XRechnung Configuration" unless="test.skip">
         <echo>Creating validation reports ...</echo>
         <java jar="${lib.dir}/${validationtool.jar}" failonerror="yes" fork="yes" dir="${build.dir}">
             <arg value="-s" />
@@ -298,7 +299,7 @@
             <arg value="${test.src.dir}/assertions.xml" />
             <arg value="-o" />
             <arg value="${reports.dir}" />
-            <arg value="${test.docs.dir}/*.xml" />
+            <arg value="${test.docs.dir}" />
         </java>
         <echo>Schema validating reports ...</echo>
         <schemavalidate fullchecking="yes" failonerror="yes">
