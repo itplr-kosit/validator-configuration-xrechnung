@@ -37,7 +37,9 @@
     <!-- build date might get deprecated in future: check on this -->
     <property name="xrechnung.build.date" value="2019-06-28" />
     <property name="xrechnung.rules.version.major.minor" value="1.2" />
-    <property name="xrechnung.rules.version.full" value="${xrechnung.rules.version.major.minor}.1" />
+    <property name="xrechnung.rules.version.patch" value="1" />
+    <property name="xrechnung.rules.version.full"
+        value="${xrechnung.rules.version.major.minor}.${xrechnung.rules.version.patch}" />
     <property name="xrechnung.download.url.prefix" value="https://github.com/itplr-kosit/xrechnung-schematron/releases/download/release-${xrechnung.rules.version.full}" />
     <property name="xrechnung.rules.zip" value="xrechnung-${xrechnung.version}-schematron-${xrechnung.rules.version.full}.zip" />
     <property name="xrechnung.download.url" value="${xrechnung.download.url.prefix}/${xrechnung.rules.zip}" />
@@ -140,6 +142,7 @@
         <get src="${cen.download.url.cii}" dest="${download.dir}" verbose="true" skipexisting="true" usetimestamp="true" />
     </target>
     <target name="retrieve-xrechnung-rules" depends="init" description="Download XRechnung business rules (schematron) to download directory">
+        
         <get src="${xrechnung.download.url}" dest="${download.dir}" verbose="true" skipexisting="true" usetimestamp="true" />
     </target>
     <target name="retrieve-ubl-schema" depends="init" description="Download UBL schemas to download directory">
