@@ -26,7 +26,7 @@
     <property name="ubl.download.url.prefix" value="http://docs.oasis-open.org/ubl/os-UBL-${ubl.version}/" />
     <property name="ubl.schema.zip" value="UBL-${ubl.version}.zip" />
     <property name="ubl.download.url" value="${ubl.download.url.prefix}/${ubl.schema.zip}" />
-    <property name="cen.rules.version" value="1.2.1" />
+    <property name="cen.rules.version" value="1.2.3" />
     <property name="cen.rules.version.download" value="${cen.rules.version}" />
     <property name="cen.download.url.prefix" value="https://github.com/CenPC434/validation/releases/download/validation-${cen.rules.version}" />
     <property name="cen.download.url.ubl" value="${cen.download.url.prefix}/en16931-ubl-${cen.rules.version.download}.zip" />
@@ -37,7 +37,9 @@
     <!-- build date might get deprecated in future: check on this -->
     <property name="xrechnung.build.date" value="2019-06-28" />
     <property name="xrechnung.rules.version.major.minor" value="1.2" />
-    <property name="xrechnung.rules.version.full" value="${xrechnung.rules.version.major.minor}.1" />
+    <property name="xrechnung.rules.version.patch" value="1" />
+    <property name="xrechnung.rules.version.full"
+        value="${xrechnung.rules.version.major.minor}.${xrechnung.rules.version.patch}" />
     <property name="xrechnung.download.url.prefix" value="https://github.com/itplr-kosit/xrechnung-schematron/releases/download/release-${xrechnung.rules.version.full}" />
     <property name="xrechnung.rules.zip" value="xrechnung-${xrechnung.version}-schematron-${xrechnung.rules.version.full}.zip" />
     <property name="xrechnung.download.url" value="${xrechnung.download.url.prefix}/${xrechnung.rules.zip}" />
@@ -140,6 +142,7 @@
         <get src="${cen.download.url.cii}" dest="${download.dir}" verbose="true" skipexisting="true" usetimestamp="true" />
     </target>
     <target name="retrieve-xrechnung-rules" depends="init" description="Download XRechnung business rules (schematron) to download directory">
+        
         <get src="${xrechnung.download.url}" dest="${download.dir}" verbose="true" skipexisting="true" usetimestamp="true" />
     </target>
     <target name="retrieve-ubl-schema" depends="init" description="Download UBL schemas to download directory">
@@ -283,7 +286,8 @@
             <factory name="net.sf.saxon.TransformerFactoryImpl" />
         </xslt>
     </target>
-    <target name="test" depends="compile,init-test,prepare-validationtool" description="Test XRechnung Configuration" unless="skip.tests">
+    <target name="test" depends="compile,init-test,prepare-validationtool"
+        description="Test XRechnung Configuration" unless="test.skip">
         <echo>Creating validation reports ...</echo>
         <java jar="${lib.dir}/${validationtool.jar}" failonerror="yes" fork="yes" dir="${build.dir}">
             <arg value="-s" />
@@ -295,7 +299,7 @@
             <arg value="${test.src.dir}/assertions.xml" />
             <arg value="-o" />
             <arg value="${reports.dir}" />
-            <arg value="${test.docs.dir}/*.xml" />
+            <arg value="${test.docs.dir}" />
         </java>
         <echo>Schema validating reports ...</echo>
         <schemavalidate fullchecking="yes" failonerror="yes">
@@ -308,6 +312,8 @@
             <factory name="net.sf.saxon.TransformerFactoryImpl" />
         </xslt>
     </target>
+    
+
     <target name="dist" depends="test" description="Generate the distribution">
         <copy todir="${build.dir}">
             <fileset dir="${basedir}">
