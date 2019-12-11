@@ -12,7 +12,9 @@
     <property name="test.build.dir" location="${build.dir}/test" />
     <!-- Naming -->
     <property name="xrechnung.version.major.minor" value="1.2" />
-    <property name="xrechnung.version" value="${xrechnung.version.major.minor}.1" />
+    <property name="xrechnung.version.patch" value="2" />
+    <property name="xrechnung.version"
+        value="${xrechnung.version.major.minor}.${xrechnung.version.patch}" />
     <property name="cen.spec.id" value="urn:cen.eu:en16931:2017" />
     <property name="xrechnung.spec.id" value="${cen.spec.id}#compliant#urn:xoev-de:kosit:standard:xrechnung_${xrechnung.version.major.minor}" />
     <property name="dist.name" value="xrechnung-${xrechnung.version}-validation-configuration" />
