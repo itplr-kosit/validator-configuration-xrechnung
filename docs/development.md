@@ -15,3 +15,5 @@ ant
 -Dxrechnung.version.patch=2 dist
 ```
 
+Just use `-Dcen.rules.version=1.3.0` for testing a released version of CEN
+Schematron rules.
