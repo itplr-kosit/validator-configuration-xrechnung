@@ -7,19 +7,23 @@
              <a:namespace prefix="html"
                           >http://www.w3.org/1999/xhtml</a:namespace>
              <a:assertion report-doc="ubl001.xml"
-                          test="rep:report/@valid = 'true'">Report has status
+                          test="rep:report/@valid = 'true'"
+                          >Report has status
                           valid</a:assertion>
              <a:assertion report-doc="ubl001.xml"
                           test="format-dateTime(rep:report/rep:timestamp, '[Y0001][M01][D01]') = format-date(current-date(),'[Y0001][M01][D01]')"
                           >Timestamp is today</a:assertion>
+             <!-- 
              <a:assertion report-doc="ubl001.xml"
                           test="rep:report/rep:documentIdentification/rep:documentHash/rep:hashValue = 'gxpfb2Lf2DdSXE5JVBdC3POU24qYKh9/xM7+uZhY4sY='"
                           >Document hash matches</a:assertion>
+                           -->
              <a:assertion report-doc="ubl001.xml"
                           test="contains(rep:report/rep:documentIdentification/rep:documentReference, 'ubl001')"
                           >Document reference matches</a:assertion>
              <a:assertion report-doc="ubl001.xml"
-                          test="rep:report/rep:scenarioMatched">Scenario
+                          test="rep:report/rep:scenarioMatched"
+                          >Scenario
                           found</a:assertion>
              <a:assertion report-doc="ubl001.xml"
                           test="rep:report/rep:scenarioMatched/s:scenario/s:name = 'EN16931 CIUS XRechnung (UBL Invoice)'"
@@ -95,7 +99,8 @@
                           >WFR validation step for no scenario found has message
                           (XML case)</a:assertion>
              <a:assertion report-doc="ubl001.xml"
-                          test="rep:report/rep:assessment/rep:accept">Assessment
+                          test="rep:report/rep:assessment/rep:accept"
+                          >Assessment
                           recommends acceptance</a:assertion>
              <a:assertion report-doc="ubl001.xml"
                           test="rep:report/rep:assessment/rep:accept/rep:explanation/html:html[@data-report-type = 'report']"
@@ -112,7 +117,8 @@
                           >HTML explanation for rejection recommends
                           rejection</a:assertion>
              <a:assertion report-doc="ubl002.xml"
-                          test="not(rep:report/@valid = 'true')">Report has
+                          test="not(rep:report/@valid = 'true')"
+                          >Report has
                           status valid</a:assertion>
              <a:assertion report-doc="ubl002.xml"
                           test="format-dateTime(rep:report/rep:timestamp, '[Y0001][M01][D01]') = format-date(current-date(),'[Y0001][M01][D01]')"
@@ -124,7 +130,8 @@
                           test="not(contains(rep:report/rep:documentIdentification/rep:documentReference, 'ubl001'))"
                           >Document reference matches</a:assertion>
              <a:assertion report-doc="ubl002.xml"
-                          test="rep:report/rep:scenarioMatched">Scenario
+                          test="rep:report/rep:scenarioMatched"
+                          >Scenario
                           found</a:assertion>
              <a:assertion report-doc="ubl002.xml"
                           test="rep:report/rep:scenarioMatched/s:scenario/s:name = 'EN16931 CIUS XRechnung (UBL Invoice)'"
@@ -217,7 +224,8 @@
                           >HTML explanation for rejection recommends
                           rejection</a:assertion>
              <a:assertion report-doc="ubl003.xml"
-                          test="not(rep:report/@valid = 'true')">Report has
+                          test="not(rep:report/@valid = 'true')"
+                          >Report has
                           status valid</a:assertion>
              <a:assertion report-doc="ubl003.xml"
                           test="format-dateTime(rep:report/rep:timestamp, '[Y0001][M01][D01]') = format-date(current-date(),'[Y0001][M01][D01]')"
@@ -229,7 +237,8 @@
                           test="not(contains(rep:report/rep:documentIdentification/rep:documentReference, 'ubl001'))"
                           >Document reference matches</a:assertion>
              <a:assertion report-doc="ubl003.xml"
-                          test="rep:report/rep:scenarioMatched">Scenario
+                          test="rep:report/rep:scenarioMatched"
+                          >Scenario
                           found</a:assertion>
              <a:assertion report-doc="ubl003.xml"
                           test="rep:report/rep:scenarioMatched/s:scenario/s:name = 'EN16931 CIUS XRechnung (UBL Invoice)'"
@@ -305,7 +314,8 @@
                           >WFR validation step for no scenario found has message
                           (XML case)</a:assertion>
              <a:assertion report-doc="ubl003.xml"
-                          test="rep:report/rep:assessment/rep:accept">Assessment
+                          test="rep:report/rep:assessment/rep:accept"
+                          >Assessment
                           recommends acceptance</a:assertion>
              <a:assertion report-doc="ubl003.xml"
                           test="rep:report/rep:assessment/rep:accept/rep:explanation/html:html[@data-report-type = 'report']"
@@ -322,7 +332,8 @@
                           >HTML explanation for rejection recommends
                           rejection</a:assertion>
              <a:assertion report-doc="ubl004.xml"
-                          test="not(rep:report/@valid = 'true')">Report has
+                          test="not(rep:report/@valid = 'true')"
+                          >Report has
                           status valid</a:assertion>
              <a:assertion report-doc="ubl004.xml"
                           test="format-dateTime(rep:report/rep:timestamp, '[Y0001][M01][D01]') = format-date(current-date(),'[Y0001][M01][D01]')"
@@ -334,7 +345,8 @@
                           test="not(contains(rep:report/rep:documentIdentification/rep:documentReference, 'ubl001'))"
                           >Document reference matches</a:assertion>
              <a:assertion report-doc="ubl004.xml"
-                          test="rep:report/rep:scenarioMatched">Scenario
+                          test="rep:report/rep:scenarioMatched"
+                          >Scenario
                           found</a:assertion>
              <a:assertion report-doc="ubl004.xml"
                           test="rep:report/rep:scenarioMatched/s:scenario/s:name = 'EN16931 CIUS XRechnung (UBL Invoice)'"
@@ -427,7 +439,8 @@
                           >HTML explanation for rejection recommends
                           rejection</a:assertion>
              <a:assertion report-doc="ubl005.xml"
-                          test="not(rep:report/@valid = 'true')">Report has
+                          test="not(rep:report/@valid = 'true')"
+                          >Report has
                           status valid</a:assertion>
              <a:assertion report-doc="ubl005.xml"
                           test="format-dateTime(rep:report/rep:timestamp, '[Y0001][M01][D01]') = format-date(current-date(),'[Y0001][M01][D01]')"
@@ -439,7 +452,8 @@
                           test="not(contains(rep:report/rep:documentIdentification/rep:documentReference, 'ubl001'))"
                           >Document reference matches</a:assertion>
              <a:assertion report-doc="ubl005.xml"
-                          test="rep:report/rep:scenarioMatched">Scenario
+                          test="rep:report/rep:scenarioMatched"
+                          >Scenario
                           found</a:assertion>
              <a:assertion report-doc="ubl005.xml"
                           test="rep:report/rep:scenarioMatched/s:scenario/s:name = 'EN16931 CIUS XRechnung (UBL Invoice)'"
@@ -532,7 +546,8 @@
                           >HTML explanation for rejection recommends
                           rejection</a:assertion>
              <a:assertion report-doc="ubl006.xml"
-                          test="not(rep:report/@valid = 'true')">Report has
+                          test="not(rep:report/@valid = 'true')"
+                          >Report has
                           status valid</a:assertion>
              <a:assertion report-doc="ubl006.xml"
                           test="format-dateTime(rep:report/rep:timestamp, '[Y0001][M01][D01]') = format-date(current-date(),'[Y0001][M01][D01]')"
@@ -544,7 +559,8 @@
                           test="not(contains(rep:report/rep:documentIdentification/rep:documentReference, 'ubl001'))"
                           >Document reference matches</a:assertion>
              <a:assertion report-doc="ubl006.xml"
-                          test="not(rep:report/rep:scenarioMatched)">Scenario
+                          test="not(rep:report/rep:scenarioMatched)"
+                          >Scenario
                           found</a:assertion>
              <a:assertion report-doc="ubl006.xml"
                           test="not(rep:report/rep:scenarioMatched/s:scenario/s:name = 'EN16931 CIUS XRechnung (UBL Invoice)')"
@@ -637,7 +653,8 @@
                           >HTML explanation for rejection recommends
                           rejection</a:assertion>
              <a:assertion report-doc="ubl007.xml"
-                          test="not(rep:report/@valid = 'true')">Report has
+                          test="not(rep:report/@valid = 'true')"
+                          >Report has
                           status valid</a:assertion>
              <a:assertion report-doc="ubl007.xml"
                           test="format-dateTime(rep:report/rep:timestamp, '[Y0001][M01][D01]') = format-date(current-date(),'[Y0001][M01][D01]')"
@@ -649,7 +666,8 @@
                           test="not(contains(rep:report/rep:documentIdentification/rep:documentReference, 'ubl001'))"
                           >Document reference matches</a:assertion>
              <a:assertion report-doc="ubl007.xml"
-                          test="not(rep:report/rep:scenarioMatched)">Scenario
+                          test="not(rep:report/rep:scenarioMatched)"
+                          >Scenario
                           found</a:assertion>
              <a:assertion report-doc="ubl007.xml"
                           test="not(rep:report/rep:scenarioMatched/s:scenario/s:name = 'EN16931 CIUS XRechnung (UBL Invoice)')"
@@ -742,7 +760,8 @@
                           >HTML explanation for rejection recommends
                           rejection</a:assertion>
              <a:assertion report-doc="ubl008.xml"
-                          test="not(rep:report/@valid = 'true')">Report has
+                          test="not(rep:report/@valid = 'true')"
+                          >Report has
                           status valid</a:assertion>
              <a:assertion report-doc="ubl008.xml"
                           test="format-dateTime(rep:report/rep:timestamp, '[Y0001][M01][D01]') = format-date(current-date(),'[Y0001][M01][D01]')"
@@ -754,7 +773,8 @@
                           test="not(contains(rep:report/rep:documentIdentification/rep:documentReference, 'ubl001'))"
                           >Document reference matches</a:assertion>
              <a:assertion report-doc="ubl008.xml"
-                          test="rep:report/rep:scenarioMatched">Scenario
+                          test="rep:report/rep:scenarioMatched"
+                          >Scenario
                           found</a:assertion>
              <a:assertion report-doc="ubl008.xml"
                           test="not(rep:report/rep:scenarioMatched/s:scenario/s:name = 'EN16931 CIUS XRechnung (UBL Invoice)')"
@@ -803,10 +823,12 @@
                           test="rep:report/rep:scenarioMatched/rep:validationStepResult[@id = 'val-sch.1']/rep:message[@level = 'error']"
                           >First schematron validatation has error
                           message</a:assertion>
+             <!-- 
              <a:assertion report-doc="ubl008.xml"
                           test="not(rep:report/rep:scenarioMatched/rep:validationStepResult[@id = 'val-sch.1']/rep:message[@level = 'warning'])"
                           >First schematron validatation has warning
                           message</a:assertion>
+                           -->
              <a:assertion report-doc="ubl008.xml"
                           test="not(rep:report/rep:scenarioMatched/rep:validationStepResult[@id = 'val-sch.1']/rep:message[@level = 'information'])"
                           >First schematron validatation has information
@@ -847,7 +869,8 @@
                           >HTML explanation for rejection recommends
                           rejection</a:assertion>
              <a:assertion report-doc="bin001.xml"
-                          test="not(rep:report/@valid = 'true')">Report has
+                          test="not(rep:report/@valid = 'true')"
+                          >Report has
                           status valid</a:assertion>
              <a:assertion report-doc="bin001.xml"
                           test="format-dateTime(rep:report/rep:timestamp, '[Y0001][M01][D01]') = format-date(current-date(),'[Y0001][M01][D01]')"
@@ -859,7 +882,8 @@
                           test="not(contains(rep:report/rep:documentIdentification/rep:documentReference, 'ubl001'))"
                           >Document reference matches</a:assertion>
              <a:assertion report-doc="bin001.xml"
-                          test="not(rep:report/rep:scenarioMatched)">Scenario
+                          test="not(rep:report/rep:scenarioMatched)"
+                          >Scenario
                           found</a:assertion>
              <a:assertion report-doc="bin001.xml"
                           test="not(rep:report/rep:scenarioMatched/s:scenario/s:name = 'EN16931 CIUS XRechnung (UBL Invoice)')"
@@ -952,7 +976,8 @@
                           >HTML explanation for rejection recommends
                           rejection</a:assertion>
              <a:assertion report-doc="cii001.xml"
-                          test="not(rep:report/@valid = 'true')">Report has
+                          test="not(rep:report/@valid = 'true')"
+                          >Report has
                           status false</a:assertion>
              <a:assertion report-doc="cii001.xml"
                           test="format-dateTime(rep:report/rep:timestamp, '[Y0001][M01][D01]') = format-date(current-date(),'[Y0001][M01][D01]')"
@@ -964,7 +989,8 @@
                           test="not(contains(rep:report/rep:documentIdentification/rep:documentReference, 'ubl001'))"
                           >Document reference matches</a:assertion>
              <a:assertion report-doc="cii001.xml"
-                          test="rep:report/rep:scenarioMatched">Scenario
+                          test="rep:report/rep:scenarioMatched"
+                          >Scenario
                           found</a:assertion>
              <a:assertion report-doc="cii001.xml"
                           test="not(rep:report/rep:scenarioMatched/s:scenario/s:name = 'EN16931 CIUS XRechnung (UBL Invoice)')"
