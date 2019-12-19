@@ -676,7 +676,8 @@
         </xd:desc>
     </xd:doc>
     <xsl:template name="html:assessment" xmlns="http://www.w3.org/1999/xhtml">
-        <xsl:variable name="e1" as="xs:integer" select="count(//message[@level eq 'error'])"/>
+        <!-- changed 2019-12-17 from count(//message[@level eq 'error']) -->
+        <xsl:variable name="e1" as="xs:integer" select="count(//rep:message[@level eq 'error'])"/>
         <xsl:variable name="e2" as="xs:integer"
             select="count(//rep:message[rep:custom-level(.) eq 'error'])"/>
             <xsl:choose>
