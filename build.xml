@@ -43,7 +43,7 @@
     <property name="cen.download.url.cii"
         value="${cen.download.url.prefix}/en16931-cii-${cen.rules.version.download}.zip" />
     <!-- switch to master.zip if do not want to use released zips 16931-*-${cen.rules.version}.zip-->
-    <property name="cen.rules.zip" value="16931-*-${cen.rules.version}.zip" />
+    <property name="cen.rules.zip" value="master.zip" />
     <!-- XRechnung Schematron Rules section -->
     <!-- build date might get deprecated in future: check on this -->
     <property name="xrechnung.build.date" value="2019-06-28" />
@@ -440,13 +440,14 @@
         <fail unless="xmute.download.url.prefix"
             message="Property xmute.download.url.prefix must exist for this target to work" />
         <property name="xmute.version.full" value="0.5" />
+<property name="xmute.jar" value="xml-mutate.jar" />
         <get
             src="${xmute.download.url.prefix}/xml-mutate-${xmute.version.full}.jar"
             dest="${lib.dir}/${xmute.jar}" verbose="true" skipexisting="false"
             usetimestamp="true" />
     </target>
 
-    <target name="test-mutations" depends="init-test, retrieve-xmute"
+    <target name="test-mutations" depends="compile, init-test, retrieve-xmute"
         description="Unit Test         Schematron Rules wit XML-Mutate"
         if="xmute.download.url.prefix">
         <echo>Unit testing Schematron rules ...</echo>
@@ -457,11 +458,13 @@
             <arg value="xrinv=${resource.xsl.xr.inv}" />
             <arg value="--schematron" />
             <arg value="cenubl=${resource.xsl.cen.ubl}" />
+            <arg value="--schematron" />
+            <arg value="cencii=${resource.xsl.cen.cii}" />
             <arg value="--target ${test.build.dir}" />
             <arg value="${test.src.dir}/ubl-inv" />
         </java>
     </target>
-    <target name="test" depends="test-validator-assertions,test-mutations">
+    <target name="test" depends="compile, test-validator-assertions,test-mutations">
         <echo message="Testing all" />
     </target>
 
