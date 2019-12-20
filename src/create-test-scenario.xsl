@@ -16,7 +16,7 @@
     
     <xsl:template match="/scenarios/scenario[namespace/@prefix='invoice']/createReport">
         <xsl:copy >
-            <xsl:apply-templates select="@*|node()"/>
+            <xsl:apply-templates select="@*|resource"/>
             <!--  adding content for testing-->
             
             <xsl:comment>For testing only!</xsl:comment>
