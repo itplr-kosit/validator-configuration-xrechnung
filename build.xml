@@ -46,11 +46,11 @@
     <property name="cen.rules.zip" value="master.zip" />
     <!-- XRechnung Schematron Rules section -->
     <!-- build date might get deprecated in future: check on this -->
-    <property name="xrechnung.build.date" value="2019-06-28" />
+    <property name="xrechnung.build.date" value="2019-12-31" />
     <property name="xrechnung.rules.version.major.minor" value="1.3" />
     <property name="xrechnung.rules.version.patch" value="0" />
     <property name="xrechnung.rules.version.full"
-        value="${xrechnung.rules.version.major.minor}.${xrechnung.rules.version.patch}-beta.2" />
+        value="${xrechnung.rules.version.major.minor}.${xrechnung.rules.version.patch}" />
     <property name="xrechnung.download.url.prefix"
         value="https://github.com/itplr-kosit/xrechnung-schematron/releases/download/release-${xrechnung.rules.version.full}" />
     <property name="xrechnung.rules.zip"
