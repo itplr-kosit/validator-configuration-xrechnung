@@ -5,8 +5,9 @@
 If you build own local custom versions of dependencies such as XRechnung
 Schematron you can customize the ant build at runtime:
 
-This example show if you have a new XRechnung Schematron disribution build
+This example show if you have a new XRechnung Schematron distribution build
 locally with new version.
+
 ```shell
 ant
 -Dxrechnung.download.url=file:/${FULL_PATH}/xrechnung-schematron/dist/xrechnung-1.2.2-schematron-1.2.2.zip
