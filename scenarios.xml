@@ -55,6 +55,7 @@
         <name>Schematron rules for Invoice - CIUS XRechnung (UBL)</name>
         <location>resources/xrechnung/@xrechnung.version@/xsl/XRechnung-UBL-validation-Invoice.xsl</location>
       </resource>
+
     </validateWithSchematron>
     <createReport>
       <resource>
@@ -65,6 +66,7 @@
       <customLevel level="warning">BR-CL-23</customLevel>
       <customLevel level="warning">BR-CL-21</customLevel>
     </createReport>
+    <acceptMatch>/report/assessment[1]/accept[1]</acceptMatch>
   </scenario>
   <scenario>
     <name>EN16931 CIUS XRechnung (UBL CreditNote)</name>
@@ -111,6 +113,7 @@
         <location>resources/xrechnung-report.xsl</location>
       </resource>
     </createReport>
+    <acceptMatch>/report/assessment[1]/accept[1]</acceptMatch>
   </scenario>
   <scenario>
     <name>EN16931 CIUS XRechnung (CII)</name>
@@ -158,9 +161,9 @@
         <location>resources/xrechnung-report.xsl</location>
       </resource>
     </createReport>
+    <acceptMatch>/report/assessment[1]/accept[1]</acceptMatch>
   </scenario>
   <noScenarioReport>
-
     <resource>
       <name>Default Report</name>
       <location>resources/default-report.xsl</location>
