@@ -7,3 +7,4 @@ test-reports
 .vscode
 *.xpr
 .ant-targets-build.xml
+*.code-workspace
