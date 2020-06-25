@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- $Id: report.xsd 7617 2017-09-21 12:54:43Z fbuettner $ -->
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rep="http://www.xoev.de/de/validator/varl/1"
-    xmlns:s="http://www.xoev.de/de/validator/framework/1/scenarios" targetNamespace="http://www.xoev.de/de/validator/varl/1" version="1.0.0"
-    elementFormDefault="qualified" attributeFormDefault="unqualified">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rep="http://www.xoev.de/de/validator/varl/1" xmlns:s="http://www.xoev.de/de/validator/framework/1/scenarios" targetNamespace="http://www.xoev.de/de/validator/varl/1" version="1.0.0" elementFormDefault="qualified" attributeFormDefault="unqualified">
     <xs:annotation>
         <xs:documentation>Dieses Schema beschreibt die Struktur von Berichten, mit denen die Prüfung und Bewertung elektronischer Dokumente
             nachvollziehbar dokumentiert wird.</xs:documentation>
     </xs:annotation>
 
-    <xs:import namespace="http://www.xoev.de/de/validator/framework/1/scenarios" schemaLocation="scenarios.xsd"/>
-
+    <xs:import namespace="http://www.xoev.de/de/validator/framework/1/scenarios" />
     <xs:element name="report">
         <xs:annotation>
             <xs:documentation>Prüfbericht (das einzige Wurzelelement in diesem Schema)</xs:documentation>
@@ -20,7 +17,7 @@
                     <xs:annotation>
                         <xs:documentation>Angaben zum Prüftool, mit welchem dieser Prüfbericht erstellt wurde</xs:documentation>
                     </xs:annotation>
-                </xs:element>              
+                </xs:element>
                 <xs:element name="timestamp" type="xs:dateTime">
                     <xs:annotation>
                         <xs:documentation>Der Zeitpunkt, an dem die Prüfung des Dokuments begann.</xs:documentation>
@@ -39,7 +36,7 @@
                         </xs:annotation>
                         <xs:complexType>
                             <xs:sequence>
-                                <xs:element ref="s:scenario"/>
+                                <xs:element ref="s:scenario" />
                                 <xs:element name="documentData" type="rep:DocumentDataType" minOccurs="0">
                                     <xs:annotation>
                                         <xs:documentation>In diesem Element können ausgewählte extrahierte Inhaltsdaten des geprüften Dokuments in
@@ -58,7 +55,7 @@
                     </xs:element>
                     <xs:element name="noScenarioMatched">
                         <xs:annotation>
-                            <xs:documentation>Dieses Kindelement gibt an, dass das für das geprüfte Dokument kein Szenario 
+                            <xs:documentation>Dieses Kindelement gibt an, dass das für das geprüfte Dokument kein Szenario
                                 erkannt wurde.</xs:documentation>
                         </xs:annotation>
                         <xs:complexType>
@@ -94,22 +91,22 @@
 
     <xs:complexType name="EngineType">
         <xs:sequence>
-            <xs:element name="name" type="xs:normalizedString"/>
+            <xs:element name="name" type="xs:normalizedString" />
             <xs:element name="info" minOccurs="0" maxOccurs="unbounded">
                 <xs:complexType>
                     <xs:simpleContent>
                         <xs:extension base="xs:normalizedString">
-                            <xs:attribute name="key" type="xs:NMTOKEN" use="required"/>
+                            <xs:attribute name="key" type="xs:NMTOKEN" use="required" />
                         </xs:extension>
                     </xs:simpleContent>
                 </xs:complexType>
             </xs:element>
         </xs:sequence>
     </xs:complexType>
-    
+
     <xs:complexType name="AssessmentType">
         <xs:sequence>
-            <xs:element name="customLevel" minOccurs="0" maxOccurs="3" type="s:CustomErrorLevel"/>
+            <xs:element name="customLevel" minOccurs="0" maxOccurs="3" type="s:CustomErrorLevel" />
             <xs:choice>
                 <xs:annotation>
                     <xs:documentation>Die Empfehlung zum weiteren Umgang mit dem Dokument.</xs:documentation>
@@ -210,13 +207,13 @@
                 </xs:annotation>
                 <xs:complexType>
                     <xs:sequence>
-                        <xs:any minOccurs="1" maxOccurs="1" namespace="http://www.w3.org/1999/xhtml" processContents="skip"/>
+                        <xs:any minOccurs="1" maxOccurs="1" namespace="http://www.w3.org/1999/xhtml" processContents="skip" />
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
         </xs:sequence>
     </xs:complexType>
-    
+
 
     <xs:complexType name="ValidationStepResultType">
         <xs:sequence>
@@ -247,19 +244,19 @@
 
     <xs:complexType name="DocumentDataType">
         <xs:sequence>
-            <xs:any minOccurs="0" maxOccurs="unbounded" namespace="##any" processContents="skip"/>
+            <xs:any minOccurs="0" maxOccurs="unbounded" namespace="##any" processContents="skip" />
         </xs:sequence>
     </xs:complexType>
 
     <xs:simpleType name="Tokens">
-        <xs:list itemType="xs:token"/>
+        <xs:list itemType="xs:token" />
     </xs:simpleType>
 
     <xs:simpleType name="ErrorLevelType">
         <xs:restriction base="xs:token">
-            <xs:enumeration value="error"/>
-            <xs:enumeration value="warning"/>
-            <xs:enumeration value="information"/>
+            <xs:enumeration value="error" />
+            <xs:enumeration value="warning" />
+            <xs:enumeration value="information" />
         </xs:restriction>
     </xs:simpleType>
 </xs:schema>

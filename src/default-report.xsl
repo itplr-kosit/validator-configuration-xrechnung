@@ -35,7 +35,7 @@
       as="element(rep:validationStepResult)*">
       <xsl:apply-templates select="in:validationResultsXmlSchema" />
       <xsl:apply-templates select="in:validationResultsSchematron" />
-<xsl:apply-templates select="in:validationResultsWellformedness" />
+      <xsl:apply-templates select="in:validationResultsWellformedness" />
     </xsl:variable>
 
     <!-- Zwischenergebnis: Der an sich fertige Bericht, dem lediglich noch die Bewertung fehlt -->
@@ -45,9 +45,13 @@
         <rep:report>
           <xsl:attribute name="valid">
             <xsl:choose>
+<!-- reports without scenarios -->
               <xsl:when test="empty(s:scenario)">false</xsl:when>
-              <!-- have reports with fallback name -->
-              <xsl:when test="s:scenario/s:name[ contains( normalize-space( lower-case(text()) ), 'Fallback')]">false</xsl:when>
+              
+<!-- have reports with fallback name -->
+              <xsl:when
+                test="s:scenario/s:name[contains(normalize-space(lower-case(text())), 'fallback')]"
+                >false</xsl:when>
               <xsl:when test="$validationStepResults[@valid = 'false']"
                 >false</xsl:when>
               <xsl:when test="$validationStepResults[@valid = 'true']"
@@ -292,11 +296,14 @@
         <xsl:choose>
           <xsl:when test="empty(rep:scenarioMatched/s:scenario)"
             >reject</xsl:when>
-          <xsl:when test="empty(rep:scenarioMatched/s:scenario)"
+          <xsl:when
+            test="//rep:scenarioMatched/s:scenario/s:name[contains(normalize-space(lower-case(text())), 'fallback')]"
             >reject</xsl:when>
           <xsl:when test="//rep:message[rep:custom-level(.) = 'error']"
             >reject</xsl:when>
           <xsl:when test="//rep:message[rep:custom-level(.) != 'error']"
+            >accept</xsl:when>
+          <xsl:when test="empty(//rep:message)"
             >accept</xsl:when>
           <xsl:otherwise>reject</xsl:otherwise>
         </xsl:choose>
@@ -737,10 +744,11 @@
       select="count(//rep:message[@level eq 'error'])" />
     <xsl:variable name="e2" as="xs:integer"
       select="count(//rep:message[rep:custom-level(.) eq 'error'])" />
+
     <xsl:choose>
-      <xsl:when test="empty(rep:scenarioMatched)">
+      <xsl:when test="empty(rep:scenarioMatched) or rep:scenarioMatched/s:scenario/s:name[ contains( lower-case(text()), 'fallback')]">
         <p class="important error"
-          >Bewertung: Es wird empfohlen das Dokument zurückzuweisen.</p>
+          >Bewertung: Es wird empfohlen das Dokument zurückzuweisen. Da kein Pruefszenario gegriffen hat.</p>
       </xsl:when>
       <xsl:when test="$e1 eq 0 and $e2 eq 0">
         <p class="important"

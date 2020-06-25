@@ -545,11 +545,10 @@
                           rejection</a:assertion>
   <a:assertion report-doc="ubl006-report.xml"
     test="not(rep:report/@valid = 'true')"
-    >Report has
-                          status valid</a:assertion>
+    >Report must not have status valid</a:assertion>
   <a:assertion report-doc="ubl006-report.xml"
     test="format-dateTime(rep:report/rep:timestamp, '[Y0001][M01][D01]') = format-date(current-date(),'[Y0001][M01][D01]')"
-    >Timestamp is today</a:assertion>
+    >Timestamp is not from today</a:assertion>
   <a:assertion report-doc="ubl006-report.xml"
     test="not(rep:report/rep:documentIdentification/rep:documentHash/rep:hashValue = 'TfvPbPcDevSv5anZIbgsyLioTLdzjnLTSXRhMsBlCIo=')"
     >Document hash matches</a:assertion>
@@ -557,9 +556,8 @@
     test="not(contains(rep:report/rep:documentIdentification/rep:documentReference, 'ubl001'))"
     >Document reference matches</a:assertion>
   <a:assertion report-doc="ubl006-report.xml"
-    test="not(rep:report/rep:scenarioMatched)"
-    >Scenario
-                          found</a:assertion>
+    test="rep:report/rep:noScenarioMatched"
+    >Must have a noSenarioMatched lemeent</a:assertion>
   <a:assertion report-doc="ubl006-report.xml"
     test="not(rep:report/rep:scenarioMatched/s:scenario/s:name = 'EN16931 CIUS XRechnung (UBL Invoice)')"
     >UBL Invoice scenario found</a:assertion>
@@ -628,14 +626,17 @@
                           valid</a:assertion>
   <a:assertion report-doc="ubl006-report.xml"
     test="rep:report/rep:noScenarioMatched/rep:validationStepResult[@id = 'val-xml']"
-    >WFR validation step exists for no scenario found </a:assertion>
+    >WFR vor val-xml validation step must exist in noScenarioReport</a:assertion>
+
+
+
   <a:assertion report-doc="ubl006-report.xml"
     test="not(rep:report/rep:noScenarioMatched/rep:validationStepResult[@id = 'val-xml']/rep:message)"
     >WFR validation step for no scenario found has message
                           (XML case)</a:assertion>
   <a:assertion report-doc="ubl006-report.xml"
     test="not(rep:report/rep:assessment/rep:accept)"
-    >Assessment recommends acceptance</a:assertion>
+    >Assessment should not recommend acceptance</a:assertion>
   <a:assertion report-doc="ubl006-report.xml"
     test="not(rep:report/rep:assessment/rep:accept/rep:explanation/html:html[@data-report-type = 'report'])"
     >HTML explanation for acceptance exists</a:assertion>
@@ -881,8 +882,12 @@
     >Document reference matches</a:assertion>
   <a:assertion report-doc="bin001-report.xml"
     test="not(rep:report/rep:scenarioMatched)"
-    >Scenario
-                          found</a:assertion>
+    >Report does not have to have a scenarioMatched element</a:assertion>
+
+  <a:assertion report-doc="bin001-report.xml"
+    test="/rep:report/rep:noScenarioMatched"
+    >Report has to have a noScenarioMatched element</a:assertion>
+
   <a:assertion report-doc="bin001-report.xml"
     test="not(rep:report/rep:scenarioMatched/s:scenario/s:name = 'EN16931 CIUS XRechnung (UBL Invoice)')"
     >UBL Invoice scenario found</a:assertion>
@@ -949,13 +954,7 @@
     test="not(rep:report/rep:scenarioMatched/rep:validationStepResult[@id = 'val-sch.2']/@valid = 'true')"
     >Second schematron validation has status
                           valid</a:assertion>
-  <a:assertion report-doc="bin001-report.xml"
-    test="rep:report/rep:noScenarioMatched/rep:validationStepResult[@id = 'val-xml']"
-    >WFR validation step exists for no scenario found </a:assertion>
-  <a:assertion report-doc="bin001-report.xml"
-    test="rep:report/rep:noScenarioMatched/rep:validationStepResult[@id = 'val-xml']/rep:message"
-    >WFR validation step for no scenario found has message
-                          (XML case)</a:assertion>
+
   <a:assertion report-doc="bin001-report.xml"
     test="not(rep:report/rep:assessment/rep:accept)"
     >Assessment recommends acceptance</a:assertion>

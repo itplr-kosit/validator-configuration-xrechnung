@@ -21,7 +21,7 @@
   <property name="dist.name"
     value="xrechnung-${xrechnung.version}-validation-configuration" />
   <!-- 3rd party resources -->
-  <property name="validator.version" value="1.2.0" />
+  <property name="validator.version" value="1.3.0-SNAPSHOT" />
   <!-- Pick by default the java 8 standalone distribution -->
   <property name="validator.jar"
     value="validationtool-${validator.version}-java8-standalone.jar" />
@@ -161,11 +161,7 @@
        />
     </sequential>
   </macrodef>
-  <target name="sch">
-    <schematron-compile
-      schematron="${download.dir}/validation-master/ubl/schematron/EN16931-UBL-validation.sch"
-      workdir="${build.dir}/schematron" />
-  </target>
+ 
   <target name="init"
     description="Initializes build directory structure and ISO timestamp">
     <!-- Create timestamps -->
@@ -192,12 +188,28 @@
       <flattenmapper />
     </unzip>
   </target>
-  <target name="prepare-validationtool" depends="init"
-    description="Download KoSIT validation tool and add jar to library directory">
+
+  <!-- umbau zu flexibleren orten per propertz
+target konzeptionell in retrieve = krieg es downlokal auf festplaate und prepare = mach aus dem doenload was, dass dieses build benutyen kann > beide steps zusammen sind provide 
+-->
+
+
+  <target name="retrieve-validator-from-lokal-build" depends="init"
+    if="validator.from.local.file">
+    <get
+      src="file://${basedir}/../validator/target/${validator.jar}"
+      dest="${lib.dir}/${validator.jar}" verbose="true" skipexisting="true"
+      usetimestamp="true" />
+  </target>
+
+
+  <target name="retrieve-validator-from-github-release" depends="init"
+    unless="validator.from.local.file">
     <get
       src="https://github.com/itplr-kosit/validator/releases/download/v${validator.version}/validationtool-${validator.version}.zip"
       dest="${download.dir}" verbose="true" skipexisting="true"
       usetimestamp="true" />
+
     <unzip src="${download.dir}/validationtool-${validator.version}.zip"
       dest="${lib.dir}">
       <patternset>
@@ -206,6 +218,21 @@
       <flattenmapper />
     </unzip>
   </target>
+
+
+
+
+  <target name="retrieve-validator"
+    depends="init, retrieve-validator-from-lokal-build, retrieve-validator-from-github-release">
+    <!-- add check something was downloaded -->
+  </target>
+
+
+
+  <target name="provide-validator" depends="init, retrieve-validator"
+    description="Download KoSIT validation tool and add jar to library directory"> </target>
+
+
   <target name="retrieve-cen-rules"
     depends="retrieve-cen-rules-from-master,retrieve-cen-rules-from-release,init" />
   <target name="retrieve-cen-rules-from-master" depends="init"
@@ -358,7 +385,7 @@
       filtering="true" />
   </target>
   <target name="compile"
-    depends="compile-scenario,retrieve-all-schema-rules,compile-cen-rules,prepare-saxon,prepare-validationtool"
+    depends="compile-scenario,retrieve-all-schema-rules,compile-cen-rules,prepare-saxon,provide-validator"
     description="Compile XSDs and XSLTs into validation configuration conformat repository directory">
     <echo>Compiling Schemas and XSLTs ...</echo>
     <copy file="${src.dir}/default-report.xsl" todir="${resource.dir}" />
@@ -377,7 +404,7 @@
       </patternset>
       <cutdirsmapper dirs="1" />
     </unzip>
-    <!-- Gettint XRechnung Rules -->
+    <!-- Get XRechnung Rules -->
     <unzip src="${download.dir}/${xrechnung.rules.zip}"
       dest="${resource.dir}/xrechnung/${xrechnung.version}/xsl">
       <patternset>
@@ -409,9 +436,26 @@
 
 
   <target name="test-validator-assertions"
-    depends="compile,init-test,prepare-validationtool,test-validator-assertions-only"
+    depends="compile,init-test,provide-validator,test-validator-assertions-only,test-validator-report-with-schema-only"
     description="Test XRechnung Configuration" unless="test.skip">
     <echo message="Testing with full build chain." />
+  </target>
+
+  <target name="test-validator-report-with-schema-only">
+    <echo>Schema validating reports against ${reports.schema.dir}/report.xsd ...</echo>
+    <schemavalidate fullchecking="yes" failonerror="yes">
+      <schema namespace="http://www.xoev.de/de/validator/varl/1"
+        file="${reports.schema.dir}/report.xsd" />
+      <schema namespace="http://www.xoev.de/de/validator/framework/1/scenarios"
+        file="${reports.schema.dir}/scenarios.xsd" />
+      <fileset dir="${reports.dir}" includes="*-report.xml" />
+    </schemavalidate>
+    <echo>Schematron validating reports ...</echo>
+    <xslt style="${src.dir}/report.sch.xsl" includes="${reports.dir}/*.xml"
+      destdir="${reports.dir}">
+      <classpath location="${lib.dir}/${saxon.jar}" />
+      <factory name="net.sf.saxon.TransformerFactoryImpl" />
+    </xslt>
   </target>
 
   <target name="test-validator-assertions-only"
@@ -430,19 +474,9 @@
       <arg value="${reports.dir}" />
       <arg value="${test.docs.dir}" />
     </java>
-    <echo>Schema validating reports against ${reports.schema.dir}/report.xsd ...</echo>
-    <schemavalidate fullchecking="yes" failonerror="yes">
-      <schema namespace="http://www.xoev.de/de/validator/varl/1"
-        file="${reports.schema.dir}/report.xsd" />
-      <fileset dir="${reports.dir}" includes="*-report.xml" />
-    </schemavalidate>
-    <echo>Schematron validating reports ...</echo>
-    <xslt style="${src.dir}/report.sch.xsl" includes="${reports.dir}/*.xml"
-      destdir="${reports.dir}">
-      <classpath location="${lib.dir}/${saxon.jar}" />
-      <factory name="net.sf.saxon.TransformerFactoryImpl" />
-    </xslt>
   </target>
+
+
   <target name="retrieve-xmute" depends="init" if="xmute.download.url.prefix">
     <fail unless="xmute.download.url.prefix"
       message="Property xmute.download.url.prefix must exist for this target to work" />
@@ -491,6 +525,7 @@
     <!-- Delete the ${build} and ${dist} directory trees -->
     <delete dir="${build.dir}" verbose="true" includeEmptyDirs="true" />
     <delete dir="${dist.dir}" />
+    <delete dir="${lib.dir}" />
     <delete dir="${reports.dir}" />
   </target>
 </project>
