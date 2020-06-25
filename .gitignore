@@ -2,6 +2,9 @@ dist
 build
 lib
 reports
+test-reports
+# configuration files
 .vscode
 *.xpr
 .ant-targets-build.xml
+*.code-workspace

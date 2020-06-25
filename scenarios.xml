@@ -1,168 +1,172 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- THIS is the source file for creating scenarios.xml-->
 <scenarios xmlns="http://www.xoev.de/de/validator/framework/1/scenarios"
-    frameworkVersion="1.0.0">
-    <name>Prüftool-Konfiguration XRechnung @xrechnung.version@</name>
-    <author>KoSIT</author>
-    <date>@build.date@</date>
-    <description>
-        <p>Prüfung von Dokumenten auf Konformität zum Standard XRechnung
+  frameworkVersion="1.0.0">
+  <name>Prüftool-Konfiguration XRechnung @xrechnung.version@</name>
+  <author>Coordination Office for IT Standards (KoSIT)</author>
+  <date>@build.date@</date>
+  <description>
+    <p>Prüfung von Dokumenten auf Konformität zum Standard XRechnung
             @xrechnung.version@
             (https://www.xoev.de/die_standards/xrechnung-14741).</p>
-        <p>Diese Konfiguration enthält die Schematron-Regeln der @cen.spec.id@
+    <p>Diese Konfiguration enthält die Schematron-Regeln der @cen.spec.id@
             in der Version @cen.rules.version@ mit dem Stand vom @build.date@
             (https://github.com/CenPC434/validation/releases).</p>
-        <p>Diese Konfiguration enthält die Schematron-Regeln der CIUS XRechnung
+    <p>Diese Konfiguration enthält die Schematron-Regeln der CIUS XRechnung
             @xrechnung.version@ in der Version @xrechnung.rules.version.full@
             (@xrechnung.download.url@). </p>
+  </description>
+
+  <scenario>
+    <name>EN16931 CIUS XRechnung (UBL Invoice)</name>
+    <description>
+      <p>Validierung von UBL Invoice version @ubl.version@</p>
+      <p>Dieses Scenario enthält UBL Invoice @ubl.version@ XML Schema und
+                Schematron-Regeln der EN16931:2017 und XRechnung
+                @xrechnung.version@ </p>
+      <p>Download von UBL XML Schema am @build.date@ von
+                @ubl.download.url@</p>
+      <p>Download von UBL Schematron Rules am @build.date@ von
+                @cen.download.url.ubl@</p>
+      <p>Download von XRechnung Schematron Rules am @build.date@ von
+                @xrechnung.download.url@</p>
     </description>
+    <namespace prefix="cbc"
+      >urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2</namespace>
+    <namespace prefix="invoice"
+      >urn:oasis:names:specification:ubl:schema:xsd:Invoice-2</namespace>
 
-    <scenario>
-        <name>EN16931 CIUS XRechnung (UBL Invoice)</name>
-        <description>
-            <p>Validierung von UBL Invoice version @ubl.version@</p>
-            <p>Dieses Scenario enthält UBL Invoice @ubl.version@ XML Schema und
-                Schematron-Regeln der EN16931:2017 und XRechnung
-                @xrechnung.version@ </p>
-            <p>Download von UBL XML Schema am @build.date@ von
-                @ubl.download.url@</p>
-            <p>Download von UBL Schematron Rules am @build.date@ von
-                @cen.download.url.ubl@</p>
-            <p>Download von XRechnung Schematron Rules am @build.date@ von
-                @xrechnung.download.url@</p>
-        </description>
-        <namespace prefix="cbc"
-            >urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2</namespace>
-        <namespace prefix="invoice"
-            >urn:oasis:names:specification:ubl:schema:xsd:Invoice-2</namespace>
-
-        <match>/invoice:Invoice[ starts-with(cbc:CustomizationID,
+    <match>/invoice:Invoice[ starts-with(cbc:CustomizationID,
             '@xrechnung.spec.id@') ]</match>
-        <validateWithXmlSchema>
-            <resource>
-                <name>XML Schema for UBL 2.1 Invoice</name>
-                <location>resources/ubl/2.1/xsd/maindoc/UBL-Invoice-2.1.xsd</location>
-            </resource>
-        </validateWithXmlSchema>
-        <validateWithSchematron>
-            <resource>
-                <name>Schematron rules for EN16931 (UBL)</name>
-                <location>resources/ubl/2.1/xsl/EN16931-UBL-validation.xsl</location>
-            </resource>
-        </validateWithSchematron>
-        <validateWithSchematron>
-            <resource>
-                <name>Schematron rules for Invoice - CIUS XRechnung (UBL)</name>
-                <location>resources/xrechnung/@xrechnung.version@/xsl/XRechnung-UBL-validation-Invoice.xsl</location>
-            </resource>
-        </validateWithSchematron>
-        <createReport>
-            <resource>
-                <name>Validation report for XRechnung</name>
-                <location>resources/xrechnung-report.xsl</location>
-            </resource>
-            <customLevel level="information">BR-CL-01</customLevel>
-            <customLevel level="warning">BR-CL-23</customLevel>
-            <customLevel level="warning">BR-CL-21</customLevel>
-        </createReport>
-    </scenario>
-    <scenario>
-        <name>EN16931 CIUS XRechnung (UBL CreditNote)</name>
-        <description>
-            <p>Validierung von UBL CrediteNote version @ubl.version@</p>
-            <p>Dieses Scenario enthält UBL Invoice @ubl.version@ XML Schema und
+    <validateWithXmlSchema>
+      <resource>
+        <name>XML Schema for UBL 2.1 Invoice</name>
+        <location>resources/ubl/2.1/xsd/maindoc/UBL-Invoice-2.1.xsd</location>
+      </resource>
+    </validateWithXmlSchema>
+    <validateWithSchematron>
+      <resource>
+        <name>Schematron rules for EN16931 (UBL)</name>
+        <location>resources/ubl/2.1/xsl/EN16931-UBL-validation.xsl</location>
+      </resource>
+    </validateWithSchematron>
+    <validateWithSchematron>
+      <resource>
+        <name>Schematron rules for Invoice - CIUS XRechnung (UBL)</name>
+        <location>resources/xrechnung/@xrechnung.version@/xsl/XRechnung-UBL-validation-Invoice.xsl</location>
+      </resource>
+
+    </validateWithSchematron>
+    <createReport>
+      <resource>
+        <name>Validation report for XRechnung</name>
+        <location>resources/xrechnung-report.xsl</location>
+      </resource>
+      <customLevel level="information">BR-CL-01</customLevel>
+      <customLevel level="warning">BR-CL-23</customLevel>
+      <customLevel level="warning">BR-CL-21</customLevel>
+    </createReport>
+    <acceptMatch>/report/assessment[1]/accept[1]</acceptMatch>
+  </scenario>
+  <scenario>
+    <name>EN16931 CIUS XRechnung (UBL CreditNote)</name>
+    <description>
+      <p>Validierung von UBL CrediteNote version @ubl.version@</p>
+      <p>Dieses Scenario enthält UBL Invoice @ubl.version@ XML Schema und
                 Schematron-Regeln der EN16931:2017 und XRechnung
                 @xrechnung.version@ </p>
-            <p>Download von UBL XML Schema am @build.date@ von
+      <p>Download von UBL XML Schema am @build.date@ von
                 @ubl.download.url@</p>
-            <p>Download von UBL Schematron Rules am @build.date@ von
+      <p>Download von UBL Schematron Rules am @build.date@ von
                 @cen.download.url.ubl@</p>
-            <p>Download von XRechnung Schematron Rules am @build.date@ von
+      <p>Download von XRechnung Schematron Rules am @build.date@ von
                 @xrechnung.download.url@</p>
-        </description>
-        <namespace prefix="cbc"
-            >urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2</namespace>
-        <namespace prefix="creditnote"
-            >urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2</namespace>
-        <match>/creditnote:CreditNote[starts-with(cbc:CustomizationID,
+    </description>
+    <namespace prefix="cbc"
+      >urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2</namespace>
+    <namespace prefix="creditnote"
+      >urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2</namespace>
+    <match>/creditnote:CreditNote[starts-with(cbc:CustomizationID,
             '@xrechnung.spec.id@')]</match>
-        <validateWithXmlSchema>
-            <resource>
-                <name>XML Schema for UBL 2.1 CreditNote</name>
-                <location>resources/ubl/2.1/xsd/maindoc/UBL-CreditNote-2.1.xsd</location>
-            </resource>
-        </validateWithXmlSchema>
-        <validateWithSchematron>
-            <resource>
-                <name>Schematron rules for EN16931 (UBL)</name>
-                <location>resources/ubl/2.1/xsl/EN16931-UBL-validation.xsl</location>
-            </resource>
-        </validateWithSchematron>
-        <validateWithSchematron>
-            <resource>
-                <name>Schematron rules for CreditNote - CIUS XRechnung
+    <validateWithXmlSchema>
+      <resource>
+        <name>XML Schema for UBL 2.1 CreditNote</name>
+        <location>resources/ubl/2.1/xsd/maindoc/UBL-CreditNote-2.1.xsd</location>
+      </resource>
+    </validateWithXmlSchema>
+    <validateWithSchematron>
+      <resource>
+        <name>Schematron rules for EN16931 (UBL)</name>
+        <location>resources/ubl/2.1/xsl/EN16931-UBL-validation.xsl</location>
+      </resource>
+    </validateWithSchematron>
+    <validateWithSchematron>
+      <resource>
+        <name>Schematron rules for CreditNote - CIUS XRechnung
                     (UBL)</name>
-                <location>resources/xrechnung/@xrechnung.version@/xsl/XRechnung-UBL-validation-CreditNote.xsl</location>
-            </resource>
-        </validateWithSchematron>
-        <createReport>
-            <resource>
-                <name>Prüfbericht für XRechnung</name>
-                <location>resources/xrechnung-report.xsl</location>
-            </resource>
-        </createReport>
-    </scenario>
-    <scenario>
-        <name>EN16931 CIUS XRechnung (CII)</name>
-        <description>
-            <p>Validierung von UN/CEFACT XML (SCRDM - CII uncoupled) Version
+        <location>resources/xrechnung/@xrechnung.version@/xsl/XRechnung-UBL-validation-CreditNote.xsl</location>
+      </resource>
+    </validateWithSchematron>
+    <createReport>
+      <resource>
+        <name>Prüfbericht für XRechnung</name>
+        <location>resources/xrechnung-report.xsl</location>
+      </resource>
+    </createReport>
+    <acceptMatch>/report/assessment[1]/accept[1]</acceptMatch>
+  </scenario>
+  <scenario>
+    <name>EN16931 CIUS XRechnung (CII)</name>
+    <description>
+      <p>Validierung von UN/CEFACT XML (SCRDM - CII uncoupled) Version
                 @cii.version@</p>
-            <p>Dieses Scenario enthält UN/CEFACT (SCRDM - CII uncoupled)
+      <p>Dieses Scenario enthält UN/CEFACT (SCRDM - CII uncoupled)
                 @cii.version@ XML Schema und Schematron-Regeln der EN16931:2017
                 und XRechnung @xrechnung.version@ </p>
-            <p>Download von CII uncoupled XML Schema am @build.date@ von
+      <p>Download von CII uncoupled XML Schema am @build.date@ von
                 @cii.download.url@</p>
-            <p>Download von CII Schematron Rules am @build.date@ von
+      <p>Download von CII Schematron Rules am @build.date@ von
                 @cen.download.url.cii@ </p>
-            <p>Download von XRechnung Schematron Rules am @build.date@ von
+      <p>Download von XRechnung Schematron Rules am @build.date@ von
                 @xrechnung.download.url@</p>
-        </description>
-        <namespace prefix="rsm"
-            >urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100</namespace>
-        <namespace prefix="ram"
-            >urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100</namespace>
-        <match>/rsm:CrossIndustryInvoice[starts-with(rsm:ExchangedDocumentContext/ram:GuidelineSpecifiedDocumentContextParameter/ram:ID,
+    </description>
+    <namespace prefix="rsm"
+      >urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100</namespace>
+    <namespace prefix="ram"
+      >urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100</namespace>
+    <match>/rsm:CrossIndustryInvoice[starts-with(rsm:ExchangedDocumentContext/ram:GuidelineSpecifiedDocumentContextParameter/ram:ID,
             '@xrechnung.spec.id@')]</match>
-        <validateWithXmlSchema>
-            <resource>
-                <name>XML Schema for UN/CEFACT XML (SCRDM - CII
+    <validateWithXmlSchema>
+      <resource>
+        <name>XML Schema for UN/CEFACT XML (SCRDM - CII
                     uncoupled)</name>
-                <location>resources/cii/16b/xsd/CrossIndustryInvoice_100pD16B.xsd</location>
-            </resource>
-        </validateWithXmlSchema>
-        <validateWithSchematron>
-            <resource>
-                <name>Schematron rules for EN16931 (CII)</name>
-                <location>resources/cii/16b/xsl/EN16931-CII-validation.xsl</location>
-            </resource>
-        </validateWithSchematron>
-        <validateWithSchematron>
-            <resource>
-                <name>Schematron rules for CIUS XRechnung (CII)</name>
-                <location>resources/xrechnung/@xrechnung.version@/xsl/XRechnung-CII-validation.xsl</location>
-            </resource>
-        </validateWithSchematron>
-        <createReport>
-            <resource>
-                <name>Prüfbericht für XRechnung</name>
-                <location>resources/xrechnung-report.xsl</location>
-            </resource>
-        </createReport>
-    </scenario>
-    <noScenarioReport>
-        <resource>
-            <name>Default Report</name>
-            <location>resources/default-report.xsl</location>
-        </resource>
-    </noScenarioReport>
+        <location>resources/cii/16b/xsd/CrossIndustryInvoice_100pD16B.xsd</location>
+      </resource>
+    </validateWithXmlSchema>
+    <validateWithSchematron>
+      <resource>
+        <name>Schematron rules for EN16931 (CII)</name>
+        <location>resources/cii/16b/xsl/EN16931-CII-validation.xsl</location>
+      </resource>
+    </validateWithSchematron>
+    <validateWithSchematron>
+      <resource>
+        <name>Schematron rules for CIUS XRechnung (CII)</name>
+        <location>resources/xrechnung/@xrechnung.version@/xsl/XRechnung-CII-validation.xsl</location>
+      </resource>
+    </validateWithSchematron>
+    <createReport>
+      <resource>
+        <name>Prüfbericht für XRechnung</name>
+        <location>resources/xrechnung-report.xsl</location>
+      </resource>
+    </createReport>
+    <acceptMatch>/report/assessment[1]/accept[1]</acceptMatch>
+  </scenario>
+  <noScenarioReport>
+    <resource>
+      <name>Default Report</name>
+      <location>resources/default-report.xsl</location>
+    </resource>
+  </noScenarioReport>
 </scenarios>
