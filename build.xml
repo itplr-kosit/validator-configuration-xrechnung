@@ -397,7 +397,7 @@
   <target name="test-testsuite-with-validator" depends="init-test, provide-validator, create-validator-reports-from-testsuite">
     <!-- -->
     <echo message="Deleting checked reports" />
-    <delete verbose="true" failonerror="true">
+    <delete verbose="false" failonerror="true">
       <fileset dir="${reports.dir}">
 
         <include name="01.01a-INVOICE_uncefact-report.html" />
