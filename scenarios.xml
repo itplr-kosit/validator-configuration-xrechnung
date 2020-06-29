@@ -37,7 +37,8 @@
       >urn:oasis:names:specification:ubl:schema:xsd:Invoice-2</namespace>
 
     <match>/invoice:Invoice[ starts-with(cbc:CustomizationID,
-            '@xrechnung.spec.id@') ]</match>
+            '@xrechnung.spec.id@') or starts-with(cbc:CustomizationID,
+            '@xrechnung.spec.id@#conformant#urn:xoev-de:kosit:extension:xrechnung_2.0')]</match>
     <validateWithXmlSchema>
       <resource>
         <name>XML Schema for UBL 2.1 Invoice</name>
