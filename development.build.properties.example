@@ -1,0 +1,12 @@
+## Customize these properties to develop with local dependencies
+
+
+## Set this to true in order to activate targets for local developemnt
+#develop.local=true
+
+## Here same as basedir cause basedir is not set in this context
+#work.dir=/mnt/c/data/git-repos/validator-configuration-xrechnung
+
+## Get latest schematron distribution from your local git project 
+## Example is relative to this project directory in local file system
+#xr.schematron.download.url.prefix=file://${work.dir}/../xrechnung-schematron/dist/

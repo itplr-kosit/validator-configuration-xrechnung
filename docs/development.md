@@ -5,16 +5,18 @@
 If you build own local custom versions of dependencies such as XRechnung
 Schematron you can customize the ant build at runtime:
 
-This example show if you have a new XRechnung Schematron distribution build
-locally with new version.
-
+The following example demonstrates how to use a diffeerent CEN SChamtron rules distribution:
 ```shell
 ant
--Dxrechnung.download.url=file:/${FULL_PATH}/xrechnung-schematron/dist/xrechnung-1.2.2-schematron-1.2.2.zip
-\
--Dxrechnung.rules.version.patch=2 \
--Dxrechnung.version.patch=2 dist
+-Dcen.rules.version=1.3.0
 ```
 
-Just use `-Dcen.rules.version=1.3.0` for testing a released version of CEN
-Schematron rules.
+## Development properties file
+
+In order to have more complex adaption to the local development needs, you load a set of different properties from a file. 
+
+We provide the `development.build.properties.example` file for the most common properties to be set different than default. It contains some documentation. You can copy the file to e.g. `development.build.properties` and call ant
+
+```shell
+ant -propertyfile ${your.own.property.file.name}
+```
