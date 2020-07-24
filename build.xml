@@ -10,6 +10,8 @@
   <property name="dist.dir" location="${basedir}/dist" />
   <property name="test.src.dir" location="${src.dir}/test" />
   <property name="test.build.dir" location="${build.dir}/test" />
+  <property name="testsuite.instances.dir"
+    location="${test.build.dir}/testsuite" />
 
   <!-- Naming -->
   <property name="xrechnung.version.major.minor" value="2.0" />
@@ -22,7 +24,10 @@
   <property name="dist.name"
     value="xrechnung-${xrechnung.version}-validation-configuration" />
   <!-- 3rd party resources -->
+  <!-- KoSIT XML Validator -->
   <property name="validator.version" value="1.3.0-SNAPSHOT" />
+<property name="validator.download.url.prefix"
+    value="https://github.com/itplr-kosit/validator/releases/download/"/>
   <!-- Pick by default the java 8 standalone distribution -->
   <property name="validator.jar"
     value="validationtool-${validator.version}-java8-standalone.jar" />
@@ -60,7 +65,8 @@
   <property name="xr.schematron.download.url.prefix"
     value="https://github.com/itplr-kosit/xrechnung-schematron/releases/download/release-${xr.schematron.version.full}" />
 
-  <property name="xr.schematron.zip" value="xrechnung-${xrechnung.version}-schematron-${xr.schematron.version.full}.zip" />
+  <property name="xr.schematron.zip"
+    value="xrechnung-${xrechnung.version}-schematron-${xr.schematron.version.full}.zip" />
 
   <!-- root/work directory where KoSIT validationtool expects Schema(s)-and trons -->
   <property name="repository.dir" location="${build.dir}" />
@@ -190,19 +196,24 @@
     </unzip>
   </target>
 
+
+
   <target name="retrieve-validator-from-local-build" depends="init"
-    if="develop.local">
-    <get src="file://${basedir}/../validator/target/${validator.jar}"
+    if="develop.local.validator">
+    <get src="${validator.download.url.prefix}/target/${validator.jar}"
       dest="${lib.dir}/${validator.jar}" verbose="true" skipexisting="true"
       usetimestamp="true" />
   </target>
 
 
   <target name="retrieve-validator-from-github-release" depends="init"
-    unless="develop.local">
+    unless="develop.local.validator">
+<property name="download.url.full"></property>
+
+<echo message="Retrieving validator version=${validator.version} from "></echo>
 
     <get
-      src="https://github.com/itplr-kosit/validator/releases/download/v${validator.version}/validationtool-${validator.version}.zip"
+      src="${validator.download.url.prefix}/v${validator.version}/validationtool-${validator.version}.zip"
       dest="${download.dir}" verbose="true" skipexisting="true"
       usetimestamp="true" />
 
@@ -222,9 +233,45 @@
   </target>
 
 
+
   <target name="provide-validator" depends="init, retrieve-validator"
     description="Download KoSIT validation tool and add jar to library directory" />
 
+
+  <target name="retrieve-xr-testsuite-from-local-build" depends="init"
+    if="develop.local.xr-testsuite">
+    <get src="file://${basedir}/../validator/target/${validator.jar}"
+      dest="${lib.dir}/${validator.jar}" verbose="true" skipexisting="true"
+      usetimestamp="true" />
+  </target>
+
+
+
+  <target name="retrieve-xr-testsuite-from-github-release" depends="init-test"
+    unless="develop.local.xr-testsuite">
+
+    <get
+      src="https://github.com/itplr-kosit/xrechnung-testsuite/releases/download/release-2019-12-30/xrechnung-1.2.2-testsuite-2019-12-30.zip"
+      dest="${download.dir}" verbose="true" skipexisting="true"
+      usetimestamp="true" />
+
+    <unzip src="${download.dir}/xrechnung-1.2.2-testsuite-2019-12-30.zip"
+      dest="${testsuite.instances.dir}">
+      <patternset>
+        <include name="**/*.xml" />
+      </patternset>
+      <flattenmapper />
+    </unzip>
+  </target>
+
+
+  <target name="retrieve-xr-testsuite"
+    depends="init-test, retrieve-xr-testsuite-from-local-build, retrieve-xr-testsuite-from-github-release">
+    <!-- add check something was downloaded -->
+  </target>
+
+  <target name="provide-testsuite" depends="init-test, retrieve-xr-testsuite"
+    description="Download and prepare KoSIT xrechnung-testsuite for testing" />
 
   <target name="retrieve-cen-rules"
     depends="retrieve-cen-rules-from-master,retrieve-cen-rules-from-release,init" />
@@ -448,7 +495,8 @@
 
   <target name="init-test" depends="init, compile, compile-scenario"
     description="Initializes test directory structure">
-    <mkdir dir="${build.dir}/test" />
+    <mkdir dir="${test.build.dir}" />
+    <mkdir dir="${testsuite.instances.dir}" />
     <!-- customize scenarios.xml for testing purpose -->
     <xslt in="${repository.dir}/scenarios.xml"
       out="${test.build.dir}/scenarios.xml"
@@ -502,25 +550,23 @@
 
 
   <target name="create-validator-reports-from-testsuite"
-    depends="init-test, provide-validator"
+    depends="init-test, provide-validator, provide-testsuite"
     description="Only test XRechnung Configuration" unless="test.skip">
     <fail unless="testsuite.instances.dir"
       message="Property testsuite.instances.dir must exist for this target to work" />
 
-    <echo>Creating validation reports with ${lib.dir}/${validator.jar} for ${test.docs.dir}.</echo>
+    <echo>Creating validation reports with ${lib.dir}/${validator.jar} for ${testsuite.instances.dir}.</echo>
     <java jar="${lib.dir}/${validator.jar}" failonerror="true" fork="true"
       dir="${build.dir}">
       <arg value="-s" />
-      <arg value="${test.build.dir}/scenarios.xml" />
+      <arg value="scenarios.xml" />
       <arg value="-r" />
       <arg value="${build.dir}" />
       <arg value="-h" />
       <arg value="-o" />
       <arg value="${reports.dir}" />
-      <arg value="${basedir}/${testsuite.instances.dir}/business-cases/standard" />
-      <arg
-        value="${basedir}/${testsuite.instances.dir}/business-cases/extension"
-       />
+      <arg value="${testsuite.instances.dir}" />
+      
     </java>
   </target>
 
