@@ -8,9 +8,9 @@ The main `ant` targets for developing are:
 
 * `compile` (here it is assembling all resources for validation)
 * `test`
-* and `dist` (crreating the distribution artifact)
+* and `dist` (creating the distribution artefact)
 
-However, because fo the complex dependencies, you may only expect `compile` target to work without any customizations.
+However, because of the complex dependencies, you may only expect `compile` target to work without any customizations.
 
 ### Test dependencies on the fly
 
@@ -53,7 +53,7 @@ ant -propertyfile ${your.own.property.file.name}
 
 ### Configuration Report Tests
 
-All test instances in `src/test7instances` are designed to trigger certain kinds of report outputs.
+All test instances in `src/test/instances` are designed to trigger certain kinds of report outputs.
 
 These reports are then tested using `src/test/assertions.xml`.
 
@@ -68,3 +68,9 @@ The correctnes of the whole validation process depends mostly on Schematron rule
 Hence, we started to also test aspects of these rules.
 
 Currently, test instances are in `src/test/ubl-inv` and tested using `XML Mutate`.
+
+## Distribution
+
+The `ant` target `dist` creates the distribution zip archive for releases including several targets for testing.
+
+If you want to skip tests call `ant dist-no-test`.

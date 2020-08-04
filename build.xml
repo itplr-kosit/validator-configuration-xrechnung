@@ -542,7 +542,7 @@
 
   <target name="test-validator-assertions"
     depends="init-test,provide-validator,test-validator-assertions-only,test-validator-report-with-schema-only"
-    description="Test XRechnung Configuration" unless="test.skip">
+    description="Test XRechnung Configuration">
     <echo message="Testing with full build chain." />
   </target>
 
@@ -644,7 +644,7 @@
       message="Property xmute.download.url.prefix must exist for this target to work" />
     <property name="xmute.version.full" value="0.5" />
     <property name="xmute.jar" value="xml-mutate.jar" />
-    <get src="${xmute.download.url.prefix}/xml-mutate-${xmute.version.full}.jar"
+    <get src="${xmute.download.url.prefix}/target/xml-mutate-${xmute.version.full}.jar"
       dest="${lib.dir}/${xmute.jar}" verbose="true" skipexisting="false"
       usetimestamp="true" />
   </target>
@@ -688,10 +688,13 @@
 
 
   <target name="test"
-    depends="init-test, test-validator-assertions,test-mutations, test-testsuite-with-validator">
+    depends="init-test, test-validator-assertions,test-mutations, test-testsuite-with-validator"
+    unless="test.skip">
     <echo message="Testing all" />
   </target>
 
+  <target name="dist-no-test" depends="compile" description="Generate the distribution without testing">
+  </target>
 
   <target name="dist" depends="test" description="Generate the distribution">
     <copy todir="${build.dir}">
