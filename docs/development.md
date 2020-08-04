@@ -13,9 +13,11 @@ ant
 
 ## Development properties file
 
-In order to have more complex adaption to the local development needs, you load a set of different properties from a file. 
+In order to configure more complex adaption to the local development needs, you have to load a set of different properties from a file. 
 
-We provide the `development.build.properties.example` file for the most common properties to be set different than default. It contains some documentation. You can copy the file to e.g. `development.build.properties` and call ant
+We provide the `development.build.properties.example` file for the most common properties to be set different than default. It contains some documentation. 
+
+You have to copy the file to e.g. `development.build.properties` and you have to explicitly provide the property file location at CLI for your development (otherwise tests will always fail or not exectuted at all).
 
 ```shell
 ant -propertyfile ${your.own.property.file.name}
