@@ -318,7 +318,7 @@
 
 
   <target name="retrieve-xrechnung-schematron-from-local-build" depends="init"
-    if="develop.local">
+    if="develop.local.xr.schematron">
     <echo
       message="Loading from file ${xr.schematron.download.url.prefix}/${xr.schematron.zip}" />
 
@@ -328,7 +328,7 @@
   </target>
 
   <target name="retrieve-xrechnung-schematron-from-github-release"
-    depends="init" unless="develop.local">
+    depends="init" unless="develop.local.xr.schematron">
     <echo
       message="Loading from GitHub ${xr.schematron.download.url.prefix}/${xr.schematron.zip}" />
     <get src="${xr.schematron.download.url.prefix}/${xr.schematron.zip}"
@@ -693,10 +693,7 @@
     <echo message="Testing all" />
   </target>
 
-  <target name="dist-no-test" depends="compile" description="Generate the distribution without testing">
-  </target>
-
-  <target name="dist" depends="test" description="Generate the distribution">
+  <target name="dist-only" depends="compile" description="Generate the distribution without testing">
     <copy todir="${build.dir}">
       <fileset dir="${basedir}">
         <include name="README.md" />
@@ -706,6 +703,10 @@
     <zip
       destfile="${dist.dir}/validator-configuration-xrechnung_${xrechnung.version}_${build.date}.zip"
       basedir="${build.dir}" excludes="download/**,test,schematron" />
+  </target>
+
+  <target name="dist" depends="test, dist-only" description="Generate the distribution">
+    
   </target>
   <target name="clean" description="clean up">
     <!-- Delete the ${build} and ${dist} directory trees -->
