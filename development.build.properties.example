@@ -1,20 +1,47 @@
 ## Customize these properties to develop with local dependencies
 
+##
+# Here values is the same as ant basedir because basedir is not set in this context
+##
+work.dir=/mnt/c/data/git-repos/validator-configuration-xrechnung
 
-## Here values is the same as ant basedir because basedir is not set in this context
-# work.dir=/mnt/c/data/git-repos/validator-configuration-xrechnung
+##
+# The XRechnung Version this configuration implements
+##
+xrechnung.version=2.0.0
 
+##
+# Set this property in order to activate targets for local development
+# Be aware the presence of this property determines some of the behavior independent of the value
+##
+develop.local.validator=true
 
-## Set this property in order to activate targets for local development
-## Be aware the presence of this proporty determines some of the behaviour independent of the value
-# develop.local.validator=true
+validator.version=1.3.1-SNAPSHOT
+##
+# Should point to main directory of validator project, in case of local path
+##
+validator.download.url.prefix=file://${work.dir}/../validator/
 
-validator.version=1.3.0-SNAPSHOT
-# Should point to main directorz of validator project, in case of local path
-#validator.download.url.prefix=file://${work.dir}/../validator/
+##
+# Set this property in order to activate targets for local development
+# Be aware the presence of this property determines some of the behavior independent of the value
+##
+develop.local.xr.testsuite=true
+###
+# Get latest XRechnung Testsusite distribution from your local git project
+# Example is relative to this project directory in local file system
+##
+xr.testsuite.download.url.prefix=file://${work.dir}/../xrechnung-testsuite/dist
 
-#develop.local.xr-testsuite=true
+xr.testsuite.version=2020-07-31-SNAPSHOT
 
-## Get latest schematron distribution from your local git project
-## Example is relative to this project directory in local file system
-#xr.schematron.download.url.prefix=file://${work.dir}/../xrechnung-schematron/dist
+###
+# Get latest schematron distribution from your local git project
+# Example is relative to this project directory in local file system
+##
+xr.schematron.download.url.prefix=file://${work.dir}/../xrechnung-schematron/dist
+
+xmute.version.full=0.5
+
+xmute.download.url.prefix=file:/mnt/c/data/git-repos/xml-mutate/target
+

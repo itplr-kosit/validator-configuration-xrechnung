@@ -26,7 +26,7 @@
     value="xrechnung-${xrechnung.version}-validation-configuration" />
   <!-- 3rd party resources -->
   <!-- KoSIT XML Validator -->
-  <property name="validator.version" value="1.3.0-SNAPSHOT" />
+  <property name="validator.version" value="1.3.0" />
   <property name="validator.download.url.prefix"
     value="https://github.com/itplr-kosit/validator/releases/download/" />
   <!-- Pick by default the java 8 standalone distribution -->
@@ -45,7 +45,7 @@
   <property name="ubl.schema.zip" value="UBL-${ubl.version}.zip" />
   <property name="ubl.download.url"
     value="${ubl.download.url.prefix}/${ubl.schema.zip}" />
-  <property name="cen.rules.version" value="1.3.1" />
+  <property name="cen.rules.version" value="1.3.2" />
   <property name="cen.rules.version.download" value="${cen.rules.version}" />
   <property name="cen.download.url.prefix"
     value="https://github.com/CenPC434/validation/releases/download/validation-${cen.rules.version}" />
@@ -68,6 +68,10 @@
 
   <property name="xr.schematron.zip"
     value="xrechnung-${xrechnung.version}-schematron-${xr.schematron.version.full}.zip" />
+
+  <property name="xr.testsuite.download.url.prefix"
+    value="https://github.com/itplr-kosit/xrechnung-testsuite/releases/download/" />
+
 
   <!-- root/work directory where KoSIT validationtool expects Schema(s)-and trons -->
   <property name="repository.dir" location="${build.dir}" />
@@ -199,33 +203,26 @@
   </target>
 
 
+<property name="validator.zip" value="validationtool-${validator.version}.zip"/>
 
   <target name="retrieve-validator-from-local-build" depends="init"
     if="develop.local.validator">
-    <get src="${validator.download.url.prefix}/target/${validator.jar}"
-      dest="${lib.dir}/${validator.jar}" verbose="true" skipexisting="true"
+    <get src="${validator.download.url.prefix}/target/${validator.zip}"
+      dest="${download.dir}/" verbose="true" skipexisting="true"
       usetimestamp="true" />
   </target>
 
 
   <target name="retrieve-validator-from-github-release" depends="init"
     unless="develop.local.validator">
-    <property name="download.url.full" />
+    <property name="download.url.full"
+      value="${validator.download.url.prefix}/v${validator.version}/${validator.zip}" />
 
-    <echo message="Retrieving validator version=${validator.version} from " />
+    <echo
+      message="Retrieving validator version=${validator.version} from ${download.url.full}" />
 
-    <get
-      src="${validator.download.url.prefix}/v${validator.version}/validationtool-${validator.version}.zip"
-      dest="${download.dir}" verbose="true" skipexisting="true"
+    <get src="${download.url.full}" dest="${download.dir}" verbose="true" skipexisting="true"
       usetimestamp="true" />
-
-    <unzip src="${download.dir}/validationtool-${validator.version}.zip"
-      dest="${lib.dir}">
-      <patternset>
-        <include name="**/${validator.jar}" />
-      </patternset>
-      <flattenmapper />
-    </unzip>
   </target>
 
 
@@ -237,33 +234,46 @@
 
 
   <target name="provide-validator" depends="init, retrieve-validator"
-    description="Download KoSIT validation tool and add jar to library directory" />
+    description="Download KoSIT validation tool and add jar to library directory">
 
+    <echo message="Unpacking Validator reosurces" />
 
-  <target name="retrieve-xr-testsuite-from-local-build" depends="init"
-    if="develop.local.xr-testsuite">
-    <get src="file://${basedir}/../validator/target/${validator.jar}"
-      dest="${lib.dir}/${validator.jar}" verbose="true" skipexisting="true"
-      usetimestamp="true" />
-  </target>
-
-
-
-  <target name="retrieve-xr-testsuite-from-github-release" depends="init-test"
-    unless="develop.local.xr-testsuite">
-
-    <get
-      src="https://github.com/itplr-kosit/xrechnung-testsuite/releases/download/release-2019-12-30/xrechnung-1.2.2-testsuite-2019-12-30.zip"
-      dest="${download.dir}" verbose="true" skipexisting="true"
-      usetimestamp="true" />
-
-    <unzip src="${download.dir}/xrechnung-1.2.2-testsuite-2019-12-30.zip"
-      dest="${testsuite.instances.dir}">
+    <unzip src="${download.dir}/validationtool-${validator.version}.zip"
+      dest="${lib.dir}">
       <patternset>
-        <include name="**/*.xml" />
+        <include name="**/${validator.jar}" />
       </patternset>
       <flattenmapper />
     </unzip>
+
+    <unzip src="${lib.dir}/${validator.jar}" dest="${resource.dir}">
+      <patternset>
+        <include name="xsd/scenarios.xsd" />
+      </patternset>
+    </unzip>
+  </target>
+
+  <property name="xr.testsuite.version" value="2019-12-30" />
+
+  <property name="xr.testsuite.zip"
+    value="xrechnung-${xrechnung.version}-testsuite-${xr.testsuite.version}.zip" />
+
+
+
+  <target name="retrieve-xr-testsuite-from-local-build" depends="init"
+    if="develop.local.xr.testsuite">
+    <get src="${xr.testsuite.download.url.prefix}/${xr.testsuite.zip}"
+      dest="${download.dir}" verbose="true" skipexisting="true"
+      usetimestamp="true" />
+  </target>
+
+  <target name="retrieve-xr-testsuite-from-github-release" depends="init-test"
+    unless="develop.local.xr.testsuite">
+
+    <get
+      src="${xr.testsuite.download.url.prefix}/release-${xr.testsuite.version}/${xr.testsuite.zip}"
+      dest="${download.dir}" verbose="true" skipexisting="true"
+      usetimestamp="true" />
   </target>
 
 
@@ -273,7 +283,18 @@
   </target>
 
   <target name="provide-testsuite" depends="init-test, retrieve-xr-testsuite"
-    description="Download and prepare KoSIT xrechnung-testsuite for testing" />
+    description="Download and prepare KoSIT xrechnung-testsuite for testing">
+
+    <unzip src="${download.dir}/${xr.testsuite.zip}"
+      dest="${testsuite.instances.dir}">
+      <patternset>
+        <include name="**/*.xml" />
+      </patternset>
+      <flattenmapper />
+    </unzip>
+
+
+  </target>
 
   <target name="retrieve-cen-rules"
     depends="retrieve-cen-rules-from-master,retrieve-cen-rules-from-release,init" />
@@ -465,19 +486,14 @@
 
 
   <target name="compile"
-    depends="compile-scenario,retrieve-all-schema-rules,compile-cen-rules,prepare-saxon,provide-validator"
+    depends="compile-scenario,retrieve-all-schema-rules,compile-cen-rules,prepare-saxon"
     description="Compile XSDs and XSLTs into validation configuration conformat repository directory">
     <echo>Compiling Schemas and XSLTs ...</echo>
     <copy file="${src.dir}/default-report.xsl" todir="${resource.dir}" />
     <copy file="${src.dir}/xrechnung-report.xsl" todir="${resource.dir}" />
     <copy file="${src.dir}/report.xsd" todir="${resource.dir}/xsd" />
 
-    <!-- Following unzip also creates ${resource.dir}/xsd directory-->
-    <unzip src="${lib.dir}/${validator.jar}" dest="${resource.dir}">
-      <patternset>
-        <include name="xsd/scenarios.xsd" />
-      </patternset>
-    </unzip>
+
 
     <unzip src="${download.dir}/${ubl.schema.zip}"
       dest="${resource.dir}/ubl/2.1/xsd">
@@ -511,6 +527,8 @@
     depends="init, compile, compile-scenario, compile-test-sources"
     description="Initializes test directory structure">
     <mkdir dir="${test.build.dir}" />
+    <!-- XSDs for validating e.g. scenario.xml and the output report -->
+    <mkdir dir="${resource.dir}/xsd" />
     <mkdir dir="${testsuite.instances.dir}" />
     <!-- customize scenarios.xml for testing purpose -->
     <xslt in="${repository.dir}/scenarios.xml"
@@ -554,12 +572,12 @@
       <arg value="${test.build.dir}/scenarios.xml" />
       <arg value="-r" />
       <arg value="${build.dir}" />
-      <arg value="-h" />
+      <arg value="--html" />
       <arg value="--check-assertions" />
       <arg value="${test.src.dir}/assertions.xml" />
       <arg value="-o" />
       <arg value="${reports.dir}" />
-      <arg value="${test.docs.dir}" />
+      <arg value="${test.docs.dir}/instances" />
     </java>
   </target>
 
@@ -577,7 +595,7 @@
       <arg value="scenarios.xml" />
       <arg value="-r" />
       <arg value="${build.dir}" />
-      <arg value="-h" />
+      <arg value="--html" />
       <arg value="-o" />
       <arg value="${reports.dir}" />
       <arg value="${testsuite.instances.dir}" />
@@ -588,7 +606,7 @@
   <target name="test-testsuite-with-validator"
     depends="init-test, provide-validator, create-validator-reports-from-testsuite">
     <!-- -->
-    <echo message="Deleting checked reports" />
+    <!--<echo message="Deleting checked reports" />
     <delete verbose="false" failonerror="true">
       <fileset dir="${reports.dir}">
 
@@ -600,7 +618,7 @@
         <include name="01.07a-INVOICE_uncefact*.html" />
         <include name="01.08a-INVOICE_uncefact*.html" />
         <include name="01.09a-INVOICE_uncefact*.html" />
-        <!-- 10 to 15-->
+        <!-\- 10 to 15-\->
         <include name="01.1?a-INVOICE_uncefact*.html" />
         <include name="02.01a-INVOICE_uncefact*.html" />
         <include name="02.02a-INVOICE_uncefact*.html" />
@@ -617,7 +635,7 @@
       <fileset dir="${reports.dir}">
         <include name="*report.xml" />
       </fileset>
-    </delete>
+    </delete>-->
   </target>
 
 
@@ -670,7 +688,7 @@
 
 
   <target name="test"
-    depends="init-test, test-validator-assertions,test-mutations">
+    depends="init-test, test-validator-assertions,test-mutations, test-testsuite-with-validator">
     <echo message="Testing all" />
   </target>
 
