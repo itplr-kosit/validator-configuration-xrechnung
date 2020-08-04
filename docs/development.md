@@ -2,17 +2,17 @@
 
 ## The build environment
 
-We recommend `ant` version 1.10.x or newer (but should work with > 1.8.x). 
+We recommend `ant` version 1.10.x or newer (but should work with > 1.8.x).
 
 The main `ant` targets for developing are:
 
 * `compile` (here it is assembling all resources for validation)
-* `test` 
+* `test`
 * and `dist` (crreating the distribution artifact)
 
 However, because fo the complex dependencies, you may only expect `compile` target to work without any customizations.
 
-### Test dependencies on the fly 
+### Test dependencies on the fly
 
 If you build own local custom versions of dependencies such as XRechnung Schematron you can customize the ant build at runtime:
 
@@ -24,9 +24,11 @@ ant
 
 ### Development properties file
 
-In order to have more complex adaption to the local development needs, you can load a set of different properties from a file.
+In order to configure more complex adaption to the local development needs, you have to load a set of different properties from a file.
 
-We provide the `development.build.properties.example` file for the most common properties to be set different than default. It contains some documentation. You can copy the file to e.g. `development.build.properties` and execute
+We provide the `development.build.properties.example` file for the most common properties to be set different than default. It contains some documentation.
+
+You have to copy the file to e.g. `development.build.properties` and you have to explicitly provide the property file location at CLI for your development (otherwise tests will always fail or not exectuted at all).
 
 ```shell
 ant -propertyfile ${your.own.property.file.name}
@@ -53,7 +55,7 @@ ant -propertyfile ${your.own.property.file.name}
 
 All test instances in `src/test7instances` are designed to trigger certain kinds of report outputs.
 
-These reports are then tested using `src/test/assertions.xml`. 
+These reports are then tested using `src/test/assertions.xml`.
 
 
 ### XRechnung Testsuite
@@ -62,8 +64,7 @@ This test phase also runs the KoSIT validator against all XRechnung Testsuite in
 
 ### CEN Integration Tests
 
-The correctnes of the whole validation process depends mostly on Schematron rules as implemented by CEN. 
+The correctnes of the whole validation process depends mostly on Schematron rules as implemented by CEN.
 Hence, we started to also test aspects of these rules.
 
-Currently, test instances are in `src/test/ubl-inv` and tested using `XML Mutate`. 
-
+Currently, test instances are in `src/test/ubl-inv` and tested using `XML Mutate`.
