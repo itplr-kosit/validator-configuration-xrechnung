@@ -3,6 +3,7 @@ build
 lib
 reports
 test-reports
+development.build.properties.example
 # configuration files
 .vscode
 *.xpr
