@@ -4,234 +4,229 @@
   <a:namespace prefix="s"
     >http://www.xoev.de/de/validator/framework/1/scenarios</a:namespace>
   <a:namespace prefix="html">http://www.w3.org/1999/xhtml</a:namespace>
-  <a:assertion report-doc="ubl001-report-report.xml"
+  <a:assertion report-doc="ubl001-report.xml"
     test="rep:report/@valid = 'true'"
     >Report has status
                           valid</a:assertion>
-  <a:assertion report-doc="ubl001-report-report.xml"
+  <a:assertion report-doc="ubl001-report.xml"
     test="format-dateTime(rep:report/rep:timestamp, '[Y0001][M01][D01]') = format-date(current-date(),'[Y0001][M01][D01]')"
     >Timestamp is today</a:assertion>
   <!-- 
-             <a:assertion report-doc="ubl001-report-report.xml"
+             <a:assertion report-doc="ubl001-report.xml"
                           test="rep:report/rep:documentIdentification/rep:documentHash/rep:hashValue = 'gxpfb2Lf2DdSXE5JVBdC3POU24qYKh9/xM7+uZhY4sY='"
                           >Document hash matches</a:assertion>
                            -->
-  <a:assertion report-doc="ubl001-report-report.xml"
+  <a:assertion report-doc="ubl001-report.xml"
     test="contains(rep:report/rep:documentIdentification/rep:documentReference, 'ubl001')"
     >Document reference matches</a:assertion>
-  <a:assertion report-doc="ubl001-report-report.xml"
+  <a:assertion report-doc="ubl001-report.xml"
     test="rep:report/rep:scenarioMatched"
     >Scenario
                           found</a:assertion>
-  <a:assertion report-doc="ubl001-report-report.xml"
-    test="rep:report/rep:scenarioMatched/s:scenario/s:name = 'EN16931 CIUS XRechnung (UBL Invoice)'"
+  <a:assertion report-doc="ubl001-report.xml"
+    test="rep:report/rep:scenarioMatched/s:scenario/s:name = 'EN16931 XRechnung (UBL Invoice)'"
     >UBL Invoice scenario found</a:assertion>
-  <a:assertion report-doc="ubl001-report-report.xml"
-    test="not(rep:report/rep:scenarioMatched/s:scenario/s:name = 'EN16931 CIUS XRechnung (UBL CreditNote)')"
+  <a:assertion report-doc="ubl001-report.xml"
+    test="not(rep:report/rep:scenarioMatched/s:scenario/s:name = 'EN16931 XRechnung (UBL CreditNote)')"
     >UBL CreditNote scenario found</a:assertion>
-  <a:assertion report-doc="ubl001-report-report.xml"
-    test="not(rep:report/rep:scenarioMatched/s:scenario/s:name = 'EN16931 CIUS XRechnung (CII)')"
+  <a:assertion report-doc="ubl001-report.xml"
+    test="not(rep:report/rep:scenarioMatched/s:scenario/s:name = 'EN16931 XRechnung (CII)')"
     >CII Invoice scenario found</a:assertion>
-  <a:assertion report-doc="ubl001-report-report.xml"
+  <a:assertion report-doc="ubl001-report.xml"
     test="rep:report/rep:scenarioMatched/rep:documentData/*"
     >Document data found</a:assertion>
-  <a:assertion report-doc="ubl001-report-report.xml"
+  <a:assertion report-doc="ubl001-report.xml"
     test="rep:report/rep:scenarioMatched/rep:validationStepResult[@id = 'val-xsd']"
     >Schema validation performed</a:assertion>
-  <a:assertion report-doc="ubl001-report-report.xml"
+  <a:assertion report-doc="ubl001-report.xml"
     test="rep:report/rep:scenarioMatched/rep:validationStepResult[@id = 'val-xsd']/@valid = 'true'"
     >Schema validatation has status valid</a:assertion>
-  <a:assertion report-doc="ubl001-report-report.xml"
+  <a:assertion report-doc="ubl001-report.xml"
     test="not(rep:report/rep:scenarioMatched/rep:validationStepResult[@id = 'val-xsd']/rep:message[@level = 'error'])"
     >Schema validatation has error message</a:assertion>
-  <a:assertion report-doc="ubl001-report-report.xml"
+  <a:assertion report-doc="ubl001-report.xml"
     test="not(rep:report/rep:scenarioMatched/rep:validationStepResult[@id = 'val-xsd']/rep:message[@level = 'warning'])"
     >Schema validatation has warning message</a:assertion>
-  <a:assertion report-doc="ubl001-report-report.xml"
+  <a:assertion report-doc="ubl001-report.xml"
     test="not(rep:report/rep:scenarioMatched/rep:validationStepResult[@id = 'val-xsd']/rep:message[@level = 'information'])"
     >Schema validatation has information
                           message</a:assertion>
-  <a:assertion report-doc="ubl001-report-report.xml"
+  <a:assertion report-doc="ubl001-report.xml"
     test="not(rep:report/rep:scenarioMatched/rep:validationStepResult[@id = 'val-xsd']/rep:message[@lineNumber])"
     >Schema validatation has message with line
                           number</a:assertion>
-  <a:assertion report-doc="ubl001-report-report.xml"
+  <a:assertion report-doc="ubl001-report.xml"
     test="not(rep:report/rep:scenarioMatched/rep:validationStepResult[@id = 'val-xsd']/rep:message[@columnNumber])"
     >Schema validatation has message with column
                           number</a:assertion>
-  <a:assertion report-doc="ubl001-report-report.xml"
+  <a:assertion report-doc="ubl001-report.xml"
     test="rep:report/rep:scenarioMatched/rep:validationStepResult[@id = 'val-sch.1']"
     >First schematron validation performed</a:assertion>
-  <a:assertion report-doc="ubl001-report-report.xml"
+  <a:assertion report-doc="ubl001-report.xml"
     test="rep:report/rep:scenarioMatched/rep:validationStepResult[@id = 'val-sch.1']/@valid = 'true'"
     >First schematron validation has status
                           valid</a:assertion>
-  <a:assertion report-doc="ubl001-report-report.xml"
+  <a:assertion report-doc="ubl001-report.xml"
     test="not(rep:report/rep:scenarioMatched/rep:validationStepResult[@id = 'val-sch.1']/rep:message[@level = 'error'])"
     >First schematron validatation has error
                           message</a:assertion>
-  <a:assertion report-doc="ubl001-report-report.xml"
+  <a:assertion report-doc="ubl001-report.xml"
     test="not(rep:report/rep:scenarioMatched/rep:validationStepResult[@id = 'val-sch.1']/rep:message[@level = 'warning'])"
     >First schematron validatation has warning
                           message</a:assertion>
-  <a:assertion report-doc="ubl001-report-report.xml"
+  <a:assertion report-doc="ubl001-report.xml"
     test="not(rep:report/rep:scenarioMatched/rep:validationStepResult[@id = 'val-sch.1']/rep:message[@level = 'information'])"
     >First schematron validatation has information
                           message</a:assertion>
-  <a:assertion report-doc="ubl001-report-report.xml"
+  <a:assertion report-doc="ubl001-report.xml"
     test="not(rep:report/rep:scenarioMatched/rep:validationStepResult[@id = 'val-sch.1']/rep:message[@xpathLocation])"
     >Schema validatation has message with xpath
                           location</a:assertion>
-  <a:assertion report-doc="ubl001-report-report.xml"
+  <a:assertion report-doc="ubl001-report.xml"
     test="rep:report/rep:scenarioMatched/rep:validationStepResult[@id = 'val-sch.2']"
     >Second schematron validation performed</a:assertion>
-  <a:assertion report-doc="ubl001-report-report.xml"
+  <a:assertion report-doc="ubl001-report.xml"
     test="rep:report/rep:scenarioMatched/rep:validationStepResult[@id = 'val-sch.2']/@valid = 'true'"
     >Second schematron validation has status
                           valid</a:assertion>
-  <a:assertion report-doc="ubl001-report-report.xml"
+  <a:assertion report-doc="ubl001-report.xml"
     test="not(rep:report/rep:noScenarioMatched/rep:validationStepResult[@id = 'val-xml'])"
     >WFR validation step exists for no scenario found </a:assertion>
-  <a:assertion report-doc="ubl001-report-report.xml"
+  <a:assertion report-doc="ubl001-report.xml"
     test="not(rep:report/rep:noScenarioMatched/rep:validationStepResult[@id = 'val-xml']/rep:message)"
     >WFR validation step for no scenario found has message
                           (XML case)</a:assertion>
-  <a:assertion report-doc="ubl001-report-report.xml"
+  <a:assertion report-doc="ubl001-report.xml"
     test="rep:report/rep:assessment/rep:accept"
     >Assessment
                           recommends acceptance</a:assertion>
-  <a:assertion report-doc="ubl001-report-report.xml"
+  <a:assertion report-doc="ubl001-report.xml"
     test="rep:report/rep:assessment/rep:accept/rep:explanation/html:html[@data-report-type = 'report']"
     >HTML explanation for acceptance exists</a:assertion>
-  <a:assertion report-doc="ubl001-report-report.xml"
+  <a:assertion report-doc="ubl001-report.xml"
     test="rep:report/rep:assessment/rep:accept/rep:explanation/html:html[@data-report-type = 'report']//*[contains(., 'Es wird empfohlen das Dokument anzunehmen')]"
     >HTML explanation for acceptance recommends
                           acceptance</a:assertion>
-  <a:assertion report-doc="ubl001-report-report.xml"
+  <a:assertion report-doc="ubl001-report.xml"
     test="not(rep:report/rep:assessment/rep:reject/rep:explanation/html:html[@data-report-type = 'report'])"
     >HTML explanation for rejection exists</a:assertion>
-  <a:assertion report-doc="ubl001-report-report.xml"
+  <a:assertion report-doc="ubl001-report.xml"
     test="not(rep:report/rep:assessment/rep:reject/rep:explanation/html:html[@data-report-type = 'report']//*[contains(., 'Es wird empfohlen das Dokument zurückzuweisen')])"
     >HTML explanation for rejection recommends
                           rejection</a:assertion>
-  <a:assertion report-doc="ubl002-report-report.xml"
+  <a:assertion report-doc="ubl002-report.xml"
     test="not(rep:report/@valid = 'true')"
     >Report has
                           status valid</a:assertion>
-  <a:assertion report-doc="ubl002-report-report.xml"
+  <a:assertion report-doc="ubl002-report.xml"
     test="format-dateTime(rep:report/rep:timestamp, '[Y0001][M01][D01]') = format-date(current-date(),'[Y0001][M01][D01]')"
     >Timestamp is today</a:assertion>
-  <a:assertion report-doc="ubl002-report-report.xml"
+  <a:assertion report-doc="ubl002-report.xml"
     test="not(rep:report/rep:documentIdentification/rep:documentHash/rep:hashValue = 'TfvPbPcDevSv5anZIbgsyLioTLdzjnLTSXRhMsBlCIo=')"
     >Document hash matches</a:assertion>
-  <a:assertion report-doc="ubl002-report-report.xml"
+  <a:assertion report-doc="ubl002-report.xml"
     test="not(contains(rep:report/rep:documentIdentification/rep:documentReference, 'ubl001'))"
     >Document reference matches</a:assertion>
-  <a:assertion report-doc="ubl002-report-report.xml"
+  <a:assertion report-doc="ubl002-report.xml"
     test="rep:report/rep:scenarioMatched"
     >Scenario
                           found</a:assertion>
-  <a:assertion report-doc="ubl002-report-report.xml"
-    test="rep:report/rep:scenarioMatched/s:scenario/s:name = 'EN16931 CIUS XRechnung (UBL Invoice)'"
-    >UBL Invoice scenario found</a:assertion>
-  <a:assertion report-doc="ubl002-report-report.xml"
-    test="not(rep:report/rep:scenarioMatched/s:scenario/s:name = 'EN16931 CIUS XRechnung (UBL CreditNote)')"
-    >UBL CreditNote scenario found</a:assertion>
-  <a:assertion report-doc="ubl002-report-report.xml"
-    test="not(rep:report/rep:scenarioMatched/s:scenario/s:name = 'EN16931 CIUS XRechnung (CII)')"
-    >CII Invoice scenario found</a:assertion>
-  <a:assertion report-doc="ubl002-report-report.xml"
+  <a:assertion report-doc="ubl002-report.xml"
+    test="rep:report/rep:scenarioMatched/s:scenario/s:name = 'EN16931 XRechnung (UBL Invoice)'"
+    >Has to be UBL Invoice scenario</a:assertion>
+  
+  <a:assertion report-doc="ubl002-report.xml"
     test="rep:report/rep:scenarioMatched/rep:documentData/*"
     >Document data found</a:assertion>
-  <a:assertion report-doc="ubl002-report-report.xml"
+  <a:assertion report-doc="ubl002-report.xml"
     test="rep:report/rep:scenarioMatched/rep:validationStepResult[@id = 'val-xsd']"
     >Schema validation performed</a:assertion>
-  <a:assertion report-doc="ubl002-report-report.xml"
+  <a:assertion report-doc="ubl002-report.xml"
     test="rep:report/rep:scenarioMatched/rep:validationStepResult[@id = 'val-xsd']/@valid = 'true'"
     >Schema validatation has status valid</a:assertion>
-  <a:assertion report-doc="ubl002-report-report.xml"
+  <a:assertion report-doc="ubl002-report.xml"
     test="not(rep:report/rep:scenarioMatched/rep:validationStepResult[@id = 'val-xsd']/rep:message[@level = 'error'])"
     >Schema validatation has error message</a:assertion>
-  <a:assertion report-doc="ubl002-report-report.xml"
+  <a:assertion report-doc="ubl002-report.xml"
     test="not(rep:report/rep:scenarioMatched/rep:validationStepResult[@id = 'val-xsd']/rep:message[@level = 'warning'])"
     >Schema validatation has warning message</a:assertion>
-  <a:assertion report-doc="ubl002-report-report.xml"
+  <a:assertion report-doc="ubl002-report.xml"
     test="not(rep:report/rep:scenarioMatched/rep:validationStepResult[@id = 'val-xsd']/rep:message[@level = 'information'])"
     >Schema validatation has information
                           message</a:assertion>
-  <a:assertion report-doc="ubl002-report-report.xml"
+  <a:assertion report-doc="ubl002-report.xml"
     test="not(rep:report/rep:scenarioMatched/rep:validationStepResult[@id = 'val-xsd']/rep:message[@lineNumber])"
     >Schema validatation has message with line
                           number</a:assertion>
-  <a:assertion report-doc="ubl002-report-report.xml"
+  <a:assertion report-doc="ubl002-report.xml"
     test="not(rep:report/rep:scenarioMatched/rep:validationStepResult[@id = 'val-xsd']/rep:message[@columnNumber])"
     >Schema validatation has message with column
                           number</a:assertion>
-  <a:assertion report-doc="ubl002-report-report.xml"
+  <a:assertion report-doc="ubl002-report.xml"
     test="rep:report/rep:scenarioMatched/rep:validationStepResult[@id = 'val-sch.1']"
     >First schematron validation performed</a:assertion>
-  <a:assertion report-doc="ubl002-report-report.xml"
+  <a:assertion report-doc="ubl002-report.xml"
     test="not(rep:report/rep:scenarioMatched/rep:validationStepResult[@id = 'val-sch.1']/@valid = 'true')"
     >First schematron validation has status
                           valid</a:assertion>
-  <a:assertion report-doc="ubl002-report-report.xml"
+  <a:assertion report-doc="ubl002-report.xml"
     test="rep:report/rep:scenarioMatched/rep:validationStepResult[@id = 'val-sch.1']/rep:message[@level = 'error']"
     >First schematron validatation has error
                           message</a:assertion>
-  <a:assertion report-doc="ubl002-report-report.xml"
+  <a:assertion report-doc="ubl002-report.xml"
     test="rep:report/rep:scenarioMatched/rep:validationStepResult[@id = 'val-sch.1']/rep:message[@level = 'warning']"
     >First schematron validatation has warning
                           message</a:assertion>
-  <a:assertion report-doc="ubl002-report-report.xml"
+  <a:assertion report-doc="ubl002-report.xml"
     test="not(rep:report/rep:scenarioMatched/rep:validationStepResult[@id = 'val-sch.1']/rep:message[@level = 'information'])"
     >First schematron validatation has information
                           message</a:assertion>
-  <a:assertion report-doc="ubl002-report-report.xml"
+  <a:assertion report-doc="ubl002-report.xml"
     test="rep:report/rep:scenarioMatched/rep:validationStepResult[@id = 'val-sch.1']/rep:message[@xpathLocation]"
     >Schema validatation has message with xpath
                           location</a:assertion>
-  <a:assertion report-doc="ubl002-report-report.xml"
+  <a:assertion report-doc="ubl002-report.xml"
     test="rep:report/rep:scenarioMatched/rep:validationStepResult[@id = 'val-sch.2']"
     >Second schematron validation performed</a:assertion>
-  <a:assertion report-doc="ubl002-report-report.xml"
+  <a:assertion report-doc="ubl002-report.xml"
     test="rep:report/rep:scenarioMatched/rep:validationStepResult[@id = 'val-sch.2']/@valid = 'true'"
     >Second schematron validation has status
                           valid</a:assertion>
-  <a:assertion report-doc="ubl002-report-report.xml"
+  <a:assertion report-doc="ubl002-report.xml"
     test="not(rep:report/rep:noScenarioMatched/rep:validationStepResult[@id = 'val-xml'])"
     >WFR validation step exists for no scenario found </a:assertion>
-  <a:assertion report-doc="ubl002-report-report.xml"
+  <a:assertion report-doc="ubl002-report.xml"
     test="not(rep:report/rep:noScenarioMatched/rep:validationStepResult[@id = 'val-xml']/rep:message)"
     >WFR validation step for no scenario found has message
                           (XML case)</a:assertion>
-  <a:assertion report-doc="ubl002-report-report.xml"
+  <a:assertion report-doc="ubl002-report.xml"
     test="not(rep:report/rep:assessment/rep:accept)"
     >Assessment recommends acceptance</a:assertion>
-  <a:assertion report-doc="ubl002-report-report.xml"
+  <a:assertion report-doc="ubl002-report.xml"
     test="not(rep:report/rep:assessment/rep:accept/rep:explanation/html:html[@data-report-type = 'report'])"
     >HTML explanation for acceptance exists</a:assertion>
-  <a:assertion report-doc="ubl002-report-report.xml"
+  <a:assertion report-doc="ubl002-report.xml"
     test="not(rep:report/rep:assessment/rep:accept/rep:explanation/html:html[@data-report-type = 'report']//*[contains(., 'Es wird empfohlen das Dokument anzunehmen')])"
     >HTML explanation for acceptance recommends
                           acceptance</a:assertion>
-  <a:assertion report-doc="ubl002-report-report.xml"
+  <a:assertion report-doc="ubl002-report.xml"
     test="rep:report/rep:assessment/rep:reject/rep:explanation/html:html[@data-report-type = 'report']"
     >HTML explanation for rejection exists</a:assertion>
-  <a:assertion report-doc="ubl002-report-report.xml"
+  <a:assertion report-doc="ubl002-report.xml"
     test="rep:report/rep:assessment/rep:reject/rep:explanation/html:html[@data-report-type = 'report']//*[contains(., 'Es wird empfohlen das Dokument zurückzuweisen')]"
     >HTML explanation for rejection recommends
                           rejection</a:assertion>
-  <a:assertion report-doc="ubl003-report-report.xml"
+  <a:assertion report-doc="ubl003-report.xml"
     test="not(rep:report/@valid = 'true')"
     >Report has
                           status valid</a:assertion>
-  <a:assertion report-doc="ubl003-report-report.xml"
+  <a:assertion report-doc="ubl003-report.xml"
     test="format-dateTime(rep:report/rep:timestamp, '[Y0001][M01][D01]') = format-date(current-date(),'[Y0001][M01][D01]')"
     >Timestamp is today</a:assertion>
-  <a:assertion report-doc="ubl003-report-report.xml"
+  <a:assertion report-doc="ubl003-report.xml"
     test="not(rep:report/rep:documentIdentification/rep:documentHash/rep:hashValue = 'TfvPbPcDevSv5anZIbgsyLioTLdzjnLTSXRhMsBlCIo=')"
     >Document hash matches</a:assertion>
-  <a:assertion report-doc="ubl003-report-report.xml"
+  <a:assertion report-doc="ubl003-report.xml"
     test="not(contains(rep:report/rep:documentIdentification/rep:documentReference, 'ubl001'))"
     >Document reference matches</a:assertion>
   <a:assertion report-doc="ubl003-report.xml"
@@ -239,14 +234,9 @@
     >Scenario
                           found</a:assertion>
   <a:assertion report-doc="ubl003-report.xml"
-    test="rep:report/rep:scenarioMatched/s:scenario/s:name = 'EN16931 CIUS XRechnung (UBL Invoice)'"
-    >UBL Invoice scenario found</a:assertion>
-  <a:assertion report-doc="ubl003-report.xml"
-    test="not(rep:report/rep:scenarioMatched/s:scenario/s:name = 'EN16931 CIUS XRechnung (UBL CreditNote)')"
-    >UBL CreditNote scenario found</a:assertion>
-  <a:assertion report-doc="ubl003-report.xml"
-    test="not(rep:report/rep:scenarioMatched/s:scenario/s:name = 'EN16931 CIUS XRechnung (CII)')"
-    >CII Invoice scenario found</a:assertion>
+    test="rep:report/rep:scenarioMatched/s:scenario/s:name = 'EN16931 XRechnung (UBL Invoice)'"
+    >Has to be UBL Invoice scenario</a:assertion>
+  
   <a:assertion report-doc="ubl003-report.xml"
     test="rep:report/rep:scenarioMatched/rep:documentData/*"
     >Document data found</a:assertion>
@@ -347,14 +337,8 @@
     >Scenario
                           found</a:assertion>
   <a:assertion report-doc="ubl004-report.xml"
-    test="rep:report/rep:scenarioMatched/s:scenario/s:name = 'EN16931 CIUS XRechnung (UBL Invoice)'"
+    test="rep:report/rep:scenarioMatched/s:scenario/s:name = 'EN16931 XRechnung (UBL Invoice)'"
     >UBL Invoice scenario found</a:assertion>
-  <a:assertion report-doc="ubl004-report.xml"
-    test="not(rep:report/rep:scenarioMatched/s:scenario/s:name = 'EN16931 CIUS XRechnung (UBL CreditNote)')"
-    >UBL CreditNote scenario found</a:assertion>
-  <a:assertion report-doc="ubl004-report.xml"
-    test="not(rep:report/rep:scenarioMatched/s:scenario/s:name = 'EN16931 CIUS XRechnung (CII)')"
-    >CII Invoice scenario found</a:assertion>
   <a:assertion report-doc="ubl004-report.xml"
     test="rep:report/rep:scenarioMatched/rep:documentData/*"
     >Document data found</a:assertion>
@@ -454,14 +438,9 @@
     >Scenario
                           found</a:assertion>
   <a:assertion report-doc="ubl005-report.xml"
-    test="rep:report/rep:scenarioMatched/s:scenario/s:name = 'EN16931 CIUS XRechnung (UBL Invoice)'"
-    >UBL Invoice scenario found</a:assertion>
-  <a:assertion report-doc="ubl005-report.xml"
-    test="not(rep:report/rep:scenarioMatched/s:scenario/s:name = 'EN16931 CIUS XRechnung (UBL CreditNote)')"
-    >UBL CreditNote scenario found</a:assertion>
-  <a:assertion report-doc="ubl005-report.xml"
-    test="not(rep:report/rep:scenarioMatched/s:scenario/s:name = 'EN16931 CIUS XRechnung (CII)')"
-    >CII Invoice scenario found</a:assertion>
+    test="rep:report/rep:scenarioMatched/s:scenario/s:name = 'EN16931 XRechnung (UBL Invoice)'"
+    >Has to be UBL Invoice scenario</a:assertion>
+  
   <a:assertion report-doc="ubl005-report.xml"
     test="rep:report/rep:scenarioMatched/rep:documentData/*"
     >Document data found</a:assertion>
@@ -557,16 +536,11 @@
     >Document reference matches</a:assertion>
   <a:assertion report-doc="ubl006-report.xml"
     test="rep:report/rep:noScenarioMatched"
-    >Must have a noSenarioMatched lemeent</a:assertion>
+    >Must have a noSenarioMatched element</a:assertion>
   <a:assertion report-doc="ubl006-report.xml"
-    test="not(rep:report/rep:scenarioMatched/s:scenario/s:name = 'EN16931 CIUS XRechnung (UBL Invoice)')"
-    >UBL Invoice scenario found</a:assertion>
-  <a:assertion report-doc="ubl006-report.xml"
-    test="not(rep:report/rep:scenarioMatched/s:scenario/s:name = 'EN16931 CIUS XRechnung (UBL CreditNote)')"
-    >UBL CreditNote scenario found</a:assertion>
-  <a:assertion report-doc="ubl006-report.xml"
-    test="not(rep:report/rep:scenarioMatched/s:scenario/s:name = 'EN16931 CIUS XRechnung (CII)')"
-    >CII Invoice scenario found</a:assertion>
+    test="not(rep:report/rep:scenarioMatched/s:scenario/s:name = 'EN16931 XRechnung (UBL Invoice)')"
+    >Has to be UBL Invoice scenario </a:assertion>
+ 
   <a:assertion report-doc="ubl006-report.xml"
     test="not(rep:report/rep:scenarioMatched/rep:documentData/*)"
     >Document data found</a:assertion>
@@ -651,7 +625,7 @@
     test="rep:report/rep:assessment/rep:reject/rep:explanation/html:html[@data-report-type = 'report']//*[contains(., 'Es wird empfohlen das Dokument zurückzuweisen')]"
     >HTML explanation for rejection recommends
                           rejection</a:assertion>
-  <a:assertion report-doc="ubl007-report-report.xml"
+  <a:assertion report-doc="ubl007-report.xml"
     test="not(rep:report/@valid = 'true')"
     >Report has
                           status valid</a:assertion>
@@ -668,15 +642,7 @@
     test="not(rep:report/rep:scenarioMatched)"
     >Scenario
                           found</a:assertion>
-  <a:assertion report-doc="ubl007-report.xml"
-    test="not(rep:report/rep:scenarioMatched/s:scenario/s:name = 'EN16931 CIUS XRechnung (UBL Invoice)')"
-    >UBL Invoice scenario found</a:assertion>
-  <a:assertion report-doc="ubl007-report.xml"
-    test="not(rep:report/rep:scenarioMatched/s:scenario/s:name = 'EN16931 CIUS XRechnung (UBL CreditNote)')"
-    >UBL CreditNote scenario found</a:assertion>
-  <a:assertion report-doc="ubl007-report.xml"
-    test="not(rep:report/rep:scenarioMatched/s:scenario/s:name = 'EN16931 CIUS XRechnung (CII)')"
-    >CII Invoice scenario found</a:assertion>
+  
   <a:assertion report-doc="ubl007-report.xml"
     test="not(rep:report/rep:scenarioMatched/rep:documentData/*)"
     >Document data found</a:assertion>
@@ -779,11 +745,9 @@
     test="not(rep:report/rep:scenarioMatched/s:scenario/s:name = 'EN16931 CIUS XRechnung (UBL Invoice)')"
     >UBL Invoice scenario found</a:assertion>
   <a:assertion report-doc="ubl008-report.xml"
-    test="rep:report/rep:scenarioMatched/s:scenario/s:name = 'EN16931 CIUS XRechnung (UBL CreditNote)'"
-    >UBL CreditNote scenario found</a:assertion>
-  <a:assertion report-doc="ubl008-report.xml"
-    test="not(rep:report/rep:scenarioMatched/s:scenario/s:name = 'EN16931 CIUS XRechnung (CII)')"
-    >CII Invoice scenario found</a:assertion>
+    test="rep:report/rep:scenarioMatched/s:scenario/s:name = 'EN16931 XRechnung (UBL CreditNote)'"
+    >Has to match UBL CreditNote scenario name</a:assertion>
+  
   <a:assertion report-doc="ubl008-report.xml"
     test="rep:report/rep:scenarioMatched/rep:documentData/*"
     >Document data found</a:assertion>
@@ -889,15 +853,6 @@
     >Report has to have a noScenarioMatched element</a:assertion>
 
   <a:assertion report-doc="bin001-report.xml"
-    test="not(rep:report/rep:scenarioMatched/s:scenario/s:name = 'EN16931 CIUS XRechnung (UBL Invoice)')"
-    >UBL Invoice scenario found</a:assertion>
-  <a:assertion report-doc="bin001-report.xml"
-    test="not(rep:report/rep:scenarioMatched/s:scenario/s:name = 'EN16931 CIUS XRechnung (UBL CreditNote)')"
-    >UBL CreditNote scenario found</a:assertion>
-  <a:assertion report-doc="bin001-report.xml"
-    test="not(rep:report/rep:scenarioMatched/s:scenario/s:name = 'EN16931 CIUS XRechnung (CII)')"
-    >CII Invoice scenario found</a:assertion>
-  <a:assertion report-doc="bin001-report.xml"
     test="not(rep:report/rep:scenarioMatched/rep:documentData/*)"
     >Document data found</a:assertion>
   <a:assertion report-doc="bin001-report.xml"
@@ -987,16 +942,10 @@
     >Document reference matches</a:assertion>
   <a:assertion report-doc="cii001-report.xml"
     test="rep:report/rep:scenarioMatched"
-    >Scenario
-                          found</a:assertion>
+    >Not Scenario found</a:assertion>
+  
   <a:assertion report-doc="cii001-report.xml"
-    test="not(rep:report/rep:scenarioMatched/s:scenario/s:name = 'EN16931 CIUS XRechnung (UBL Invoice)')"
-    >UBL Invoice scenario found</a:assertion>
-  <a:assertion report-doc="cii001-report.xml"
-    test="not(rep:report/rep:scenarioMatched/s:scenario/s:name = 'EN16931 CIUS XRechnung (UBL CreditNote)')"
-    >UBL CreditNote scenario found</a:assertion>
-  <a:assertion report-doc="cii001-report.xml"
-    test="rep:report/rep:scenarioMatched/s:scenario/s:name = 'EN16931 CIUS XRechnung (CII)'"
+    test="rep:report/rep:scenarioMatched/s:scenario/s:name = 'EN16931 XRechnung (CII)'"
     >CII Invoice scenario found</a:assertion>
   <a:assertion report-doc="cii001-report.xml"
     test="rep:report/rep:scenarioMatched/rep:documentData/*"

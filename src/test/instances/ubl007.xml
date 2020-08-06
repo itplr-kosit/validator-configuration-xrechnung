@@ -5,6 +5,7 @@
  xmlns:udt="urn:oasis:names:specification:ubl:schema:xsd:UnqualifiedDataTypes-2"
  xmlns:ccts="urn:un:unece:uncefact:documentation:2"
  xmlns="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2">
+<!-- This XML is on purpose fully broken -->
     <!-- Gets replaced by ant build during test -->
   <cbc:CustomizationID>@xrechnung.spec.id@</cbc:CustomizationID>
     <cbc:ID>12115118</cbc:ID>
