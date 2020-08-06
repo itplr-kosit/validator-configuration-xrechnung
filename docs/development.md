@@ -64,7 +64,7 @@ This test phase also runs the KoSIT validator against all XRechnung Testsuite in
 
 ### CEN Integration Tests
 
-The correctnes of the whole validation process depends mostly on Schematron rules as implemented by CEN.
+The correctness of the whole validation process depends mostly on Schematron rules as implemented by CEN.
 Hence, we started to also test aspects of these rules.
 
 Currently, test instances are in `src/test/ubl-inv` and tested using `XML Mutate`.
@@ -73,4 +73,4 @@ Currently, test instances are in `src/test/ubl-inv` and tested using `XML Mutate
 
 The `ant` target `dist` creates the distribution zip archive for releases including several targets for testing.
 
-If you want to skip tests call `ant dist-no-test`.
+If you want to skip tests call `ant dist-only`.
