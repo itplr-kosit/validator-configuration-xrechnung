@@ -17,9 +17,9 @@ Because of new CEN Rules version 1.3.2 it might break your validation and busine
 
 * Scenarios for matching general EN 16931 invoices
 * Full automatic test against xrechnung-testsuite
-* Introduced development.build.propoerties for local developers of xrechnung configuration 
+* Introduced development.build.propoerties for local developers of xrechnung configuration
 
-## Changed
+### Changed
 
 * Now include XRechnung [Schematron Rules 1.4.0](https://github.com/itplr-kosit/xrechnung-schematron/releases/tag/release-1.4.0)
 * Include [CEN Rules 1.3.2](https://github.com/ConnectingEurope/eInvoicing-EN16931/releases/tag/validation-1.3.2)
