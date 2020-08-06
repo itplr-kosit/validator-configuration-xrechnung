@@ -9,7 +9,7 @@
   <author>Coordination Office for IT Standards (KoSIT)</author>
   <date>@build.date@</date>
   <description>
-    <p>Checks wether XML Documents conform to XRechnung Specificiation
+    <p>Checks whether XML Documents conform to XRechnung specification
             @xrechnung.version@
             (https://www.xoev.de/die_standards/xrechnung-14741).</p>
     <p>It uses CEN Schematron rules of @cen.spec.id@
@@ -19,13 +19,14 @@
             @xrechnung.version@ 
             (@xrechnung.download.url@). </p>
   </description>
-  <!-- XRECHNUNG specific scenarios -->
+
+<!-- XRECHNUNG specific scenarios -->
   <scenario>
-    <name>EN16931 CIUS XRechnung (UBL Invoice)</name>
+    <name>EN16931 XRechnung (UBL Invoice)</name>
     <description>
       <p>Validates UBL Invoice in version @ubl.version@</p>
       <p>Uses UBL Invoice @ubl.version@ XML Schema,
-                Schematron rules from EN16931:2017, amd XRechnung
+                Schematron rules from EN16931:2017, and XRechnung
                 @xrechnung.version@ </p>
       <p>Download of UBL XML Schema on @build.date@ from
                 @ubl.download.url@</p>
@@ -76,7 +77,7 @@
     <acceptMatch>/rep:report/rep:assessment[1]/rep:accept[1]</acceptMatch>
   </scenario>
   <scenario>
-    <name>EN16931 CIUS XRechnung (UBL CreditNote)</name>
+    <name>EN16931 XRechnung (UBL CreditNote)</name>
     <description>
       <p>Validates UBL CrediteNote version @ubl.version@</p>
       <p>Uses UBL CreditNote @ubl.version@ XML Schema, 
@@ -127,7 +128,7 @@
     <acceptMatch>/rep:report/rep:assessment[1]/rep:accept[1]</acceptMatch>
   </scenario>
   <scenario>
-    <name>EN16931 CIUS XRechnung (CII)</name>
+    <name>EN16931 XRechnung (CII)</name>
     <description>
       <p>Validates UN/CEFACT XML (SCRDM - CII uncoupled) version
                 @cii.version@</p>
@@ -172,7 +173,7 @@
     </validateWithSchematron>
     <createReport>
       <resource>
-        <name>Prüfbericht für XRechnung</name>
+        <name>Validation report for XRechnung</name>
         <location>resources/xrechnung-report.xsl</location>
       </resource>
     </createReport>
@@ -180,14 +181,13 @@
   </scenario>
 
 
-  <!-- Match for general CEN rules validation only: WITHOUT XRECHNUNG rules -->
-
-<scenario>
-    <name>EN16931 CIUS XRechnung (UBL Invoice)</name>
+   <!-- Match for general CEN rules validation only: WITHOUT XRECHNUNG rules -->
+  <scenario>
+    <name>EN16931 (UBL Invoice)</name>
     <description>
       <p>Validates UBL Invoice in version @ubl.version@</p>
       <p>Uses UBL Invoice @ubl.version@ XML Schema,
-                Schematron rules from EN16931:2017, amd XRechnung
+                Schematron rules from EN16931:2017, and XRechnung
                 @xrechnung.version@ </p>
       <p>Download of UBL XML Schema on @build.date@ from
                 @ubl.download.url@</p>
@@ -315,7 +315,6 @@
     </createReport>
     <acceptMatch>/rep:report/rep:assessment[1]/rep:accept[1]</acceptMatch>
   </scenario>
-
 
   <!-- In case none of the aboce scenarios matched/were applied -->
   <noScenarioReport>
