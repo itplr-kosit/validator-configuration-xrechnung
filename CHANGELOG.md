@@ -7,11 +7,29 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 -->
 
+## 2020-07-31
+
+This release is compatible to XRechnung 2.0.0.
+
+Because of new CEN Rules version 1.3.2 it might break your validation and business workflow. Please evaluate impact!
+
+### Added
+
+* Scenarios for matching general EN 16931 invoices
+* Full automatic test against xrechnung-testsuite
+* Introduced development.build.propoerties for local developers of xrechnung configuration 
+
+## Changed
+
+* Now include XRechnung [Schematron Rules 1.4.0](https://github.com/itplr-kosit/xrechnung-schematron/releases/tag/release-1.4.0)
+* Include [CEN Rules 1.3.2](https://github.com/ConnectingEurope/eInvoicing-EN16931/releases/tag/validation-1.3.2)
+
 ## v2019-12-30
 
 This release is compatible to XRechnung 1.2.2.
 
 Because of new CEN Rules version 1.3.0 and several commits since then it might break your validation and business workflow. Please evaluate impact!
+
 
 ### Added
 

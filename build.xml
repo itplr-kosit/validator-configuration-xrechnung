@@ -22,8 +22,11 @@
   <property name="cen.spec.id" value="urn:cen.eu:en16931:2017" />
   <property name="xrechnung.spec.id"
     value="${cen.spec.id}#compliant#urn:xoev-de:kosit:standard:xrechnung_${xrechnung.version.major.minor}" />
+
+
+  <property name="validator.configuration.version.full" value="2020-07-31" />
   <property name="dist.name"
-    value="xrechnung-${xrechnung.version}-validation-configuration" />
+    value="validator-configuration-xrechnung_${xrechnung.version}_${validator.configuration.version.full}.zip" />
   <!-- 3rd party resources -->
   <!-- KoSIT XML Validator -->
   <property name="validator.version" value="1.3.0" />
@@ -48,7 +51,7 @@
   <property name="cen.rules.version" value="1.3.2" />
   <property name="cen.rules.version.download" value="${cen.rules.version}" />
   <property name="cen.download.url.prefix"
-    value="https://github.com/CenPC434/validation/releases/download/validation-${cen.rules.version}" />
+    value="https://github.com/ConnectingEurope/eInvoicing-EN16931/releases/download/validation-${cen.rules.version}" />
   <property name="cen.download.url.ubl"
     value="${cen.download.url.prefix}/en16931-ubl-${cen.rules.version.download}.zip" />
   <property name="cen.download.url.cii"
@@ -69,8 +72,9 @@
   <property name="xr.schematron.zip"
     value="xrechnung-${xrechnung.version}-schematron-${xr.schematron.version.full}.zip" />
 
+  <property name="xr.testsuite.version" value="2020-07-31" />
   <property name="xr.testsuite.download.url.prefix"
-    value="https://github.com/itplr-kosit/xrechnung-testsuite/releases/download/" />
+    value="https://github.com/itplr-kosit/xrechnung-testsuite/releases/download" />
 
 
   <!-- root/work directory where KoSIT validationtool expects Schema(s)-and trons -->
@@ -253,7 +257,7 @@
     </unzip>
   </target>
 
-  <property name="xr.testsuite.version" value="2019-12-30" />
+
 
   <property name="xr.testsuite.zip"
     value="xrechnung-${xrechnung.version}-testsuite-${xr.testsuite.version}.zip" />
@@ -711,7 +715,7 @@
       </fileset>
     </copy>
     <zip
-      destfile="${dist.dir}/validator-configuration-xrechnung_${xrechnung.version}_${build.date}.zip"
+      destfile="${dist.dir}/${dist.name}"
       basedir="${build.dir}" excludes="download/**,test,schematron" />
   </target>
 
