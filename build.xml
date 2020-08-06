@@ -203,7 +203,7 @@
   </target>
 
 
-<property name="validator.zip" value="validationtool-${validator.version}.zip"/>
+  <property name="validator.zip" value="validationtool-${validator.version}.zip" />
 
   <target name="retrieve-validator-from-local-build" depends="init"
     if="develop.local.validator">
@@ -221,8 +221,8 @@
     <echo
       message="Retrieving validator version=${validator.version} from ${download.url.full}" />
 
-    <get src="${download.url.full}" dest="${download.dir}" verbose="true" skipexisting="true"
-      usetimestamp="true" />
+    <get src="${download.url.full}" dest="${download.dir}" verbose="true"
+      skipexisting="true" usetimestamp="true" />
   </target>
 
 
@@ -588,6 +588,14 @@
     <fail unless="testsuite.instances.dir"
       message="Property testsuite.instances.dir must exist for this target to work" />
 
+    <!-- deleting files which never can be valid -->
+    <delete verbose="false" failonerror="true">
+      <fileset dir="${testsuite.instances.dir}">
+        <include name="00.01*.xml" />
+        <include name="00.02*.xml" />
+      </fileset>
+    </delete>
+
     <echo>Creating validation reports with ${lib.dir}/${validator.jar} for ${testsuite.instances.dir}.</echo>
     <java jar="${lib.dir}/${validator.jar}" failonerror="true" fork="true"
       dir="${build.dir}">
@@ -644,7 +652,8 @@
       message="Property xmute.download.url.prefix must exist for this target to work" />
     <property name="xmute.version.full" value="0.5" />
     <property name="xmute.jar" value="xml-mutate.jar" />
-    <get src="${xmute.download.url.prefix}/target/xml-mutate-${xmute.version.full}.jar"
+    <get
+      src="${xmute.download.url.prefix}/target/xml-mutate-${xmute.version.full}.jar"
       dest="${lib.dir}/${xmute.jar}" verbose="true" skipexisting="false"
       usetimestamp="true" />
   </target>
@@ -693,7 +702,8 @@
     <echo message="Testing all" />
   </target>
 
-  <target name="dist-only" depends="compile" description="Generate the distribution without testing">
+  <target name="dist-only" depends="compile"
+    description="Generate the distribution without testing">
     <copy todir="${build.dir}">
       <fileset dir="${basedir}">
         <include name="README.md" />
@@ -705,9 +715,8 @@
       basedir="${build.dir}" excludes="download/**,test,schematron" />
   </target>
 
-  <target name="dist" depends="test, dist-only" description="Generate the distribution">
-    
-  </target>
+  <target name="dist" depends="test, dist-only"
+    description="Generate the distribution"> </target>
   <target name="clean" description="clean up">
     <!-- Delete the ${build} and ${dist} directory trees -->
     <delete dir="${build.dir}" verbose="true" includeEmptyDirs="true" />

@@ -42,10 +42,9 @@
       >urn:oasis:names:specification:ubl:schema:xsd:Invoice-2</namespace>
     <!-- Namespace for acceptMatch XPATH within validator report XML -->
     <namespace prefix="rep">http://www.xoev.de/de/validator/varl/1</namespace>
-
-    <match>/invoice:Invoice[ starts-with(cbc:CustomizationID,
-            '@xrechnung.spec.id@') or starts-with(cbc:CustomizationID,
-            '@xrechnung.spec.id@#conformant#urn:xoev-de:kosit:extension:xrechnung_2.0')]</match>
+<!--  or starts-with(cbc:CustomizationID,
+            '@xrechnung.spec.id@#conformant#urn:xoev-de:kosit:extension:xrechnung_2.0') -->
+    <match>exists(/invoice:Invoice[ cbc:CustomizationID/text() = '@xrechnung.spec.id@' or cbc:CustomizationID/text() = '@xrechnung.spec.id@#conformant#urn:xoev-de:kosit:extension:xrechnung_2.0']) </match>
     <validateWithXmlSchema>
       <resource>
         <name>XML Schema for UBL 2.1 Invoice</name>
@@ -98,8 +97,7 @@
     <!-- Namespace for acceptMatch XPATH within validator report XML -->
     <namespace prefix="rep">http://www.xoev.de/de/validator/varl/1</namespace>
 
-    <match>/creditnote:CreditNote[starts-with(cbc:CustomizationID,
-            '@xrechnung.spec.id@')]</match>
+    <match>exists(/creditnote:CreditNote[ cbc:CustomizationID/text() = '@xrechnung.spec.id@'])</match>
     <validateWithXmlSchema>
       <resource>
         <name>XML Schema for UBL 2.1 CreditNote</name>
@@ -121,7 +119,7 @@
     </validateWithSchematron>
     <createReport>
       <resource>
-        <name>Prüfbericht für XRechnung</name>
+        <name>Validation report for XRechnung</name>
         <location>resources/xrechnung-report.xsl</location>
       </resource>
     </createReport>
@@ -150,8 +148,7 @@
     <!-- Namespace for acceptMatch XPATH within validator report XML -->
     <namespace prefix="rep">http://www.xoev.de/de/validator/varl/1</namespace>
 
-    <match>/rsm:CrossIndustryInvoice[starts-with(rsm:ExchangedDocumentContext/ram:GuidelineSpecifiedDocumentContextParameter/ram:ID,
-            '@xrechnung.spec.id@')]</match>
+    <match>exists(/rsm:CrossIndustryInvoice[rsm:ExchangedDocumentContext/ram:GuidelineSpecifiedDocumentContextParameter/ram:ID/text() = '@xrechnung.spec.id@'])</match>
     <validateWithXmlSchema>
       <resource>
         <name>XML Schema for UN/CEFACT XML (SCRDM - CII
@@ -202,7 +199,7 @@
     <!-- Namespace for acceptMatch XPATH within validator report XML -->
     <namespace prefix="rep">http://www.xoev.de/de/validator/varl/1</namespace>
 
-    <match>/invoice:Invoice[ starts-with(cbc:CustomizationID, 'urn:cen.eu:en16931:2017')]</match>
+    <match>exists(/invoice:Invoice[ cbc:CustomizationID/text() = 'urn:cen.eu:en16931:2017' ])</match>
     <validateWithXmlSchema>
       <resource>
         <name>XML Schema for UBL 2.1 Invoice</name>
@@ -246,8 +243,7 @@
     <!-- Namespace for acceptMatch XPATH within validator report XML -->
     <namespace prefix="rep">http://www.xoev.de/de/validator/varl/1</namespace>
 
-    <match>/creditnote:CreditNote[starts-with(cbc:CustomizationID,
-            'urn:cen.eu:en16931:2017')]</match>
+    <match>exists(/creditnote:CreditNote[cbc:CustomizationID/text() = 'urn:cen.eu:en16931:2017'])</match>
     <validateWithXmlSchema>
       <resource>
         <name>XML Schema for UBL 2.1 CreditNote</name>
@@ -291,8 +287,7 @@
     <!-- Namespace for acceptMatch XPATH within validator report XML -->
     <namespace prefix="rep">http://www.xoev.de/de/validator/varl/1</namespace>
 
-    <match>/rsm:CrossIndustryInvoice[starts-with(rsm:ExchangedDocumentContext/ram:GuidelineSpecifiedDocumentContextParameter/ram:ID,
-            'urn:cen.eu:en16931:2017')]</match>
+    <match>exists(/rsm:CrossIndustryInvoice[ rsm:ExchangedDocumentContext/ram:GuidelineSpecifiedDocumentContextParameter/ram:ID/text() = 'urn:cen.eu:en16931:2017'])</match>
     <validateWithXmlSchema>
       <resource>
         <name>XML Schema for UN/CEFACT XML (SCRDM - CII

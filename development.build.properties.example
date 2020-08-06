@@ -3,7 +3,7 @@
 ##
 # Here values is the same as ant basedir because basedir is not set in this context
 ##
-work.dir=/C:/Users/User/Documents/LAVA/XRechnung/validator-configuration-xrechnung
+work.dir=/mnt/c/data/git-repos/validator-configuration-xrechnung
 
 ##
 # The XRechnung Version this configuration implements
@@ -33,7 +33,7 @@ develop.local.xr.testsuite=true
 ##
 xr.testsuite.download.url.prefix=file://${work.dir}/../xrechnung-testsuite/dist
 
-xr.testsuite.version=2020-07-31-SNAPSHOT
+xr.testsuite.version=2020-07-31
 
 ##
 # Set this property in order to activate targets for local development
