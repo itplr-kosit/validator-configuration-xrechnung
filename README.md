@@ -42,7 +42,7 @@ unzip validator-configuration.zip
 3. Run Validator
 
 ```shell
-java -jar ${jar_of_your_choice}.jar -s scenarios.xml  -h ubl.xml
+java -jar ${jar_of_your_choice}.jar -s validator-configuration/scenarios.xml  -h validator-configuration/test/testsuite/01.13a-INVOICE_ubl.xml
 ```
 
 Validation reports are then written to `${test-document-file-name}-report.xml` and `${test-document-file-name}-report.html` e.g. `ubl-report.xml` and `ubl-report.html` according to above example.
