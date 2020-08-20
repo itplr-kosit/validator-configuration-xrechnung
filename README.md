@@ -28,6 +28,7 @@ curl -L 'https://github.com/itplr-kosit/validator-configuration-xrechnung/releas
 
 # show content of directory
 ls
+
 # should show something like this:
 validator.zip  validator-configuration.zip
 ```
