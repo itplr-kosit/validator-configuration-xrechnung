@@ -26,12 +26,10 @@ curl -L 'https://github.com/itplr-kosit/validator/releases/download/validationto
 # download configuration
 curl -L 'https://github.com/itplr-kosit/validator-configuration-xrechnung/releases/download/release-2020-07-31/validator-configuration-xrechnung_2.0.0_2020-07-31.zip' --output validator-configuration.zip
 
-# download a test document
-curl -L 'https://raw.githubusercontent.com/itplr-kosit/xrechnung-testsuite/master/instances/01.01a-INVOICE_ubl.xml' --output ubl.xml
 # show content of directory
 ls
 # should show something like this:
-ubl.xml validator.zip  validator-configuration.zip
+validator.zip  validator-configuration.zip
 ```
 
 2. Unzip
