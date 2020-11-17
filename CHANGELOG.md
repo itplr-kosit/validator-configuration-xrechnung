@@ -24,6 +24,12 @@ This release is compatible to XRechnung 2.0.0.
 
 Because of new CEN Rules version 1.3.2 it might break your validation and business workflow. Please evaluate impact!
 
+### Changed
+
+* Build assumes a java runtime version > 8
+* Build and test with validator version 1.4.0
+
+
 ### Added
 
 * Scenarios for matching general EN 16931 invoices
