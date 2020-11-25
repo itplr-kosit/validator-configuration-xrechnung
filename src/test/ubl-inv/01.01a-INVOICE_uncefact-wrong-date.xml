@@ -11,9 +11,9 @@
         <ram:ID>123456XX</ram:ID>
         <ram:TypeCode>380</ram:TypeCode>
         <ram:IssueDateTime>
-            <?xmute mutator="code" values="2016-04-04" schematron-invalid="xrinv:BR-03" 
+            <?xmute mutator="code" values="2016-04-04" schematron-invalid="cencii:BR-03" 
                 id="inv-cii-date" description="no hyphen allowed in CII dates" ?>
-            <?xmute mutator="identity" schematron-valid="xrinv:BR-03" 
+            <?xmute mutator="identity" schematron-valid="cencii:BR-03" 
                 id="valid-cii-date" description="correct CII date syntax" ?>
             <udt:DateTimeString format="102">20160404</udt:DateTimeString>
         </ram:IssueDateTime>
