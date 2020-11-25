@@ -93,10 +93,10 @@
         <cbc:ID>Zeitschrift [...]</cbc:ID>
         <cbc:Note>Die letzte Lieferung im Rahmen des abgerechneten Abonnements erfolgt in 12/2016 Lieferung erfolgt / erfolgte direkt vom Verlag</cbc:Note>
         <cbc:InvoicedQuantity unitCode="XPP">1</cbc:InvoicedQuantity>
-        <?xmute mutator="code" values="288.791" schematron-invalid="xrinv:BR-DEC-23" 
-                id="inv-decimal-places" description="more than 2 decimal places not allowed" ?>
-        <?xmute mutator="identity" schematron-valid="xrinv:BR-DEC-23" 
-                id="valid-decimal-places" description="2 decimal places are allowed" ?>
+        <?xmute mutator="code" values="288.791" schematron-invalid="ceninv:BR-DEC-23" 
+                id="ubl-inv-invalid-decimal-places" description="more than 2 decimal places not allowed" ?>
+        <?xmute mutator="identity" schematron-valid="ceninv:BR-DEC-23" 
+                id="ubl-inv-valid-decimal-places" description="2 decimal places are allowed" ?>
         <cbc:LineExtensionAmount currencyID="EUR">288.79</cbc:LineExtensionAmount>
         <cac:InvoicePeriod>
             <cbc:StartDate>2016-01-01+01:00</cbc:StartDate>
