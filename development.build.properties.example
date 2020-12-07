@@ -41,11 +41,18 @@
 ##
 #develop.local.xr.schematron=true
 
+##
+# Set version of xrechnung schematron
+##
+#xr.schematron.version.major.minor=1.4
+#xr.schematron.version.patch=0
+
 ###
-# Get latest schematron distribution from your local git project
+# Get schematron distribution from your local git project
 # Example is relative to this project directory in local file system
 ##
 #xr.schematron.download.url.prefix=file://${work.dir}/../xrechnung-schematron/dist
+
 
 ###
 # Get latest xml-mutate distribution from your local git project
