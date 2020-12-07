@@ -267,8 +267,8 @@
   <target name="retrieve-xr-testsuite-from-local-build" depends="init"
     if="develop.local.xr.testsuite">
     <get src="${xr.testsuite.download.url.prefix}/${xr.testsuite.zip}"
-      dest="${download.dir}" verbose="true" skipexisting="true"
-      usetimestamp="true" />
+      dest="${download.dir}"  verbose="true" skipexisting="false"
+      usetimestamp="false" httpusecaches="false" />
   </target>
 
   <target name="retrieve-xr-testsuite-from-github-release" depends="init-test"
