@@ -22,7 +22,7 @@
   <cac:OriginatorDocumentReference>
     <cbc:ID>ANG987654321</cbc:ID>
   </cac:OriginatorDocumentReference>
-  <?xmute mutator="identity" schematron-invalid="cencn:???" id="ubl-cn-wrong-bt-11" description="in ubl cn bt-11 has to be in BG-24" ?>
+  <!-- Here is an example for a wrong BT-11 in creditnote. The correct one is underneath. -->
   <cac:ProjectReference>
         <cbc:ID>Projektreferenz</cbc:ID>
   </cac:ProjectReference>
