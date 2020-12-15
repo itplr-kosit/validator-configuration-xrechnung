@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<a:assertions xmlns:a="http://www.xoev.de/de/validator/framework/1/assertions">
+  <a:namespace prefix="rep">http://www.xoev.de/de/validator/varl/1</a:namespace>
+  <a:namespace prefix="s"
+    >http://www.xoev.de/de/validator/framework/1/scenarios</a:namespace>
+  <a:namespace prefix="html">http://www.w3.org/1999/xhtml</a:namespace>
+
+
+  <a:assertion report-doc="cii-br-s-08-rounding-rule-1-identity-report.xml"
+    test="/rep:report/rep:assessment/rep:reject"
+    >Report has status reject</a:assertion>
+
+</a:assertions>

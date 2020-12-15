@@ -609,47 +609,11 @@
       <arg value="${build.dir}" />
       <arg value="--html" />
       <arg value="-o" />
-      <arg value="${reports.dir}" />
+      <arg value="${reports.dir}/testsuite" />
       <arg value="${testsuite.instances.dir}" />
 
     </java>
   </target>
-
-  <target name="test-testsuite-with-validator"
-    depends="init-test, provide-validator, create-validator-reports-from-testsuite">
-    <!-- -->
-    <!--<echo message="Deleting checked reports" />
-    <delete verbose="false" failonerror="true">
-      <fileset dir="${reports.dir}">
-
-        <include name="01.01a-INVOICE_uncefact-report.html" />
-        <include name="01.02a-INVOICE_uncefact*.html" />
-        <include name="01.03a-INVOICE_uncefact*.html" />
-        <include name="01.05a-INVOICE_uncefact*.html" />
-        <include name="01.06a-INVOICE_uncefact*.html" />
-        <include name="01.07a-INVOICE_uncefact*.html" />
-        <include name="01.08a-INVOICE_uncefact*.html" />
-        <include name="01.09a-INVOICE_uncefact*.html" />
-        <!-\- 10 to 15-\->
-        <include name="01.1?a-INVOICE_uncefact*.html" />
-        <include name="02.01a-INVOICE_uncefact*.html" />
-        <include name="02.02a-INVOICE_uncefact*.html" />
-        <include name="02.03a-INVOICE_uncefact*.html" />
-        <include name="02.04a-INVOICE_uncefact*.html" />
-        <include name="02.05a-INVOICE_uncefact*.html" />
-
-        <include name="03.01a-INVOICE_uncefact*.html" />
-        <include name="03.02a-INVOICE_uncefact*.html" />
-        <include name="03.04a-INVOICE_uncefact*.html" />
-        <include name="03.05a-INVOICE_uncefact*.html" />
-
-      </fileset>
-      <fileset dir="${reports.dir}">
-        <include name="*report.xml" />
-      </fileset>
-    </delete>-->
-  </target>
-
 
   <target name="retrieve-xmute" depends="init" if="xmute.download.url.prefix">
     <fail unless="xmute.download.url.prefix"
@@ -662,10 +626,14 @@
       usetimestamp="true" />
   </target>
 
+
+
+
+
   <target name="test-mutations" depends="compile, init-test, retrieve-xmute"
     description="Test Schematron Rules with XML-Mutate"
     if="xmute.download.url.prefix">
-    <echo>Integration testing Schematron rules ...</echo>
+    <echo>Generate test instances with expected behaviour ...</echo>
     <java jar="${lib.dir}/${xmute.jar}" failonerror="true" fork="true"
       dir="${basedir}">
 
@@ -675,34 +643,36 @@
       <arg value="ceninv=${resource.xsl.cen.ubl}" />
       <arg value="--schematron" />
       <arg value="cencii=${resource.xsl.cen.cii}" />
-      <arg value="--target ${test.build.dir}" />
-      <arg value="${test.docs.dir}/ubl-inv" />
+      <arg value="--target ${test.build.dir}/generated" />
+      <arg value="${test.docs.dir}/cen-unit-test" />
     </java>
   </target>
 
 
-  <target name="testsuite-mutations"
-    depends="compile, init-test, retrieve-xmute"
-    description="Test configuration with Testsuite" if="testsuite.instances.dir">
-    <echo>Integration testing Schematron rules ...</echo>
-    <java jar="${lib.dir}/${xmute.jar}" failonerror="true" fork="true"
-      dir="${basedir}">
-
-      <arg value="--schematron" />
-      <arg value="xrinv=${resource.xsl.xr.inv}" />
-      <arg value="--schematron" />
-      <arg value="cenubl=${resource.xsl.cen.ubl}" />
-      <arg value="--schematron" />
-      <arg value="cencii=${resource.xsl.cen.cii}" />
-      <arg value="--target ${test.build.dir}/testsuite" />
-      <arg value="${test.docs.dir}/ubl-inv" />
+  <target name="create-validator-reports-from-mutations"
+    depends="init-test, provide-validator, provide-testsuite, test-mutations"
+    description="Integration testing result of XRechnung Configuration">
+        
+    <echo>Creating validation reports with ${lib.dir}/${validator.jar} for ${test.build.dir}/generated</echo>
+    <java jar="${lib.dir}/${validator.jar}" failonerror="true" fork="true"
+      dir="${build.dir}">
+      <arg value="-s" />
+      <arg value="scenarios.xml" />
+      <arg value="-r" />
+      <arg value="${build.dir}" />
+      <arg value="--check-assertions" />
+      <arg value="${test.src.dir}/assertions-integration-testing.xml" />
+      <arg value="--html" />
+      <arg value="-o" />
+      <arg value="${reports.dir}/generated" />
+      <arg value="${test.build.dir}/generated" />
+      
     </java>
   </target>
 
 
   <target name="test"
-    depends="init-test, test-validator-assertions,test-mutations, test-testsuite-with-validator"
-    unless="test.skip">
+    depends="init-test, test-validator-assertions,create-validator-reports-from-testsuite, test-mutations, create-validator-reports-from-mutations">
     <echo message="Testing all" />
   </target>
 

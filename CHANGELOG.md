@@ -9,14 +9,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Next release
 
-This release is compatible to XRechnung 2.0.0.
+This release is compatible to XRechnung 2.0.1.
 
-Because of new CEN Rules version 1.3.2 it might break your validation and business workflow. Please evaluate impact!
+Because of new CEN Rules version 1.3.3 it might break your validation and business workflow. Please evaluate impact!
 
 ### Changed
 
-* Build assumes a java runtime version > 8
-* Build and test with validator version 1.4.0
+* Using [CEN Schematron Rules 1.3.3](https://github.com/ConnectingEurope/eInvoicing-EN16931/releases/tag/validation-1.3.3)
+* More documentation on testing and build infrastructure
+
+### Added
+
+* Integration testing to avoid configuration errors
+
+<!-- Older releases -->
 
 ## 2020-07-31
 
@@ -28,7 +34,6 @@ Because of new CEN Rules version 1.3.2 it might break your validation and busine
 
 * Build assumes a java runtime version > 8
 * Build and test with validator version 1.4.0
-
 
 ### Added
 
@@ -47,7 +52,6 @@ This release is compatible to XRechnung 1.2.2.
 
 Because of new CEN Rules version 1.3.0 and several commits since then it might break your validation and business workflow. Please evaluate impact!
 
-
 ### Added
 
 * Use of xml-mutate for integration tests of CEN rules in build script
@@ -57,7 +61,6 @@ Because of new CEN Rules version 1.3.0 and several commits since then it might b
 * Now include XRechnung [Schematron Rules 1.3.0](https://github.com/itplr-kosit/xrechnung-schematron/releases/tag/release-1.3.0)
 * Include [CEN Rules 1.3.0](https://github.com/ConnectingEurope/eInvoicing-EN16931/releases/tag/validation-1.3.0) and commits [until 2019-12-23](https://github.com/ConnectingEurope/eInvoicing-EN16931/tree/618ae95f35d4f2a1187eee5e0f63695fde87fbd6)
 
-
 ## v2019-06-24
 
 This release is compatible to XRechnung 1.2.1.
@@ -66,9 +69,8 @@ Because of new CEN Rules 1.2.1 it might break your validation and business workf
 
 ### Changed
 
-- Now include XRechnung Schematron Rules 1.2.1
-- Include CEN Rules 1.2.1
-
+* Now include XRechnung Schematron Rules 1.2.1
+* Include CEN Rules 1.2.1
 
 ## v2018-12-19
 
@@ -78,9 +80,9 @@ Because of new XRechnung Schematron Rules 1.2.0 it might break your validation a
 
 ### Added
 
-- Changelog
+* Changelog
 
 ### Changed
 
-- Now include XRechnung Schematron Rules 1.2.0
-- Made Scenario match only new XRechnung Version 1.2.0 Specification Identifier BT-24 (see #6)
+* Now include XRechnung Schematron Rules 1.2.0
+* Made Scenario match only new XRechnung Version 1.2.0 Specification Identifier BT-24 (see #6)
