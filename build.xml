@@ -1,7 +1,7 @@
 <project name="xrechnung-validation-configuration" default="compile" basedir=".">
   <description>Build the XRechnung validation configuration for ITPLR-KoSIT
         validator</description>
-  <!-- set global properties for this build -->
+  <!-- set global default properties for this build -->
   <!-- main build directories -->
   <property name="src.dir" location="${basedir}/src" />
   <property name="lib.dir" location="${basedir}/lib" />
@@ -48,7 +48,7 @@
   <property name="ubl.schema.zip" value="UBL-${ubl.version}.zip" />
   <property name="ubl.download.url"
     value="${ubl.download.url.prefix}/${ubl.schema.zip}" />
-  <property name="cen.rules.version" value="1.3.2" />
+  <property name="cen.rules.version" value="1.3.3" />
   <property name="cen.rules.version.download" value="${cen.rules.version}" />
   <property name="cen.download.url.prefix"
     value="https://github.com/ConnectingEurope/eInvoicing-EN16931/releases/download/validation-${cen.rules.version}" />
@@ -672,7 +672,7 @@
       <arg value="--schematron" />
       <arg value="xrinv=${resource.xsl.xr.inv}" />
       <arg value="--schematron" />
-      <arg value="cenubl=${resource.xsl.cen.ubl}" />
+      <arg value="ceninv=${resource.xsl.cen.ubl}" />
       <arg value="--schematron" />
       <arg value="cencii=${resource.xsl.cen.cii}" />
       <arg value="--target ${test.build.dir}" />
