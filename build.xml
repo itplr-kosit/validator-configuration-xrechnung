@@ -16,7 +16,7 @@
 
   <!-- Naming -->
   <property name="xrechnung.version.major.minor" value="2.0" />
-  <property name="xrechnung.version.patch" value="0" />
+  <property name="xrechnung.version.patch" value="1" />
   <property name="xrechnung.version"
     value="${xrechnung.version.major.minor}.${xrechnung.version.patch}" />
   <property name="cen.spec.id" value="urn:cen.eu:en16931:2017" />
@@ -24,7 +24,7 @@
     value="${cen.spec.id}#compliant#urn:xoev-de:kosit:standard:xrechnung_${xrechnung.version.major.minor}" />
 
 
-  <property name="validator.configuration.version.full" value="2020-07-31" />
+  <property name="validator.configuration.version.full" value="2020-12-31" />
   <property name="dist.name"
     value="validator-configuration-xrechnung_${xrechnung.version}_${validator.configuration.version.full}.zip" />
   <!-- 3rd party resources -->
