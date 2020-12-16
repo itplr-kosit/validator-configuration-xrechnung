@@ -380,7 +380,8 @@
     xmlns="http://www.w3.org/1999/xhtml">
     <head>
       <title>Prüfbericht</title>
-      <style>
+      <meta charset="utf-8" />
+        <style>
         body {
           font-family: Calibri;
           width: 230mm;

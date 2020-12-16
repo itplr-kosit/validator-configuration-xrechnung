@@ -112,8 +112,7 @@
     </validateWithSchematron>
     <validateWithSchematron>
       <resource>
-        <name>Schematron rules for CreditNote - CIUS XRechnung
-                    (UBL)</name>
+        <name>Schematron rules for CreditNote - CIUS XRechnung (UBL)</name>
         <location>resources/xrechnung/@xrechnung.version@/xsl/XRechnung-UBL-validation-CreditNote.xsl</location>
       </resource>
     </validateWithSchematron>
@@ -122,6 +121,9 @@
         <name>Validation report for XRechnung</name>
         <location>resources/xrechnung-report.xsl</location>
       </resource>
+      <customLevel level="information">BR-CL-01</customLevel>
+      <customLevel level="warning">BR-CL-23</customLevel>
+      <customLevel level="warning">BR-CL-21</customLevel>
     </createReport>
     <acceptMatch>/rep:report/rep:assessment[1]/rep:accept[1]</acceptMatch>
   </scenario>
@@ -173,6 +175,9 @@
         <name>Validation report for XRechnung</name>
         <location>resources/xrechnung-report.xsl</location>
       </resource>
+      <customLevel level="information">BR-CL-01</customLevel>
+      <customLevel level="warning">BR-CL-23</customLevel>
+      <customLevel level="warning">BR-CL-21</customLevel>
     </createReport>
     <acceptMatch>/rep:report/rep:assessment[1]/rep:accept[1]</acceptMatch>
   </scenario>

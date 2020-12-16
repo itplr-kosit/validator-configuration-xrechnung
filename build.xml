@@ -651,12 +651,6 @@
   </target>
 
 
-  <target name="create-validator-reports-from-mutations"
-    depends="init-test, provide-validator, provide-testsuite, test-mutations"
-    >
-        
-  </target>
-
   <target name="test-integration" depends="init-test, provide-validator, provide-testsuite, test-integration-only" 
     description="Integration testing result of XRechnung Configuration"></target>
 
@@ -674,6 +668,7 @@
     <echo>Creating validation reports with ${lib.dir}/${validator.jar} for ${test.docs.integration.dir}</echo>
     <java jar="${lib.dir}/${validator.jar}" failonerror="true" fork="true"
       dir="${build.dir}">
+      <arg value="-X" />
       <arg value="-s" />
       <arg value="scenarios.xml" />
       <arg value="-r" />
@@ -692,7 +687,7 @@
 
 
   <target name="test"
-    depends="init-test, test-validator-assertions,create-validator-reports-from-testsuite, test-mutations, create-validator-reports-from-mutations">
+    depends="init-test, test-validator-assertions,create-validator-reports-from-testsuite, test-mutations, test-integration">
     <echo message="Testing all" />
   </target>
 

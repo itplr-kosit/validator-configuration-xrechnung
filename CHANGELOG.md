@@ -22,6 +22,10 @@ Because of new CEN Rules version 1.3.3 it might break your validation and busine
 
 * Integration testing to avoid configuration errors
 
+### FIXED
+
+* Custom error levels also for CreditNote and CII
+
 <!-- Older releases -->
 
 ## 2020-07-31

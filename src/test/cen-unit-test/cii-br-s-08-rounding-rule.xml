@@ -61,7 +61,7 @@
   </rsm:ExchangedDocumentContext>
   <rsm:ExchangedDocument>
     <ram:ID>12014</ram:ID>
-    <ram:TypeCode>380</ram:TypeCode>
+    <ram:TypeCode>875</ram:TypeCode>
     <ram:IssueDateTime>
       <udt:DateTimeString format="102">20191118</udt:DateTimeString>
     </ram:IssueDateTime>
