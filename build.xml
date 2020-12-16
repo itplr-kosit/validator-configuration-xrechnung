@@ -88,7 +88,7 @@
     location="${resource.dir}/cii/16b/xsl/EN16931-CII-validation.xsl" />
 
   <property name="resource.xsl.xr.inv"
-    location="${resource.xr.dir}/XRechnung-CII-validation.xsl" />
+    location="${resource.xr.dir}/XRechnung-UBL-validation-Invoice.xsl" />
   <property name="resource.xsl.xr.cn"
     location="${resource.xr.dir}/XRechnung-UBL-validation-CreditNote.xsl" />
   <property name="resource.xsl.xr.cii"
