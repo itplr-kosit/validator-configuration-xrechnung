@@ -6,8 +6,19 @@
   <a:namespace prefix="html">http://www.w3.org/1999/xhtml</a:namespace>
 
 
-  <a:assertion report-doc="cii-br-s-08-rounding-rule-1-identity-report.xml"
+  <a:assertion report-doc="cii-br-s-08-rounding-rule-report.xml"
     test="/rep:report/rep:assessment/rep:reject"
     >Report has status reject</a:assertion>
+
+
+  <a:assertion report-doc="ubl-br-dex-2-false-negative-report.xml"
+    test="/rep:report/rep:assessment/rep:accept"
+    >Report accepts invoice</a:assertion>
+  
+  <a:assertion report-doc="ubl" test="/rep:report/rep:scenarioMatched[1]/rep:validationStepResult[2]/rep:message[1]/[ @code = 'UBL-CR-646' and @level='warnin']">
+    Should have warning about UBL-CR-646
+  </a:assertion>
+  
+
 
 </a:assertions>

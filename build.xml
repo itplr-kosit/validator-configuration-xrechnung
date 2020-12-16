@@ -11,6 +11,8 @@
   <property name="test.src.dir" location="${src.dir}/test" />
   <property name="test.build.dir" location="${build.dir}/test" />
   <property name="test.docs.dir" location="${test.build.dir}" />
+  <property name="test.docs.cen.unit.dir" location="${test.docs.dir}/cen-unit-test"/>
+  <property name="test.docs.integration.dir" location="${test.docs.dir}/integration"/>
   <property name="testsuite.instances.dir"
     location="${test.build.dir}/testsuite" />
 
@@ -643,17 +645,33 @@
       <arg value="ceninv=${resource.xsl.cen.ubl}" />
       <arg value="--schematron" />
       <arg value="cencii=${resource.xsl.cen.cii}" />
-      <arg value="--target ${test.build.dir}/generated" />
-      <arg value="${test.docs.dir}/cen-unit-test" />
+      <arg value="--target ${test.docs.dir}/generated" />
+      <arg value="${test.docs.cen.unit.dir}" />
     </java>
   </target>
 
 
   <target name="create-validator-reports-from-mutations"
     depends="init-test, provide-validator, provide-testsuite, test-mutations"
-    description="Integration testing result of XRechnung Configuration">
+    >
         
-    <echo>Creating validation reports with ${lib.dir}/${validator.jar} for ${test.build.dir}/generated</echo>
+  </target>
+
+  <target name="test-integration" depends="init-test, provide-validator, provide-testsuite, test-integration-only" 
+    description="Integration testing result of XRechnung Configuration"></target>
+
+
+  <target name="test-integration-only" description="Noting but integration testing"
+          >
+    <echo message="Compiling instances for integration tests"/>
+    <copy todir="${test.docs.integration.dir}" verbose="true">
+      <fileset dir="${test.docs.cen.unit.dir}">
+        <include name="ubl-br-dex-2-false-negative.xml"/>
+        <include name="cii-br-s-08-rounding-rule.xml"/>
+      </fileset>
+    </copy>
+    
+    <echo>Creating validation reports with ${lib.dir}/${validator.jar} for ${test.docs.integration.dir}</echo>
     <java jar="${lib.dir}/${validator.jar}" failonerror="true" fork="true"
       dir="${build.dir}">
       <arg value="-s" />
@@ -661,13 +679,15 @@
       <arg value="-r" />
       <arg value="${build.dir}" />
       <arg value="--check-assertions" />
-      <arg value="${test.src.dir}/assertions-integration-testing.xml" />
+      <arg value="${test.docs.dir}/assertions-integration-testing.xml" />
       <arg value="--html" />
       <arg value="-o" />
-      <arg value="${reports.dir}/generated" />
-      <arg value="${test.build.dir}/generated" />
+      <arg value="${reports.dir}/integration" />
+      <arg value="${test.docs.integration.dir}" />
       
     </java>
+    
+    
   </target>
 
 
