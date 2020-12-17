@@ -7,15 +7,15 @@
 
 
   <a:assertion report-doc="cii-br-s-08-rounding-rule-report.xml"
-    test="/rep:report/rep:assessment/rep:reject"
-    >Report has status reject</a:assertion>
+    test="/rep:report/rep:assessment/rep:accept"
+    >Report has status accept</a:assertion>
 
 
   <a:assertion report-doc="ubl-br-dex-2-false-negative-report.xml"
     test="/rep:report/rep:assessment/rep:accept"
     >Report accepts invoice</a:assertion>
   
-  <a:assertion report-doc="ubl" test="/rep:report/rep:scenarioMatched[1]/rep:validationStepResult[2]/rep:message[1]/[ @code = 'UBL-CR-646' and @level='warnin']">
+  <a:assertion report-doc="ubl-br-dex-2-false-negative-report.xml" test="/rep:report/rep:scenarioMatched[1]/rep:validationStepResult[2]/rep:message[ @code = 'UBL-CR-646' and @level='warning']">
     Should have warning about UBL-CR-646
   </a:assertion>
   
