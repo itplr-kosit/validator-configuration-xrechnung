@@ -62,9 +62,9 @@
   <property name="cen.rules.zip" value="master.zip" />
   <!-- XRechnung Schematron Rules section -->
   <!-- build date might get deprecated in future: check on this -->
-  <property name="xrechnung.build.date" value="2020-06-30" />
+  <property name="xrechnung.build.date" value="2020-12-31" />
   <!-- XRechnung Schematron -->
-  <property name="xr.schematron.version.major.minor" value="1.4" />
+  <property name="xr.schematron.version.major.minor" value="1.5" />
   <property name="xr.schematron.version.patch" value="0" />
   <property name="xr.schematron.version.full"
     value="${xr.schematron.version.major.minor}.${xr.schematron.version.patch}" />
@@ -74,7 +74,7 @@
   <property name="xr.schematron.zip"
     value="xrechnung-${xrechnung.version}-schematron-${xr.schematron.version.full}.zip" />
 
-  <property name="xr.testsuite.version" value="2020-07-31" />
+  <property name="xr.testsuite.version" value="2020-12-31" />
   <property name="xr.testsuite.download.url.prefix"
     value="https://github.com/itplr-kosit/xrechnung-testsuite/releases/download" />
 
