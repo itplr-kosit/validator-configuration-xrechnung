@@ -662,6 +662,10 @@
       <fileset dir="${test.docs.cen.unit.dir}">
         <include name="ubl-br-dex-2-false-negative.xml"/>
         <include name="cii-br-s-08-rounding-rule.xml"/>
+        <include name="ubl-br-cl-24-with-xml-attachment-and-extension-urn.xml"/>
+        <include name="XRechnung-CEFACT*.xml"/>
+
+        
       </fileset>
     </copy>
     
