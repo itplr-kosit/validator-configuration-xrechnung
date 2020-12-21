@@ -21,13 +21,13 @@ In an empty directory:
 
 ```shell
 # download validator
-curl -L 'https://github.com/itplr-kosit/validator/releases/download/validationtool-1.3.0/validationtool-1.3.0.zip' --output validator.zip
+curl -L 'https://github.com/itplr-kosit/validator/releases/download/v1.4.1/validationtool-1.4.1.zip' --output validator.zip
 
 # download configuration
-curl -L 'https://github.com/itplr-kosit/validator-configuration-xrechnung/releases/download/release-2020-07-31/validator-configuration-xrechnung_2.0.0_2020-07-31.zip' --output validator-configuration.zip
+curl -L 'https://github.com/itplr-kosit/validator-configuration-xrechnung/releases/download/release-2020-12-31/validator-configuration-xrechnung_2.0.1_2020-12-31.zip' --output validator-configuration.zip
 
 # download a test document
-curl -L 'https://raw.githubusercontent.com/itplr-kosit/xrechnung-testsuite/master/instances/01.01a-INVOICE_ubl.xml' --output ubl.xml
+curl -L 'https://raw.githubusercontent.com/itplr-kosit/xrechnung-testsuite/master/src/test/business-cases/standard/01.01a-INVOICE_ubl.xml' --output ubl.xml
 # show content of directory
 ls
 # should show something like this:
