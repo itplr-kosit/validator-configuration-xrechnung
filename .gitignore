@@ -9,3 +9,4 @@ development.build.properties
 *.xpr
 .ant-targets-build.xml
 *.code-workspace
+.project
