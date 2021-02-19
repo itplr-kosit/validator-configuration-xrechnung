@@ -38,7 +38,9 @@
   <property name="validator.jar"
     value="validationtool-${validator.version}-standalone.jar" />
 
-  <property name="saxon.jar" value="saxon9he.jar" />
+  <property name="saxon.version" value="9-9-18" />
+  <property name="saxon.jar" value="saxon9he-${saxon.version}.jar" />
+  
   <property name="cii.version" value="D16B" />
   <property name="cii.schema.zip" value="D16B_SCRDM__Subset__CII.zip" />
   <property name="cii.schema.uncoupled.zip" value="d16b-cii-uncoupled.zip" />
