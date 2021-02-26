@@ -38,7 +38,13 @@
   <property name="validator.jar"
     value="validationtool-${validator.version}-standalone.jar" />
 
+  <!-- Part of the download path -->
+  <property name="saxon.url.version" value="9.9" />
+  <!-- Part of the download path -->
+  <property name="saxon.file.version" value="9-9-1-8J" />
+  <!-- the name of the JAR file in the downloaded ZIP file -->
   <property name="saxon.jar" value="saxon9he.jar" />
+  
   <property name="cii.version" value="D16B" />
   <property name="cii.schema.zip" value="D16B_SCRDM__Subset__CII.zip" />
   <property name="cii.schema.uncoupled.zip" value="d16b-cii-uncoupled.zip" />
@@ -197,17 +203,22 @@
   <target name="prepare-saxon" depends="init"
     description="Download Saxon-HE and add jar to library directory">
     <get
-      src="https://sourceforge.net/projects/saxon/files/Saxon-HE/9.8/SaxonHE9-8-0-8J.zip/download"
-      dest="${download.dir}/SaxonHE9-8-0-8J.zip" verbose="true"
+      src="https://sourceforge.net/projects/saxon/files/Saxon-HE/${saxon.url.version}/SaxonHE${saxon.file.version}.zip/download"
+      dest="${download.dir}/SaxonHE${saxon.file.version}.zip" verbose="true"
       skipexisting="true" usetimestamp="true" />
-    <unzip src="${download.dir}/SaxonHE9-8-0-8J.zip" dest="${lib.dir}">
+    <unzip src="${download.dir}/SaxonHE${saxon.file.version}.zip" dest="${lib.dir}">
       <patternset>
         <include name="**/${saxon.jar}" />
       </patternset>
       <flattenmapper />
     </unzip>
   </target>
-
+  
+  <target name="delete-saxon" depends="init"
+    description="Remove downloaded Saxon-HE stuff">
+    <delete file="${download.dir}/SaxonHE${saxon.file.version}.zip"/>
+    <delete file="${lib.dir}/${saxon.jar}"/>
+  </target>
 
   <property name="validator.zip" value="validationtool-${validator.version}.zip" />
 
