@@ -56,7 +56,7 @@
   <property name="ubl.schema.zip" value="UBL-${ubl.version}.zip" />
   <property name="ubl.download.url"
     value="${ubl.download.url.prefix}/${ubl.schema.zip}" />
-  <property name="cen.rules.version" value="1.3.3" />
+  <property name="cen.rules.version" value="1.3.5" />
   <property name="cen.rules.version.download" value="${cen.rules.version}" />
   <property name="cen.download.url.prefix"
     value="https://github.com/ConnectingEurope/eInvoicing-EN16931/releases/download/validation-${cen.rules.version}" />
