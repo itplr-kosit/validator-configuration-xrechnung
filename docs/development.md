@@ -16,11 +16,19 @@ However, because of the complex dependencies, you may only expect `compile` targ
 
 If you build own local custom versions of dependencies such as XRechnung Schematron you can customize the ant build at runtime:
 
-The following example demonstrates how to use a different CEN schematron release:
+The following example demonstrates how to use a different CEN Schematron release:
 
 ```shell
 ant
--Dcen.rules.version=1.3.0
+-Dcen.rules.version=1.3.5
+```
+
+The following example demonstrates how to use a different CEN Schematron release, downloaded from the CEN GitHub repository:
+
+```shell
+ant
+-Dcen.rules.version=1.3.5
+-Dcen.rules.zip=en1.3.5.zip
 ```
 
 ### Development properties file
