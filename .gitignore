@@ -10,3 +10,4 @@ development.build.properties
 .ant-targets-build.xml
 *.code-workspace
 .project
+zz
