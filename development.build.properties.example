@@ -28,7 +28,7 @@
 ##
 #develop.local.xr.testsuite=true
 ###
-# Get latest XRechnung Testsusite distribution from your local git project
+# Get latest XRechnung Testsuite distribution from your local git project
 # Example is relative to this project directory in local file system
 ##
 #xr.testsuite.download.url.prefix=file://${work.dir}/../xrechnung-testsuite/dist
