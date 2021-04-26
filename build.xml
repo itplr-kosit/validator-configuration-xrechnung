@@ -52,7 +52,10 @@
   <property name="ubl.download.url.prefix"
     value="http://docs.oasis-open.org/ubl/os-UBL-${ubl.version}/" />
   <property name="ubl.schema.zip" value="UBL-${ubl.version}.zip" />
-  <property name="ubl.download.url" value="${ubl.download.url.prefix}/${ubl.schema.zip}" />
+
+  <property name="ubl.download.url"
+    value="${ubl.download.url.prefix}/${ubl.schema.zip}" />
+
   <!-- set to master if you want latest code -->
   <property name="cen.rules.version" value="1.3.4" />
   <property name="cen.rules.version.download" value="${cen.rules.version}" />
@@ -62,7 +65,6 @@
     value="${cen.download.url.prefix}/en16931-ubl-${cen.rules.version.download}.zip" />
   <property name="cen.download.url.cii"
     value="${cen.download.url.prefix}/en16931-cii-${cen.rules.version.download}.zip" />
-
   <!-- XRechnung Schematron Rules section -->
   <!-- build date might get deprecated in future: check on this -->
   <property name="xrechnung.build.date" value="2020-12-31" />
@@ -295,14 +297,16 @@
   <target name="retrieve-cen-rules"
     depends="retrieve-cen-rules-from-master,retrieve-cen-rules-from-release,init" />
 
-
   <target name="retrieve-cen-rules-from-master" depends="init" if="${cen.master.target}"
-    description="Download CEN business rules (schematron) to download directory">
-    <get src="https://github.com/CenPC434/validation/archive/master.zip" dest="${download.dir}"
-      verbose="true" skipexisting="true" usetimestamp="true" />
+    description="Download CEN business rules (schematron) from master branch to download directory">
+    <get src="https://github.com/CenPC434/validation/archive/master.zip"
+      dest="${download.dir}" verbose="true" skipexisting="true"
+      usetimestamp="true" />
   </target>
-  <target name="retrieve-cen-rules-from-release" depends="init" unless="${cen.master.target}"
-    description="Download CEN business rules (schematron) to download directory">
+
+  <target name="retrieve-cen-rules-from-release" depends="init"
+    unless="${cen.master.target}"
+    description="Download CEN business rules (schematron) version ${cen.rules.version.download} to download directory">
     <!-- download UBL specific rules -->
     <get src="${cen.download.url.ubl}" dest="${download.dir}" verbose="true" skipexisting="true"
       usetimestamp="true" />
@@ -552,6 +556,7 @@
   </target>
 
 
+  <!-- TODO name could be improved -->
   <target name="create-validator-reports-from-testsuite"
     depends="init-test, provide-validator, provide-testsuite"
     description="Only test XRechnung Configuration" unless="test.skip">
@@ -580,7 +585,7 @@
     </java>
   </target>
 
-  <target name="retrieve-xmute" depends="init" if="xmute.download.url.prefix">
+  <target name="retrieve-xmute" depends="init">
     <fail unless="xmute.download.url.prefix"
       message="Property xmute.download.url.prefix must exist for this target to work" />
     <property name="xmute.version.full" value="0.5" />
@@ -610,21 +615,18 @@
   </target>
 
 
-  <target name="test-integration"
-    depends="init-test, provide-validator, provide-testsuite, test-integration-only"
-    description="Integration testing result of XRechnung Configuration" />
-
+  <target name="test-integration" depends="init-test, provide-validator, provide-testsuite, test-mutations, test-integration-only" 
+    description="Integration testing result of XRechnung Configuration"></target>
 
   <target name="test-integration-only" description="Noting but integration testing">
-    <echo message="Compiling instances for integration tests" />
+    <echo message="Compiling instances for integration tests"/>
+    <!-- Requires output of XML Mutate -->
     <copy todir="${test.docs.integration.dir}" verbose="true">
       <fileset dir="${test.docs.cen.unit.dir}">
-        <include name="ubl-br-dex-2-false-negative.xml" />
-        <include name="cii-br-s-08-rounding-rule.xml" />
-        <include name="ubl-br-cl-24-with-xml-attachment-and-extension-urn.xml" />
-        <include name="XRechnung-CEFACT*.xml" />
-
-
+        <include name="cii-br-s-08-rounding-rule.xml"/>
+        <include name="ubl-br-dex-2-false-negative.xml"/>
+        <!-- Local files - not in repository -->
+        <include name="XRechnung-CEFACT*.xml"/>
       </fileset>
     </copy>
 
@@ -641,10 +643,7 @@
       <arg value="-o" />
       <arg value="${reports.dir}/integration" />
       <arg value="${test.docs.integration.dir}" />
-
     </java>
-
-
   </target>
 
 
