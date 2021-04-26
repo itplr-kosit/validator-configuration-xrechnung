@@ -62,17 +62,16 @@ The following example demonstrates how to use a different CEN Schematron release
 ```shell
 ant clean dist \
   -Dcen.rules.version=1.3.5 \
-  -Dcen.rules.zip=en1.3.5.zip
 ```
 
 To test with the latest SNAPSHOT versions of the CEN rules, add the following property to the Ant call:
 
 ```shell
 ant clean dist \
-  -Dcen.rules.zip=master.zip
+  -Dcen.rules.version=master
 ```
 
-Note: `master.zip` is not a filename to download, just a marker name.
+Note: `master` is symbolic name for latest code from Git master branch.
 
 Note: please make sure that after using a custom CEN rule version, to call `ant clean` afterwards to ensure the default version is restored correctly.
 
