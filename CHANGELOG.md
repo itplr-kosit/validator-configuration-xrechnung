@@ -7,6 +7,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 -->
 
+## Next Release
+
+### Changed
+
+* Using [CEN Schematron Rules 1.3.4](https://github.com/ConnectingEurope/eInvoicing-EN16931/releases/tag/validation-1.3.4)
+
+
+
 ## 2020-12-31
 
 This release is compatible to XRechnung 2.0.1.
