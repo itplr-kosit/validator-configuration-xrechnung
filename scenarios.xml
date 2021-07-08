@@ -20,7 +20,8 @@
             (@xrechnung.download.url@). </p>
   </description>
 
-<!-- XRECHNUNG specific scenarios -->
+  <!-- XRECHNUNG specific scenarios -->
+  <!-- XRECHNUNG Standard (CIUS) UBL Invoice -->
   <scenario>
     <name>EN16931 XRechnung (UBL Invoice)</name>
     <description>
@@ -42,9 +43,8 @@
       >urn:oasis:names:specification:ubl:schema:xsd:Invoice-2</namespace>
     <!-- Namespace for acceptMatch XPATH within validator report XML -->
     <namespace prefix="rep">http://www.xoev.de/de/validator/varl/1</namespace>
-<!--  or starts-with(cbc:CustomizationID,
-            '@xrechnung.spec.id@#conformant#urn:xoev-de:kosit:extension:xrechnung_2.0') -->
-    <match>exists(/invoice:Invoice[ cbc:CustomizationID/text() = '@xrechnung.spec.id@' or cbc:CustomizationID/text() = '@xrechnung.spec.id@#conformant#urn:xoev-de:kosit:extension:xrechnung_2.0']) </match>
+
+    <match>exists(/invoice:Invoice/cbc:CustomizationID[ . = '@xrechnung.spec.id@']) </match>
     <validateWithXmlSchema>
       <resource>
         <name>XML Schema for UBL 2.1 Invoice</name>
@@ -75,6 +75,65 @@
     </createReport>
     <acceptMatch>/rep:report/rep:assessment[1]/rep:accept[1]</acceptMatch>
   </scenario>
+  
+  <!-- XRECHNUNG Extension UBL Invoice -->
+  
+  <scenario>
+    <name>EN16931 XRechnung Extension (UBL Invoice)</name>
+    <description>
+      <p>Validates UBL Invoice in version @ubl.version@</p>
+      <p>Uses UBL Invoice @ubl.version@ XML Schema,
+        Schematron rules from EN16931:2017, and XRechnung
+        @xrechnung.version@ </p>
+      <p>Download of UBL XML Schema on @build.date@ from
+        @ubl.download.url@</p>
+      <p>Download of UBL Schematron rules on @build.date@ from
+        @cen.download.url.ubl@</p>
+      <p>Download of XRechnung Schematron rules on @build.date@ from
+        @xrechnung.download.url@</p>
+    </description>
+    <!-- UBL Invoice namespaces -->
+    <namespace prefix="cbc"
+      >urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2</namespace>
+    <namespace prefix="invoice"
+      >urn:oasis:names:specification:ubl:schema:xsd:Invoice-2</namespace>
+    <!-- Namespace for acceptMatch XPATH within validator report XML -->
+    <namespace prefix="rep">http://www.xoev.de/de/validator/varl/1</namespace>
+    
+    <match>exists(/invoice:Invoice/cbc:CustomizationID[ . = '@xrechnung.spec.id@#conformant#urn:xoev-de:kosit:extension:xrechnung_2.0'])</match>
+    <validateWithXmlSchema>
+      <resource>
+        <name>XML Schema for UBL 2.1 Invoice</name>
+        <location>resources/ubl/2.1/xsd/maindoc/UBL-Invoice-2.1.xsd</location>
+      </resource>
+    </validateWithXmlSchema>
+    <validateWithSchematron>
+      <resource>
+        <name>Schematron rules for EN16931 (UBL)</name>
+        <location>resources/ubl/2.1/xsl/EN16931-UBL-validation.xsl</location>
+      </resource>
+    </validateWithSchematron>
+    <validateWithSchematron>
+      <resource>
+        <name>Schematron rules for Invoice - XRechnung (UBL)</name>
+        <location>resources/xrechnung/@xrechnung.version@/xsl/XRechnung-UBL-validation-Invoice.xsl</location>
+      </resource>
+      
+    </validateWithSchematron>
+    <createReport>
+      <resource>
+        <name>Validation report for XRechnung</name>
+        <location>resources/xrechnung-report.xsl</location>
+      </resource>
+      <customLevel level="information">BR-CL-01</customLevel>
+      <customLevel level="warning">BR-CL-21</customLevel>
+      <customLevel level="warning">BR-CL-23</customLevel>
+      <customLevel level="warning">BR-CL-24</customLevel>
+    </createReport>
+    <acceptMatch>/rep:report/rep:assessment[1]/rep:accept[1]</acceptMatch>
+  </scenario>
+  
+  
   <scenario>
     <name>EN16931 XRechnung (UBL CreditNote)</name>
     <description>
@@ -112,8 +171,7 @@
     </validateWithSchematron>
     <validateWithSchematron>
       <resource>
-        <name>Schematron rules for CreditNote - CIUS XRechnung
-                    (UBL)</name>
+        <name>Schematron rules for CreditNote - CIUS XRechnung (UBL)</name>
         <location>resources/xrechnung/@xrechnung.version@/xsl/XRechnung-UBL-validation-CreditNote.xsl</location>
       </resource>
     </validateWithSchematron>
@@ -122,6 +180,9 @@
         <name>Validation report for XRechnung</name>
         <location>resources/xrechnung-report.xsl</location>
       </resource>
+      <customLevel level="information">BR-CL-01</customLevel>
+      <customLevel level="warning">BR-CL-23</customLevel>
+      <customLevel level="warning">BR-CL-21</customLevel>
     </createReport>
     <acceptMatch>/rep:report/rep:assessment[1]/rep:accept[1]</acceptMatch>
   </scenario>
@@ -173,6 +234,9 @@
         <name>Validation report for XRechnung</name>
         <location>resources/xrechnung-report.xsl</location>
       </resource>
+      <customLevel level="information">BR-CL-01</customLevel>
+      <customLevel level="warning">BR-CL-23</customLevel>
+      <customLevel level="warning">BR-CL-21</customLevel>
     </createReport>
     <acceptMatch>/rep:report/rep:assessment[1]/rep:accept[1]</acceptMatch>
   </scenario>
