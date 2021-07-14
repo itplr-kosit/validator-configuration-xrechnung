@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+* Using KoSIT Validator v1.4.2
 * Using [CEN Schematron Rules 1.3.4](https://github.com/ConnectingEurope/eInvoicing-EN16931/releases/tag/validation-1.3.4)
 * Enhanced `development.md` documentation (thx to phax)
 
