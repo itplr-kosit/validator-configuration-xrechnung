@@ -100,7 +100,7 @@
     <!-- Namespace for acceptMatch XPATH within validator report XML -->
     <namespace prefix="rep">http://www.xoev.de/de/validator/varl/1</namespace>
     
-    <match>exists(/invoice:Invoice/cbc:CustomizationID[ . = '@xrechnung.spec.id@#conformant#urn:xoev-de:kosit:extension:xrechnung_2.0'])</match>
+    <match>exists(/invoice:Invoice/cbc:CustomizationID[ . = '@xrechnung.spec.id@#conformant#urn:xoev-de:kosit:extension:xrechnung_2.1'])</match>
     <validateWithXmlSchema>
       <resource>
         <name>XML Schema for UBL 2.1 Invoice</name>
