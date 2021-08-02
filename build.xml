@@ -1,6 +1,9 @@
 <project name="xrechnung-validation-configuration" default="compile" basedir=".">
   <description>Build the XRechnung validation configuration for ITPLR-KoSIT
         validator</description>
+
+  <property file="build.properties" />
+
   <!-- set global default properties for this build -->
   <!-- main build directories -->
   <property name="src.dir" location="${basedir}/src" />
@@ -70,9 +73,9 @@
     value="${cen.download.url.prefix}/en16931-cii-${cen.rules.version.download}.zip" />
   <!-- XRechnung Schematron Rules section -->
   <!-- build date might get deprecated in future: check on this -->
-  <property name="xrechnung.build.date" value="2021-107-31" />
+  <property name="xrechnung.build.date" value="2021-07-31" />
   <!-- XRechnung Schematron -->
-  <property name="xr.schematron.version.major.minor" value="1.5" />
+  <property name="xr.schematron.version.major.minor" value="1.6" />
   <property name="xr.schematron.version.patch" value="0" />
   <property name="xr.schematron.version.full"
     value="${xr.schematron.version.major.minor}.${xr.schematron.version.patch}" />

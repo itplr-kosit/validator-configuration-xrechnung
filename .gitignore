@@ -1,8 +1,8 @@
-dist
-build
-lib
-reports
-test-reports
+dist/
+build/
+lib/
+reports/
+test-reports/
 development.build.properties
 # configuration files
 .vscode
@@ -11,3 +11,4 @@ development.build.properties
 *.code-workspace
 .project
 zz
+build.properties
