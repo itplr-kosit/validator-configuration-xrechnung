@@ -73,7 +73,7 @@
 
   <!-- XRechnung Schematron Rules section -->
   <!-- build date might get deprecated in future: check on this -->
-  <property name="xrechnung.build.date" value="2021-107-31" />
+  <property name="xrechnung.build.date" value="2021-07-31" />
   <!-- XRechnung Schematron -->
   <property name="xr.schematron.version.major.minor" value="1.6" />
   <property name="xr.schematron.version.patch" value="0" />
@@ -85,7 +85,7 @@
   <property name="xr.schematron.zip"
     value="xrechnung-${xrechnung.version}-schematron-${xr.schematron.version.full}.zip" />
 
-  <property name="xr.testsuite.version" value="2020-12-31" />
+  <property name="xr.testsuite.version" value="2021-07-31" />
   <property name="xr.testsuite.download.url.prefix"
     value="https://github.com/itplr-kosit/xrechnung-testsuite/releases/download" />
 
@@ -642,10 +642,11 @@
         <include name="XRechnung-CEFACT*.xml"/>
       </fileset>
     </copy>
-
+    
     <echo>Creating validation reports with ${lib.dir}/${validator.jar} for ${test.docs.integration.dir}</echo>
     <java jar="${lib.dir}/${validator.jar}" failonerror="true" fork="true" dir="${build.dir}">
-      <arg value="-X" />
+      <arg value="-l" />
+      <arg value="debug" />
       <arg value="-s" />
       <arg value="scenarios.xml" />
       <arg value="-r" />
