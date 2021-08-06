@@ -153,3 +153,47 @@ The `ant` target `dist` creates the distribution zip archive for releases includ
 If you want to skip tests call `ant dist-only`.
 
 
+## Release
+
+### Checklist
+
+* Are all issues scheduled for the release solved?
+* Is everything merged to master branch?
+* Does the configuration refer to the correct version of XRechnung Specification?
+* Does the sceanrio match refer to the correct XRechnung Specification?
+* Make sure that XRechnung Schematron and testsuite are already released and used by this release version.
+* Make sure that CHANGELOG.md is up to date.
+
+### Prepare
+
+* Make sure you committed and pushed everything.
+* Create the distribution 
+   * Do **not** use your development properties file.
+   * Use the `clean` target to build and test everything from scratch
+
+  This requires setting some properties at command line:
+
+  ```
+  ant -Dxmute.download.url.prefix='file:/home/renzo/projects/xml-mutate/' clean dist
+  ```
+
+* Tag the last commit according to the following naming rule: 
+   `release-${date-of-scheduled-release-e.g. 2021-12-31}`
+  e.g.
+  `git tag release-2021-07-31 && git push origin release-2021-07-31` 
+
+### Publish
+
+* Draft a new release at https://github.com/itplr-kosit/xrechnung-testsuite/releases/new
+  * Choose the git tag
+* Add a release title of the following scheme: `Validator Configuration 2021-07-31 compatible with XRechnung 2.1.1`.
+* Copy & paste the high quality changelog entries for this release from CHANGELOG.md.
+* Upload distribution zip and tick mark this release as a `pre-release`.
+
+
+### Post-Release
+
+* Change the version of of Validator Configuration XRechnung in `build.xml` to the next release and commit.
+
+You are done :smile:
+
