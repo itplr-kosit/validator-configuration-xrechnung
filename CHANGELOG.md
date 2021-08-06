@@ -7,14 +7,22 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 -->
 
-## Next Release
+## 2021-07-31
+
+This release is compatible to XRechnung 2.1.1.
+Because of new and custom fixed CEN Rules version 1.3.6a and XRechnung Schematron 1.6.0 it might break your validation and business workflow. Please evaluate impact!
 
 ### Changed
 
 * Using KoSIT Validator v1.4.2
-* Using [CEN Schematron Rules 1.3.4](https://github.com/ConnectingEurope/eInvoicing-EN16931/releases/tag/validation-1.3.4)
+* Using [CEN Schematron Rules 1.3.6a](https://github.com/phax/eInvoicing-EN16931/releases/tag/validation-1.3.6a) from a fork fixing Rule BR-CO-15 
+* Using [XRechnung Schematron 1.6.0](https://github.com/itplr-kosit/xrechnung-schematron/releases/tag/release-1.6.0)
+* Using [XRechnung Testsuite 2021-07-31](https://github.com/itplr-kosit/xrechnung-testsuite/releases/tag/release-2021-07-31)
 * Enhanced `development.md` documentation (thx to phax)
 
+### Added
+
+* Release HowTo section in development.md
 
 ## 2020-12-31
 
