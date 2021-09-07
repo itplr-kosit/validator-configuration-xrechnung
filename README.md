@@ -11,7 +11,7 @@ In particular this Validator Configuration integrates the following third-party 
 * [XML Schema of UBL Invoice and CreditNote version 2.1](http://docs.oasis-open.org/ubl/os-UBL-2.1/)
 * [XML Schema of UN/CEFACT uncoupled version 16B](http://www.unece.org/cefact/xml_schemas/index.html)
 
-Please see the specific [docs/usage.md](page on usage).
+Please see the specific [page on usage](docs/usage.md).
 
 ## Versioning
 
