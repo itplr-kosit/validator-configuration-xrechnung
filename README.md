@@ -2,7 +2,7 @@
 
 [Validator](https://github.com/itplr-kosit/validator) configuration for Universal Business Language (UBL) and UN/CEFACT Invoice and CreditNote documents against EN16931:2017 and the German [Core Invoice Usage Specification (CIUS) XRechnung and XRechnung Extension](https://www.xoev.de/die_standards/xrechnung-14741). It needs the [Validator](https://github.com/itplr-kosit/validator) to execute the rules.
 
-For specific questions to the standard "XRechnung" refer to the [official operations and support website](https://www.xoev.de/xrechnung/betrieb-und-support-16853).
+For general questions to the standard "XRechnung" and related components refer to the [official operations and support website](https://www.xoev.de/xrechnung/betrieb-und-support-16853).
 
 For further technical information see the specific pages [on usage](docs/usage.md) and [on development](docs/development.md).
 
