@@ -508,7 +508,7 @@
 
     <filter token="xrechnung.spec.id" value="${xrechnung.spec.id}" />
     <copy todir="${test.build.dir}" failonerror="true" filtering="true">
-      <fileset dir="${test.src.dir}">
+      <fileset dir="${test.src.dir}" casesensitive="false">
         <include name="**/*.xml" />
       </fileset>
     </copy>
