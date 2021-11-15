@@ -25,7 +25,7 @@
     value="${cen.spec.id}#compliant#urn:xoev-de:kosit:standard:xrechnung_${xrechnung.version.major.minor}" />
 
 
-  <property name="validator.configuration.version.full" value="2021-07-31" />
+  <property name="validator.configuration.version.full" value="2021-11-15" />
   <property name="dist.name"
     value="validator-configuration-xrechnung_${xrechnung.version}_${validator.configuration.version.full}.zip" />
   <!-- 3rd party resources -->
@@ -73,10 +73,10 @@
 
   <!-- XRechnung Schematron Rules section -->
   <!-- build date might get deprecated in future: check on this -->
-  <property name="xrechnung.build.date" value="2021-07-31" />
+  <property name="xrechnung.build.date" value="2021-11-15" />
   <!-- XRechnung Schematron -->
   <property name="xr.schematron.version.major.minor" value="1.6" />
-  <property name="xr.schematron.version.patch" value="0" />
+  <property name="xr.schematron.version.patch" value="1" />
   <property name="xr.schematron.version.full"
     value="${xr.schematron.version.major.minor}.${xr.schematron.version.patch}" />
   <property name="xr.schematron.download.url.prefix"
@@ -85,7 +85,7 @@
   <property name="xr.schematron.zip"
     value="xrechnung-${xrechnung.version}-schematron-${xr.schematron.version.full}.zip" />
 
-  <property name="xr.testsuite.version" value="2021-07-31" />
+  <property name="xr.testsuite.version" value="2021-11-15" />
   <property name="xr.testsuite.download.url.prefix"
     value="https://github.com/itplr-kosit/xrechnung-testsuite/releases/download" />
 
