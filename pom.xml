@@ -1,0 +1,67 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    
+    <groupId>org.kosit</groupId>
+    <artifactId>validator-configuration-xrechnung</artifactId>  <!--  -->
+    <version>2.1.1-SNAPSHOT</version> <!--  -->
+    <packaging>jar</packaging> <!-- default? -->
+    
+    <name>test</name>
+    
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <version.saxon-he>9.9.1-7</version.saxon-he> <!--  -->
+    </properties>
+    
+    <!--
+    
+    <repositories>
+        <repository>
+            <id>gitlab-maven</id>
+            <url>https://gitlab.example.com/api/v4/projects/43/packages/maven</url>
+        </repository>
+    </repositories>
+    
+    <distributionManagement>
+        <repository>
+            <id>gitlab-maven</id>
+            <url>https://gitlab.example.com/api/v4/projects/43/packages/maven</url>
+        </repository>
+        <snapshotRepository>
+            <id>gitlab-maven</id>
+            <url>https://gitlab.example.com/api/v4/projects/43/packages/maven</url>
+        </snapshotRepository>
+    </distributionManagement>
+    
+    -->
+    
+    <dependencies>
+        <dependency>
+            <groupId>net.sf.saxon</groupId>
+            <artifactId>Saxon-HE</artifactId>
+            <version>${version.saxon-he}</version>
+            <scope>compile</scope>
+        </dependency>
+        
+        <!--
+        
+        <dependency>
+            <groupId>org.apache.xmlgraphics</groupId>
+            <artifactId>fop</artifactId>
+            <version>2.6</version>
+            <scope>compile</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>net.sourceforge.plantuml</groupId>
+            <artifactId>plantuml</artifactId>
+            <version>1.2021.3</version>
+            <scope>compile</scope>
+        </dependency>
+        
+        -->
+        
+    </dependencies>
+</project>
