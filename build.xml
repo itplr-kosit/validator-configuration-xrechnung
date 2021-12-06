@@ -116,9 +116,17 @@
 
   <property name="reports.dir" location="${build.dir}/reports" />
   
+  <!-- Global tasks -->
+  <!-- Create timestamps -->
+  <tstamp>
+    <format property="build.date" pattern="yyyy-MM-dd" />
+  </tstamp>
+  
+  
   <taskdef uri="antlib:org.apache.maven.resolver.ant"
     resource="org/apache/maven/resolver/ant/antlib.xml"
     classpath="${lib.dir}/${maven.ant.resolver.jar.name}" />
+  
   
   <macrodef name="xslt-saxon">
     <sequential>
@@ -190,20 +198,64 @@
       src="https://repo1.maven.org/maven2/org/apache/maven/resolver/maven-resolver-ant-tasks/${maven.ant.resolver.version}/${maven.ant.resolver.jar.name}"
       dest="${lib.dir}" usetimestamp="true" />
   </target>
-
-  <target name="init" description="Initializes build directory structure and ISO timestamp">
+  
+  <target name="dependency-resolve" depends="init">
+    <echo message="Resolving all dependecies and init ant tasksdefs" />
     
-    <!-- sets the property cen.master.target if version is set to master and the only downloads from master instaead of release.  -->
+    <resolver:resolve>
+      <dependencies>
+        <pom refid="pom" />
+      </dependencies>
+      <!-- refid in path element is the id which can be referenced later -->
+      <path refid="classpath.compile" classpath="compile" />
+      <path refid="classpath.test" classpath="test" />
+      <properties prefix="dep." scopes="provided,system,compile,runtime" />
+    </resolver:resolve>
+    
+    <pathconvert property="classpathProp" refid="classpath.compile" />
+    
+    <echo message="${classpathProp}" />
+    
+    <!-- showing resolved deps as ant props (only available after resolve task -->
+    <echoproperties prefix="dep." />
+    <echo message="maven artifact version ${pom.version} and ${semo.version}" />
+    <!-- For local development -->
+    <copy todir="${lib.dir}">
+      <path refid="classpath.compile" />
+    </copy>
+    
+  </target>
+  
+  <target name="init" depends="init-minimum-only, init-directories">
+  </target>
+  
+  <target name="init-minimum-only" description="Initializes ISO timestamp">
+    
+    <echo message="Initialising Build Infrastructure" />
+    <fail message="Resolver ${lib.dir}/${maven.ant.resolver.jar.name} is missing. Use fetch-resolver first">
+      <condition>
+        <not>
+          <available file="${lib.dir}/${maven.ant.resolver.jar.name}" />
+        </not>
+      </condition>
+    </fail>
+    
+    <!-- sets the property cen.master.target if version is set to master and then only downloads from master instead of release.  -->
     <condition property="cen.master.target">
       <equals arg1="${cen.rules.version}" arg2="master" />
     </condition>
     
-    <!-- Create timestamps -->
-    <tstamp>
-      <format property="build.date" pattern="yyyy-MM-dd" />
-    </tstamp>
     <echo>Build date: ${build.date}</echo>
-    <!-- Create the build directory structure used by compile -->
+    
+    <!-- Because of "If a POM is set via a file parameter its effective model is made available as properties to the Ant project" see https://maven.apache.org/resolver-ant-tasks/ -->
+    <!-- These properties are not output by echoproperties -->
+    <resolver:pom file="pom.xml" id="pom" />
+    <echo message="Validator Configuration Version ${pom.version}" />
+    
+  </target>
+  
+  <target name="init-directories" description="Initializes build directory structure used by compile">
+    <!-- Create the build directory structure  -->
     <mkdir dir="${build.dir}" />
     <mkdir dir="${download.dir}" />
     <mkdir dir="${lib.dir}" />
