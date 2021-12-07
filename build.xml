@@ -44,12 +44,7 @@
   <!-- Pick by default the standalone distribution -->  
   <property name="validator.jar" value="validationtool-${validator.version}-standalone.jar" />
 
-  <!-- Part of the download path -->
-  <property name="saxon.url.version" value="9.9" />
-  <!-- Part of the download path -->
-  <property name="saxon.file.version" value="9-9-1-8J" />
   <!-- the name of the JAR file in the downloaded ZIP file -->
-  <property name="saxon.jar" value="saxon9he.jar" />
 
   <property name="cii.version" value="D16B" />
   <property name="cii.schema.zip" value="D16B_SCRDM__Subset__CII.zip" />
@@ -260,21 +255,6 @@
     <mkdir dir="${download.dir}" />
     <mkdir dir="${lib.dir}" />
     <mkdir dir="${dist.dir}" />
-  </target>
-
-
-  <target name="prepare-saxon" depends="init"
-    description="Download Saxon-HE and add jar to library directory">
-    <get
-      src="https://sourceforge.net/projects/saxon/files/Saxon-HE/${saxon.url.version}/SaxonHE${saxon.file.version}.zip/download"
-      dest="${download.dir}/SaxonHE${saxon.file.version}.zip" verbose="true" skipexisting="true"
-      usetimestamp="true" />
-    <unzip src="${download.dir}/SaxonHE${saxon.file.version}.zip" dest="${lib.dir}">
-      <patternset>
-        <include name="**/${saxon.jar}" />
-      </patternset>
-      <flattenmapper />
-    </unzip>
   </target>
 
   <target name="delete-saxon" depends="init" description="Remove downloaded Saxon-HE stuff">
@@ -518,7 +498,7 @@
     </xslt>
   </target>
 
-  <target name="compile-cen-rules" depends="retrieve-cen-rules,prepare-saxon,compile-cen-rules-only"
+  <target name="compile-cen-rules" depends="retrieve-cen-rules,compile-cen-rules-only"
     description="Works for zip from master and release zips"/>
 
 
@@ -547,7 +527,7 @@
 
 
   <target name="compile"
-    depends="compile-scenario,retrieve-all-schema-rules,compile-cen-rules,prepare-saxon"
+    depends="compile-scenario,retrieve-all-schema-rules,compile-cen-rules"
     description="Compile XSDs and XSLTs into validation configuration conformat repository directory">
     <echo>Compiling Schemas and XSLTs ...</echo>
     <copy file="${src.dir}/default-report.xsl" todir="${resource.dir}" />
