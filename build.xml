@@ -45,6 +45,11 @@
   <property name="validator.jar" value="validationtool-${validator.version}-standalone.jar" />
 
   <!-- the name of the JAR file in the downloaded ZIP file -->
+  <!--
+  <property name="saxon.jar" value="version.saxon-he" />
+  -->
+
+  <property name="saxon.jar" value="Saxon-HE-9.9.1-8.jar" />
 
   <property name="cii.version" value="D16B" />
   <property name="cii.schema.zip" value="D16B_SCRDM__Subset__CII.zip" />
@@ -187,7 +192,7 @@
     </sequential>
   </macrodef>
   
-  <target name="fetch-resolver" depends="init"> <!-- depends? -->
+  <target name="fetch-resolver" depends="init-directories">
     <echo message="Init Ant-Maven Resolver ${user.home}" />
     <get 
       src="https://repo1.maven.org/maven2/org/apache/maven/resolver/maven-resolver-ant-tasks/${maven.ant.resolver.version}/${maven.ant.resolver.jar.name}"
@@ -213,7 +218,7 @@
     
     <!-- showing resolved deps as ant props (only available after resolve task -->
     <echoproperties prefix="dep." />
-    <echo message="maven artifact version ${pom.version} and ${semo.version}" />
+    <echo message="maven artifact version ${pom.version} and ${validator.configuration.version.full}" />
     <!-- For local development -->
     <copy todir="${lib.dir}">
       <path refid="classpath.compile" />
@@ -221,10 +226,10 @@
     
   </target>
   
-  <target name="init" depends="init-minimum-only, init-directories">
+  <target name="init" depends="init-minimum-only">
   </target>
   
-  <target name="init-minimum-only" description="Initializes ISO timestamp">
+  <target name="init-minimum-only" depends="init-directories" description="Initializes ISO timestamp">
     
     <echo message="Initialising Build Infrastructure" />
     <fail message="Resolver ${lib.dir}/${maven.ant.resolver.jar.name} is missing. Use fetch-resolver first">
