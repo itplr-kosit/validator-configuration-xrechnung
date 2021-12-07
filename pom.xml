@@ -44,6 +44,13 @@
             <version>${version.saxon-he}</version>
             <scope>compile</scope>
         </dependency>
-        
+        <!-- This one is provided by ant -->
+        <dependency>
+            <groupId>ubl</groupId>
+            <artifactId>ubli-ggg</artifactId>
+            <version>2.1</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/UBL-2.1.zip</systemPath>
+        </dependency>
     </dependencies>
 </project>
