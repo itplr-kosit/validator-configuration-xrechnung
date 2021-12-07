@@ -6,13 +6,13 @@
     <groupId>org.kosit.xrechnung</groupId>
     <artifactId>validator-configuration-xrechnung</artifactId>
     <version>2021-01-31-SNAPSHOT</version>
-    <packaging>jar</packaging> <!-- default? -->
+    <packaging>zip</packaging>
     
-    <name>test</name>
+    <name>Validator Configuration XRechnung</name> 
     
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <version.saxon-he>9.9.1-8</version.saxon-he>
+        <version.saxon-he>9.9.1-8</version.saxon-he> <!-- Saxon 10 -->
     </properties>
 
     <!--
