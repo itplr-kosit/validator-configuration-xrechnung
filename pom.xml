@@ -5,16 +5,16 @@
     
     <groupId>org.kosit.xrechnung</groupId>
     <artifactId>validator-configuration-xrechnung</artifactId>
-    <version>2.1.1-SNAPSHOT</version> <!--  -->
+    <version>2021-01-31-SNAPSHOT</version>
     <packaging>jar</packaging> <!-- default? -->
     
     <name>test</name>
     
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <version.saxon-he>9.9.1-7</version.saxon-he>
+        <version.saxon-he>9.9.1-8</version.saxon-he>
     </properties>
-    
+
     <!--
     
     <repositories>
@@ -44,24 +44,6 @@
             <version>${version.saxon-he}</version>
             <scope>compile</scope>
         </dependency>
-        
-        <!--
-        
-        <dependency>
-            <groupId>org.apache.xmlgraphics</groupId>
-            <artifactId>fop</artifactId>
-            <version>2.6</version>
-            <scope>compile</scope>
-        </dependency>
-        
-        <dependency>
-            <groupId>net.sourceforge.plantuml</groupId>
-            <artifactId>plantuml</artifactId>
-            <version>1.2021.3</version>
-            <scope>compile</scope>
-        </dependency>
-        
-        -->
         
     </dependencies>
 </project>
