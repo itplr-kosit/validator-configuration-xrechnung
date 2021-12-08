@@ -2,10 +2,6 @@
   <description>Build the XRechnung validation configuration for ITPLR-KoSIT
         validator</description>
   
-  <property name="maven.ant.resolver.version" value="1.3.1" />
-  <property name="maven.ant.resolver.jar.name"
-    value="maven-resolver-ant-tasks-${maven.ant.resolver.version}-uber.jar" />
-  
   <!-- set global default properties for this build -->
   <!-- main build directories -->
   <property name="src.dir" location="${basedir}/src" />
@@ -188,49 +184,42 @@
     </sequential>
   </macrodef>
   
+  <property name="maven.ant.resolver.version" value="1.3.1" />
+  <property name="maven.ant.resolver.jar.name"
+    value="maven-resolver-ant-tasks-${maven.ant.resolver.version}-uber.jar" />
+  <property name="maven.ant.resolver.jar.file" value="${lib.dir}/${maven.ant.resolver.jar.name}"/>
+  <available  property="maven.available" file="${maven.ant.resolver.jar.file}" />
   
-  <available  property="maven.available" file="${lib.dir}/${maven.ant.resolver.jar.name}" />
-  
-  <target name="init-minimum">
-    <echo message="Initialising Build Infrastructure" />
-    
-    <!-- Create the build directory structure  -->
+  <target name="init-directories">
+    <echo message="Create the build directory structure" />
+
     <mkdir dir="${build.dir}" />
     <mkdir dir="${download.dir}" />
     <mkdir dir="${lib.dir}" />
     <mkdir dir="${dist.dir}" />
-    
-    
   </target>
   
   
-  <target name="fetch-resolver" depends="init-minimum" unless="maven.available">
-    <echo message="Init Ant-Maven Resolver ${user.home}" />
+  <target name="retrieve-resolver" depends="init-directories" unless="maven.available">
+    <echo message="Init Ant-Maven Resolver" />
     <get 
       src="https://repo1.maven.org/maven2/org/apache/maven/resolver/maven-resolver-ant-tasks/${maven.ant.resolver.version}/${maven.ant.resolver.jar.name}"
       dest="${lib.dir}" usetimestamp="true" />
   </target>
   
-  <target name="init-with-maven" depends="fetch-resolver">
-    <fail message="Resolver ${lib.dir}/${maven.ant.resolver.jar.name} is missing. Use fetch-resolver first">
+  <target name="init-maven-resolver" depends="retrieve-resolver">
+    <fail message="Resolver ${maven.ant.resolver.jar.file} is missing. Use fetch-resolver first">
       <condition>
         <not>
-          <available file="${lib.dir}/${maven.ant.resolver.jar.name}" />
+          <available file="${maven.ant.resolver.jar.file}" />
         </not>
       </condition>
     </fail>
  
     <taskdef uri="antlib:org.apache.maven.resolver.ant"
       resource="org/apache/maven/resolver/ant/antlib.xml"
-      classpath="${lib.dir}/${maven.ant.resolver.jar.name}" />
+      classpath="${lib.dir}/${maven.ant.resolver.jar.name}" onerror="fail"/>
     
- 
-    <!-- sets the property cen.master.target if version is set to master and then only downloads from master instead of release.  -->
-    <condition property="cen.master.target">
-      <equals arg1="${cen.rules.version}" arg2="master" />
-    </condition>
-    
-    <echo>Build date: ${build.date}</echo>
     
     <!-- Because of "If a POM is set via a file parameter its effective model is made available as properties to the Ant project" see https://maven.apache.org/resolver-ant-tasks/ -->
     <!-- These properties are not output by echoproperties -->
@@ -240,11 +229,20 @@
     
   </target>
   
-  <target name="init" depends="init-minimum, init-with-maven">
+  <target name="init" depends="init-directories, init-maven-resolver">
+    <echo message="Initialising Build Infrastructure" />
+    <echo>Build date: ${build.date}</echo>
+    
+    
+    <!-- sets the property cen.master.target if version is set to master and then only downloads from master instead of release.  -->
+    <condition property="cen.master.target">
+      <equals arg1="${cen.rules.version}" arg2="master" />
+    </condition>
+    
     
   </target>
   
-  <target name="dependency-resolve-system" depends="retrieve-ubl-schema">
+  <target name="dependency-resolve-system" depends="init-directories,retrieve-ubl-schema">
     
   </target>
   
@@ -270,7 +268,7 @@
   </target>
   
   <target name="dependency-resolve" depends="init, dependency-resolve-system, dependency-resolve-pom">
-    <echo message="Resolving all dependecies" />
+    <echo message="Resolving all dependencies" />
     
     <!-- For local development -->
     <copy todir="${lib.dir}">
@@ -479,10 +477,11 @@
 
 
   <target name="retrieve-ubl-schema" depends="init"
-    description="Download UBL schemas to download directory">
-    <get src="${ubl.download.url}" dest="${download.dir}" verbose="true" skipexisting="true"
+    description="Download UBL schemas to lib directory">
+    <get src="${ubl.download.url}" dest="${lib.dir}" verbose="true" skipexisting="true"
       usetimestamp="true" />
   </target>
+  
   <target name="retrieve-cii-schema" depends="init"
     description="Download UN/CEFACT CII schemas to download directory">
     <get src="${cii.download.url}" dest="${download.dir}" verbose="true" skipexisting="true"
@@ -559,7 +558,7 @@
 
 
 
-    <unzip src="${download.dir}/${ubl.schema.zip}" dest="${resource.dir}/ubl/2.1/xsd">
+    <unzip src="${lib.dir}/${ubl.schema.zip}" dest="${resource.dir}/ubl/2.1/xsd">
       <patternset>
         <include name="xsdrt/**/*.xsd" />
       </patternset>
