@@ -28,7 +28,7 @@
             <artifactId>ubl-schema</artifactId>
             <version>${ubl.version}</version>
             <scope>system</scope>
-            <systemPath>${project.basedir}/lib/UBL-2.1.zip</systemPath>
+            <systemPath>${project.basedir}/lib/UBL-${ubl.version}.zip</systemPath>
         </dependency>
         <dependency>
             <groupId>cii</groupId>
@@ -39,18 +39,19 @@
         </dependency>
         <dependency>
             <groupId>cen.ubl</groupId>
-            <artifactId>cen-ubl</artifactId>
+            <artifactId>cen-schema-ubl</artifactId>
             <version>${cen.rules.version}</version>
             <scope>system</scope>
-            <systemPath unless="${cen.master.target}">${project.basedir}/lib/en16931-ubl-${cen.rules.version.download}.zip</systemPath>
+            <systemPath unless="${cen.master.target}">${project.basedir}/lib/en16931-ubl-${cen.rules.version}.zip</systemPath>
         </dependency>
         <dependency>
             <groupId>cen.cii</groupId>
-            <artifactId>cen-cii</artifactId>
+            <artifactId>cen-schema-cii</artifactId>
             <version>${cen.rules.version}</version>
             <scope>system</scope>
-            <systemPath unless="${cen.master.target}">${project.basedir}/lib/en16931-cii-${cen.rules.version.download}.zip</systemPath>
+            <systemPath unless="${cen.master.target}">${project.basedir}/lib/en16931-cii-${cen.rules.version}.zip</systemPath>
         </dependency>
+        <!--
         <dependency>
             <groupId>xrechnung.schematron</groupId>
             <artifactId>xrechnung-schematron</artifactId>
@@ -58,5 +59,6 @@
             <scope>system</scope>
             <systemPath>${project.basedir}/lib/xrechnung/${xrechnung.version}/xsl</systemPath> 
         </dependency>
+        -->
     </dependencies>
 </project>

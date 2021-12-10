@@ -375,23 +375,23 @@
         <not>
           <or>
             <resourceexists>
-              <file file="${download.dir}/master.zip" />
+              <file file="${lib.dir}/master.zip" />
             </resourceexists>
             <and>
               <resourceexists>
-                <file file="${download.dir}/en16931-cii-${cen.rules.version.download}.zip" />
+                <file file="${lib.dir}/en16931-cii-${cen.rules.version.download}.zip" />
               </resourceexists>
               <resourceexists>
-                <file file="${download.dir}/en16931-ubl-${cen.rules.version.download}.zip" />
+                <file file="${lib.dir}/en16931-ubl-${cen.rules.version.download}.zip" />
               </resourceexists>
             </and>
           </or>
         </not>
       </condition>
     </fail>
-    <unzip dest="${download.dir}" failonemptyarchive="true">
+    <unzip dest="${lib.dir}" failonemptyarchive="true">
       <!-- If master.zip or the other gets finally extracted depends on download targets -->
-      <fileset dir="${download.dir}">
+      <fileset dir="${lib.dir}">
         <include name="en16931-*-${cen.rules.version.download}.zip" />
         <include name="master.zip" />
       </fileset>
@@ -400,7 +400,7 @@
     </unzip>
     <!-- Testing if important files were unzipped -->
     <path id="schematron-path">
-      <fileset dir="${download.dir}" includes="**schematron/**.sch" />
+      <fileset dir="${lib.dir}" includes="**schematron/**.sch" />
     </path>
     <fail
       message="Could not extract CEN schematron rules file EN16931-UBL-validation.sch does not exist in ${download.dir}">
@@ -429,7 +429,7 @@
   <target name="retrieve-cen-rules-from-master" depends="init" if="${cen.master.target}"
     description="Download CEN business rules (schematron) from master branch to download directory">
     <get src="${cen.download.url.master.prefix}/archive/master.zip"
-      dest="${download.dir}" verbose="true" skipexisting="true"
+      dest="${lib.dir}" verbose="true" skipexisting="true"
       usetimestamp="true" />
   </target>
 
@@ -437,10 +437,10 @@
     unless="${cen.master.target}"
     description="Download CEN business rules (schematron) version ${cen.rules.version.download} to download directory">
     <!-- download UBL specific rules -->
-    <get src="${cen.download.url.ubl}" dest="${download.dir}" verbose="true" skipexisting="true"
+    <get src="${cen.download.url.ubl}" dest="${lib.dir}" verbose="true" skipexisting="true"
       usetimestamp="true" />
     <!-- download CII specific rules -->
-    <get src="${cen.download.url.cii}" dest="${download.dir}" verbose="true" skipexisting="true"
+    <get src="${cen.download.url.cii}" dest="${lib.dir}" verbose="true" skipexisting="true"
       usetimestamp="true" />
   </target>
 
@@ -483,10 +483,10 @@
   </target>
   
   <target name="retrieve-cii-schema" depends="init"
-    description="Download UN/CEFACT CII schemas to download directory">
-    <get src="${cii.download.url}" dest="${download.dir}" verbose="true" skipexisting="true"
+    description="Download UN/CEFACT CII schemas to lib directory">
+    <get src="${cii.download.url}" dest="${lib.dir}" verbose="true" skipexisting="true"
       usetimestamp="true" />
-    <unzip src="${download.dir}/${cii.schema.zip}" dest="${download.dir}">
+    <unzip src="${lib.dir}/${cii.schema.zip}" dest="${lib.dir}">
       <patternset>
         <include name="**/D16B*uncoupled.zip" />
       </patternset>
