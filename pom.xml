@@ -1,4 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
+ <project xmlns="http://maven.apache.org/POM/4.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
@@ -14,28 +14,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <version.saxon-he>9.9.1-8</version.saxon-he> <!-- Saxon 10 -->
     </properties>
-
-    <!--
-    
-    <repositories>
-        <repository>
-            <id>gitlab-maven</id>
-            <url>https://gitlab.example.com/api/v4/projects/43/packages/maven</url>
-        </repository>
-    </repositories>
-    
-    <distributionManagement>
-        <repository>
-            <id>gitlab-maven</id>
-            <url>https://gitlab.example.com/api/v4/projects/43/packages/maven</url>
-        </repository>
-        <snapshotRepository>
-            <id>gitlab-maven</id>
-            <url>https://gitlab.example.com/api/v4/projects/43/packages/maven</url>
-        </snapshotRepository>
-    </distributionManagement>
-    
-    -->
     
     <dependencies>
         <dependency>
@@ -48,9 +26,37 @@
         <dependency>
             <groupId>ubl</groupId>
             <artifactId>ubl-schema</artifactId>
-            <version>2.1</version>
+            <version>${ubl.version}</version>
             <scope>system</scope>
             <systemPath>${project.basedir}/lib/UBL-2.1.zip</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>cii</groupId>
+            <artifactId>cii-schema</artifactId>
+            <version>${cii.version}</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/${cii.schema.zip}</systemPath>  <!-- uncoupled? -->
+        </dependency>
+        <dependency>
+            <groupId>cen.ubl</groupId>
+            <artifactId>cen-ubl</artifactId>
+            <version>${cen.rules.version}</version>
+            <scope>system</scope>
+            <systemPath unless="${cen.master.target}">${project.basedir}/lib/en16931-ubl-${cen.rules.version.download}.zip</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>cen.cii</groupId>
+            <artifactId>cen-cii</artifactId>
+            <version>${cen.rules.version}</version>
+            <scope>system</scope>
+            <systemPath unless="${cen.master.target}">${project.basedir}/lib/en16931-cii-${cen.rules.version.download}.zip</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>xrechnung.schematron</groupId>
+            <artifactId>xrechnung-schematron</artifactId>
+            <version>${xr.schematron.version.full}</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/xrechnung/${xrechnung.version}/xsl</systemPath> 
         </dependency>
     </dependencies>
 </project>

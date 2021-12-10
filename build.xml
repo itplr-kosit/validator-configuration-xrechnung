@@ -242,7 +242,7 @@
     
   </target>
   
-  <target name="dependency-resolve-system" depends="init-directories,retrieve-ubl-schema">
+  <target name="dependency-resolve-system" depends="retrieve-ubl-schema, retrieve-cii-schema, retrieve-cen-rules">
     
   </target>
   
@@ -550,7 +550,7 @@
 
   <target name="compile"
     depends="dependency-resolve,compile-scenario,retrieve-all-schema-rules,compile-cen-rules"
-    description="Compile XSDs and XSLTs into validation configuration conformat repository directory">
+    description="Compile XSDs and XSLTs into validation configuration conformant repository directory">
     <echo>Compiling Schemas and XSLTs ...</echo>
     <copy file="${src.dir}/default-report.xsl" todir="${resource.dir}" />
     <copy file="${src.dir}/xrechnung-report.xsl" todir="${resource.dir}" />
