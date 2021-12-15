@@ -2,6 +2,8 @@
   <description>Build the XRechnung validation configuration for ITPLR-KoSIT
         validator</description>
   
+  <property file="common.build.properties" />
+  
   <!-- set global default properties for this build -->
   <!-- main build directories -->
   <property name="src.dir" location="${basedir}/src" />
