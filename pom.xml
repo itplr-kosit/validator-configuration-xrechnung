@@ -6,14 +6,9 @@
     <groupId>org.kosit.xrechnung</groupId>
     <artifactId>validator-configuration-xrechnung</artifactId>
     <version>2021-01-31-SNAPSHOT</version>
-    <packaging>zip</packaging>
+    <packaging>pom</packaging>
     
     <name>Validator Configuration XRechnung</name> 
-    
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <version.saxon-he>9.9.1-8</version.saxon-he> <!-- Saxon 10 -->
-    </properties>
     
     <build>
         <plugins>
@@ -60,6 +55,7 @@
             <scope>system</scope>
             <systemPath>${project.basedir}/lib/${cii.schema.zip}</systemPath>  <!-- uncoupled? -->
         </dependency>
+        <!--
         <dependency>
             <groupId>cen.ubl</groupId>
             <artifactId>cen-schema-ubl</artifactId>
@@ -88,6 +84,7 @@
             <scope>system</scope>
             <systemPath if="${cen.master.target}">${project.basedir}/lib/master.zip</systemPath>
         </dependency>
+        -->
         <!--
         <dependency>
             <groupId>xrechnung.schematron</groupId>
