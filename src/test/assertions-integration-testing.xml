@@ -19,6 +19,11 @@
     Should have warning about UBL-CR-646
   </a:assertion>
   
+  <a:assertion report-doc="diga-cii-extension-codes-report.xml"
+    test="/rep:report/rep:scenarioMatched[1]/rep:validationStepResult[2]/rep:message[ @code = 'BR-CL-21' and @level='warning']">
+    
+  </a:assertion>
+  
 
 
 </a:assertions>
