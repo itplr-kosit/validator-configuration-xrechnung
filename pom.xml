@@ -12,7 +12,11 @@
      
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <version.saxon-he>9.9.1-8</version.saxon-he> <!-- Saxon 10 -->
+        <version.saxon-he>9.9.1-8</version.saxon-he>
+        <ubl.version>2.1</ubl.version>
+        <cii.version>D16B</cii.version>
+        <cii.schema.zip>D16B_SCRDM__Subset__CII.zip</cii.schema.zip> <!-- uncoupled ? -->
+        <cen.rules.version>master</cen.rules.version>
     </properties>
      
     
@@ -53,10 +57,11 @@
             <scope>system</scope>
             <systemPath>${project.basedir}/lib/en16931-cii-${cen.rules.version}.zip</systemPath>
         </dependency>
+        <!--
         <dependency>
-            <groupId>cen.ubl</groupId>
-            <artifactId>cen-schema-ubl</artifactId>
-            <version>${cen.rules.version}</version>
+            <groupId>cen.master</groupId>
+            <artifactId>cen-schema-master</artifactId>
+            <version>master</version>
             <scope>system</scope>
             <systemPath>${project.basedir}/lib/master.zip</systemPath>
         </dependency>
