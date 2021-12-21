@@ -40,11 +40,15 @@
   <!-- Pick by default the standalone distribution -->  
   <property name="validator.jar" value="validationtool-${validator.version}-standalone.jar" />
 
+<!--
   <property name="saxon.jar" value="Saxon-HE-${version.saxon-he}.jar" />
-
+  -->
+<!--
   <property name="cii.version" value="D16B" />
   <property name="cii.schema.zip" value="D16B_SCRDM__Subset__CII.zip" />
+  -->
   <property name="cii.schema.uncoupled.zip" value="d16b-cii-uncoupled.zip" />
+  <!--
   <property name="cii.download.url"
     value="http://www.unece.org/fileadmin/DAM/cefact/xml_schemas/${cii.schema.zip}" />
   <property name="ubl.version" value="2.1" />
@@ -54,17 +58,20 @@
 
   <property name="ubl.download.url"
     value="${ubl.download.url.prefix}/${ubl.schema.zip}" />
+    -->
 
   <!-- set to master if you want latest code -->
+  <!--
   <property name="cen.rules.version" value="1.3.6a" />
-  <property name="cen.rules.version.download" value="${cen.rules.version}" />
+  <property name="cen.rules.version.download" value="${pom.properties.cen.rules.version}" />
   <property name="cen.download.url.prefix"
-    value="https://github.com/phax/eInvoicing-EN16931/releases/download/validation-${cen.rules.version}" />
+    value="https://github.com/phax/eInvoicing-EN16931/releases/download/validation-${pom.properties.cen.rules.version}" />
   <property name="cen.download.url.ubl"
     value="${cen.download.url.prefix}/en16931-ubl-${cen.rules.version.download}.zip" />
   <property name="cen.download.url.cii"
     value="${cen.download.url.prefix}/en16931-cii-${cen.rules.version.download}.zip" />
   <property name="cen.download.url.master.prefix" value="https://github.com/phax/eInvoicing-EN16931/"/>
+  -->
 
 
   <!-- XRechnung Schematron Rules section -->
@@ -222,7 +229,22 @@
     <!-- These properties are not output by echoproperties -->
     <resolver:pom file="pom.xml" id="pom" />
     <echo message="Validator Configuration Version ${pom.version}" />
-<!-- TODO -->
+    <echo message="${pom.properties.version.saxon-he}" />
+
+    <property name="saxon.jar" value="Saxon-HE-${version.saxon-he}.jar" />
+
+    <property name="ubl.download.url.prefix" value="http://docs.oasis-open.org/ubl/os-UBL-${pom.properties.ubl.version}" />
+    <property name="ubl.schema.zip" value="UBL-${pom.properties.ubl.version}.zip" />
+    <property name="ubl.download.url" value="${ubl.download.url.prefix}/${ubl.schema.zip}" />
+
+    <property name="cii.download.url" value="http://www.unece.org/fileadmin/DAM/cefact/xml_schemas/${pom.properties.cii.schema.zip}" />
+
+    <property name="cen.rules.version.download" value="${pom.properties.cen.rules.version}" />
+    <property name="cen.download.url.prefix" value="https://github.com/phax/eInvoicing-EN16931/releases/download/validation-${pom.properties.cen.rules.version}" />
+    <property name="cen.download.url.ubl" value="${cen.download.url.prefix}/en16931-ubl-${cen.rules.version.download}.zip" />
+    <property name="cen.download.url.cii" value="${cen.download.url.prefix}/en16931-cii-${cen.rules.version.download}.zip" />
+    <property name="cen.download.url.master.prefix" value="https://github.com/phax/eInvoicing-EN16931/"/>
+
   </target>
   
   <target name="init" depends="init-directories, init-maven-resolver, init-maven-based-properties">
@@ -231,7 +253,7 @@
     
     <!-- sets the property cen.master.target if version is set to master and then only downloads from master instead of release.  -->
     <condition property="cen.master.target">
-      <equals arg1="${cen.rules.version}" arg2="master" />
+      <equals arg1="${pom.properties.cen.rules.version}" arg2="master" />
     </condition>
     
     
@@ -368,10 +390,23 @@
     <fail message="No cen rule zip files available :(!">
       <condition>
         <not>
+        <!--
           <or>
+          -->
+          <!--
             <resourceexists>
               <file file="${lib.dir}/master.zip" />
             </resourceexists>
+            -->
+            <and>
+              <resourceexists>
+                <file file="${lib.dir}/en16931-cii-*.zip" />
+              </resourceexists>
+              <resourceexists>
+                <file file="${lib.dir}/en16931-ubl-*.zip" />
+              </resourceexists>
+            </and>
+            <!--
             <and>
               <resourceexists>
                 <file file="${lib.dir}/en16931-cii-${cen.rules.version.download}.zip" />
@@ -381,18 +416,19 @@
               </resourceexists>
             </and>
           </or>
+          -->
         </not>
       </condition>
     </fail>
-    <unzip dest="${lib.dir}" failonemptyarchive="true">
+    <!--<unzip dest="${lib.dir}" failonemptyarchive="true">-->
       <!-- If master.zip or the other gets finally extracted depends on download targets -->
-      <fileset dir="${lib.dir}">
+      <!--<fileset dir="${lib.dir}">
         <include name="en16931-*-${cen.rules.version.download}.zip" />
         <include name="master.zip" />
       </fileset>
       
       <regexpmapper from=".*/(schematron/.*\.sch$$)" to="\1" />
-    </unzip>
+    </unzip>-->
     <!-- Testing if important files were unzipped -->
     <path id="schematron-path">
       <fileset dir="${lib.dir}" includes="**schematron/**.sch" />
@@ -424,8 +460,14 @@
   <target name="retrieve-cen-rules-from-master" depends="init" if="${cen.master.target}"
     description="Download CEN business rules (schematron) from master branch to download directory">
     <get src="${cen.download.url.master.prefix}/archive/master.zip"
-      dest="${lib.dir}" verbose="true" skipexisting="true"
+      dest="${download.dir}" verbose="true" skipexisting="true"
       usetimestamp="true" />
+    <unzip src="${download.dir}/master.zip" dest="${lib.dir}" failonemptyarchive="true">
+      <fileset dir="${download.dir}">
+        <include name="eInvoicing-EN16931-master/en16931-cii-*.zip" />
+        <include name="eInvoicing-EN16931-master/en16931-ubl-*.zip" />
+      </fileset>
+    </unzip>
   </target>
 
   <target name="retrieve-cen-rules-from-release" depends="init"
@@ -481,7 +523,7 @@
     description="Download UN/CEFACT CII schemas to lib directory">
     <get src="${cii.download.url}" dest="${lib.dir}" verbose="true" skipexisting="true"
       usetimestamp="true" />
-    <unzip src="${lib.dir}/${cii.schema.zip}" dest="${lib.dir}">
+    <unzip src="${lib.dir}/${pom.properties.cii.schema.zip}" dest="${lib.dir}">
       <patternset>
         <include name="**/D16B*uncoupled.zip" />
       </patternset>
@@ -522,7 +564,7 @@
   <target name="compile-scenario" depends="init">
     <filter token="build.date" value="${build.date}" />
     <filter token="cen.spec.id" value="${cen.spec.id}" />
-    <filter token="cen.rules.version" value="${cen.rules.version}" />
+    <filter token="cen.rules.version" value="${pom.properties.cen.rules.version}" />
     <filter token="cen.download.url.ubl" value="${cen.download.url.ubl}" />
     <filter token="cen.download.url.cii" value="${cen.download.url.cii}" />
     <!-- This is actually the schematron part of it -->
@@ -533,9 +575,9 @@
     <filter token="xrechnung.build.date" value="${xrechnung.build.date}" />
     <filter token="xrechnung.version" value="${xrechnung.version}" />
     <filter token="xrechnung.spec.id" value="${xrechnung.spec.id}" />
-    <filter token="ubl.version" value="${ubl.version}" />
+    <filter token="ubl.version" value="${pom.properties.ubl.version}" />
     <filter token="ubl.download.url" value="${ubl.download.url}" />
-    <filter token="cii.version" value="${cii.version}" />
+    <filter token="cii.version" value="${pom.properties.cii.version}" />
     <filter token="cii.download.url" value="${cii.download.url}" />
     <copy file="scenarios.xml" todir="${repository.dir}" failonerror="true" filtering="true" />
   </target>
