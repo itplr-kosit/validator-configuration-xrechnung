@@ -44,28 +44,28 @@
             <artifactId>cen-schema-ubl</artifactId>
             <version>${cen.rules.version}</version>
             <scope>system</scope>
-            <systemPath unless="${cen.master.target}">${project.basedir}/lib/en16931-ubl-${cen.rules.version}.zip</systemPath>
+            <systemPath>${project.basedir}/lib/en16931-ubl-${cen.rules.version}.zip</systemPath>
         </dependency>
         <dependency>
             <groupId>cen.cii</groupId>
             <artifactId>cen-schema-cii</artifactId>
             <version>${cen.rules.version}</version>
             <scope>system</scope>
-            <systemPath unless="${cen.master.target}">${project.basedir}/lib/en16931-cii-${cen.rules.version}.zip</systemPath>
+            <systemPath>${project.basedir}/lib/en16931-cii-${cen.rules.version}.zip</systemPath>
         </dependency>
         <dependency>
             <groupId>cen.ubl</groupId>
             <artifactId>cen-schema-ubl</artifactId>
             <version>${cen.rules.version}</version>
             <scope>system</scope>
-            <systemPath if="${cen.master.target}">${project.basedir}/lib/master.zip</systemPath>
+            <systemPath>${project.basedir}/lib/master.zip</systemPath>
         </dependency>
         <dependency>
             <groupId>cen.cii</groupId>
             <artifactId>cen-schema-cii</artifactId>
             <version>${cen.rules.version}</version>
             <scope>system</scope>
-            <systemPath if="${cen.master.target}">${project.basedir}/lib/master.zip</systemPath>
+            <systemPath>${project.basedir}/lib/master.zip</systemPath>
         </dependency>
         -->
         <!--
