@@ -641,6 +641,7 @@
         <!-- Local files - not in repository -->
         <include name="XRechnung-CEFACT*.xml"/>
       </fileset>
+      <fileset dir="${test.src.dir}/integration"></fileset>
     </copy>
     
     <echo>Creating validation reports with ${lib.dir}/${validator.jar} for ${test.docs.integration.dir}</echo>
