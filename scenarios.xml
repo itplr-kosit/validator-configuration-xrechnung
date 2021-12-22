@@ -241,6 +241,68 @@
     <acceptMatch>/rep:report/rep:assessment[1]/rep:accept[1]</acceptMatch>
   </scenario>
 
+<!-- XRECHNUNG Extension CII -->
+  <scenario>
+    <name>EN16931 XRechnung Extension (CII)</name>
+    <description>
+      <p>Validates UN/CEFACT XML (SCRDM - CII uncoupled) version
+        @cii.version@</p>
+      <p>Uses UN/CEFACT (SCRDM - CII uncoupled) version
+        @cii.version@ XML Schema, Schematron rules from EN16931:2017,
+        and XRechnung Schematron rules version @xrechnung.version@ </p>
+      <p>Download of CII uncoupled XML Schema on @build.date@ from
+        @cii.download.url@</p>
+      <p>Download of CII Schematron rules on @build.date@ from
+        @cen.download.url.cii@</p>
+      <p>Download of XRechnung Schematron rules on @build.date@ from
+        @xrechnung.download.url@</p>
+    </description>
+    
+    <!-- CII namespaces -->
+    <namespace prefix="rsm"
+      >urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100</namespace>
+    <namespace prefix="ram"
+      >urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100</namespace>
+    <!-- Namespace for acceptMatch XPATH within validator report XML -->
+    <namespace prefix="rep">http://www.xoev.de/de/validator/varl/1</namespace>
+    
+    <match>exists(/rsm:CrossIndustryInvoice[rsm:ExchangedDocumentContext/ram:GuidelineSpecifiedDocumentContextParameter/ram:ID/text() = '@xrechnung.spec.id@#conformant#urn:xoev-de:kosit:extension:xrechnung_2.1'])</match>
+    
+    <validateWithXmlSchema>
+      <resource>
+        <name>XML Schema for UN/CEFACT XML (SCRDM - CII uncoupled)</name>
+        <location>resources/cii/16b/xsd/CrossIndustryInvoice_100pD16B.xsd</location>
+      </resource>
+    </validateWithXmlSchema>
+    <validateWithSchematron>
+      <resource>
+        <name>Schematron rules for EN16931 (CII)</name>
+        <location>resources/cii/16b/xsl/EN16931-CII-validation.xsl</location>
+      </resource>
+    </validateWithSchematron>
+    <validateWithSchematron>
+      <resource>
+        <name>Schematron rules for CIUS XRechnung (CII)</name>
+        <location>resources/xrechnung/@xrechnung.version@/xsl/XRechnung-CII-validation.xsl</location>
+      </resource>
+    </validateWithSchematron>
+    
+    <createReport>
+      <resource>
+        <name>Validation report for XRechnung</name>
+        <location>resources/xrechnung-report.xsl</location>
+      </resource>
+      <customLevel level="information">BR-CL-01</customLevel>
+      <customLevel level="warning">BR-CL-23</customLevel>
+      <customLevel level="warning">BR-CL-21</customLevel>
+      <customLevel level="information">BR-CL-10</customLevel>
+      <customLevel level="information">BR-CL-11</customLevel>
+      <customLevel level="information">BR-CL-25</customLevel>
+      <customLevel level="information">BR-CL-26</customLevel>
+    </createReport>
+    <acceptMatch>/rep:report/rep:assessment[1]/rep:accept[1]</acceptMatch>
+    
+  </scenario>
 
    <!-- Match for general CEN rules validation only: WITHOUT XRECHNUNG rules -->
   <scenario>
