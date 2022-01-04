@@ -16,8 +16,8 @@
   <property name="testsuite.instances.dir" location="${test.build.dir}/testsuite" />
 
   <!-- Naming -->
-  <property name="xrechnung.version.major.minor" value="2.1" />
-  <property name="xrechnung.version.patch" value="1" />
+  <property name="xrechnung.version.major.minor" value="2.2" />
+  <property name="xrechnung.version.patch" value="0" />
   <property name="xrechnung.version"
     value="${xrechnung.version.major.minor}.${xrechnung.version.patch}" />
   <property name="cen.spec.id" value="urn:cen.eu:en16931:2017" />
