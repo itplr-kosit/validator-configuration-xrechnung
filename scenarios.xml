@@ -190,6 +190,9 @@
     </createReport>
     <acceptMatch>/rep:report/rep:assessment[1]/rep:accept[1]</acceptMatch>
   </scenario>
+  
+  <!-- XRechnung Standard (CIUS) CII -->
+  
   <scenario>
     <name>EN16931 XRechnung (CII)</name>
     <description>
