@@ -126,9 +126,13 @@
         <location>resources/xrechnung-report.xsl</location>
       </resource>
       <customLevel level="information">BR-CL-01</customLevel>
-      <customLevel level="warning">BR-CL-21</customLevel>
+      <customLevel level="information">BR-CL-21</customLevel>
       <customLevel level="warning">BR-CL-23</customLevel>
       <customLevel level="warning">BR-CL-24</customLevel>
+      <customLevel level="information">BR-CL-10</customLevel>
+      <customLevel level="information">BR-CL-11</customLevel>
+      <customLevel level="information">BR-CL-25</customLevel>
+      <customLevel level="information">BR-CL-26</customLevel>
     </createReport>
     <acceptMatch>/rep:report/rep:assessment[1]/rep:accept[1]</acceptMatch>
   </scenario>
@@ -286,7 +290,6 @@
         <location>resources/xrechnung/@xrechnung.version@/xsl/XRechnung-CII-validation.xsl</location>
       </resource>
     </validateWithSchematron>
-    
     <createReport>
       <resource>
         <name>Validation report for XRechnung</name>
@@ -294,15 +297,15 @@
       </resource>
       <customLevel level="information">BR-CL-01</customLevel>
       <customLevel level="warning">BR-CL-23</customLevel>
-      <customLevel level="warning">BR-CL-21</customLevel>
-      <customLevel level="information">BR-CL-10</customLevel>
+      <customLevel level="information">BR-CL-21</customLevel>
       <customLevel level="information">BR-CL-11</customLevel>
+      <customLevel level="information">BR-CL-10</customLevel>
       <customLevel level="information">BR-CL-25</customLevel>
       <customLevel level="information">BR-CL-26</customLevel>
     </createReport>
     <acceptMatch>/rep:report/rep:assessment[1]/rep:accept[1]</acceptMatch>
-    
   </scenario>
+
 
    <!-- Match for general CEN rules validation only: WITHOUT XRECHNUNG rules -->
   <scenario>
