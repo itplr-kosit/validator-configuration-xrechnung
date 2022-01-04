@@ -247,8 +247,8 @@
     </createReport>
     <acceptMatch>/rep:report/rep:assessment[1]/rep:accept[1]</acceptMatch>
   </scenario>
-
-<!-- XRECHNUNG Extension CII -->
+  
+  <!-- XRechnung Extension CII -->
   <scenario>
     <name>EN16931 XRechnung Extension (CII)</name>
     <description>
@@ -260,11 +260,10 @@
       <p>Download of CII uncoupled XML Schema on @build.date@ from
         @cii.download.url@</p>
       <p>Download of CII Schematron rules on @build.date@ from
-        @cen.download.url.cii@</p>
+        @cen.download.url.cii@ </p>
       <p>Download of XRechnung Schematron rules on @build.date@ from
         @xrechnung.download.url@</p>
     </description>
-    
     <!-- CII namespaces -->
     <namespace prefix="rsm"
       >urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100</namespace>
@@ -276,7 +275,8 @@
     <match>exists(/rsm:CrossIndustryInvoice[rsm:ExchangedDocumentContext/ram:GuidelineSpecifiedDocumentContextParameter/ram:ID/text() = '@xrechnung.spec.id@#conformant#urn:xoev-de:kosit:extension:xrechnung_2.2'])</match>
     <validateWithXmlSchema>
       <resource>
-        <name>XML Schema for UN/CEFACT XML (SCRDM - CII uncoupled)</name>
+        <name>XML Schema for UN/CEFACT XML (SCRDM - CII
+          uncoupled)</name>
         <location>resources/cii/16b/xsd/CrossIndustryInvoice_100pD16B.xsd</location>
       </resource>
     </validateWithXmlSchema>
