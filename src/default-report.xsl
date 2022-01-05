@@ -724,7 +724,7 @@
       <xsl:otherwise>
         <p class="important">
           <b>Konformitätsprüfung: </b>
-          <xsl:text>Das geprüfte Dokument entspricht keinen zulässigen Dokumenttyp und ist damit </xsl:text>
+          <xsl:text>Das geprüfte Dokument entspricht keinem zulässigen Dokumenttyp und ist damit </xsl:text>
           <b>nicht konform</b>
           <xsl:text> zu den formalen Vorgaben.</xsl:text>
         </p>
