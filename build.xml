@@ -243,7 +243,7 @@
   <target name="provide-validator" depends="init, retrieve-validator"
     description="Download KoSIT validation tool and add jar to library directory">
 
-    <echo message="Unpacking Validator reosurces" />
+    <echo message="Unpacking Validator resources" />
 
     <unzip src="${download.dir}/${validator.zip}" dest="${lib.dir}">
       <patternset>
