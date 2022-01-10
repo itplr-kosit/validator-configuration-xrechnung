@@ -119,15 +119,6 @@
     >Report has
                           status valid</a:assertion>
   <a:assertion report-doc="ubl002-report.xml"
-    test="format-dateTime(rep:report/rep:timestamp, '[Y0001][M01][D01]') = format-date(current-date(),'[Y0001][M01][D01]')"
-    >Timestamp is today</a:assertion>
-  <a:assertion report-doc="ubl002-report.xml"
-    test="not(rep:report/rep:documentIdentification/rep:documentHash/rep:hashValue = 'TfvPbPcDevSv5anZIbgsyLioTLdzjnLTSXRhMsBlCIo=')"
-    >Document hash matches</a:assertion>
-  <a:assertion report-doc="ubl002-report.xml"
-    test="not(contains(rep:report/rep:documentIdentification/rep:documentReference, 'ubl001'))"
-    >Document reference matches</a:assertion>
-  <a:assertion report-doc="ubl002-report.xml"
     test="rep:report/rep:scenarioMatched"
     >Scenario
                           found</a:assertion>
@@ -138,9 +129,6 @@
   <a:assertion report-doc="ubl002-report.xml"
     test="rep:report/rep:scenarioMatched/rep:documentData/*"
     >Document data found</a:assertion>
-  <a:assertion report-doc="ubl002-report.xml"
-    test="rep:report/rep:scenarioMatched/rep:validationStepResult[@id = 'val-xsd']"
-    >Schema validation performed</a:assertion>
   <a:assertion report-doc="ubl002-report.xml"
     test="rep:report/rep:scenarioMatched/rep:validationStepResult[@id = 'val-xsd']/@valid = 'true'"
     >Schema validatation has status valid</a:assertion>
