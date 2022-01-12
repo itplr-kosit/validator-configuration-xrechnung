@@ -15,15 +15,22 @@
     test="/rep:report/rep:assessment/rep:accept"
     >Report accepts invoice</a:assertion>
   
-  <a:assertion report-doc="ubl-br-dex-2-false-negative-report.xml" test="/rep:report/rep:scenarioMatched[1]/rep:validationStepResult[2]/rep:message[ @code = 'UBL-CR-646' and @level='warning']">
+  <a:assertion report-doc="ubl-br-dex-2-false-negative-report.xml" 
+    test="/rep:report/rep:scenarioMatched[1]/rep:validationStepResult[2]/rep:message[ @code = 'UBL-CR-646' and @level='warning']">
     Should have warning about UBL-CR-646
   </a:assertion>
   
   <a:assertion report-doc="diga-cii-extension-codes-report.xml"
-    test="/rep:report/rep:scenarioMatched[1]/rep:validationStepResult[2]/rep:message[ @code = 'BR-CL-21' and @level='warning']">
+    test="/rep:report/rep:scenarioMatched[1]/rep:validationStepResult[2]/rep:message[ @code = 'BR-CL-21' and @level='error']">
     
+    Should have error about BR-CL-21
   </a:assertion>
   
+  <a:assertion report-doc="diga-cii-extension-codes-report.xml"
+    test="/rep:report/rep:assessment/rep:accept/rep:explanation/html:html/html:body/html:table[2]/html:tbody/html:tr[@class = 'information']/html:td[text() = 'BR-CL-21']">
+    
+    Should have warning about BR-CL-21
+  </a:assertion>
 
 
 </a:assertions>
