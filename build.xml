@@ -73,10 +73,10 @@
 
   <!-- XRechnung Schematron Rules section -->
   <!-- build date might get deprecated in future: check on this -->
-  <property name="xrechnung.build.date" value="2021-11-15" />
+  <property name="xrechnung.build.date" value="2022-01-31" />
   <!-- XRechnung Schematron -->
-  <property name="xr.schematron.version.major.minor" value="1.6" />
-  <property name="xr.schematron.version.patch" value="1" />
+  <property name="xr.schematron.version.major.minor" value="1.7" />
+  <property name="xr.schematron.version.patch" value="0" />
   <property name="xr.schematron.version.full"
     value="${xr.schematron.version.major.minor}.${xr.schematron.version.patch}" />
   <property name="xr.schematron.download.url.prefix"
@@ -560,6 +560,8 @@
       <arg value="-r" />
       <arg value="${build.dir}" />
       <arg value="--html" />
+      <arg value="--log-level" />
+      <arg value="info" />
       <arg value="--check-assertions" />
       <arg value="${test.src.dir}/assertions.xml" />
       <arg value="-o" />
