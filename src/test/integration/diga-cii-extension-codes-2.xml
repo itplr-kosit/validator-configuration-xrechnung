@@ -90,7 +90,7 @@
                 <!-- BT-34 Seller electronic address and BT-34-1 Seller electronic address identification scheme identifier -->
                 <!-- BR-CL-25 BR-DEX-07 -->
                 <ram:URIUniversalCommunication>
-                    <ram:URIID schemeID="knVXugjN">zWZbhyav</ram:URIID>
+                    <ram:URIID schemeID="XR01">zWZbhyav</ram:URIID>
                 </ram:URIUniversalCommunication> 
                 <ram:SpecifiedTaxRegistration>
                     <ram:ID schemeID="VA">DE 123 456 789</ram:ID>
@@ -116,9 +116,7 @@
             </ram:BuyerTradeParty>
         </ram:ApplicableHeaderTradeAgreement>
         <ram:ApplicableHeaderTradeDelivery>
-            <ram:ShipToTradeParty>
-                <!-- BT-71 Deliver to location identifier -->
-                <ram:ID>nmNn9RE_</ram:ID>    
+            <ram:ShipToTradeParty> 
                 <!-- BT-71 Deliver to location identifier und BT-71-1 Deliver to location identifier identificationscheme identifier -->
                 <!-- BR-CL-26 BR-DEX-08 -->
                 <!-- BR-CL-10 BR-DEX-04 -->
