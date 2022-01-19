@@ -42,7 +42,7 @@
       </cac:PartyLegalEntity>
       <cac:Contact>
         <cbc:Name>Testname</cbc:Name>
-        <cbc:Telephone>Testname</cbc:Telephone>
+        <cbc:Telephone>12345</cbc:Telephone>
         <cbc:ElectronicMail>test@test.de</cbc:ElectronicMail>
       </cac:Contact>
     </cac:Party>
