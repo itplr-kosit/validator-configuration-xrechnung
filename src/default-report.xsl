@@ -642,7 +642,7 @@
         <tr>
           <th style="width: 30mm;">Pos</th>
           <th style="width: 25mm;">Code</th>
-          <th style="width: 25mm;">Adj. Grad (Grad)</th>
+          <th style="width: 25mm;">Adj. Grad</th>
           <th>Text</th>
         </tr>
       </thead>
@@ -660,9 +660,9 @@
             </td>
             <td rowspan="2">
               <xsl:value-of select="rep:custom-level(.)" />
-              <xsl:if test="not(rep:custom-level(.) eq @level)">
+              <!--<xsl:if test="not(rep:custom-level(.) eq @level)">
                 <xsl:value-of select="concat(' (', @level, ')')" />
-              </xsl:if>
+              </xsl:if>-->
             </td>
             <td>
               <xsl:value-of select="normalize-space(.)" />
@@ -724,7 +724,7 @@
       <xsl:otherwise>
         <p class="important">
           <b>Konformitätsprüfung: </b>
-          <xsl:text>Das geprüfte Dokument entspricht keinen zulässigen Dokumenttyp und ist damit </xsl:text>
+          <xsl:text>Das geprüfte Dokument entspricht keinem zulässigen Dokumenttyp und ist damit </xsl:text>
           <b>nicht konform</b>
           <xsl:text> zu den formalen Vorgaben.</xsl:text>
         </p>
