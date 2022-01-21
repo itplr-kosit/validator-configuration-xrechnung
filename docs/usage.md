@@ -14,12 +14,15 @@ In an empty directory:
 curl -L "https://github.com/itplr-kosit/validator/releases/download/v1.4.2/validator-1.4.2-distribution.zip" --output validator.zip
 
 # download configuration (for 2.1.1)
-curl -L "https://github.com/itplr-kosit/validator-configuration-xrechnung/releases/download/release-2021-07-31/validator-configuration-xrechnung_2.1.1_2021-07-31.zip" --output validator-configuration.zip
+curl -L "https://github.com/itplr-kosit/validator-configuration-xrechnung/releases/download/release-2021-11-15/validator-configuration-xrechnung_2.1.1_2021-11-15.zip" --output validator-configuration.zip
 # Alternative download (for 2.0.1)
 #curl -L "https://github.com/itplr-kosit/validator-configuration-xrechnung/releases/download/release-2020-12-31/validator-configuration-xrechnung_2.0.1_2020-12-31.zip" --output validator-configuration.zip
 
 # download a test document
-curl -L "https://raw.githubusercontent.com/itplr-kosit/xrechnung-testsuite/master/src/test/business-cases/standard/01.01a-INVOICE_ubl.xml" --output ubl.xml
+# curl -L "https://raw.githubusercontent.com/itplr-kosit/xrechnung-testsuite/master/src/test/business-cases/standard/01.01a-INVOICE_ubl.xml" --output ubl.xml
+# XRechnung 2.1 branch: 799416634e60639c575dc752145dfcb0cf0bd31d
+curl -L 'https://raw.githubusercontent.com/itplr-kosit/xrechnung-testsuite/799416634e60639c575dc752145dfcb0cf0bd31d/src/test/business-cases/standard/01.01a-INVOICE_ubl.xml' --output ubl.xml
+
 
 # show content of directory
 ls
