@@ -8,7 +8,7 @@
 ##
 # The XRechnung Version this configuration implements
 ##
-#xrechnung.version=2.0.1
+#xrechnung.version=2.2.0
 
 ##
 # Set this property in order to activate targets for local development
@@ -16,7 +16,7 @@
 ##
 #develop.local.validator=true
 
-#validator.version=1.4.1-SNAPSHOT
+#validator.version=1.4.2-SNAPSHOT
 ##
 # Should point to main directory of validator project, in case of local path
 ##
@@ -33,7 +33,7 @@
 ##
 #xr.testsuite.download.url.prefix=file://${work.dir}/../xrechnung-testsuite/dist
 
-#xr.testsuite.version=2020-12-31
+#xr.testsuite.version=2021-11-15
 
 ##
 # Set this property in order to activate targets for local development
@@ -44,8 +44,8 @@
 ##
 # Set version of xrechnung schematron
 ##
-#xr.schematron.version.major.minor=1.5
-#xr.schematron.version.patch=0
+#xr.schematron.version.major.minor=1.6
+#xr.schematron.version.patch=1
 
 ###
 # Get schematron distribution from your local git project

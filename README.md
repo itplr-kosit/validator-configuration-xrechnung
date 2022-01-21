@@ -21,4 +21,4 @@ In particular this Validator Configuration integrates the following third-party 
 
 The git master branch always has the latest code. Since March 2018 new releases have the following naming and versioning scheme:
 
-The source code gets tagged with `release-${release-date}` and distributions get the name `validator-configuration-xrechnung_${xrechnung-version}_${release-date}` e.g. `validator-configuration-xrechnung_1.2.0_2018-12-19.zip`
+The source code gets tagged with `release-${release-date}` and distributions get the name `validator-configuration-xrechnung_${xrechnung-version}_${release-date}` e.g. `validator-configuration-xrechnung_2.1.1_2021-11-15.zip`
