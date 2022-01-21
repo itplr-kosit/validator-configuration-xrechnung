@@ -6,7 +6,7 @@ It contains all necessary XML Schema and Schematron rules to validate UBL and CI
 
 In particular:
 
-* [Schematron of EN16931:2017](https://github.com/CenPC434/validation)
+* [Schematron of EN16931:2017](https://github.com/ConnectingEurope/eInvoicing-EN16931)
 * [Schematron of CIUS XRechnung](https://github.com/itplr-kosit/xrechnung-schematron/)
 * [XML Schema of UBL Invoice and CreditNote version 2.1](http://docs.oasis-open.org/ubl/os-UBL-2.1/)
 * [XML Schema of UN/CEFACT uncoupled version 16b](http://www.unece.org/cefact/xml_schemas/index.html)
@@ -21,13 +21,14 @@ In an empty directory:
 
 ```shell
 # download validator
-curl -L 'https://github.com/itplr-kosit/validator/releases/download/v1.4.1/validationtool-1.4.1.zip' --output validator.zip
+curl -L 'https://github.com/itplr-kosit/validator/releases/download/v1.4.2/validator-1.4.2-distribution.zip' --output validator.zip
 
 # download configuration
-curl -L 'https://github.com/itplr-kosit/validator-configuration-xrechnung/releases/download/release-2020-12-31/validator-configuration-xrechnung_2.0.1_2020-12-31.zip' --output validator-configuration.zip
+curl -L 'https://github.com/itplr-kosit/validator-configuration-xrechnung/releases/download/release-2021-11-15/validator-configuration-xrechnung_2.1.1_2021-11-15.zip' --output validator-configuration.zip
 
-# download a test document
-curl -L 'https://raw.githubusercontent.com/itplr-kosit/xrechnung-testsuite/master/src/test/business-cases/standard/01.01a-INVOICE_ubl.xml' --output ubl.xml
+# download a test document (branch MUST match XRechnung version)
+# XRechnung 2.1: 799416634e60639c575dc752145dfcb0cf0bd31d
+curl -L 'https://raw.githubusercontent.com/itplr-kosit/xrechnung-testsuite/799416634e60639c575dc752145dfcb0cf0bd31d/src/test/business-cases/standard/01.01a-INVOICE_ubl.xml' --output ubl.xml
 # show content of directory
 ls
 # should show something like this:
@@ -44,7 +45,7 @@ unzip validator-configuration.zip
 3. Run Validator
 
 ```shell
-java -jar ${jar_of_your_choice}.jar -s scenarios.xml  -h ubl.xml
+java -jar ${jar_of_your_choice}.jar -s scenarios.xml -h ubl.xml
 ```
 
 Validation reports are then written to `${test-document-file-name}-report.xml` and `${test-document-file-name}-report.html` e.g. `ubl-report.xml` and `ubl-report.html` according to above example.
@@ -53,7 +54,7 @@ Validation reports are then written to `${test-document-file-name}-report.xml` a
 
 The git master branch always has the latest code. Since March 2018 new releases have the following naming and versioning scheme:
 
-The source code gets tagged with `release-${release-date}` and distributions get the name `validator-configuration-xrechnung_${xrechnung-version}_${release-date}` e.g. `validator-configuration-xrechnung_1.2.0_2018-12-19.zip`
+The source code gets tagged with `release-${release-date}` and distributions get the name `validator-configuration-xrechnung_${xrechnung-version}_${release-date}` e.g. `validator-configuration-xrechnung_2.1.1_2021-11-15.zip`
 
 ## Releases
 

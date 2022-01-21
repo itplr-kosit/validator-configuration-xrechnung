@@ -14,10 +14,10 @@
             (https://www.xoev.de/die_standards/xrechnung-14741).</p>
     <p>It uses CEN Schematron rules of @cen.spec.id@
             in version @cen.rules.version@ from @build.date@
-            (https://github.com/CenPC434/validation/releases).</p>
+            (https://github.com/ConnectingEurope/eInvoicing-EN16931/releases).</p>
     <p>It uses Schematron Rules version @xrechnung.rules.version.full@ for XRechnung specification version
             @xrechnung.version@ 
-            (@xrechnung.download.url@). </p>
+            (@xrechnung.download.url@).</p>
   </description>
 
   <!-- XRECHNUNG specific scenarios -->
@@ -118,7 +118,6 @@
         <name>Schematron rules for Invoice - XRechnung (UBL)</name>
         <location>resources/xrechnung/@xrechnung.version@/xsl/XRechnung-UBL-validation-Invoice.xsl</location>
       </resource>
-      
     </validateWithSchematron>
     <createReport>
       <resource>
