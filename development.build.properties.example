@@ -8,7 +8,7 @@
 ##
 # The XRechnung Version this configuration implements
 ##
-#xrechnung.version=2.1.1
+#xrechnung.version=2.2.0
 
 ##
 # Set this property in order to activate targets for local development
