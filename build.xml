@@ -80,11 +80,12 @@
   <property name="xr.schematron.version.patch" value="0" />
   <property name="xr.schematron.version.full"
     value="${xr.schematron.version.major.minor}.${xr.schematron.version.patch}" />
+
   <property name="xr.schematron.download.url.prefix"
     value="https://github.com/itplr-kosit/xrechnung-schematron/releases/download/release-${xr.schematron.version.full}" />
-
   <property name="xr.schematron.zip"
     value="xrechnung-${xrechnung.version}-schematron-${xr.schematron.version.full}.zip" />
+  <property name="xr.schematron.download.url" value="${xr.schematron.download.url.prefix}/${xr.schematron.zip}" />  
 
   <property name="xr.testsuite.version" value="2022-01-31" />
   <property name="xr.testsuite.download.url.prefix"
@@ -379,16 +380,16 @@
 
   <target name="retrieve-xrechnung-schematron-from-local-build" depends="init"
     if="develop.local.xr.schematron">
-    <echo message="Loading from file ${xr.schematron.download.url.prefix}/${xr.schematron.zip}" />
+    <echo message="Loading from file ${xr.schematron.download.url}" />
 
-    <get src="${xr.schematron.download.url.prefix}/${xr.schematron.zip}" dest="${download.dir}"
+    <get src="${xr.schematron.download.url}" dest="${download.dir}"
       verbose="true" skipexisting="false" usetimestamp="false" httpusecaches="false" />
   </target>
 
   <target name="retrieve-xrechnung-schematron-from-github-release" depends="init"
     unless="develop.local.xr.schematron">
-    <echo message="Loading from GitHub ${xr.schematron.download.url.prefix}/${xr.schematron.zip}" />
-    <get src="${xr.schematron.download.url.prefix}/${xr.schematron.zip}" dest="${download.dir}"
+    <echo message="Loading from GitHub ${xr.schematron.download.url}" />
+    <get src="${xr.schematron.download.url}" dest="${download.dir}"
       verbose="true" skipexisting="true" usetimestamp="true" />
   </target>
 
