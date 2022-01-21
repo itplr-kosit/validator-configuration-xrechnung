@@ -1,13 +1,15 @@
-dist
-build
-lib
-reports
-test-reports
-development.build.properties
+dist/
+build/
+lib/
+reports/
+test-reports/
+
 # configuration files
-.vscode
-*.xpr
 .ant-targets-build.xml
-*.code-workspace
 .project
+.vscode
+development.build.properties
 zz
+
+*.code-workspace
+*.xpr
