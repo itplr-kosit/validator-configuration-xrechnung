@@ -7,10 +7,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 -->
 
-## 2022-02-31
+## 2022-01-31
 
 This release is compatible with XRechnung 2.2.0
 Because of new CEN Rules version 1.3.7 and XRechnung Schematron 1.7.0 it might break your validation and business workflow. Please evaluate impact!
+
+### Added
+
+* Scenario for CII Extension
+* Set custom rule levels of `BR-CL-10`, `BR-CL-11`, `BR-CL-25`, and `BR-CL-26`to "information" in Extension scenarios
+* Integration tests for the custom levels of the Extension scenarios
 
 ### Changed
 
