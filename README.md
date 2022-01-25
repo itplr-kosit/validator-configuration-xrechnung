@@ -8,9 +8,9 @@ For further technical information see the specific pages [on usage](docs/usage.m
 
 ## Releases
 
-Each [release](https://github.com/itplr-kosit/validator-configuration-xrechnung/releases) contains all necessary XML Schema and Schematron rules to validate UBL and CII invoice XML documents for conformity with [CIUS XRechnung](https://www.xoev.de/xrechnung-16828).
+Each [release](https://github.com/itplr-kosit/validator-configuration-xrechnung/releases) contains all necessary XML Schema and Schematron rules to validate UBL and CII invoice XML documents for conformity with [CIUS and Extension XRechnung](https://www.xoev.de/xrechnung-16828).
 
-In particular this Validator Configuration integrates the following third-party artefacts:
+In particular this Validator Configuration integrates the following third-party artifacts:
 
 * [Schematron of EN16931:2017](https://github.com/ConnectingEurope/eInvoicing-EN16931)
 * [Schematron of CIUS XRechnung](https://github.com/itplr-kosit/xrechnung-schematron/)
