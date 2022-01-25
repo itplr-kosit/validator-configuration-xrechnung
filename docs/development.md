@@ -1,5 +1,7 @@
 # Development of Validator Configuration XRechnung
 
+This repository contains an ANT `build.xml` which allows downloading all necessary tools and artefacts for creating this validator configuration for XRechnung. It also allows testing the configuration against a few UBL and UN/CEFACT documents and creates a release zip file.
+
 ## Dependencies overview
 
 ### Compile time
@@ -17,23 +19,7 @@ The following dependencies are downloaded automatically from within the build sc
 * XML Mutate
 * XRechnung Testsuite
 
-### Installing XML Mutate
-
-`XML Mutate` needs to be build and setup manually - see https://projekte.kosit.org/kosit/xml-mutate for installation details.
-
-Additionally a custom property needs to point to the XML Mutate binary and the version
-* Property `xmute.download.url.prefix` indicates the URL to the cloned repository (as e.g. in `file:///../xml-mutate`)
-* Property `xmute.version.full` indicates the full version number of the created binary JAR file (defaults to `0.5`).
-
-Example Ant call (for Windows users):
-
-```
-ant clean dist \
-  -Dxmute.download.url.prefix=file:///C:/dev/git3p/xml-mutate \
-  -Dxmute.version.full=0.5
-```
-
-## The build environment
+## Build from scratch
 
 We recommend `ant` version 1.10.x or newer (but should work with > 1.8.x).
 
@@ -87,9 +73,25 @@ You have to copy the file to e.g. `development.build.properties` and you have to
 ant -propertyfile ${your.own.property.file.name}
 ```
 
-Hint: we recommend that you place the properties `xmute.download.url.prefix` and `xmute.version.full` in this file.
-
 ## Test Approach
+
+### Installing XML Mutate
+
+`XML Mutate` needs to be build and setup manually - see https://projekte.kosit.org/kosit/xml-mutate for installation details.
+
+Additionally a custom property needs to point to the XML Mutate binary and the version
+* Property `xmute.download.url.prefix` indicates the URL to the cloned repository (as e.g. in `file:///../xml-mutate`)
+* Property `xmute.version.full` indicates the full version number of the created binary JAR file (defaults to `0.5`).
+
+Example Ant call (for Windows users):
+
+```
+ant clean dist \
+  -Dxmute.download.url.prefix=file:///C:/dev/git3p/xml-mutate \
+  -Dxmute.version.full=0.5
+```
+
+Hint: we recommend that you place the properties `xmute.download.url.prefix` and `xmute.version.full` in the "development properties file" (see above).
 
 ### Configuration Report Tests
 

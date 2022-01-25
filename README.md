@@ -1,69 +1,24 @@
 # Validator Configuration for XRechnung
 
-[Validator](https://github.com/itplr-kosit/validator) configuration for Universal Business Language (UBL) and UN/CEFACT Invoice and CreditNote documents against EN16931:2017 and the German [Core Invoice Usage Specification (CIUS) XRechnung and XRechnung Extension](https://www.xoev.de/die_standards/xrechnung-14741).
+[Validator](https://github.com/itplr-kosit/validator) configuration for Universal Business Language (UBL) and UN/CEFACT Invoice and CreditNote documents against EN16931:2017 and the German [Core Invoice Usage Specification (CIUS) XRechnung and XRechnung Extension](https://www.xoev.de/die_standards/xrechnung-14741). It needs the [Validator](https://github.com/itplr-kosit/validator) to execute the rules.
 
-It contains all necessary XML Schema and Schematron rules to validate UBL and CII invoice XML documents for conformity with [CIUS XRechnung](https://www.xoev.de/die_standards/xrechnung-14741).
+For general questions to the standard "XRechnung" and related components refer to the [official operations and support website](https://www.xoev.de/xrechnung/betrieb-und-support-16853).
 
-In particular:
+For further technical information see the specific pages [on usage](docs/usage.md) and [on development](docs/development.md).
+
+## Releases
+
+Each [release](https://github.com/itplr-kosit/validator-configuration-xrechnung/releases) contains all necessary XML Schema and Schematron rules to validate UBL and CII invoice XML documents for conformity with [CIUS and Extension XRechnung](https://www.xoev.de/xrechnung-16828).
+
+In particular this Validator Configuration integrates the following third-party artifacts:
 
 * [Schematron of EN16931:2017](https://github.com/ConnectingEurope/eInvoicing-EN16931)
 * [Schematron of CIUS XRechnung](https://github.com/itplr-kosit/xrechnung-schematron/)
 * [XML Schema of UBL Invoice and CreditNote version 2.1](http://docs.oasis-open.org/ubl/os-UBL-2.1/)
-* [XML Schema of UN/CEFACT uncoupled version 16b](http://www.unece.org/cefact/xml_schemas/index.html)
-
-## Usage
-
-Change according to your environment.
-
-In an empty directory:
-
-1. Downloads:
-
-```shell
-# download validator
-curl -L 'https://github.com/itplr-kosit/validator/releases/download/v1.4.2/validator-1.4.2-distribution.zip' --output validator.zip
-
-# download configuration
-curl -L 'https://github.com/itplr-kosit/validator-configuration-xrechnung/releases/download/release-2021-11-15/validator-configuration-xrechnung_2.1.1_2021-11-15.zip' --output validator-configuration.zip
-
-# download a test document (branch MUST match XRechnung version)
-# XRechnung 2.1: 799416634e60639c575dc752145dfcb0cf0bd31d
-curl -L 'https://raw.githubusercontent.com/itplr-kosit/xrechnung-testsuite/799416634e60639c575dc752145dfcb0cf0bd31d/src/test/business-cases/standard/01.01a-INVOICE_ubl.xml' --output ubl.xml
-# show content of directory
-ls
-# should show something like this:
-ubl.xml validator.zip  validator-configuration.zip
-```
-
-2. Unzip
-
-```shell
-unzip validator.zip
-unzip validator-configuration.zip
-```
-
-3. Run Validator
-
-```shell
-java -jar ${jar_of_your_choice}.jar -s scenarios.xml -h ubl.xml
-```
-
-Validation reports are then written to `${test-document-file-name}-report.xml` and `${test-document-file-name}-report.html` e.g. `ubl-report.xml` and `ubl-report.html` according to above example.
+* [XML Schema of UN/CEFACT uncoupled version 16B](http://www.unece.org/cefact/xml_schemas/index.html)
 
 ## Versioning
 
 The git master branch always has the latest code. Since March 2018 new releases have the following naming and versioning scheme:
 
 The source code gets tagged with `release-${release-date}` and distributions get the name `validator-configuration-xrechnung_${xrechnung-version}_${release-date}` e.g. `validator-configuration-xrechnung_2.1.1_2021-11-15.zip`
-
-## Releases
-
-The release only contains the XML Schema and Schematron Rules for the validator configuration for XRechnung.
-
-It is always recommended to update to the latest release.
-
-Here you can [download the latest release](https://github.com/itplr-kosit/validator-configuration-xrechnung/releases/latest).
-
-## Build from Scratch
-
-This repository contains an ANT `build.xml` which allows downloading all necessary tools and artefacts for creating this validator configuration for XRechnung. It also allows testing the configuration against a few UBL and UN/CEFACT documents and creates a release zip file.
