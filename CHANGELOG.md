@@ -7,10 +7,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 -->
 
-## UNRELEASED
-This release is compatible with XRechnung ?
-Because of new CEN Rules version ? and XRechnung Schematron ? it might break your validation and business workflow. Please evaluate impact!
+## 2022-05-31
+This release is compatible with XRechnung 2.2.0
 
+### Changed
+
+* Using [XRechnung Schematron 1.7.2](https://github.com/itplr-kosit/xrechnung-schematron/releases/tag/release-1.7.2)
+* Using [XRechnung Testsuite 2022-05-31](https://github.com/itplr-kosit/xrechnung-testsuite/releases/tag/release-2022-05-31)
 
 ## 2022-02-07
 
