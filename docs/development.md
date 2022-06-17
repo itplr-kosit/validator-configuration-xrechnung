@@ -186,7 +186,7 @@ If you want to skip tests call `ant dist-only`.
 
 ### Publish
 
-* Draft a new release at https://github.com/itplr-kosit/xrechnung-testsuite/releases/new
+* Draft a new release at https://github.com/itplr-kosit/validator-configuration-xrechnung/releases/new
   * Choose the git tag
 * Add a release title of the following scheme: `Validator Configuration 2022-05-31 compatible with XRechnung 2.2.0`.
 * Copy & paste the high quality changelog entries for this release from CHANGELOG.md.
