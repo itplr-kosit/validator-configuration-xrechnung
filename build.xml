@@ -635,13 +635,14 @@
   <target name="test-integration" depends="init-test, provide-validator, provide-testsuite, test-mutations, test-integration-only" 
     description="Integration testing result of XRechnung Configuration"></target>
 
-  <target name="test-integration-only" description="Noting but integration testing">
+  <target name="test-integration-only" description="Nothing but integration testing">
     <echo message="Compiling instances for integration tests"/>
     <!-- Requires output of XML Mutate -->
     <copy todir="${test.docs.integration.dir}" verbose="true">
       <fileset dir="${test.docs.cen.unit.dir}">
         <include name="cii-br-s-08-rounding-rule.xml"/>
         <include name="ubl-br-dex-2-false-negative.xml"/>
+        <include name="ubl-br-de-16-br-O-02.xml"/>
         <!-- Local files - not in repository -->
         <include name="XRechnung-CEFACT*.xml"/>
       </fileset>

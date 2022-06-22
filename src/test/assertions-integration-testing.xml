@@ -68,4 +68,22 @@
     Should have information about BR-CL-25
   </a:assertion>
 
+  <a:assertion report-doc="ubl-br-de-16-br-O-02-report.xml"
+    test="/rep:report/rep:scenarioMatched[1]/rep:validationStepResult[2]/rep:message[ @code = 'BR-O-02' and @level='error']">
+
+    Should have error about BR-O-02
+  </a:assertion>
+
+  <a:assertion report-doc="ubl-br-de-16-br-O-03-report.xml"
+    test="/rep:report/rep:scenarioMatched[1]/rep:validationStepResult[2]/rep:message[ @code = 'BR-O-03' and @level='error']">
+
+    Should have error about BR-O-03
+  </a:assertion>
+
+  <a:assertion report-doc="ubl-br-de-16-br-O-04-report.xml"
+    test="/rep:report/rep:scenarioMatched[1]/rep:validationStepResult[2]/rep:message[ @code = 'BR-O-04' and @level='error']">
+
+    Should have error about BR-O-04
+  </a:assertion>
+
 </a:assertions>
