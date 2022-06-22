@@ -642,6 +642,7 @@
       <fileset dir="${test.docs.cen.unit.dir}">
         <include name="cii-br-s-08-rounding-rule.xml"/>
         <include name="ubl-br-dex-2-false-negative.xml"/>
+        <include name="br-co-23-reason-codes.xml"/>
         <!-- Local files - not in repository -->
         <include name="XRechnung-CEFACT*.xml"/>
       </fileset>
