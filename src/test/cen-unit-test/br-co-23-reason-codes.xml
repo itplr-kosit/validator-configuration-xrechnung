@@ -52,12 +52,13 @@
                     <ram:BasisAmount>12.00</ram:BasisAmount>
                     <ram:ActualAmount>0</ram:ActualAmount>
                     <?xmute mutator="identity" schematron-valid="cencii:BR-CO-23"?>
-                    <?xmute mutator="empty" schematron-invalid="cencii:BR-CO-23"?>
-                    <ram:Reason>Handling commission</ram:Reason>
+                    <?xmute mutator="empty" schematron-invalid="cencii:BR-CO-23" description="element should not be empty"?>
+                    <?xmute mutator="remove" schematron-invalid="cencii:BR-CO-23"?>
+                    <ram:ReasonCode>42</ram:ReasonCode>
                     <!--
                     <?xmute mutator="identity" schematron-valid="cencii:BR-CO-23"?>
-                    <?xmute mutator="empty" schematron-invalid="cencii:BR-CO-23"?>
-                    <ram:ReasonCode>1</ram:ReasonCode>
+                    <?xmute mutator="empty" schematron-valid="cencii:BR-CO-23"?>
+                    <ram:Reason>Other bonus</ram:Reason> 
                     -->
                 </ram:SpecifiedTradeAllowanceCharge>
                 <ram:SpecifiedTradeSettlementLineMonetarySummation>
@@ -139,12 +140,14 @@
             </ram:ShipToTradeParty>
             <ram:ActualDeliverySupplyChainEvent>
                 <ram:OccurrenceDateTime>
-                    <udt:DateTimeString format="102"/>
+                    <udt:DateTimeString format="102">20200625</udt:DateTimeString>
                 </ram:OccurrenceDateTime>
             </ram:ActualDeliverySupplyChainEvent>
         </ram:ApplicableHeaderTradeDelivery>
         <ram:ApplicableHeaderTradeSettlement>
+            <!--
             <ram:TaxCurrencyCode>EUR</ram:TaxCurrencyCode>
+            -->
             <ram:InvoiceCurrencyCode>EUR</ram:InvoiceCurrencyCode>
             <ram:SpecifiedTradeSettlementPaymentMeans>
                 <ram:TypeCode>30</ram:TypeCode>
