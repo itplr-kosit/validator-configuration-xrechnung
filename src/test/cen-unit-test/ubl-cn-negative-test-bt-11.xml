@@ -30,7 +30,7 @@
 	 <cbc:ID>Projektreferenz</cbc:ID>
 	 <cbc:DocumentTypeCode>50</cbc:DocumentTypeCode>
   </cac:AdditionalDocumentReference>
-  <?xmute mutator="identity" schematron-invalid="ceninv:" id="no-more-than-one-bt-11" description="no more than one bt-11"?>
+  <?xmute mutator="identity" id="no-more-than-one-bt-11" description="no more than one bt-11"?>
   <cac:AdditionalDocumentReference>
     <cbc:ID>Projektreferenz 2</cbc:ID>
     <cbc:DocumentTypeCode>50</cbc:DocumentTypeCode>
