@@ -606,6 +606,8 @@
       <arg value="--schematron" />
       <arg value="xrinv=${resource.xsl.xr.inv}" />
       <arg value="--schematron" />
+      <arg value="xrcn=${resource.xsl.xr.cn}" />
+      <arg value="--schematron" />
       <arg value="ceninv=${resource.xsl.cen.ubl}" />
       <arg value="--schematron" />
       <arg value="cencii=${resource.xsl.cen.cii}" />
