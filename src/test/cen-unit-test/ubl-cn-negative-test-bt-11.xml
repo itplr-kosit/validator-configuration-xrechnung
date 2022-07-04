@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CreditNote xmlns="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2">
-  <cbc:CustomizationID>urn:cen.eu:en16931:2017#compliant#urn:xoev-de:kosit:standard:xrechnung_2.0</cbc:CustomizationID>
+  <cbc:CustomizationID>urn:cen.eu:en16931:2017#compliant#urn:xoev-de:kosit:standard:xrechnung_2.2</cbc:CustomizationID>
   <cbc:ProfileID>urn:fdc:peppol.eu:2017:poacc:billing:01:1.0</cbc:ProfileID>
   <cbc:ID>1234567</cbc:ID>
   <cbc:IssueDate>2018-04-13</cbc:IssueDate>
@@ -9,7 +9,7 @@
   <cbc:Note>Invoice Note Description</cbc:Note>
   <!--<cbc:TaxPointDate>2018-04-13</cbc:TaxPointDate>-->
   <cbc:DocumentCurrencyCode>EUR</cbc:DocumentCurrencyCode>
-  <cbc:TaxCurrencyCode>GBP</cbc:TaxCurrencyCode>
+  <cbc:TaxCurrencyCode>EUR</cbc:TaxCurrencyCode>
   <cbc:BuyerReference>90000000-03083-12</cbc:BuyerReference>
   <cac:InvoicePeriod>
     <cbc:StartDate>2018-04-13</cbc:StartDate>
@@ -19,22 +19,19 @@
     <cbc:ID>65002278</cbc:ID>
     <cbc:SalesOrderID>ABC123456789</cbc:SalesOrderID>
   </cac:OrderReference>
-  <cac:OriginatorDocumentReference>
-    <cbc:ID>ANG987654321</cbc:ID>
-  </cac:OriginatorDocumentReference>
-  <!-- Here is an example for a wrong BT-11 in creditnote. The correct one is underneath. -->
-  <cac:ProjectReference>
-        <cbc:ID>Projektreferenz</cbc:ID>
-  </cac:ProjectReference>
+  <?xmute mutator="identity" schema-invalid id="no-more-than-one-bt-11" description="no more than one bt-11"?>
   <cac:AdditionalDocumentReference>
-	 <cbc:ID>Projektreferenz</cbc:ID>
-	 <cbc:DocumentTypeCode>50</cbc:DocumentTypeCode>
-  </cac:AdditionalDocumentReference>
-  <?xmute mutator="identity" id="no-more-than-one-bt-11" description="no more than one bt-11"?>
-  <cac:AdditionalDocumentReference>
-    <cbc:ID>Projektreferenz 2</cbc:ID>
+    <cbc:ID>Projektreferenz</cbc:ID>
     <cbc:DocumentTypeCode>50</cbc:DocumentTypeCode>
   </cac:AdditionalDocumentReference>
+  <cac:AdditionalDocumentReference>
+    <cbc:ID>Projektreferenz</cbc:ID>
+    <cbc:DocumentTypeCode>50</cbc:DocumentTypeCode>
+  </cac:AdditionalDocumentReference>
+  <cac:OriginatorDocumentReference>
+    <cbc:ID>ANG987654321</cbc:ID>
+  </cac:OriginatorDocumentReference> 
+  
   <cac:AccountingSupplierParty>
     <cac:Party>
       <cbc:EndpointID schemeID="EM">rechnungsausgang@test.com</cbc:EndpointID>
@@ -184,7 +181,7 @@
     <cbc:MultiplierFactorNumeric>0</cbc:MultiplierFactorNumeric>
     <cbc:Amount currencyID="EUR">0</cbc:Amount>
     <cbc:BaseAmount currencyID="EUR">0</cbc:BaseAmount>
-    <cac:TaxCategory>      
+    <cac:TaxCategory>
       <cbc:ID>S</cbc:ID>
       <cbc:Percent>19</cbc:Percent>
       <cac:TaxScheme>
@@ -192,6 +189,8 @@
       </cac:TaxScheme>
     </cac:TaxCategory>
   </cac:AllowanceCharge>
+  
+  
   <cac:TaxTotal>
     <cbc:TaxAmount currencyID="EUR">2048.44</cbc:TaxAmount>
     <cac:TaxSubtotal>
@@ -206,12 +205,6 @@
       </cac:TaxCategory>
     </cac:TaxSubtotal>    
   </cac:TaxTotal>
-  
-  
-  <cac:TaxTotal>
-    <cbc:TaxAmount currencyID="EUR">2048.44</cbc:TaxAmount>
-  </cac:TaxTotal>
-  
   
   <cac:LegalMonetaryTotal>
     <cbc:LineExtensionAmount currencyID="EUR">10781.25</cbc:LineExtensionAmount>
@@ -228,7 +221,7 @@
   <cac:CreditNoteLine>
     <cbc:ID>1</cbc:ID>
     <cbc:Note>Die letzte Lieferung im Rahmen des abgerechneten Abonnements erfolgt in 12/2016 Lieferung erfolgt / erfolgte direkt vom Verlag</cbc:Note>
-    <!--<cbc:InvoicedQuantity unitCode="XPP">30</cbc:InvoicedQuantity>-->
+    <cbc:CreditedQuantity unitCode="XPP">30</cbc:CreditedQuantity>
     <cbc:LineExtensionAmount currencyID="EUR">4743.75</cbc:LineExtensionAmount>
     <cac:InvoicePeriod>
       <cbc:StartDate>2016-01-01</cbc:StartDate>
@@ -247,6 +240,13 @@
         <cbc:ItemClassificationCode listID="IB"
           >0721-880X</cbc:ItemClassificationCode>
       </cac:CommodityClassification>
+      <cac:ClassifiedTaxCategory>
+        <cbc:ID>S</cbc:ID>
+        <cbc:Percent>19</cbc:Percent>
+        <cac:TaxScheme>
+          <cbc:ID>VAT</cbc:ID>
+        </cac:TaxScheme>
+      </cac:ClassifiedTaxCategory>
     </cac:Item>
     <cac:Price>
       <cbc:PriceAmount currencyID="EUR">143.75</cbc:PriceAmount>
@@ -254,10 +254,17 @@
   </cac:CreditNoteLine>
   <cac:CreditNoteLine>
     <cbc:ID>2</cbc:ID>
-    <!--<cbc:InvoicedQuantity unitCode="XPP">42</cbc:InvoicedQuantity>-->
+    <cbc:CreditedQuantity unitCode="XPP">42</cbc:CreditedQuantity>
     <cbc:LineExtensionAmount currencyID="EUR">6037.5</cbc:LineExtensionAmount>
     <cac:Item>
       <cbc:Name>Beratung</cbc:Name>
+      <cac:ClassifiedTaxCategory>
+        <cbc:ID>S</cbc:ID>
+        <cbc:Percent>19</cbc:Percent>
+        <cac:TaxScheme>
+          <cbc:ID>VAT</cbc:ID>
+        </cac:TaxScheme>
+      </cac:ClassifiedTaxCategory>
     </cac:Item>
     <cac:Price>
       <cbc:PriceAmount currencyID="EUR">143.75</cbc:PriceAmount>
