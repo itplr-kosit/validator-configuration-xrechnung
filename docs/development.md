@@ -148,6 +148,26 @@ Ant call:
 ant test-integration
 ```
 
+### Unexpected Behaviour of CEN Rules
+
+We also created tests to check on unexpected behaviour in CEN Schematron rules, i.e. the incomplete validation of rules.
+
+The test instances are in `src/test/unexpected` and tested using `XML Mutate`.
+
+We established to following convention for mutator descriptions:
+
+`description="expected-to-pass"` for mutations that pass CEN Schematron validation as expected.
+`description="expected-to-fail: {DESCRIPTION}"` for mutations that are expected to fail mutator expectations due to a CEN rule that should fail, but doesn't.
+
+Accordingly, if a mutation with the Error Message "Failed expectation" is "expected-to-fail" per description, our expectation is met.
+
+Ant call:
+```shell
+ant test-cen-unexpected-behaviour
+```
+
+This task is expected to fail. If not called manually, this task will be skipped.
+
 ## Distribution
 
 The `ant` target `dist` creates the distribution zip archive for releases including several targets for testing.
