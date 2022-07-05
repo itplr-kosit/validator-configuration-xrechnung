@@ -637,7 +637,7 @@
     description="Integration testing result of XRechnung Configuration"></target>
 
   <target name="test-cen-unexpected-behaviour" depends="compile, init-test, retrieve-xmute"
-    description="Test for unexpected behaviour in CEN Schematron rule">
+    description="Test for unexpected behaviour in CEN Schematron Rules">
     <echo>Generate and test instances with unexpected behaviour ...</echo>
     <java jar="${lib.dir}/${xmute.jar}" failonerror="true" fork="true" dir="${basedir}">
 
@@ -659,7 +659,6 @@
       <fileset dir="${test.docs.cen.unit.dir}">
         <include name="cii-br-s-08-rounding-rule.xml"/>
         <include name="ubl-br-dex-2-false-negative.xml"/>
-        <include name="br-co-23-reason-codes.xml"/>
         <!-- Local files - not in repository -->
         <include name="XRechnung-CEFACT*.xml"/>
       </fileset>
