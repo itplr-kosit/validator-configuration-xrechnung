@@ -154,12 +154,12 @@ We also created tests to check on unexpected behaviour in CEN Schematron rules, 
 
 The test instances are in `src/test/unexpected` and tested using `XML Mutate`.
 
-We established to following convention for mutator descriptions:
+We established following convention for mutator descriptions:
 
-`description="expected-to-pass"` for mutations that pass CEN Schematron validation as expected.
-`description="expected-to-fail: {DESCRIPTION}"` for mutations that are expected to fail mutator expectations due to a CEN rule that should fail, but doesn't.
+* `description="expected-to-pass"` for mutations that pass CEN Schematron validation as expected.
+* `description="expected-to-fail: {DESCRIPTION}"` for mutations that are expected to fail mutator expectations due to CEN rule based validation which should fail, but doesn't.
 
-Accordingly, if a mutation with the Error Message "Failed expectation" is "expected-to-fail" per description, our expectation is met.
+Accordingly, if a mutation fails with error message "Failed expectation" and is "expected-to-fail" per description, our expectation is met.
 
 Ant call:
 ```shell
