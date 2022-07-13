@@ -19,7 +19,7 @@
     <cbc:ID>65002278</cbc:ID>
     <cbc:SalesOrderID>ABC123456789</cbc:SalesOrderID>
   </cac:OrderReference>
-  <?xmute mutator="identity" schema-invalid id="no-more-than-one-bt-11" description="no more than one bt-11"?>
+  <?xmute mutator="identity" schematron-valid="xrcn:BR-DE-21" schema-invalid id="no-more-than-one-bt-11" description="no more than one bt-11"?>
   <cac:AdditionalDocumentReference>
     <cbc:ID>Projektreferenz</cbc:ID>
     <cbc:DocumentTypeCode>50</cbc:DocumentTypeCode>
