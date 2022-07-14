@@ -209,7 +209,7 @@
       </cac:TaxCategory>
     </cac:TaxSubtotal>    
   </cac:TaxTotal>
-  <?xmute mutator="identity" schematron-invalid="cencn:BR-E-10"?>
+  <?xmute mutator="identity" schema-valid?>
   <cac:TaxTotal>
       <cbc:TaxAmount currencyID="EUR">2048.44</cbc:TaxAmount>
   </cac:TaxTotal>
