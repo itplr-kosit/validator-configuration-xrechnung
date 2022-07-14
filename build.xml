@@ -11,6 +11,7 @@
   <property name="test.src.dir" location="${src.dir}/test" />
   <property name="test.build.dir" location="${build.dir}/test" />
   <property name="test.docs.dir" location="${test.build.dir}" />
+  <property name="test.docs.cen.unit.unexpected.dir" location="${test.docs.dir}/unexpected" />
   <property name="test.docs.cen.unit.dir" location="${test.docs.dir}/cen-unit-test" />
   <property name="test.docs.integration.dir" location="${test.docs.dir}/integration" />
   <property name="testsuite.instances.dir" location="${test.build.dir}/testsuite" />
@@ -615,9 +616,9 @@
 
 
 
-  <target name="test-mutations" depends="compile, init-test, retrieve-xmute"
+  <target name="test-cen-expected-behaviour" depends="compile, init-test, retrieve-xmute"
     description="Test Schematron Rules with XML-Mutate" if="xmute.download.url.prefix">
-    <echo>Generate test instances with expected behaviour ...</echo>
+    <echo>Generate and test instances with expected behaviour ...</echo>
     <java jar="${lib.dir}/${xmute.jar}" failonerror="true" fork="true" dir="${basedir}">
 
       <arg value="--schematron" />
@@ -632,8 +633,24 @@
   </target>
 
 
-  <target name="test-integration" depends="init-test, provide-validator, provide-testsuite, test-mutations, test-integration-only" 
+  <target name="test-integration" depends="init-test, provide-validator, provide-testsuite, test-cen-expected-behaviour, test-integration-only" 
     description="Integration testing result of XRechnung Configuration"></target>
+
+  <target name="test-cen-unexpected-behaviour" depends="compile, init-test, retrieve-xmute"
+    description="Test for unexpected behaviour in CEN Schematron Rules">
+    <echo>Generate and test instances with unexpected behaviour ...</echo>
+    <java jar="${lib.dir}/${xmute.jar}" failonerror="true" fork="true" dir="${basedir}">
+
+      <arg value="--schematron" />
+      <arg value="xrinv=${resource.xsl.xr.inv}" />
+      <arg value="--schematron" />
+      <arg value="ceninv=${resource.xsl.cen.ubl}" />
+      <arg value="--schematron" />
+      <arg value="cencii=${resource.xsl.cen.cii}" />
+      <arg value="--target ${test.docs.dir}/generated" />
+      <arg value="${test.docs.cen.unit.unexpected.dir}" />
+    </java>
+  </target>
 
   <target name="test-integration-only" description="Nothing but integration testing">
     <echo message="Compiling instances for integration tests"/>
@@ -668,7 +685,7 @@
 
 
   <target name="test"
-    depends="init-test, test-validator-assertions,create-validator-reports-from-testsuite, test-mutations, test-integration">
+    depends="init-test, test-validator-assertions,create-validator-reports-from-testsuite, test-cen-expected-behaviour, test-integration">
     <echo message="Testing all" />
   </target>
 

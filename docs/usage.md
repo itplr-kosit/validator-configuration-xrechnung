@@ -14,7 +14,7 @@ In an empty directory:
 curl -L "https://github.com/itplr-kosit/validator/releases/download/v1.4.2/validator-1.4.2-distribution.zip" --output validator.zip
 
 # download configuration (for 2.2.0)
-curl -L "https://github.com/itplr-kosit/validator-configuration-xrechnung/releases/download/release-2022-05-31/validator-configuration-xrechnung_2.0.0_2022-05-31.zip" --output validator-configuration.zip
+curl -L "https://github.com/itplr-kosit/validator-configuration-xrechnung/releases/download/release-2022-05-31/validator-configuration-xrechnung_2.2.0_2022-05-31.zip" --output validator-configuration.zip
 
 # download one most recent test document
 curl -L "https://raw.githubusercontent.com/itplr-kosit/xrechnung-testsuite/master/src/test/business-cases/standard/01.01a-INVOICE_ubl.xml" --output ubl.xml
