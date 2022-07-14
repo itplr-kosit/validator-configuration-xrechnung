@@ -124,6 +124,7 @@
         <cbc:LineExtensionAmount currencyID="EUR">5000.00</cbc:LineExtensionAmount>
         <cbc:TaxExclusiveAmount currencyID="EUR">5000.00</cbc:TaxExclusiveAmount>
         <cbc:TaxInclusiveAmount currencyID="EUR">5000.00</cbc:TaxInclusiveAmount>
+        <cbc:AllowanceTotalAmount currencyID="EUR">0.00</cbc:AllowanceTotalAmount>
         <cbc:PayableRoundingAmount currencyID="EUR">0.00</cbc:PayableRoundingAmount>
         <cbc:PayableAmount currencyID="EUR">5000.00</cbc:PayableAmount>
     </cac:LegalMonetaryTotal>
