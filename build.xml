@@ -74,9 +74,6 @@
 
 
   <!-- XRechnung Schematron Rules section -->
-  <!-- build date might get deprecated in future: check on this -->
-  <property name="xrechnung.build.date" value="2022-05-31" />
-  <!-- XRechnung Schematron -->
   <property name="xr.schematron.version.major.minor" value="1.7" />
   <property name="xr.schematron.version.patch" value="2" />
   <property name="xr.schematron.version.full"
@@ -468,7 +465,6 @@
     <filter token="xrechnung.rules.version.full" value="${xr.schematron.version.full}" />
     <filter token="xrechnung.rules.version.major.minor" value="${xr.schematron.version.major.minor}" />
     <!-- This is actually the specification part of it -->
-    <filter token="xrechnung.build.date" value="${xrechnung.build.date}" />
     <filter token="xrechnung.version" value="${xrechnung.version}" />
     <filter token="xrechnung.spec.id" value="${xrechnung.spec.id}" />
     <filter token="ubl.version" value="${ubl.version}" />
