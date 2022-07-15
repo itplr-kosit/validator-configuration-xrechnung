@@ -14,6 +14,7 @@ This release is compatible with XRechnung ?.?.?
 ### Added
 
 * Tests for unexpected behaviour of cen rules (see [Development Doc](./docs/development.md) "Unexpected Behaviour of CEN Rules")
+* Tests for invoices with 0 total amount
 
 ## 2022-05-31
 This release is compatible with XRechnung 2.2.0

@@ -101,7 +101,12 @@
     location="${resource.dir}/ubl/2.1/xsl/EN16931-UBL-validation.xsl" />
   <property name="resource.xsl.cen.cii"
     location="${resource.dir}/cii/16b/xsl/EN16931-CII-validation.xsl" />
-
+  <property name="resource.xsd.cen.ubl"
+    location="${resource.dir}/ubl/2.1/xsd/maindoc/UBL-Invoice-2.1.xsd" />
+  <property name="resource.xsd.cen.cn"
+    location="${resource.dir}/ubl/2.1/xsd/maindoc/UBL-CreditNote-2.1.xsd" />
+  <property name="resource.xsd.cen.cii"
+    location="${resource.dir}/cii/16b/xsd/CrossIndustryInvoice_100pD16B.xsd" />
   <property name="resource.xsl.xr.inv"
     location="${resource.xr.dir}/XRechnung-UBL-validation-Invoice.xsl" />
   <property name="resource.xsl.xr.cn"
@@ -632,6 +637,21 @@
     </java>
   </target>
 
+  <target name="test-0-total-amount-invoices" depends="compile, init-test, retrieve-xmute"
+    description="Test Schematron Rules with XML-Mutate" if="xmute.download.url.prefix">
+    <echo>Test 0 total amount ubl instance</echo>
+    <java jar="${lib.dir}/${xmute.jar}" failonerror="true" fork="true" dir="${basedir}">
+      <arg value="--schema" />
+      <arg value="${resource.xsd.cen.ubl}" />
+      <arg value="--schematron" />
+      <arg value="xrinv=${resource.xsl.xr.inv}" />
+      <arg value="--schematron" />
+      <arg value="ceninv=${resource.xsl.cen.ubl}" />
+      <arg value="--schematron" />
+      <arg value="cencii=${resource.xsl.cen.cii}" />      
+      <arg value="${test.docs.cen.unit.dir}/ubl-0-invoice-test.xml" />
+    </java>
+  </target>
 
   <target name="test-integration" depends="init-test, provide-validator, provide-testsuite, test-cen-expected-behaviour, test-integration-only" 
     description="Integration testing result of XRechnung Configuration"></target>
