@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 -->
 
 ## 2022-07-15
+
 This release is compatible with XRechnung 2.2.0
 
 ### Added
@@ -15,6 +16,7 @@ This release is compatible with XRechnung 2.2.0
 * Tests for unexpected behaviour of cen rules (see [Development Doc](./docs/development.md) "Unexpected Behaviour of CEN Rules")
 
 ### Changed
+
 Using [XRechnung Testsuite 2022-07-15](https://github.com/itplr-kosit/xrechnung-testsuite/releases/tag/release-2022-07-15)
 
 ## 2022-05-31
