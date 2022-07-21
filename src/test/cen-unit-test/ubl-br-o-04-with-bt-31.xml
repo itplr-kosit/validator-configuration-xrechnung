@@ -53,7 +53,9 @@
              
                 <?xmute mutator="identity" schematron-invalid="ceninv:BR-O-04" id="cen-inv-vat-code-invalid" description="Seller VAT identifier and Seller registration identifier are not allowed"?>
                 <?xmute mutator="remove" schematron-valid="ceninv:BR-O-04 xrinv:BR-DE-16" id="cen-inv-vat-code-valid" description=""?>
+                <!--
                 <cbc:CompanyID>DE199861724</cbc:CompanyID>
+                -->
                 <cac:TaxScheme>
                     <cbc:ID schemeID="UNCL5305">VAT</cbc:ID>
                 </cac:TaxScheme>
@@ -107,6 +109,7 @@
     <!-- BG-21 -->
     <cac:AllowanceCharge>
         <cbc:ChargeIndicator>true</cbc:ChargeIndicator>
+        <cbc:AllowanceChargeReason>reason</cbc:AllowanceChargeReason>
         <cbc:Amount currencyID="EUR">0.00</cbc:Amount>
         <cac:TaxCategory>
             <cbc:ID>O</cbc:ID>
@@ -121,7 +124,7 @@
             <cbc:TaxableAmount currencyID="EUR">5000.00</cbc:TaxableAmount>
             <cbc:TaxAmount currencyID="EUR">0.00</cbc:TaxAmount>
             <cac:TaxCategory>
-                <cbc:ID schemeID="UNCL5305">O</cbc:ID>
+                <cbc:ID>O</cbc:ID>
                 <cbc:Percent>0.00</cbc:Percent>
                 <cbc:TaxExemptionReason>Nicht steuerbar</cbc:TaxExemptionReason>
                 <cac:TaxScheme>
@@ -144,9 +147,6 @@
         <cbc:LineExtensionAmount currencyID="EUR">5000.00</cbc:LineExtensionAmount>
         <cac:OrderLineReference>
             <cbc:LineID>undef</cbc:LineID>
-            <cac:OrderReference>
-                <cbc:ID>undefined</cbc:ID>
-            </cac:OrderReference>
         </cac:OrderLineReference>
         <cac:Item>
             <cbc:Description>Dummymaterial (Text ändern!!!)</cbc:Description>
@@ -156,7 +156,7 @@
             </cac:SellersItemIdentification>
             <cac:ClassifiedTaxCategory>
                 <!-- BT-151: Mutator S, Z, E, AE, K, G, L, M -->
-                <cbc:ID schemeID="UNCL5305">O</cbc:ID>
+                <cbc:ID>O</cbc:ID>
                 <cac:TaxScheme>
                     <cbc:ID schemeID="UNCL5305">VAT</cbc:ID>
                 </cac:TaxScheme>
