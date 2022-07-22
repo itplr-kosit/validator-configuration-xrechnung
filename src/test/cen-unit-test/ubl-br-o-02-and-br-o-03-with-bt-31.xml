@@ -3,6 +3,9 @@
     xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2"
     xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <!--
+      Dies ist eine Beispieldatei für das Ursprungsproblem (https://projekte.kosit.org/xrechnung/xrechnung-intern/-/issues/846)
+      -->
     <cbc:CustomizationID
         xmlns="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2"
         >urn:cen.eu:en16931:2017#compliant#urn:xoev-de:kosit:standard:xrechnung_2.2</cbc:CustomizationID>
@@ -18,13 +21,6 @@
     <cbc:DocumentCurrencyCode>EUR</cbc:DocumentCurrencyCode>
     <cbc:TaxCurrencyCode>EUR</cbc:TaxCurrencyCode>
     <cbc:BuyerReference>Leitweg 4711</cbc:BuyerReference>
-    <!-- zu testen ist:
-        
-          Dies ist eine Beispieldateie für das Ursprungsproblem (https://projekte.kosit.org/xrechnung/xrechnung-intern/-/issues/846)
-      
--->
-    
-
     <cac:AccountingSupplierParty>
         <cac:Party>
             <cbc:EndpointID schemeID="9930">DE199861724</cbc:EndpointID>
@@ -43,16 +39,9 @@
                 </cac:Country>
             </cac:PostalAddress>
             <cac:PartyTaxScheme>
-                <!--
-- mit CompanyID: Fehlermeldung BR-O-02, dass bei Steurcode 'O' in BT-151 BT-31, BT-63 und BT-48 nicht enthalten sein dürfen
-- ohne CompanyID: Fehlermeldung der alten BR-DE-16, dass in einer Rechnung mindestens eines von BT-31, BT-32 oder BG-11 übermittelt werden muss
-
-                    
-                    CompanyID erzeugt Fehlermeldung BR-O-02, dass bei Steuercode 'O' in BT-151 BT-31, BT-63 und BT-48 nicht enthalten sein dürfen -->
-                <!-- Hier ist BT-31 cbund BT-32 beide sind cbc:CompanyID -->
-             
-                <?xmute mutator="identity" schematron-invalid="ceninv:BR-O-02 ceninv:BR-O-03" id="cen-inv-vat-code-invalid" description="Seller VAT identifier and Seller registration identifier are not allowed"?>
-                <?xmute mutator="remove" schematron-valid="ceninv:BR-O-02 ceninv:BR-O-03 xrinv:BR-DE-16" id="cen-inv-vat-code-valid" description=""?>
+                <?xmute mutator="identity" schematron-invalid="ceninv:BR-O-02 ceninv:BR-O-03" id="cen-inv-vat-code-invalid" description="BT-31 not allowed with 'O' in BT-151 and BT-95"?>
+                <?xmute mutator="remove" schematron-valid="ceninv:BR-O-02 ceninv:BR-O-03 xrinv:BR-DE-16" id="cen-inv-vat-code-valid" description="No BT-31 with 'O' in BT-151 and BT-95"?>
+                <!-- BT-31 / BT-32 -->
                 <cbc:CompanyID>DE199861724</cbc:CompanyID>
                 <cac:TaxScheme>
                     <cbc:ID schemeID="UNCL5305">VAT</cbc:ID>
@@ -83,7 +72,6 @@
                 </cac:Country>
             </cac:PostalAddress>
             <cac:PartyTaxScheme>
-                <!-- BT-48 cac:PartyTaxScheme/cbc:CompanyID -->
                 <cac:TaxScheme>
                     <cbc:ID schemeID="UNCL5305">VAT</cbc:ID>
                 </cac:TaxScheme>
@@ -110,7 +98,7 @@
         <cbc:AllowanceChargeReason>Grund für den Nachlass</cbc:AllowanceChargeReason>
         <cbc:Amount currencyID="EUR">0.00</cbc:Amount>
         <cac:TaxCategory>
-            <!-- BT-95 and BT-102 -->
+            <!-- BT-95 -->
             <cbc:ID>O</cbc:ID>
             <cac:TaxScheme>
                 <cbc:ID>VAT</cbc:ID>
@@ -155,7 +143,7 @@
                 <cbc:ID>L0014</cbc:ID>
             </cac:SellersItemIdentification>
             <cac:ClassifiedTaxCategory>
-                <!-- BT-151: Mutator S, Z, E, AE, K, G, L, M -->
+                <!-- BT-151 -->
                 <cbc:ID>O</cbc:ID>
                 <cac:TaxScheme>
                     <cbc:ID schemeID="UNCL5305">VAT</cbc:ID>

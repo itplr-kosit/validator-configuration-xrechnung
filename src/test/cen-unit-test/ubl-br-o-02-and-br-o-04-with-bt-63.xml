@@ -82,8 +82,8 @@
             </cac:Contact>
         </cac:Party>
     </cac:AccountingCustomerParty>
-    <?xmute mutator="identity" schematron-invalid="ceninv:BR-O-02 ceninv:BR-O-03" id="cen-inv-vat-code-invalid" description="BT-63/BG-11 not allowed with 'O' in BT-151 and BT-95"?>
-    <?xmute mutator="remove" schematron-valid="ceninv:BR-O-02 ceninv:BR-O-03 xrinv:BR-DE-16" id="cen-inv-vat-code-valid" description="No BT-63/BG-11 with 'O' in BT-151 and BT-95"?>
+    <?xmute mutator="identity" schematron-invalid="ceninv:BR-O-02 ceninv:BR-O-04" id="cen-inv-vat-code-invalid" description="BT-63/BG-11 not allowed with 'O' in BT-151 and BT-102"?>
+    <?xmute mutator="remove" schematron-valid="ceninv:BR-O-02 ceninv:BR-O-04 xrinv:BR-DE-16" id="cen-inv-vat-code-valid" description="No BT-63/BG-11 with 'O' in BT-151 and BT-102"?>
     <!-- BG-11 -->
     <cac:TaxRepresentativeParty>
         <cac:PartyName>
@@ -108,13 +108,13 @@
             <cbc:ID>DE94820800000815609800</cbc:ID>
         </cac:PayeeFinancialAccount>
     </cac:PaymentMeans>
-    <!-- BG-20 -->
+    <!-- BG-21 -->
     <cac:AllowanceCharge>
-        <cbc:ChargeIndicator>false</cbc:ChargeIndicator>
-        <cbc:AllowanceChargeReason>Grund für den Nachlass</cbc:AllowanceChargeReason>
+        <cbc:ChargeIndicator>true</cbc:ChargeIndicator>
+        <cbc:AllowanceChargeReason>reason</cbc:AllowanceChargeReason>
         <cbc:Amount currencyID="EUR">0.00</cbc:Amount>
         <cac:TaxCategory>
-            <!-- BT-95 -->
+            <!-- BT-102 -->
             <cbc:ID>O</cbc:ID>
             <cac:TaxScheme>
                 <cbc:ID>VAT</cbc:ID>
@@ -140,7 +140,7 @@
         <cbc:LineExtensionAmount currencyID="EUR">5000.00</cbc:LineExtensionAmount>
         <cbc:TaxExclusiveAmount currencyID="EUR">5000.00</cbc:TaxExclusiveAmount>
         <cbc:TaxInclusiveAmount currencyID="EUR">5000.00</cbc:TaxInclusiveAmount>
-        <cbc:AllowanceTotalAmount currencyID="EUR">0.00</cbc:AllowanceTotalAmount>
+        <cbc:ChargeTotalAmount currencyID="EUR">0.00</cbc:ChargeTotalAmount>
         <cbc:PayableRoundingAmount currencyID="EUR">0.00</cbc:PayableRoundingAmount>
         <cbc:PayableAmount currencyID="EUR">5000.00</cbc:PayableAmount>
     </cac:LegalMonetaryTotal>
