@@ -13,7 +13,7 @@ This release is compatible with XRechnung ?.?.?
 
 ### Added
 
-* Tests on interference of BR-DE-16 and BR-O-02, BR-O-03, and BR-O-04
+* Tests on interference of BR-DE-16 with BR-O-02, BR-O-03, and BR-O-04
 
 ## 2022-07-15
 
