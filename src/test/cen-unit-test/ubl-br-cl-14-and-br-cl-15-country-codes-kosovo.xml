@@ -19,6 +19,7 @@
         <cbc:CityName>[Seller city]</cbc:CityName>
         <cbc:PostalZone>12345</cbc:PostalZone>
         <cac:Country>
+          <!-- BT-40 -->
           <?xmute mutator="identity" schematron-valid="ceninv:BR-CL-14" id="cen-valid-country-code-kosovo" description="temporary code supported by CEN" ?>
           <?xmute mutator="code" values="XK, 1A0" schematron-invalid="ceninv:BR-CL-14" 
                 id="cen-inv-country-code-kosovo" description="temporary code not supported by CEN" ?>
@@ -53,7 +54,11 @@
         <cbc:CityName>[Buyer city]</cbc:CityName>
         <cbc:PostalZone>12345</cbc:PostalZone>
         <cac:Country>
-          <cbc:IdentificationCode>DE</cbc:IdentificationCode>
+          <!-- BT-55 -->
+          <?xmute mutator="identity" schematron-valid="ceninv:BR-CL-14" id="cen-valid-country-code-kosovo-bt-55" description="temporary code supported by CEN" ?>
+          <?xmute mutator="code" values="XK, 1A0" schematron-invalid="ceninv:BR-CL-14" 
+                id="cen-inv-country-code-kosovo-bt-55" description="temporary code not supported by CEN" ?>
+          <cbc:IdentificationCode>1A</cbc:IdentificationCode>
         </cac:Country>
       </cac:PostalAddress>
       <cac:PartyLegalEntity>
@@ -61,6 +66,43 @@
       </cac:PartyLegalEntity>
     </cac:Party>
   </cac:AccountingCustomerParty>
+  <!-- neu -->
+  <cac:TaxRepresentativeParty>
+    <cac:PartyName>
+      <cbc:Name>[Tax representative name]</cbc:Name>
+    </cac:PartyName>
+    <cac:PartyTaxScheme>
+      <cbc:CompanyID>1A 123456789</cbc:CompanyID>
+    </cac:PartyTaxScheme>
+    <cac:PostalAddress>
+      <cbc:StreetName>[Tax representative address line 1]</cbc:StreetName>
+      <cbc:CityName>[Tax representative city]</cbc:CityName>
+      <cbc:PostalZone>12345</cbc:PostalZone>
+      <cac:Country>
+        <!-- BT-69 -->
+        <?xmute mutator="identity" schematron-valid="ceninv:BR-CL-14" id="cen-valid-country-code-kosovo-bt-69" description="temporary code supported by CEN" ?>
+        <?xmute mutator="code" values="XK, 1A0" schematron-invalid="ceninv:BR-CL-14" 
+                id="cen-inv-country-code-kosovo-bt-69" description="temporary code not supported by CEN" ?>
+        <cbc:IdentificationCode>1A</cbc:IdentificationCode>
+      </cac:Country>
+    </cac:PostalAddress>
+  </cac:TaxRepresentativeParty>
+  <!-- neu -->
+  <cac:Delivery>
+    <cac:DeliveryLocation>
+      <cac:Address>
+        <cbc:CityName>[Deliver to City]</cbc:CityName>
+        <cbc:PostalZone>12345</cbc:PostalZone>
+        <cac:Country>
+          <!-- BT-80 -->
+          <?xmute mutator="identity" schematron-valid="ceninv:BR-CL-14" id="cen-valid-country-code-kosovo-bt-80" description="temporary code supported by CEN" ?>
+          <?xmute mutator="code" values="XK, 1A0" schematron-invalid="ceninv:BR-CL-14" 
+                id="cen-inv-country-code-kosovo-bt-80" description="temporary code not supported by CEN" ?>
+          <cbc:IdentificationCode>1A</cbc:IdentificationCode>
+        </cac:Country>
+      </cac:Address>
+    </cac:DeliveryLocation>
+  </cac:Delivery>
   <cac:PaymentMeans>
     <cbc:PaymentMeansCode>58</cbc:PaymentMeansCode>
     <cac:PayeeFinancialAccount>
@@ -112,6 +154,13 @@
       <cac:CommodityClassification>
         <cbc:ItemClassificationCode listID="IB">0721-880X</cbc:ItemClassificationCode>
       </cac:CommodityClassification>
+      <cac:OriginCountry>
+        <!-- BT-159 -->
+        <?xmute mutator="identity" schematron-valid="ceninv:BR-CL-15" id="cen-valid-country-code-kosovo-bt-159" description="temporary code supported by CEN" ?>
+        <?xmute mutator="code" values="XK, 1A0" schematron-invalid="ceninv:BR-CL-15" 
+                id="cen-inv-country-code-kosovo-bt-159" description="temporary code not supported by CEN" ?>
+        <cbc:IdentificationCode>1A</cbc:IdentificationCode>
+      </cac:OriginCountry>
       <cac:ClassifiedTaxCategory>
         <cbc:ID>S</cbc:ID>
         <cbc:Percent>7</cbc:Percent>
