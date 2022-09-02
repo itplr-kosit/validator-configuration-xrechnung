@@ -313,10 +313,16 @@
 				</ram:PayeePartyCreditorFinancialAccount>
 			</ram:SpecifiedTradeSettlementPaymentMeans>
 			<ram:ApplicableTradeTax>
+				<!-- BT-117 -->
+				<?xmute mutator="identity" schematron-valid="cencii:BR-S-09" description="expected-to-fail: HUF rounding not recognized"?>
 				<ram:CalculatedAmount>18679.00</ram:CalculatedAmount>
+				<!-- BT-118 -->
 				<ram:TypeCode>VAT</ram:TypeCode>
+				<!-- BT-116 -->
 				<ram:BasisAmount>69180.00</ram:BasisAmount>
+				<!-- BT-118 -->
 				<ram:CategoryCode>S</ram:CategoryCode>
+				<!-- BT-119 -->
 				<ram:RateApplicablePercent>27.00</ram:RateApplicablePercent>
 			</ram:ApplicableTradeTax>
 			<ram:SpecifiedTradePaymentTerms>
