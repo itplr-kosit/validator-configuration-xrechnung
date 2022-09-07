@@ -7,13 +7,80 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 -->
 
-## Next Release
+## UNRELEASED
+
+This release is compatible with XRechnung ?.?.?
+
+## 2022-07-15
+
+This release is compatible with XRechnung 2.2.0
+
+### Added
+
+* Tests for unexpected behaviour of cen rules (see [Development Doc](./docs/development.md) "Unexpected Behaviour of CEN Rules")
 
 ### Changed
 
-* Using [CEN Schematron Rules 1.3.4](https://github.com/ConnectingEurope/eInvoicing-EN16931/releases/tag/validation-1.3.4)
+Using [XRechnung Testsuite 2022-07-15](https://github.com/itplr-kosit/xrechnung-testsuite/releases/tag/release-2022-07-15)
+
+## 2022-05-31
+This release is compatible with XRechnung 2.2.0
+
+### Changed
+
+* Using [XRechnung Schematron 1.7.2](https://github.com/itplr-kosit/xrechnung-schematron/releases/tag/release-1.7.2)
+* Using [XRechnung Testsuite 2022-05-31](https://github.com/itplr-kosit/xrechnung-testsuite/releases/tag/release-2022-05-31)
+
+## 2022-02-07
+
+This release is compatible with XRechnung 2.2.0
+
+### Changed
+
+* Using [XRechnung Schematron 1.7.1](https://github.com/itplr-kosit/xrechnung-schematron/releases/tag/release-1.7.1)
+
+## 2022-01-31
+
+This release is compatible with XRechnung 2.2.0
+Because of new CEN Rules version 1.3.7 and XRechnung Schematron 1.7.0 it might break your validation and business workflow. Please evaluate impact!
+
+### Added
+
+* Scenario for CII Extension
+* Set custom rule levels of `BR-CL-10`, `BR-CL-11`, `BR-CL-25`, and `BR-CL-26`to "information" in Extension scenarios
+* Integration tests for the custom levels of the Extension scenarios
+
+### Changed
+
+* Using [CEN Schematron Rules 1.3.7](https://github.com/ConnectingEurope/eInvoicing-EN16931/releases/tag/validation-1.3.7)
+* Using [XRechnung Schematron 1.7.0](https://github.com/itplr-kosit/xrechnung-schematron/releases/tag/release-1.7.0)
+* Using [XRechnung Testsuite 2022-01-31](https://github.com/itplr-kosit/xrechnung-testsuite/releases/tag/release-2022-01-31) 
+
+## 2021-11-15
+
+This release is compatible to XRechnung 2.1.1.
+
+### Changed
+
+* Using [XRechnung Schematron 1.6.1](https://github.com/itplr-kosit/xrechnung-schematron/releases/tag/release-1.6.1)
+* Using [XRechnung Testsuite 2021-11-15](https://github.com/itplr-kosit/xrechnung-testsuite/releases/tag/release-2021-11-15)
+
+## 2021-07-31
+
+This release is compatible to XRechnung 2.1.1.
+Because of new and custom fixed CEN Rules version 1.3.6a and XRechnung Schematron 1.6.0 it might break your validation and business workflow. Please evaluate impact!
+
+### Changed
+
+* Using KoSIT Validator v1.4.2
+* Using [CEN Schematron Rules 1.3.6a](https://github.com/phax/eInvoicing-EN16931/releases/tag/validation-1.3.6a) from a fork fixing Rule BR-CO-15 
+* Using [XRechnung Schematron 1.6.0](https://github.com/itplr-kosit/xrechnung-schematron/releases/tag/release-1.6.0)
+* Using [XRechnung Testsuite 2021-07-31](https://github.com/itplr-kosit/xrechnung-testsuite/releases/tag/release-2021-07-31)
 * Enhanced `development.md` documentation (thx to phax)
 
+### Added
+
+* Release HowTo section in development.md
 
 ## 2020-12-31
 

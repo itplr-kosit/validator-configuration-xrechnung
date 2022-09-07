@@ -3,7 +3,7 @@
 <?xmute mutator="identity" schematron-valid="xrinv:BR-DEX-02" 
                 id="ubl-inv-valid-subinvoiceline-total" description="Has correct subinvoiceline sums" ?>
 <ubl:Invoice xmlns:ubl="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:cec="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2">
-  <cbc:CustomizationID>urn:cen.eu:en16931:2017#compliant#urn:xoev-de:kosit:standard:xrechnung_2.0#conformant#urn:xoev-de:kosit:extension:xrechnung_2.0</cbc:CustomizationID>
+  <cbc:CustomizationID>urn:cen.eu:en16931:2017#compliant#urn:xoev-de:kosit:standard:xrechnung_2.2#conformant#urn:xoev-de:kosit:extension:xrechnung_2.2</cbc:CustomizationID>
   <cbc:ID>Entwurf</cbc:ID>
   <cbc:IssueDate>2020-12-02</cbc:IssueDate>
   <cbc:InvoiceTypeCode>875</cbc:InvoiceTypeCode>

@@ -1,5 +1,7 @@
 # Development of Validator Configuration XRechnung
 
+This repository contains an ANT `build.xml` which allows downloading all necessary tools and artefacts for creating this validator configuration for XRechnung. It also allows testing the configuration against a few UBL and UN/CEFACT documents and creates a release zip file.
+
 ## Dependencies overview
 
 ### Compile time
@@ -17,23 +19,7 @@ The following dependencies are downloaded automatically from within the build sc
 * XML Mutate
 * XRechnung Testsuite
 
-### Installing XML Mutate
-
-`XML Mutate` needs to be build and setup manually - see https://projekte.kosit.org/kosit/xml-mutate for installation details.
-
-Additionally a custom property needs to point to the XML Mutate binary and the version
-* Property `xmute.download.url.prefix` indicates the URL to the cloned repository (as e.g. in `file:///../xml-mutate`)
-* Property `xmute.version.full` indicates the full version number of the created binary JAR file (defaults to `0.5`).
-
-Example Ant call (for Windows users):
-
-```
-ant clean dist \
-  -Dxmute.download.url.prefix=file:///C:/dev/git3p/xml-mutate \
-  -Dxmute.version.full=0.5
-```
-
-## The build environment
+## Build from scratch
 
 We recommend `ant` version 1.10.x or newer (but should work with > 1.8.x).
 
@@ -87,9 +73,25 @@ You have to copy the file to e.g. `development.build.properties` and you have to
 ant -propertyfile ${your.own.property.file.name}
 ```
 
-Hint: we recommend that you place the properties `xmute.download.url.prefix` and `xmute.version.full` in this file.
-
 ## Test Approach
+
+### Installing XML Mutate
+
+`XML Mutate` needs to be build and setup manually - see https://projekte.kosit.org/kosit/xml-mutate for installation details.
+
+Additionally a custom property needs to point to the XML Mutate binary and the version
+* Property `xmute.download.url.prefix` indicates the URL to the cloned repository (as e.g. in `file:///../xml-mutate`)
+* Property `xmute.version.full` indicates the full version number of the created binary JAR file (defaults to `0.5`).
+
+Example Ant call (for Windows users):
+
+```
+ant clean dist \
+  -Dxmute.download.url.prefix=file:///C:/dev/git3p/xml-mutate \
+  -Dxmute.version.full=0.5
+```
+
+Hint: we recommend that you place the properties `xmute.download.url.prefix` and `xmute.version.full` in the "development properties file" (see above).
 
 ### Configuration Report Tests
 
@@ -146,8 +148,74 @@ Ant call:
 ant test-integration
 ```
 
+### Unexpected Behaviour of CEN Rules
+
+We also created tests to check on unexpected behaviour in CEN Schematron rules, i.e. the incomplete validation of rules.
+
+The test instances are in `src/test/unexpected` and tested using `XML Mutate`.
+
+We established following convention for mutator descriptions:
+
+* `description="expected-to-pass"` for mutations that pass CEN Schematron validation as expected.
+* `description="expected-to-fail: {DESCRIPTION}"` for mutations that are expected to fail mutator expectations due to CEN rule based validation which should fail, but doesn't.
+
+Accordingly, if a mutation fails with error message "Failed expectation" and is "expected-to-fail" per description, our expectation is met.
+
+Ant call:
+```shell
+ant test-cen-unexpected-behaviour
+```
+
+This task is expected to fail. If not called manually, this task will be skipped.
+
 ## Distribution
 
 The `ant` target `dist` creates the distribution zip archive for releases including several targets for testing.
 
 If you want to skip tests call `ant dist-only`.
+
+
+## Release
+
+### Checklist
+
+* Are all issues scheduled for the release solved?
+* Is everything merged to master branch?
+* Does the configuration refer to the correct version of XRechnung Specification?
+* Does the sceanrio match refer to the correct XRechnung Specification?
+* Make sure that XRechnung Schematron and testsuite are already released and used by this release version.
+* Make sure that CHANGELOG.md is up to date.
+
+### Prepare
+
+* Make sure you committed and pushed everything.
+* Create the distribution 
+   * Do **not** use your development properties file.
+   * Use the `clean` target to build and test everything from scratch
+
+  This requires setting some properties at command line:
+
+  ```
+  ant -Dxmute.download.url.prefix='file:/home/renzo/projects/xml-mutate/' clean dist
+  ```
+
+* Tag the last commit according to the following naming rule: 
+   `release-${date-of-scheduled-release-e.g. 2022-05-31}`
+  e.g.
+  `git tag release-2022-05-31 && git push origin release-2022-05-31`
+
+### Publish
+
+* Draft a new release at https://github.com/itplr-kosit/validator-configuration-xrechnung/releases/new
+  * Choose the git tag
+* Add a release title of the following scheme: `Validator Configuration 2022-05-31 compatible with XRechnung 2.2.0`.
+* Copy & paste the high quality changelog entries for this release from CHANGELOG.md.
+* Upload distribution zip and tick mark this release as a `pre-release`.
+
+
+### Post-Release
+
+* Change the version of of Validator Configuration XRechnung in `build.xml` to the next release and commit.
+
+You are done :smile:
+

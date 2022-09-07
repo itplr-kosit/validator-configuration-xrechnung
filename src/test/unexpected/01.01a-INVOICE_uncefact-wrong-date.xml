@@ -4,7 +4,7 @@
                           xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
     <rsm:ExchangedDocumentContext>
         <ram:GuidelineSpecifiedDocumentContextParameter>
-            <ram:ID>urn:cen.eu:en16931:2017#compliant#urn:xoev-de:kosit:standard:xrechnung_2.0</ram:ID>
+            <ram:ID>urn:cen.eu:en16931:2017#compliant#urn:xoev-de:kosit:standard:xrechnung_2.2</ram:ID>
         </ram:GuidelineSpecifiedDocumentContextParameter>
     </rsm:ExchangedDocumentContext>
     <rsm:ExchangedDocument>
@@ -12,9 +12,9 @@
         <ram:TypeCode>380</ram:TypeCode>
         <ram:IssueDateTime>
             <?xmute mutator="code" values="2016-04-04" schematron-invalid="cencii:BR-03" 
-                id="inv-cii-date" description="no hyphen allowed in CII dates" ?>
+                id="inv-cii-date" description="expected-to-fail: no hyphen allowed in CII dates" ?>
             <?xmute mutator="identity" schematron-valid="cencii:BR-03" 
-                id="valid-cii-date" description="correct CII date syntax" ?>
+                id="valid-cii-date" description="expected-to-pass: correct CII date syntax" ?>
             <udt:DateTimeString format="102">20160404</udt:DateTimeString>
         </ram:IssueDateTime>
         <ram:IncludedNote>
