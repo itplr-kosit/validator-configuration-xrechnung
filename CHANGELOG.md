@@ -11,6 +11,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 This release is compatible with XRechnung ?.?.?
 
+## Added
+* Test for prepaid payment
+
 ## 2022-07-15
 
 This release is compatible with XRechnung 2.2.0
