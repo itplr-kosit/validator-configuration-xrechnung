@@ -15,6 +15,10 @@ This release is compatible with XRechnung ?.?.?
 
 * Test to monitor implementation of HUF rounding rules
 
+### Changed
+
+* Unexpected behaviour tests follow target state logic
+
 ## 2022-07-15
 
 This release is compatible with XRechnung 2.2.0
