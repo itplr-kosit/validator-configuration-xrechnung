@@ -314,7 +314,7 @@
 			</ram:SpecifiedTradeSettlementPaymentMeans>
 			<ram:ApplicableTradeTax>
 				<!-- BT-117 -->
-				<?xmute mutator="identity" schematron-valid="cencii:BR-S-09" description="expected-to-fail: HUF rounding not recognized"?>
+				<?xmute mutator="identity" schematron-valid="cencii:BR-S-09" id="cii-huf-rounding" description="expected-to-pass: HUF rounding should be recognized"?>
 				<ram:CalculatedAmount>18679.00</ram:CalculatedAmount>
 				<!-- BT-118 -->
 				<ram:TypeCode>VAT</ram:TypeCode>
