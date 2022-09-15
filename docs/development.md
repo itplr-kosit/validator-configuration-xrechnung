@@ -150,11 +150,11 @@ ant test-integration
 
 ### Unexpected Behaviour of CEN Rules
 
-We have tests to check on unexpected behaviour of CEN Schematron rules, i.e. the rules in the current state have wrong semantics and hence produce wrong validation results.
+We provide tests to check on unexpected behaviour of CEN Schematron rules, i.e. the rules in the current state have wrong semantics and hence produce wrong validation results.
 
 Now, we formulate the mutator instructions in a way that we test for the future target state. 
 
-Therefore, each single test will fail as long as the current state of CEN rules do not match the target state.
+Therefore, each single test will fail as long as the current state of CEN rules does not match the target state.
 
 In order to track the discrepancy between current state and target state, we established following conventions for mutator descriptions:
 
