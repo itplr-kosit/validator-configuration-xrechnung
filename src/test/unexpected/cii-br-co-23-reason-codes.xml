@@ -51,12 +51,12 @@
                     <ram:CalculationPercent>0</ram:CalculationPercent>
                     <ram:BasisAmount>12.00</ram:BasisAmount>
                     <ram:ActualAmount>0</ram:ActualAmount>
-                    <?xmute mutator="identity" schematron-valid="cencii:BR-CO-23" description="expected-to-pass"?>
-                    <?xmute mutator="empty" schematron-invalid="cencii:BR-CO-23" description="expected-to-fail: element should not be empty"?>
-                    <?xmute mutator="remove" schematron-valid="cencii:BR-CO-23" description="expected-to-pass"?>
+                    <?xmute mutator="identity" schematron-valid="cencii:BR-CO-23" id="cii-reason-code-valid"?>
+                    <?xmute mutator="empty" schematron-invalid="cencii:BR-CO-23" id="cii-reason-code-empty" description="expected-to-fail: element should not be empty"?>
+                    <?xmute mutator="remove" schematron-valid="cencii:BR-CO-23" id="cii-reason-code-removed"?>
                     <ram:ReasonCode>42</ram:ReasonCode>
-                    <?xmute mutator="identity" schematron-valid="cencii:BR-CO-23" description="expected-to-pass"?>
-                    <?xmute mutator="empty" schematron-invalid="cencii:BR-CO-23" description="expected-to-fail: element should not be empty"?>
+                    <?xmute mutator="identity" schematron-valid="cencii:BR-CO-23" id="cii-reason-valid"?>
+                    <?xmute mutator="empty" schematron-invalid="cencii:BR-CO-23" id="cii-reason-empty" description="expected-to-fail: element should not be empty"?>
                     <ram:Reason>Other bonus</ram:Reason> 
                 </ram:SpecifiedTradeAllowanceCharge>
                 <ram:SpecifiedTradeSettlementLineMonetarySummation>
