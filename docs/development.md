@@ -156,7 +156,7 @@ Now, we formulate the mutator instructions in a way that we test for the future 
 
 Therefore, each single test will fail as long as the current state of CEN rules do not match the target state.
 
-In order to track the discrepancy betwenn current state and target state, we established following convention for mutator descriptions:
+In order to track the discrepancy between current state and target state, we established following conventions for mutator descriptions:
 
 * `description="expected-to-pass: {DESCRIPTION}"` for a rule which in the current state does **NOT pass** but is expected to pass (i.e. **should pass**) in the future.
 
