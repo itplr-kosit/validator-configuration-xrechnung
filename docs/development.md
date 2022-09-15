@@ -158,9 +158,9 @@ Therefore, each single test will fail as long as the current state of CEN rules 
 
 In order to track the discrepancy betwenn current state and target state, we established following convention for mutator descriptions:
 
-* `description="expected-to-pass"` for a rule which in the current state does **NOT pass** but is expected to pass (i.e. should pass) in the future.
+* `description="expected-to-pass: {DESCRIPTION}"` for a rule which in the current state does **NOT pass** but is expected to pass (i.e. **should pass**) in the future.
 
-* `description="expected-to-fail: {DESCRIPTION}"` for a rule which in the current state does **pass** but is expected to fail (i.e. should **NOT** pass) in the future.
+* `description="expected-to-fail: {DESCRIPTION}"` for a rule which in the current state does **pass** but is expected to fail (i.e. **should NOT pass**) in the future.
 
 The test instances are in `src/test/unexpected` and tested using `XML Mutate`.
 
