@@ -27,11 +27,11 @@
         <!--<cbc:CityName>Velsen-Noord</cbc:CityName>-->
         <cbc:PostalZone>1950 AB</cbc:PostalZone>
         <cac:Country>
-          <cbc:IdentificationCode>NL</cbc:IdentificationCode>
+          <cbc:IdentificationCode>DE</cbc:IdentificationCode>
         </cac:Country>
       </cac:PostalAddress>
       <cac:PartyTaxScheme>
-        <cbc:CompanyID>NL8200.98.395.B.01</cbc:CompanyID>
+        <cbc:CompanyID>DE8200.98.395.B.01</cbc:CompanyID>
         <cac:TaxScheme>
           <cbc:ID>VAT</cbc:ID>
         </cac:TaxScheme>
@@ -57,7 +57,7 @@
         <cbc:CityName>HEEMSKERK</cbc:CityName>
         <cbc:PostalZone>1960 AJ</cbc:PostalZone>
         <cac:Country>
-          <cbc:IdentificationCode>NL</cbc:IdentificationCode>
+          <cbc:IdentificationCode>DE</cbc:IdentificationCode>
         </cac:Country>
       </cac:PostalAddress>
       <cac:PartyLegalEntity>
@@ -72,14 +72,14 @@
     <cbc:PaymentMeansCode>30</cbc:PaymentMeansCode>
     <cbc:PaymentID>Deb. 10202 / Fact. 12115118</cbc:PaymentID>
     <cac:PayeeFinancialAccount>
-      <cbc:ID>NL57 RABO 0107307510</cbc:ID>
+      <cbc:ID>DE57 RABO 0107307510</cbc:ID>
     </cac:PayeeFinancialAccount>
   </cac:PaymentMeans>
   <cac:PaymentMeans>
     <cbc:PaymentMeansCode>30</cbc:PaymentMeansCode>
     <cbc:PaymentID>Deb. 10202 / Fact. 12115118</cbc:PaymentID>
     <cac:PayeeFinancialAccount>
-      <cbc:ID>NL03 INGB 0004489902</cbc:ID>
+      <cbc:ID>DE03 INGB 0004489902</cbc:ID>
     </cac:PayeeFinancialAccount>
   </cac:PaymentMeans>
   <cac:TaxTotal>
