@@ -14,6 +14,7 @@ This release is compatible with XRechnung ?.?.?
 ### Added
 
 * Test to monitor implementation of HUF rounding rules
+* Test to monitor implementation of BR-CO-25
 
 ### Changed
 
