@@ -19,7 +19,7 @@
   xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
   <rsm:ExchangedDocumentContext>
     <ram:GuidelineSpecifiedDocumentContextParameter>
-      <ram:ID>urn:cen.eu:en16931:2017#compliant#urn:xoev-de:kosit:standard:xrechnung_2.2#conformant#urn:xoev-de:kosit:extension:xrechnung_2.2</ram:ID>
+      <ram:ID>urn:cen.eu:en16931:2017#compliant#urn:xoev-de:kosit:standard:xrechnung_2.2</ram:ID>
     </ram:GuidelineSpecifiedDocumentContextParameter>
   </rsm:ExchangedDocumentContext>
   <rsm:ExchangedDocument>
@@ -38,7 +38,7 @@
         <ram:LineID>TEST_POSITION_01</ram:LineID>
       </ram:AssociatedDocumentLineDocument>
       <ram:SpecifiedTradeProduct>
-        <ram:GlobalID schemeID="XR01">12345678</ram:GlobalID>
+        <ram:GlobalID schemeID="0088">12345678</ram:GlobalID>
         <ram:BuyerAssignedID>ABCDEFGHIJKLMNOP</ram:BuyerAssignedID>
         <ram:Name>Tinnitus Rex</ram:Name>
         <ram:Description>Ein Artikel für Testrechnungen.</ram:Description>
@@ -66,7 +66,7 @@
     <ram:ApplicableHeaderTradeAgreement>
       <ram:BuyerReference>Leitweg-ID</ram:BuyerReference>
       <ram:SellerTradeParty>
-        <ram:GlobalID schemeID="XR03">987654321</ram:GlobalID>
+        <ram:GlobalID schemeID="0088">987654321</ram:GlobalID>
         <ram:Name>Rechnungssteller</ram:Name>
         <ram:DefinedTradeContact>
           <ram:PersonName>Max Mustermann</ram:PersonName>
@@ -88,7 +88,7 @@
         </ram:SpecifiedTaxRegistration>
       </ram:SellerTradeParty>
       <ram:BuyerTradeParty>
-        <ram:GlobalID schemeID="XR03">123456789</ram:GlobalID>
+        <ram:GlobalID schemeID="0088">123456789</ram:GlobalID>
         <ram:Name>Rechnungsempfänger</ram:Name>
         <ram:PostalTradeAddress>
           <ram:PostcodeCode>01234</ram:PostcodeCode>
@@ -109,7 +109,7 @@
     <ram:ApplicableHeaderTradeSettlement>
       <ram:InvoiceCurrencyCode>EUR</ram:InvoiceCurrencyCode>
       <ram:PayeeTradeParty>
-        <ram:GlobalID schemeID="XR03">987654322</ram:GlobalID>
+        <ram:GlobalID schemeID="0088">987654322</ram:GlobalID>
         <ram:Name>Payee</ram:Name>
       </ram:PayeeTradeParty>
 
