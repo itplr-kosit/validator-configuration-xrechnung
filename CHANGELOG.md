@@ -20,6 +20,10 @@ This release is compatible with XRechnung ?.?.?
 
 * Unexpected behaviour tests follow target state logic
 
+### Fixed
+
+* removed empty file in `test/unexpected`
+
 ## 2022-07-15
 
 This release is compatible with XRechnung 2.2.0
