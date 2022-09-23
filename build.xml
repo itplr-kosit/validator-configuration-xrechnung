@@ -513,12 +513,23 @@
     </copy>
   </target>
 
-  <target name="init-test" depends="init, compile, compile-scenario, compile-test-sources"
+  <target name="init-test" depends="init, compile, compile-scenario, compile-test-sources, init-test-with-custom-scenario, init-test-with-regular-scenario"
     description="Initializes test directory structure">
     <mkdir dir="${test.build.dir}" />
     <!-- XSDs for validating e.g. scenario.xml and the output report -->
     <mkdir dir="${resource.dir}/xsd" />
     <mkdir dir="${testsuite.instances.dir}" />
+  </target>
+  
+  <target name="init-test-with-regular-scenario" depends="init, compile, compile-scenario, compile-test-sources" description="Initializes test directory structure"
+    unless="develop.custom.scenarios">
+    <echo message="Testing with regular scenario" />
+    <copy file="${repository.dir}/scenarios.xml" tofile="${test.build.dir}/scenarios.xml"/>
+  </target>
+  
+  <target name="init-test-with-custom-scenario" depends="init, compile, compile-scenario, compile-test-sources" description="Initializes test directory structure"
+    if="develop.custom.scenarios">
+    <echo message="Testing with custom scenario" />
     <!-- customize scenarios.xml for testing purpose -->
     <xslt in="${repository.dir}/scenarios.xml" out="${test.build.dir}/scenarios.xml"
       style="${src.dir}/create-test-scenario.xsl">
