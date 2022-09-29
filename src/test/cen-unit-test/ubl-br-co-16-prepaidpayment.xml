@@ -68,6 +68,7 @@
     <cac:PaymentTerms>
         <cbc:Note>Zahlbar sofort ohne Abzug.</cbc:Note>
     </cac:PaymentTerms>
+    <!-- Element added as part of extension -->
     <cac:PrepaidPayment>
         <cbc:ID>MobilesBezahlen</cbc:ID>
         <cbc:PaidAmount currencyID="EUR">19.96</cbc:PaidAmount>
@@ -80,7 +81,13 @@
         <!-- Other supplementary components in the CCT are captured as part of the token and name for the schema module containing the identifier list and thus, are not declared as attributes. -->        
         <cbc:InstructionID>Mobiles Bezahlen (Brutto-Forderung für Fremdleistungen)</cbc:InstructionID>            
     </cac:PrepaidPayment>
+    <cac:PrepaidPayment>
+        <cbc:ID>MobilesBezahlen</cbc:ID>
+        <cbc:PaidAmount currencyID="EUR">10.00</cbc:PaidAmount>      
+        <cbc:InstructionID>Mobiles Bezahlen (Brutto-Forderung für Fremdleistungen)</cbc:InstructionID>            
+    </cac:PrepaidPayment>
     <cac:TaxTotal>
+        <!-- BT-110 -->
         <cbc:TaxAmount currencyID="EUR">22.04</cbc:TaxAmount>
         <cac:TaxSubtotal>
             <cbc:TaxableAmount currencyID="EUR">314.86</cbc:TaxableAmount>
@@ -96,9 +103,11 @@
     </cac:TaxTotal>
     <cac:LegalMonetaryTotal>
         <cbc:LineExtensionAmount currencyID="EUR">314.86</cbc:LineExtensionAmount>
+        <!-- BT-109 -->
         <cbc:TaxExclusiveAmount currencyID="EUR">314.86</cbc:TaxExclusiveAmount>
-        <cbc:TaxInclusiveAmount currencyID="EUR">336.9</cbc:TaxInclusiveAmount>
-        <cbc:PrepaidAmount currencyID="EUR">-19.96</cbc:PrepaidAmount>
+        <!-- BT-112 -->
+        <cbc:TaxInclusiveAmount currencyID="EUR">326.9</cbc:TaxInclusiveAmount>
+        <cbc:PrepaidAmount currencyID="EUR">-29.96</cbc:PrepaidAmount>
         <?xmute mutator="code" values="336.9,400,316.94" schematron-invalid="ceninv:BR-CO-16" 
                 id="ubl-inv-amount-due-has-to-be-correct" description="amount due has to be correct" ?>
         <?xmute mutator="identity" schematron-valid="ceninv:BR-CO-16" 
