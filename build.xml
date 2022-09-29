@@ -601,7 +601,7 @@
 
   <target name="create-validator-reports-from-custom-tests"
     depends="init-test, provide-validator"
-    description="Only test XRechnung Configuration" unless="test.skip">
+    description="Validate custom test" unless="test.skip">
     <fail unless="test.docs.custom.dir"
       message="Property test.docs.custom.dir must exist for this target to work" />
 
