@@ -14,6 +14,7 @@ This release is compatible with XRechnung ?.?.?
 ### Added
 
 * Test to monitor implementation of HUF rounding rules
+* infrastructure to validate custom tests via Ant target `create-validator-reports-from-custom-tests`
 
 ### Changed
 
