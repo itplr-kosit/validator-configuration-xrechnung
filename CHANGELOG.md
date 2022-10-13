@@ -13,6 +13,7 @@ This release is compatible with XRechnung ?.?.?
 
 ### Added
 
+* Tests to monitor status of temporary Kosovo country codes "1A" and "XK" 
 * Test to monitor implementation of HUF rounding rules
 * Test to monitor implementation of BR-CO-25
 * infrastructure to validate custom tests via Ant target `create-validator-reports-from-custom-tests`
@@ -24,6 +25,7 @@ This release is compatible with XRechnung ?.?.?
 ### Fixed
 
 * removed empty file in `test/unexpected`
+>>>>>>> CHANGELOG.md
 
 ## 2022-07-15
 
