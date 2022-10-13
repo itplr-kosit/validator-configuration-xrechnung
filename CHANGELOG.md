@@ -14,11 +14,16 @@ This release is compatible with XRechnung ?.?.?
 ### Added
 
 * Test to monitor implementation of HUF rounding rules
+* Test to monitor implementation of BR-CO-25
 * infrastructure to validate custom tests via Ant target `create-validator-reports-from-custom-tests`
 
 ### Changed
 
 * Unexpected behaviour tests follow target state logic
+
+### Fixed
+
+* removed empty file in `test/unexpected`
 
 ## 2022-07-15
 
