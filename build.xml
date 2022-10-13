@@ -10,6 +10,7 @@
   <property name="dist.dir" location="${basedir}/dist" />
   <property name="test.src.dir" location="${src.dir}/test" />
   <property name="test.build.dir" location="${build.dir}/test" />
+  <property name="test.docs.custom.dir" location="${test.src.dir}/custom"></property>
   <property name="test.docs.dir" location="${test.build.dir}" />
   <property name="test.docs.cen.unit.unexpected.dir" location="${test.docs.dir}/unexpected" />
   <property name="test.docs.cen.unit.dir" location="${test.docs.dir}/cen-unit-test" />
@@ -527,7 +528,6 @@
     </xslt>
   </target>
 
-
   <target name="test-validator-assertions"
     depends="init-test,provide-validator,test-validator-assertions-only,test-validator-report-with-schema-only"
     description="Test XRechnung Configuration">
@@ -595,6 +595,26 @@
       <arg value="-o" />
       <arg value="${reports.dir}/testsuite" />
       <arg value="${testsuite.instances.dir}" />
+
+    </java>
+  </target>
+
+  <target name="create-validator-reports-from-custom-tests"
+    depends="init-test, provide-validator"
+    description="Validate custom test" unless="test.skip">
+    <fail unless="test.docs.custom.dir"
+      message="Property test.docs.custom.dir must exist for this target to work" />
+
+    <echo>Creating validation reports with ${lib.dir}/${validator.jar} for ${test.docs.custom.dir}.</echo>
+    <java jar="${lib.dir}/${validator.jar}" failonerror="true" fork="true" dir="${build.dir}">
+      <arg value="-s" />
+      <arg value="scenarios.xml" />
+      <arg value="-r" />
+      <arg value="${build.dir}" />
+      <arg value="--html" />
+      <arg value="-o" />
+      <arg value="${reports.dir}/custom-tests" />
+      <arg value="${test.docs.custom.dir}" />
 
     </java>
   </target>
@@ -680,7 +700,7 @@
 
 
   <target name="test"
-    depends="init-test, test-validator-assertions,create-validator-reports-from-testsuite, test-cen-expected-behaviour, test-integration">
+    depends="init-test, test-validator-assertions,create-validator-reports-from-testsuite, test-cen-expected-behaviour, test-integration, create-validator-reports-from-custom-tests">
     <echo message="Testing all" />
   </target>
 
