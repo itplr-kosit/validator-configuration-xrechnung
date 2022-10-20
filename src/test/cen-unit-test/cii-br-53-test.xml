@@ -132,8 +132,10 @@
         </ram:ApplicableHeaderTradeAgreement>
         <ram:ApplicableHeaderTradeDelivery/>
         <ram:ApplicableHeaderTradeSettlement>            
-            <ram:TaxCurrencyCode>USD</ram:TaxCurrencyCode><!-- BT-6 -->
-            <ram:InvoiceCurrencyCode>EUR</ram:InvoiceCurrencyCode><!-- BT-5 -->        
+            <!-- BT-6 -->
+            <ram:TaxCurrencyCode>USD</ram:TaxCurrencyCode>
+            <!-- BT-5 -->
+            <ram:InvoiceCurrencyCode>EUR</ram:InvoiceCurrencyCode>        
             <ram:SpecifiedTradeSettlementPaymentMeans>
                 <ram:TypeCode>58</ram:TypeCode>
                 <ram:PayeePartyCreditorFinancialAccount>
@@ -153,13 +155,16 @@
             </ram:SpecifiedTradePaymentTerms>
             <ram:SpecifiedTradeSettlementHeaderMonetarySummation>
                 <ram:LineTotalAmount>314.86</ram:LineTotalAmount>
-                <ram:TaxBasisTotalAmount>314.86</ram:TaxBasisTotalAmount><!-- BT-109 -->
+                <!-- BT-109 -->
+                <ram:TaxBasisTotalAmount>314.86</ram:TaxBasisTotalAmount>
                 <?xmute mutator="identity" schematron-valid="cencii:BR-53" 
                 id="cii-BT-111-should-exist-if-bt-6-exists" description="cii BT-111 should exist if bt-6 exists" ?>   
                 <?xmute mutator="code" attribute="currencyID" values="EUR" schematron-invalid="cencii:BR-53" 
                 id="cii-BT-111-should-exist-if-bt-6-exists-2" description="cii BT-111 should exist if bt-6 exists" ?>            
-                <ram:TaxTotalAmount currencyID="USD">22.04</ram:TaxTotalAmount><!-- BT-110 or BT-111 -->
-                <ram:GrandTotalAmount>314.86</ram:GrandTotalAmount><!-- BT-112 -->
+                <!-- BT-110 or BT-111 -->
+                <ram:TaxTotalAmount currencyID="USD">22.04</ram:TaxTotalAmount>
+                <!-- BT-112 -->
+                <ram:GrandTotalAmount>314.86</ram:GrandTotalAmount>
                 <ram:DuePayableAmount>314.86</ram:DuePayableAmount>
             </ram:SpecifiedTradeSettlementHeaderMonetarySummation>
         </ram:ApplicableHeaderTradeSettlement>
