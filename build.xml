@@ -10,6 +10,7 @@
   <property name="dist.dir" location="${basedir}/dist" />
   <property name="test.src.dir" location="${src.dir}/test" />
   <property name="test.build.dir" location="${build.dir}/test" />
+  <property name="test.docs.custom.dir" location="${test.src.dir}/custom"></property>
   <property name="test.docs.dir" location="${test.build.dir}" />
   <property name="test.docs.cen.unit.unexpected.dir" location="${test.docs.dir}/unexpected" />
   <property name="test.docs.cen.unit.dir" location="${test.docs.dir}/cen-unit-test" />
@@ -26,7 +27,7 @@
     value="${cen.spec.id}#compliant#urn:xoev-de:kosit:standard:xrechnung_${xrechnung.version.major.minor}" />
 
 
-  <property name="validator.configuration.version.full" value="2022-07-15-SNAPSHOT" />
+  <property name="validator.configuration.version.full" value="2022-10-31-SNAPSHOT" />
   <property name="dist.name"
     value="validator-configuration-xrechnung_${xrechnung.version}_${validator.configuration.version.full}.zip" />
   <!-- 3rd party resources -->
@@ -74,9 +75,6 @@
 
 
   <!-- XRechnung Schematron Rules section -->
-  <!-- build date might get deprecated in future: check on this -->
-  <property name="xrechnung.build.date" value="2022-05-31" />
-  <!-- XRechnung Schematron -->
   <property name="xr.schematron.version.major.minor" value="1.7" />
   <property name="xr.schematron.version.patch" value="2" />
   <property name="xr.schematron.version.full"
@@ -88,7 +86,7 @@
     value="xrechnung-${xrechnung.version}-schematron-${xr.schematron.version.full}.zip" />
   <property name="xr.schematron.download.url" value="${xr.schematron.download.url.prefix}/${xr.schematron.zip}" />  
 
-  <property name="xr.testsuite.version" value="2022-05-31" />
+  <property name="xr.testsuite.version" value="2022-07-15" />
   <property name="xr.testsuite.download.url.prefix"
     value="https://github.com/itplr-kosit/xrechnung-testsuite/releases/download" />
 
@@ -468,7 +466,6 @@
     <filter token="xrechnung.rules.version.full" value="${xr.schematron.version.full}" />
     <filter token="xrechnung.rules.version.major.minor" value="${xr.schematron.version.major.minor}" />
     <!-- This is actually the specification part of it -->
-    <filter token="xrechnung.build.date" value="${xrechnung.build.date}" />
     <filter token="xrechnung.version" value="${xrechnung.version}" />
     <filter token="xrechnung.spec.id" value="${xrechnung.spec.id}" />
     <filter token="ubl.version" value="${ubl.version}" />
@@ -530,7 +527,6 @@
       <factory name="net.sf.saxon.TransformerFactoryImpl" />
     </xslt>
   </target>
-
 
   <target name="test-validator-assertions"
     depends="init-test,provide-validator,test-validator-assertions-only,test-validator-report-with-schema-only"
@@ -599,6 +595,26 @@
       <arg value="-o" />
       <arg value="${reports.dir}/testsuite" />
       <arg value="${testsuite.instances.dir}" />
+
+    </java>
+  </target>
+
+  <target name="create-validator-reports-from-custom-tests"
+    depends="init-test, provide-validator"
+    description="Validate custom test" unless="test.skip">
+    <fail unless="test.docs.custom.dir"
+      message="Property test.docs.custom.dir must exist for this target to work" />
+
+    <echo>Creating validation reports with ${lib.dir}/${validator.jar} for ${test.docs.custom.dir}.</echo>
+    <java jar="${lib.dir}/${validator.jar}" failonerror="true" fork="true" dir="${build.dir}">
+      <arg value="-s" />
+      <arg value="scenarios.xml" />
+      <arg value="-r" />
+      <arg value="${build.dir}" />
+      <arg value="--html" />
+      <arg value="-o" />
+      <arg value="${reports.dir}/custom-tests" />
+      <arg value="${test.docs.custom.dir}" />
 
     </java>
   </target>
@@ -684,7 +700,7 @@
 
 
   <target name="test"
-    depends="init-test, test-validator-assertions,create-validator-reports-from-testsuite, test-cen-expected-behaviour, test-integration">
+    depends="init-test, test-validator-assertions,create-validator-reports-from-testsuite, test-cen-expected-behaviour, test-integration, create-validator-reports-from-custom-tests">
     <echo message="Testing all" />
   </target>
 

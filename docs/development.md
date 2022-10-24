@@ -148,6 +148,29 @@ Ant call:
 ant test-integration
 ```
 
+### Unexpected Behaviour of CEN Rules
+
+We provide tests to check on unexpected behaviour of CEN Schematron rules, i.e. the rules in the current state have wrong semantics and hence produce wrong validation results.
+
+Now, we formulate the mutator instructions in a way that we test for the future target state. 
+
+Therefore, each single test will fail as long as the current state of CEN rules does not match the target state.
+
+In order to track the discrepancy between current state and target state, we established following conventions for mutator descriptions:
+
+* `description="expected-to-pass: {DESCRIPTION}"` for a rule which in the current state does **NOT pass** but is expected to pass (i.e. **should pass**) in the future.
+
+* `description="expected-to-fail: {DESCRIPTION}"` for a rule which in the current state does **pass** but is expected to fail (i.e. **should NOT pass**) in the future.
+
+The test instances are in `src/test/unexpected` and tested using `XML Mutate`.
+
+Ant call:
+```shell
+ant test-cen-unexpected-behaviour
+```
+
+This ant task is expected to fail. If not called manually, this task will be skipped.
+
 ## Distribution
 
 The `ant` target `dist` creates the distribution zip archive for releases including several targets for testing.

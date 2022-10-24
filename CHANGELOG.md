@@ -11,6 +11,34 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 This release is compatible with XRechnung ?.?.?
 
+### Added
+
+* Tests on interference of BR-DE-16 with BR-O-02, BR-O-03, and BR-O-04
+* Tests to monitor status of temporary Kosovo country codes "1A" and "XK" 
+* Test to monitor implementation of HUF rounding rules
+* Test to monitor implementation of BR-CO-25
+* infrastructure to validate custom tests via Ant target `create-validator-reports-from-custom-tests`
+
+### Changed
+
+* Unexpected behaviour tests follow target state logic
+
+### Fixed
+
+* removed empty file in `test/unexpected`
+
+## 2022-07-15
+
+This release is compatible with XRechnung 2.2.0
+
+### Added
+
+* Tests for unexpected behaviour of cen rules (see [Development Doc](./docs/development.md) "Unexpected Behaviour of CEN Rules")
+
+### Changed
+
+Using [XRechnung Testsuite 2022-07-15](https://github.com/itplr-kosit/xrechnung-testsuite/releases/tag/release-2022-07-15)
+
 ## 2022-05-31
 This release is compatible with XRechnung 2.2.0
 
