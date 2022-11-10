@@ -601,11 +601,11 @@
 
   <fileset dir="${test.docs.custom.dir}" id="custom"/>
   
-  <target name="fileset.check">
+  <target name="fileset-check">
     <pathconvert refid="custom" property="fileset.nonempty" setonempty="false"/>
   </target>
   
-  <target name="create-validator-reports-from-custom-tests" depends="init-test, provide-validator"
+  <target name="create-validator-reports-from-custom-tests" depends="init-test, provide-validator, fileset-check"
     description="Validate custom test" unless="test.skip" if="fileset.nonempty">
     <fail unless="test.docs.custom.dir"
       message="Property test.docs.custom.dir must exist for this target to work"/>
