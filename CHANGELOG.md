@@ -13,6 +13,7 @@ This release is compatible with XRechnung ?.?.?
 
 ### Added
 
+* Test for BT-111 if BT-5 is provided
 * Tests on interference of BR-DE-16 with BR-O-02, BR-O-03, and BR-O-04
 * Tests to monitor status of temporary Kosovo country codes "1A" and "XK" 
 * Test to monitor implementation of HUF rounding rules
@@ -39,6 +40,7 @@ This release is compatible with XRechnung 2.2.0
 ### Changed
 
 Using [XRechnung Testsuite 2022-07-15](https://github.com/itplr-kosit/xrechnung-testsuite/releases/tag/release-2022-07-15)
+>>>>>>> CHANGELOG.md
 
 ## 2022-05-31
 This release is compatible with XRechnung 2.2.0
