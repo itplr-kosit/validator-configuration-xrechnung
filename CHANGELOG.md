@@ -34,6 +34,7 @@ This release is compatible with XRechnung 2.2.0
 ### Added
 
 * Tests for unexpected behaviour of cen rules (see [Development Doc](./docs/development.md) "Unexpected Behaviour of CEN Rules")
+* Tests for BR-53 and BR-CO-15 in CII with same BT-5 and BT-6
 
 ### Changed
 
