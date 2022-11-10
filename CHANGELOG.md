@@ -13,7 +13,6 @@ This release is compatible with XRechnung ?.?.?
 
 ### Added
 
-* Test for unexpected behaviour of BR-53
 * Tests on interference of BR-DE-16 with BR-O-02, BR-O-03, and BR-O-04
 * Tests to monitor status of temporary Kosovo country codes "1A" and "XK" 
 * Test to monitor implementation of HUF rounding rules
