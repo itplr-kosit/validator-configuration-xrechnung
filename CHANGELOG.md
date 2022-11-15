@@ -22,6 +22,7 @@ This release is compatible with XRechnung ?.?.?
 ### Changed
 
 * Unexpected behaviour tests follow target state logic
+* replaced hardcoded XR extension version in `scenarios.xml`
 
 ### Fixed
 
