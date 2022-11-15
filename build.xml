@@ -25,7 +25,8 @@
   <property name="cen.spec.id" value="urn:cen.eu:en16931:2017" />
   <property name="xrechnung.spec.id"
     value="${cen.spec.id}#compliant#urn:xoev-de:kosit:standard:xrechnung_${xrechnung.version.major.minor}" />
-
+  <property name="xrechnung.extension.id"
+    value="${xrechnung.spec.id}#conformant#urn:xoev-de:kosit:extension:xrechnung_${xrechnung.version.major.minor}" />
 
   <property name="validator.configuration.version.full" value="2022-10-31-SNAPSHOT" />
   <property name="dist.name"
