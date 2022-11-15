@@ -469,6 +469,7 @@
     <!-- This is actually the specification part of it -->
     <filter token="xrechnung.version" value="${xrechnung.version}" />
     <filter token="xrechnung.spec.id" value="${xrechnung.spec.id}" />
+    <filter token="xrechnung.extension.id" value="${xrechnung.extension.id}" />
     <filter token="ubl.version" value="${ubl.version}" />
     <filter token="ubl.download.url" value="${ubl.download.url}" />
     <filter token="cii.version" value="${cii.version}" />
