@@ -598,18 +598,16 @@
 
     </java>
   </target>
-
-  <fileset dir="${test.docs.custom.dir}" id="custom"/>
   
   <target name="fileset-check">
-    <pathconvert refid="custom" property="fileset.nonempty" setonempty="false"/>
+    <fileset dir="${test.docs.custom.dir}" id="custom"/>
+    <pathconvert refid="custom" property="fileset.nonempty" setonempty="false"/>    
   </target>
   
   <target name="create-validator-reports-from-custom-tests" depends="init-test, provide-validator, fileset-check"
-    description="Validate custom test" unless="test.skip" if="fileset.nonempty">
+    description="Validate custom test" unless="test.skip" if="fileset.nonempty">    
     <fail unless="test.docs.custom.dir"
-      message="Property test.docs.custom.dir must exist for this target to work"/>
-    
+      message="Property test.docs.custom.dir must exist for this target to work"/>    
     <echo>Creating validation reports with ${lib.dir}/${validator.jar} for
       ${test.docs.custom.dir}.</echo>
     <java jar="${lib.dir}/${validator.jar}" failonerror="true" fork="true" dir="${build.dir}">
@@ -621,7 +619,6 @@
       <arg value="-o"/>
       <arg value="${reports.dir}/custom-tests"/>
       <arg value="${test.docs.custom.dir}"/>
-      
     </java>
   </target>
 
