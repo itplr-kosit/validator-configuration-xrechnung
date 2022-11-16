@@ -26,7 +26,6 @@ This release is compatible with XRechnung ?.?.?
 ### Fixed
 
 * removed empty file in `test/unexpected`
-* Bug that lead to build fail on empty `src/test/custom` directory
 
 ## 2022-07-15
 

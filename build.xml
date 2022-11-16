@@ -599,12 +599,12 @@
     </java>
   </target>
   
-  <target name="check-custom-tests">
+  <target name="check-custom-tests-folder-is-empty">
     <fileset dir="${test.docs.custom.dir}" id="custom"/>
     <pathconvert refid="custom" property="fileset.nonempty" setonempty="false"/>    
   </target>
   
-  <target name="create-validator-reports-from-custom-tests" depends="init-test, provide-validator, check-custom-tests"
+  <target name="create-validator-reports-from-custom-tests" depends="init-test, provide-validator, check-custom-tests-folder-is-empty"
     description="Validate custom test" unless="test.skip" if="fileset.nonempty">    
     <fail unless="test.docs.custom.dir"
       message="Property test.docs.custom.dir must exist for this target to work"/>    
