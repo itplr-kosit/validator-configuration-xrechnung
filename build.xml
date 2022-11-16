@@ -598,24 +598,27 @@
 
     </java>
   </target>
-
-  <target name="create-validator-reports-from-custom-tests"
-    depends="init-test, provide-validator"
-    description="Validate custom test" unless="test.skip">
+  
+  <target name="check-custom-tests-folder-is-empty">
+    <fileset dir="${test.docs.custom.dir}" id="custom"/>
+    <pathconvert refid="custom" property="fileset.nonempty" setonempty="false"/>    
+  </target>
+  
+  <target name="create-validator-reports-from-custom-tests" depends="init-test, provide-validator, check-custom-tests-folder-is-empty"
+    description="Validate custom test" unless="test.skip" if="fileset.nonempty">    
     <fail unless="test.docs.custom.dir"
-      message="Property test.docs.custom.dir must exist for this target to work" />
-
-    <echo>Creating validation reports with ${lib.dir}/${validator.jar} for ${test.docs.custom.dir}.</echo>
+      message="Property test.docs.custom.dir must exist for this target to work"/>    
+    <echo>Creating validation reports with ${lib.dir}/${validator.jar} for
+      ${test.docs.custom.dir}.</echo>
     <java jar="${lib.dir}/${validator.jar}" failonerror="true" fork="true" dir="${build.dir}">
-      <arg value="-s" />
-      <arg value="scenarios.xml" />
-      <arg value="-r" />
-      <arg value="${build.dir}" />
-      <arg value="--html" />
-      <arg value="-o" />
-      <arg value="${reports.dir}/custom-tests" />
-      <arg value="${test.docs.custom.dir}" />
-
+      <arg value="-s"/>
+      <arg value="scenarios.xml"/>
+      <arg value="-r"/>
+      <arg value="${build.dir}"/>
+      <arg value="--html"/>
+      <arg value="-o"/>
+      <arg value="${reports.dir}/custom-tests"/>
+      <arg value="${test.docs.custom.dir}"/>
     </java>
   </target>
 
