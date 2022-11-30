@@ -69,7 +69,6 @@
         <name>Validation report for XRechnung</name>
         <location>resources/xrechnung-report.xsl</location>
       </resource>
-      <customLevel level="information">BR-CL-01</customLevel>
       <customLevel level="warning">BR-CL-23</customLevel>
       <customLevel level="warning">BR-CL-21</customLevel>
     </createReport>
@@ -124,7 +123,6 @@
         <name>Validation report for XRechnung</name>
         <location>resources/xrechnung-report.xsl</location>
       </resource>
-      <customLevel level="information">BR-CL-01</customLevel>
       <customLevel level="information">BR-CL-21</customLevel>
       <customLevel level="warning">BR-CL-23</customLevel>
       <customLevel level="warning">BR-CL-24</customLevel>
@@ -183,7 +181,6 @@
         <name>Validation report for XRechnung</name>
         <location>resources/xrechnung-report.xsl</location>
       </resource>
-      <customLevel level="information">BR-CL-01</customLevel>
       <customLevel level="warning">BR-CL-23</customLevel>
       <customLevel level="warning">BR-CL-21</customLevel>
     </createReport>
@@ -240,7 +237,6 @@
         <name>Validation report for XRechnung</name>
         <location>resources/xrechnung-report.xsl</location>
       </resource>
-      <customLevel level="information">BR-CL-01</customLevel>
       <customLevel level="warning">BR-CL-23</customLevel>
       <customLevel level="warning">BR-CL-21</customLevel>
     </createReport>
@@ -296,7 +292,6 @@
         <name>Validation report for XRechnung</name>
         <location>resources/xrechnung-report.xsl</location>
       </resource>
-      <customLevel level="information">BR-CL-01</customLevel>
       <customLevel level="warning">BR-CL-23</customLevel>
       <customLevel level="information">BR-CL-21</customLevel>
       <customLevel level="information">BR-CL-11</customLevel>
