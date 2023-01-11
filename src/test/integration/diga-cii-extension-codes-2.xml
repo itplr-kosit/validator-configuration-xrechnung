@@ -67,10 +67,9 @@
         <ram:ApplicableHeaderTradeAgreement>
             <ram:BuyerReference>Leitweg-ID</ram:BuyerReference>
             <ram:SellerTradeParty>
-                <ram:ID>TEST_RECHNUNGSSTELLER</ram:ID>
                 <!-- IK des DiGA-Herstellers als "Seller Identifier" (BT-29) [BR-CO-26]: -->
                 <!-- BR-CL-11 BR-DEX-04 -->
-                <ram:ID schemeID="XR03">987654321</ram:ID>
+                <ram:GlobalID schemeID="XR03">987654321</ram:GlobalID>
                 <ram:Name>Rechnungssteller</ram:Name>
                 <ram:DefinedTradeContact>
                     <ram:PersonName>Max Mustermann</ram:PersonName>
@@ -97,10 +96,9 @@
                 </ram:SpecifiedTaxRegistration>
             </ram:SellerTradeParty>
             <ram:BuyerTradeParty>
-                <ram:ID>TEST_RECHNUNGSEMPFÄNGER</ram:ID>
                 <!-- IK der Krankenkasse als "Buyer Identifier" (BT-46): -->
                 <!-- BR-CL-11 BR-DEX-04 -->
-                <ram:ID schemeID="XR03">123456789</ram:ID>
+                <ram:GlobalID schemeID="XR03">123456789</ram:GlobalID>
                 <ram:Name>Rechnungsempfänger</ram:Name>
                 <ram:PostalTradeAddress>
                     <ram:PostcodeCode>01234</ram:PostcodeCode>
@@ -139,7 +137,7 @@
             <ram:PayeeTradeParty>
                 <!-- IK des Zahlungsempfängers als "Payee Identifier" (BT-60): -->
                 <!-- BR-CL-11 BR-DEX-04 -->
-                <ram:ID schemeID="XR03">987654322</ram:ID>
+                <ram:GlobalID schemeID="XR03">987654322</ram:GlobalID>
                 <ram:Name>Payee</ram:Name>
             </ram:PayeeTradeParty>
             
