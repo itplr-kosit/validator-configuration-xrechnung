@@ -69,6 +69,7 @@
         <name>Validation report for XRechnung</name>
         <location>resources/xrechnung-report.xsl</location>
       </resource>
+      <!-- custom level "information" for BR-CL-01 was removed as construction codes were added to Codelist 1001 with CEN 1.3.8 (see CEN issue https://github.com/ConnectingEurope/eInvoicing-EN16931/issues/309) --> 
       <customLevel level="warning">BR-CL-23</customLevel>
       <customLevel level="warning">BR-CL-21</customLevel>
     </createReport>
@@ -123,6 +124,7 @@
         <name>Validation report for XRechnung</name>
         <location>resources/xrechnung-report.xsl</location>
       </resource>
+      <!-- custom level "information" for BR-CL-01 was removed as construction codes were added to Codelist 1001 with CEN 1.3.8 (see CEN issue https://github.com/ConnectingEurope/eInvoicing-EN16931/issues/309) --> 
       <customLevel level="information">BR-CL-21</customLevel>
       <customLevel level="warning">BR-CL-23</customLevel>
       <customLevel level="warning">BR-CL-24</customLevel>
@@ -181,6 +183,7 @@
         <name>Validation report for XRechnung</name>
         <location>resources/xrechnung-report.xsl</location>
       </resource>
+      <!-- custom level "information" for BR-CL-01 was removed as construction codes were added to Codelist 1001 with CEN 1.3.8 (see CEN issue https://github.com/ConnectingEurope/eInvoicing-EN16931/issues/309) --> 
       <customLevel level="warning">BR-CL-23</customLevel>
       <customLevel level="warning">BR-CL-21</customLevel>
     </createReport>
@@ -237,6 +240,7 @@
         <name>Validation report for XRechnung</name>
         <location>resources/xrechnung-report.xsl</location>
       </resource>
+      <!-- custom level "information" for BR-CL-01 was removed as construction codes were added to Codelist 1001 with CEN 1.3.8 (see CEN issue https://github.com/ConnectingEurope/eInvoicing-EN16931/issues/309) --> 
       <customLevel level="warning">BR-CL-23</customLevel>
       <customLevel level="warning">BR-CL-21</customLevel>
     </createReport>
@@ -292,6 +296,7 @@
         <name>Validation report for XRechnung</name>
         <location>resources/xrechnung-report.xsl</location>
       </resource>
+      <!-- custom level "information" for BR-CL-01 was removed as construction codes were added to Codelist 1001 with CEN 1.3.8 (see CEN issue https://github.com/ConnectingEurope/eInvoicing-EN16931/issues/309) --> 
       <customLevel level="warning">BR-CL-23</customLevel>
       <customLevel level="information">BR-CL-21</customLevel>
       <customLevel level="information">BR-CL-11</customLevel>
