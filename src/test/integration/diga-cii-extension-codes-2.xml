@@ -68,7 +68,7 @@
             <ram:BuyerReference>Leitweg-ID</ram:BuyerReference>
             <ram:SellerTradeParty>
                 <!-- IK des DiGA-Herstellers als "Seller Identifier" (BT-29) [BR-CO-26]: -->
-                <!-- BR-CL-11 BR-DEX-04 -->
+                <!-- BR-CL-10 BR-DEX-04 -->
                 <ram:GlobalID schemeID="XR03">987654321</ram:GlobalID>
                 <ram:Name>Rechnungssteller</ram:Name>
                 <ram:DefinedTradeContact>
@@ -97,7 +97,7 @@
             </ram:SellerTradeParty>
             <ram:BuyerTradeParty>
                 <!-- IK der Krankenkasse als "Buyer Identifier" (BT-46): -->
-                <!-- BR-CL-11 BR-DEX-04 -->
+                <!-- BR-CL-10 BR-DEX-04 -->
                 <ram:GlobalID schemeID="XR03">123456789</ram:GlobalID>
                 <ram:Name>Rechnungsempfänger</ram:Name>
                 <ram:PostalTradeAddress>
@@ -117,7 +117,6 @@
             <ram:ShipToTradeParty> 
                 <!-- BT-71 Deliver to location identifier und BT-71-1 Deliver to location identifier identificationscheme identifier -->
                 <!-- BR-CL-26 BR-DEX-08 -->
-                <!-- BR-DEX-04 -->
                 <ram:GlobalID schemeID="XR01">yfTP7q.W</ram:GlobalID>         
             </ram:ShipToTradeParty>    
             <ram:ActualDeliverySupplyChainEvent>
@@ -136,7 +135,7 @@
             <ram:InvoiceCurrencyCode>EUR</ram:InvoiceCurrencyCode>
             <ram:PayeeTradeParty>
                 <!-- IK des Zahlungsempfängers als "Payee Identifier" (BT-60): -->
-                <!-- BR-CL-11 BR-DEX-04 -->
+                <!-- BR-CL-10 BR-DEX-04 -->
                 <ram:GlobalID schemeID="XR03">987654322</ram:GlobalID>
                 <ram:Name>Payee</ram:Name>
             </ram:PayeeTradeParty>
