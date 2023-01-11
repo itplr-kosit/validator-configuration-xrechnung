@@ -29,9 +29,7 @@
                 <!-- DiGA-VE-ID: -->
                 <!-- BT-157 BR-CL-21 -->
                 <ram:GlobalID schemeID="XR01">12345678</ram:GlobalID>
-                <!-- Freischaltcode: -->
-                <!-- BT-156 -->
-                <ram:BuyerAssignedID schemeID="XR02">ABCDEFGHIJKLMNOP</ram:BuyerAssignedID>
+                <ram:BuyerAssignedID>ABCDEFGHIJKLMNOP</ram:BuyerAssignedID>
                 <!-- DiGA-Name: -->
                 <ram:Name>Tinnitus Rex</ram:Name>
                 <ram:Description>Ein Artikel für Testrechnungen.</ram:Description>
