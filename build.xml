@@ -33,7 +33,7 @@
     value="validator-configuration-xrechnung_${xrechnung.version}_${validator.configuration.version.full}.zip" />
   <!-- 3rd party resources -->
   <!-- KoSIT XML Validator -->
-  <property name="validator.version" value="1.4.2" />
+  <property name="validator.version" value="1.5.0" />
   <property name="validator.download.url.prefix"
     value="https://github.com/itplr-kosit/validator/releases/download" />
     
@@ -561,8 +561,8 @@
       <arg value="-r" />
       <arg value="${build.dir}" />
       <arg value="--html" />
-      <arg value="--log-level" />
-      <arg value="info" />
+      <arg value="-l" />
+      <arg value="INFO" />
       <arg value="--check-assertions" />
       <arg value="${test.src.dir}/assertions.xml" />
       <arg value="-o" />
@@ -689,7 +689,7 @@
     <echo>Creating validation reports with ${lib.dir}/${validator.jar} for ${test.docs.integration.dir}</echo>
     <java jar="${lib.dir}/${validator.jar}" failonerror="true" fork="true" dir="${build.dir}">
       <arg value="-l" />
-      <arg value="debug" />
+      <arg value="DEBUG" />
       <arg value="-s" />
       <arg value="scenarios.xml" />
       <arg value="-r" />
