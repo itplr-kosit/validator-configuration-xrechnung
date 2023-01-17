@@ -29,9 +29,7 @@
                 <!-- DiGA-VE-ID: -->
                 <!-- BT-157 BR-CL-21 -->
                 <ram:GlobalID schemeID="XR01">12345678</ram:GlobalID>
-                <!-- Freischaltcode: -->
-                <!-- BT-156 -->
-                <ram:BuyerAssignedID schemeID="XR02">ABCDEFGHIJKLMNOP</ram:BuyerAssignedID>
+                <ram:BuyerAssignedID>ABCDEFGHIJKLMNOP</ram:BuyerAssignedID>
                 <!-- DiGA-Name: -->
                 <ram:Name>Tinnitus Rex</ram:Name>
                 <ram:Description>Ein Artikel für Testrechnungen.</ram:Description>
@@ -67,10 +65,9 @@
         <ram:ApplicableHeaderTradeAgreement>
             <ram:BuyerReference>Leitweg-ID</ram:BuyerReference>
             <ram:SellerTradeParty>
-                <ram:ID>TEST_RECHNUNGSSTELLER</ram:ID>
                 <!-- IK des DiGA-Herstellers als "Seller Identifier" (BT-29) [BR-CO-26]: -->
                 <!-- BR-CL-10 BR-DEX-04 -->
-                <ram:ID schemeID="XR03">987654321</ram:ID>
+                <ram:GlobalID schemeID="XR03">987654321</ram:GlobalID>
                 <ram:Name>Rechnungssteller</ram:Name>
                 <ram:DefinedTradeContact>
                     <ram:PersonName>Max Mustermann</ram:PersonName>
@@ -97,10 +94,9 @@
                 </ram:SpecifiedTaxRegistration>
             </ram:SellerTradeParty>
             <ram:BuyerTradeParty>
-                <ram:ID>TEST_RECHNUNGSEMPFÄNGER</ram:ID>
                 <!-- IK der Krankenkasse als "Buyer Identifier" (BT-46): -->
                 <!-- BR-CL-10 BR-DEX-04 -->
-                <ram:ID schemeID="XR03">123456789</ram:ID>
+                <ram:GlobalID schemeID="XR03">123456789</ram:GlobalID>
                 <ram:Name>Rechnungsempfänger</ram:Name>
                 <ram:PostalTradeAddress>
                     <ram:PostcodeCode>01234</ram:PostcodeCode>
@@ -119,7 +115,6 @@
             <ram:ShipToTradeParty> 
                 <!-- BT-71 Deliver to location identifier und BT-71-1 Deliver to location identifier identificationscheme identifier -->
                 <!-- BR-CL-26 BR-DEX-08 -->
-                <!-- BR-CL-10 BR-DEX-04 -->
                 <ram:GlobalID schemeID="XR01">yfTP7q.W</ram:GlobalID>         
             </ram:ShipToTradeParty>    
             <ram:ActualDeliverySupplyChainEvent>
@@ -139,7 +134,7 @@
             <ram:PayeeTradeParty>
                 <!-- IK des Zahlungsempfängers als "Payee Identifier" (BT-60): -->
                 <!-- BR-CL-10 BR-DEX-04 -->
-                <ram:ID schemeID="XR03">987654322</ram:ID>
+                <ram:GlobalID schemeID="XR03">987654322</ram:GlobalID>
                 <ram:Name>Payee</ram:Name>
             </ram:PayeeTradeParty>
             

@@ -13,7 +13,9 @@ This release is compatible with XRechnung ?.?.?
 
 ### Changed
 
+* Using [CEN Schematron Rules 1.3.9](https://github.com/ConnectingEurope/eInvoicing-EN16931/releases/tag/validation-1.3.9)
 * Using KoSIT Validator v1.5.0
+* Tests to adhere to new CEN Rule set
 
 ## 2022-11-15
 
