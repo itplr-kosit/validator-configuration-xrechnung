@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100"
-                          xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100"
-                          xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
+    xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100"
+    xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100"
+    xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
     <rsm:ExchangedDocumentContext>
         <ram:GuidelineSpecifiedDocumentContextParameter>
             <ram:ID>urn:cen.eu:en16931:2017#compliant#urn:xoev-de:kosit:standard:xrechnung_2.2</ram:ID>
@@ -11,10 +12,6 @@
         <ram:ID>123456XX</ram:ID>
         <ram:TypeCode>380</ram:TypeCode>
         <ram:IssueDateTime>
-            <?xmute mutator="code" values="2016-04-04" schematron-invalid="cencii:BR-03" 
-                id="inv-cii-date" description="expected-to-fail: no hyphen allowed in CII dates" ?>
-            <?xmute mutator="identity" schematron-valid="cencii:BR-03" 
-                id="valid-cii-date" description="expected-to-pass: correct CII date syntax" ?>
             <udt:DateTimeString format="102">20160404</udt:DateTimeString>
         </ram:IssueDateTime>
         <ram:IncludedNote>
@@ -95,7 +92,7 @@
             </ram:SpecifiedLineTradeSettlement>
         </ram:IncludedSupplyChainTradeLineItem>
         <ram:ApplicableHeaderTradeAgreement>
-            <ram:BuyerReference>04011000-12345-34</ram:BuyerReference>
+            <ram:BuyerReference>04011000-12345-03</ram:BuyerReference>
             <ram:SellerTradeParty>
                 <ram:Name>[Seller name]</ram:Name>
                 <ram:Description>123/456/7890, HRA-Eintrag in […]</ram:Description>
@@ -134,8 +131,12 @@
             </ram:BuyerTradeParty>
         </ram:ApplicableHeaderTradeAgreement>
         <ram:ApplicableHeaderTradeDelivery/>
-        <ram:ApplicableHeaderTradeSettlement>
-            <ram:InvoiceCurrencyCode>EUR</ram:InvoiceCurrencyCode>
+        <ram:ApplicableHeaderTradeSettlement>            
+            <!-- currency for the negative test -->
+            <!-- BT-6 -->
+            <ram:TaxCurrencyCode>EUR</ram:TaxCurrencyCode>
+            <!-- BT-5 -->
+            <ram:InvoiceCurrencyCode>EUR</ram:InvoiceCurrencyCode>        
             <ram:SpecifiedTradeSettlementPaymentMeans>
                 <ram:TypeCode>58</ram:TypeCode>
                 <ram:PayeePartyCreditorFinancialAccount>
@@ -155,8 +156,19 @@
             </ram:SpecifiedTradePaymentTerms>
             <ram:SpecifiedTradeSettlementHeaderMonetarySummation>
                 <ram:LineTotalAmount>314.86</ram:LineTotalAmount>
-                <ram:TaxBasisTotalAmount>314.86</ram:TaxBasisTotalAmount>
+                <!-- BT-109 -->  
+                <ram:TaxBasisTotalAmount>314.86</ram:TaxBasisTotalAmount>      
+                <!-- BT-110 or BT-111 -->                             
                 <ram:TaxTotalAmount currencyID="EUR">22.04</ram:TaxTotalAmount>
+                <!-- see https://projekte.kosit.org/xrechnung/validator-configuration-xrechnung/-/issues/49#note_116207 -->
+                <?xmute mutator="identity" schematron-valid="cencii:BR-CO-15" 
+                id="cii-BR-CO-15-with-BT-6" description="cii BT-112 should be the sum of BT-109 and BT-110" ?>
+                <!-- validation is dependant on slack implementation / behaviour, therefore this in-between unit test-->
+                <?xmute mutator="code" values="336.8" schematron-invalid="cencii:BR-CO-15" 
+                id="cii-BR-CO-15-with-BT-6-2" description="cii BT-112 should be the sum of BT-109 and BT-110" ?>           
+                <?xmute mutator="code" values="314.86" schematron-invalid="cencii:BR-CO-15" 
+                id="cii-BR-CO-15-with-BT-6-3" description="expected-to-fail: cii BT-112 should be the sum of BT-109 and BT-110" ?>               
+                <!-- BT-112 -->
                 <ram:GrandTotalAmount>336.9</ram:GrandTotalAmount>
                 <ram:DuePayableAmount>336.9</ram:DuePayableAmount>
             </ram:SpecifiedTradeSettlementHeaderMonetarySummation>

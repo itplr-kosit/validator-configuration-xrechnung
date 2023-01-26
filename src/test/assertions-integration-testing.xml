@@ -25,13 +25,13 @@
     
     Should have error about BR-CL-21
   </a:assertion>
-  
+
   <a:assertion report-doc="diga-cii-extension-codes-report.xml"
     test="/rep:report/rep:assessment/rep:accept/rep:explanation/html:html/html:body/html:table[2]/html:tbody/html:tr[@class = 'information']/html:td[text() = 'BR-CL-21']">
     
     Should have information about BR-CL-21
   </a:assertion>
-  
+
   <a:assertion report-doc="diga-cii-extension-codes-report.xml"
     test="/rep:report/rep:scenarioMatched[1]/rep:validationStepResult[2]/rep:message[ @code = 'BR-CL-11' and @level='error']">
     
@@ -43,29 +43,53 @@
     
     Should have warning about BR-CL-11
   </a:assertion>
-  
+
   <a:assertion report-doc="diga-cii-extension-codes-2-report.xml"
-    test="/rep:report/rep:scenarioMatched[1]/rep:validationStepResult[2]/rep:message[ @code = 'BR-CL-10' and @level='error']">
-    
-    Should have error about BR-CL-10
+    test="/rep:report/rep:scenarioMatched[1]/rep:validationStepResult[2]/rep:message[ @code = 'BR-CL-26' and @level='error']">
+
+    Should have error about BR-CL-26
   </a:assertion>
-  
+
   <a:assertion report-doc="diga-cii-extension-codes-2-report.xml"
-    test="/rep:report/rep:assessment/rep:accept/rep:explanation/html:html/html:body/html:table[2]/html:tbody/html:tr[@class = 'information']/html:td[text() = 'BR-CL-10']">
-    
-    Should have information about BR-CL-10
+    test="/rep:report/rep:assessment/rep:accept/rep:explanation/html:html/html:body/html:table[2]/html:tbody/html:tr[@class = 'information']/html:td[text() = 'BR-CL-26']">
+
+    Should have information about BR-CL-26
   </a:assertion>
-  
+
   <a:assertion report-doc="diga-cii-extension-codes-2-report.xml"
     test="/rep:report/rep:scenarioMatched[1]/rep:validationStepResult[2]/rep:message[ @code = 'BR-CL-25' and @level='error']">
-    
+
     Should have error about BR-CL-25
   </a:assertion>
-  
+
   <a:assertion report-doc="diga-cii-extension-codes-2-report.xml"
     test="/rep:report/rep:assessment/rep:accept/rep:explanation/html:html/html:body/html:table[2]/html:tbody/html:tr[@class = 'information']/html:td[text() = 'BR-CL-25']">
     
     Should have information about BR-CL-25
+  </a:assertion>
+
+  <a:assertion report-doc="diga-cii-extension-codes-2-report.xml"
+    test="/rep:report/rep:scenarioMatched[1]/rep:validationStepResult[2]/rep:message[ @code = 'BR-CL-10' and @level='error']">
+
+    Should have error about BR-CL-10
+  </a:assertion>
+
+  <a:assertion report-doc="diga-cii-extension-codes-2-report.xml"
+    test="/rep:report/rep:assessment/rep:accept/rep:explanation/html:html/html:body/html:table[2]/html:tbody/html:tr[@class = 'information']/html:td[text() = 'BR-CL-10']">
+
+    Should have information about BR-CL-10
+  </a:assertion>
+
+  <a:assertion report-doc="diga-cii-extension-codes-2-report.xml"
+    test="/rep:report/rep:scenarioMatched[1]/rep:validationStepResult[2]/rep:message[ @code = 'BR-CL-21' and @level='error']">
+
+    Should have error about BR-CL-21
+  </a:assertion>
+
+  <a:assertion report-doc="diga-cii-extension-codes-2-report.xml"
+    test="/rep:report/rep:assessment/rep:accept/rep:explanation/html:html/html:body/html:table[2]/html:tbody/html:tr[@class = 'information']/html:td[text() = 'BR-CL-21']">
+
+    Should have information about BR-CL-21
   </a:assertion>
 
 </a:assertions>
