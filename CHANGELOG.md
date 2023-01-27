@@ -12,9 +12,47 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 This release is compatible with XRechnung ?.?.?
 
 ### Added
+* Tests for invoices with 0 total amount
+
+### Changed
+
+* Using [CEN Schematron Rules 1.3.9](https://github.com/ConnectingEurope/eInvoicing-EN16931/releases/tag/validation-1.3.9)
+* Using KoSIT Validator v1.5.0
+* Tests to adhere to new CEN Rule set
+
+## 2022-11-15
+
+This release is compatible with XRechnung 2.2.0
+
+### Added
+
+* Tests on interference of BR-DE-16 with BR-O-02, BR-O-03, and BR-O-04
+* Tests to monitor status of temporary Kosovo country codes "1A" and "XK" 
+* Test to monitor implementation of HUF rounding rules
+* Test to monitor implementation of BR-CO-25
+* infrastructure to validate custom tests via Ant target `create-validator-reports-from-custom-tests`
+
+### Changed
+
+* Unexpected behaviour tests follow target state logic
+* Replaced hardcoded XR extension version in `scenarios.xml`
+
+### Fixed
+
+* removed empty file in `test/unexpected`
+
+## 2022-07-15
+
+This release is compatible with XRechnung 2.2.0
+
+### Added
 
 * Tests for unexpected behaviour of cen rules (see [Development Doc](./docs/development.md) "Unexpected Behaviour of CEN Rules")
-* Tests for invoices with 0 total amount
+* Tests for BR-53 and BR-CO-15 in CII with same BT-5 and BT-6
+
+### Changed
+
+Using [XRechnung Testsuite 2022-07-15](https://github.com/itplr-kosit/xrechnung-testsuite/releases/tag/release-2022-07-15)
 
 ## 2022-05-31
 This release is compatible with XRechnung 2.2.0

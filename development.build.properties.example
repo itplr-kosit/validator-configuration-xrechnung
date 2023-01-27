@@ -16,7 +16,7 @@
 ##
 #develop.local.validator=true
 
-#validator.version=1.4.2-SNAPSHOT
+#validator.version=1.5.1-SNAPSHOT
 ##
 # Should point to main directory of validator project, in case of local path
 ##
