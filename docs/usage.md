@@ -11,10 +11,10 @@ In an empty directory:
 
 ```shell
 # download validator
-curl -L "https://github.com/itplr-kosit/validator/releases/download/v1.4.2/validator-1.4.2-distribution.zip" --output validator.zip
+curl -L "https://github.com/itplr-kosit/validator/releases/download/v1.5.0/validator-1.5.0-distribution.zip" --output validator.zip
 
 # download configuration (for 2.2.0)
-curl -L "https://github.com/itplr-kosit/validator-configuration-xrechnung/releases/download/release-2022-05-31/validator-configuration-xrechnung_2.2.0_2022-05-31.zip" --output validator-configuration.zip
+curl -L "https://github.com/itplr-kosit/validator-configuration-xrechnung/releases/download/release-2022-11-15/validator-configuration-xrechnung_2.2.0_2022-11-15.zip" --output validator-configuration.zip
 
 # download one most recent test document
 curl -L "https://raw.githubusercontent.com/itplr-kosit/xrechnung-testsuite/master/src/test/business-cases/standard/01.01a-INVOICE_ubl.xml" --output ubl.xml
@@ -22,7 +22,7 @@ curl -L "https://raw.githubusercontent.com/itplr-kosit/xrechnung-testsuite/maste
 # show content of directory
 ls
 # should show something like this:
-ubl.xml validator.zip  validator-configuration.zip
+# ubl.xml validator.zip  validator-configuration.zip
 ```
 
 2. Unzip
