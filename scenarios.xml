@@ -133,6 +133,7 @@
       <customLevel level="information">BR-CL-25</customLevel>
       <customLevel level="information">BR-CL-26</customLevel>
       <customLevel level="information">BR-CO-16</customLevel>
+      <customLevel level="information">UBL-CR-470</customLevel>
     </createReport>
     <acceptMatch>/rep:report/rep:assessment[1]/rep:accept[1]</acceptMatch>
   </scenario>
