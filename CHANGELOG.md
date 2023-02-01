@@ -9,7 +9,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## UNRELEASED
 
-This release is compatible with XRechnung ?.?.?
+This release is compatible with XRechnung 2.3.0
+
+### Added
+
+* Integration test for multiple currencies.
 
 ### Changed
 
