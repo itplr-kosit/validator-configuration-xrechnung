@@ -12,7 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 This release is compatible with XRechnung ?.?.?
 
 ## Added
-* Test for prepaid payment
+* Test for Third Party Payment
 
 ### Changed
 
