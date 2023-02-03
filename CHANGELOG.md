@@ -11,11 +11,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 This release is compatible with XRechnung ?.?.?
 
+## Added
+* Test for Third Party Payment
+
 ### Changed
 
 * Using [CEN Schematron Rules 1.3.9](https://github.com/ConnectingEurope/eInvoicing-EN16931/releases/tag/validation-1.3.9)
 * Using KoSIT Validator v1.5.0
 * Tests to adhere to new CEN Rule set
+* Switched off rules BR-CO-16 and UBL-CR-470 in UBL Extension scenario for Third Party Payment implementation
 
 ## 2022-11-15
 
