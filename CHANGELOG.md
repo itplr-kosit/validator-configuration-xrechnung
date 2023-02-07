@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## 2023-01-31
 
-This release is compatible with XRechnung 2.3.1
+This release is compatible with XRechnung 2.3.x
 
 ### Added
 
