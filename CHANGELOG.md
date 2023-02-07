@@ -11,8 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 This release is compatible with XRechnung 2.3.1
 
-## Added
+### Added
+
 * Test for Third Party Payment
+* Integration test for BR-CO-17 on currencies with rounding at totals in CII.
 
 ### Changed
 
