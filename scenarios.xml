@@ -11,7 +11,7 @@
   <description>
     <p>Checks whether XML Documents conform to XRechnung specification
             @xrechnung.version@
-            (https://www.xoev.de/die_standards/xrechnung-14741).</p>
+            (https://xeinkauf.de/xrechnung/versionen-und-bundles/).</p>
     <p>It uses CEN Schematron rules of @cen.spec.id@
             in version @cen.rules.version@ from @build.date@
             (https://github.com/ConnectingEurope/eInvoicing-EN16931/releases).</p>
