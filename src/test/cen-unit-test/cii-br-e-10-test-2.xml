@@ -104,6 +104,7 @@
                 <ram:TypeCode>VAT</ram:TypeCode>
                 <?xmute mutator="identity" schematron-valid="cencii:BR-E-10" id="cencii-BR-E-10-test" description="exemptionReason should be provided"?>
                 <?xmute mutator="remove" schematron-invalid="cencii:BR-E-10" id="cencii-BR-E-10-test-2" description="exemptionReason should be provided"?>
+                <!-- BT-120 -->
                 <ram:ExemptionReason>als gemeinnützig anerkannt</ram:ExemptionReason>
                 <ram:BasisAmount>120</ram:BasisAmount>
                 <ram:CategoryCode>E</ram:CategoryCode>
