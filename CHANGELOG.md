@@ -11,6 +11,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 This release is compatible with XRechnung ?.?.?
 
+### Added
+
+* Test for BR-CO-17 and BR-S-09 rounding rules in UBL
+
+### Changed
+
+* Tests for BR-CO-17 and BR-S-09 rounding rules merged
+
 ## 2023-02-17
 
 This release is compatible with XRechnung 2.3.x
