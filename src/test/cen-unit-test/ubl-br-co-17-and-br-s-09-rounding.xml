@@ -68,12 +68,19 @@
     <cac:PaymentTerms>
         <cbc:Note>Zahlbar sofort ohne Abzug.</cbc:Note>
     </cac:PaymentTerms>
+    <!--
+    [BR-CO-17]-VAT category tax amount (BT-117) = VAT category taxable amount (BT-116) x (VAT category rate (BT-119) / 100), rounded to two decimals.
+    [BR-S-09]-The VAT category tax amount (BT-117) in a VAT breakdown (BG-23) where VAT category code (BT-118) is "Standard rated" shall equal the VAT category taxable amount (BT-116) multiplied by the VAT category rate (BT-119).
+    -->
     <cac:TaxTotal>
         <cbc:TaxAmount currencyID="EUR">44.08</cbc:TaxAmount>
         <cac:TaxSubtotal>
             <!-- BT-116 -->
             <cbc:TaxableAmount currencyID="EUR">629.72</cbc:TaxableAmount>
             <!-- BT-117 -->
+            <?xmute mutator="identity" schematron-valid="ceninv:BR-CO-17 ceninv:BR-S-09" id="ubl-br-co-17-and-br-s-09"?>
+            <?xmute mutator="code" values="44.07, 44.09, 44.00, 45.00, 43.09, 45.07" schematron-valid="ceninv:BR-CO-17 ceninv:BR-S-09" id="ubl-br-co-17-and-br-s-09-valid" description="rounding divergences of up to +/- 1 accepted"?>
+            <?xmute mutator="code" values="43.07, 45.09, 43.00" schematron-invalid="ceninv:BR-CO-17 ceninv:BR-S-09" id="ubl-br-co-17-and-br-s-09-invalid" description="rounding divergences of more than +/- 1 not accepted"?>
             <cbc:TaxAmount currencyID="EUR">44.08</cbc:TaxAmount>
             <cac:TaxCategory>
                 <!-- BT-118 -->
