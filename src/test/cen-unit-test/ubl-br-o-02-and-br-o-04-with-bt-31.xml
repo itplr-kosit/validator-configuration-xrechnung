@@ -39,8 +39,8 @@
                 </cac:Country>
             </cac:PostalAddress>
             <cac:PartyTaxScheme>
-                <?xmute mutator="identity" schematron-invalid="ceninv:BR-O-02 ceninv:BR-O-04" id="cen-inv-vat-code-invalid" description="BT-31 not allowed with 'O' in BT-151 and BT-102"?>
-                <?xmute mutator="remove" schematron-valid="ceninv:BR-O-02 ceninv:BR-O-04 xrinv:BR-DE-16" id="cen-inv-vat-code-valid" description="No BT-31 with 'O' in BT-151 and BT-102"?>
+                <?xmute mutator="identity" schematron-invalid="cenubl:BR-O-02 cenubl:BR-O-04" id="cen-inv-vat-code-invalid" description="BT-31 not allowed with 'O' in BT-151 and BT-102"?>
+                <?xmute mutator="remove" schematron-valid="cenubl:BR-O-02 cenubl:BR-O-04 xrubl:BR-DE-16" id="cen-inv-vat-code-valid" description="No BT-31 with 'O' in BT-151 and BT-102"?>
                 <!-- BT-31 / BT-32 -->
                 <cbc:CompanyID>DE199861724</cbc:CompanyID>
                 <cac:TaxScheme>
