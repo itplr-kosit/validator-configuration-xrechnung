@@ -15,6 +15,10 @@ This release is compatible with XRechnung ?.?.?
 
 * Documentation of scenarios' custom levels
 
+## Changed
+
+* Unified UBL Invoice and Credit Note handling to integrate Schematron merge of UBL Invoice and Credit Note.
+
 ## 2023-02-17
 
 This release is compatible with XRechnung 2.3.x

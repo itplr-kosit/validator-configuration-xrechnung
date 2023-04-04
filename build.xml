@@ -101,10 +101,8 @@
   <property name="resource.xsl.cen.cii"
     location="${resource.dir}/cii/16b/xsl/EN16931-CII-validation.xsl" />
 
-  <property name="resource.xsl.xr.inv"
-    location="${resource.xr.dir}/XRechnung-UBL-validation-Invoice.xsl" />
-  <property name="resource.xsl.xr.cn"
-    location="${resource.xr.dir}/XRechnung-UBL-validation-CreditNote.xsl" />
+  <property name="resource.xsl.xr.ubl"
+    location="${resource.xr.dir}/XRechnung-UBL-validation.xsl" />
   <property name="resource.xsl.xr.cii" location="${resource.xr.dir}/XRechnung-CII-validation.xsl" />
 
   <!-- Resource directories -->
@@ -643,9 +641,9 @@
     <java jar="${lib.dir}/${xmute.jar}" failonerror="true" fork="true" dir="${basedir}">
 
       <arg value="--schematron" />
-      <arg value="xrinv=${resource.xsl.xr.inv}" />
+      <arg value="xrubl=${resource.xsl.xr.ubl}" />
       <arg value="--schematron" />
-      <arg value="ceninv=${resource.xsl.cen.ubl}" />
+      <arg value="cenubl=${resource.xsl.cen.ubl}" />
       <arg value="--schematron" />
       <arg value="cencii=${resource.xsl.cen.cii}" />
       <arg value="--target ${test.docs.dir}/generated" />
@@ -663,9 +661,9 @@
     <java jar="${lib.dir}/${xmute.jar}" failonerror="true" fork="true" dir="${basedir}">
 
       <arg value="--schematron" />
-      <arg value="xrinv=${resource.xsl.xr.inv}" />
+      <arg value="xrubl=${resource.xsl.xr.ubl}" />
       <arg value="--schematron" />
-      <arg value="ceninv=${resource.xsl.cen.ubl}" />
+      <arg value="cenubl=${resource.xsl.cen.ubl}" />
       <arg value="--schematron" />
       <arg value="cencii=${resource.xsl.cen.cii}" />
       <arg value="--target ${test.docs.dir}/generated" />

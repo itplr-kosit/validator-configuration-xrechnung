@@ -20,13 +20,13 @@
         <cbc:PostalZone>12345</cbc:PostalZone>
         <cac:Country>
           <!-- BT-40 -->
-          <?xmute mutator="identity" schematron-valid="ceninv:BR-CL-14" id="cen-valid-country-code-kosovo-bt-40" description="temporary code supported by CEN" ?>
+          <?xmute mutator="identity" schematron-valid="cenubl:BR-CL-14" id="cen-valid-country-code-kosovo-bt-40" description="temporary code supported by CEN" ?>
           <cbc:IdentificationCode>1A</cbc:IdentificationCode>
         </cac:Country>
       </cac:PostalAddress>
       <cac:PartyTaxScheme>
         <!-- BT-31 -->
-        <?xmute mutator="identity" schematron-valid="ceninv:BR-CO-09" id="cen-valid-country-code-kosovo-bt-31" description="temporary code supported by CEN" ?>
+        <?xmute mutator="identity" schematron-valid="cenubl:BR-CO-09" id="cen-valid-country-code-kosovo-bt-31" description="temporary code supported by CEN" ?>
         <cbc:CompanyID>1A 123456789</cbc:CompanyID>
         <cac:TaxScheme>
           <cbc:ID>VAT</cbc:ID>
@@ -55,13 +55,13 @@
         <cbc:PostalZone>12345</cbc:PostalZone>
         <cac:Country>
           <!-- BT-55 -->
-          <?xmute mutator="identity" schematron-valid="ceninv:BR-CL-14" id="cen-valid-country-code-kosovo-bt-55" description="temporary code supported by CEN" ?>
+          <?xmute mutator="identity" schematron-valid="cenubl:BR-CL-14" id="cen-valid-country-code-kosovo-bt-55" description="temporary code supported by CEN" ?>
           <cbc:IdentificationCode>1A</cbc:IdentificationCode>
         </cac:Country>
       </cac:PostalAddress>
       <cac:PartyTaxScheme>
         <!-- BT-48 -->
-        <?xmute mutator="identity" schematron-valid="ceninv:BR-CO-09" id="cen-valid-country-code-kosovo-bt-48" description="temporary code supported by CEN" ?>
+        <?xmute mutator="identity" schematron-valid="cenubl:BR-CO-09" id="cen-valid-country-code-kosovo-bt-48" description="temporary code supported by CEN" ?>
         <cbc:CompanyID>1A 123456789</cbc:CompanyID>
         <cac:TaxScheme>
           <cbc:ID>VAT</cbc:ID>
@@ -82,13 +82,13 @@
       <cbc:PostalZone>12345</cbc:PostalZone>
       <cac:Country>
         <!-- BT-69 -->
-        <?xmute mutator="identity" schematron-valid="ceninv:BR-CL-14" id="cen-valid-country-code-kosovo-bt-69" description="temporary code supported by CEN" ?>
+        <?xmute mutator="identity" schematron-valid="cenubl:BR-CL-14" id="cen-valid-country-code-kosovo-bt-69" description="temporary code supported by CEN" ?>
         <cbc:IdentificationCode>1A</cbc:IdentificationCode>
       </cac:Country>
     </cac:PostalAddress>
     <cac:PartyTaxScheme>
       <!-- BT-63 -->
-      <?xmute mutator="identity" schematron-valid="ceninv:BR-CO-09" id="cen-valid-country-code-kosovo-bt-63" description="temporary code supported by CEN" ?>
+      <?xmute mutator="identity" schematron-valid="cenubl:BR-CO-09" id="cen-valid-country-code-kosovo-bt-63" description="temporary code supported by CEN" ?>
       <cbc:CompanyID>1A 123456789</cbc:CompanyID>
       <cac:TaxScheme>
         <cbc:ID>VAT</cbc:ID>
@@ -102,7 +102,7 @@
         <cbc:PostalZone>12345</cbc:PostalZone>
         <cac:Country>
           <!-- BT-80 -->
-          <?xmute mutator="identity" schematron-valid="ceninv:BR-CL-14" id="cen-valid-country-code-kosovo-bt-80" description="temporary code supported by CEN" ?>
+          <?xmute mutator="identity" schematron-valid="cenubl:BR-CL-14" id="cen-valid-country-code-kosovo-bt-80" description="temporary code supported by CEN" ?>
           <cbc:IdentificationCode>1A</cbc:IdentificationCode>
         </cac:Country>
       </cac:Address>
@@ -158,7 +158,7 @@
       </cac:SellersItemIdentification>
       <cac:OriginCountry>
         <!-- BT-159 -->
-        <?xmute mutator="identity" schematron-valid="ceninv:BR-CL-15" id="cen-valid-country-code-kosovo-bt-159" description="temporary code supported by CEN" ?>
+        <?xmute mutator="identity" schematron-valid="cenubl:BR-CL-15" id="cen-valid-country-code-kosovo-bt-159" description="temporary code supported by CEN" ?>
         <cbc:IdentificationCode>1A</cbc:IdentificationCode>
       </cac:OriginCountry>
       <cac:CommodityClassification>
