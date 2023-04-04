@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 This release is compatible with XRechnung ?.?.?
 
+### Added
+
+* Documentation of scenarios' custom levels
+
 ## 2023-02-17
 
 This release is compatible with XRechnung 2.3.x
