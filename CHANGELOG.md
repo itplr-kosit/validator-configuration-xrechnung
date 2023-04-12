@@ -11,11 +11,35 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 This release is compatible with XRechnung ?.?.?
 
+## Changed
+
+* Unified UBL Invoice and Credit Note handling to integrate Schematron merge of UBL Invoice and Credit Note.
+
+## 2023-02-17
+
+This release is compatible with XRechnung 2.3.x
+
+### Changed
+
+* Using [XRechnung Schematron 1.8.1](https://github.com/itplr-kosit/xrechnung-schematron/releases/tag/release-1.8.1)
+
+## 2023-01-31
+
+This release is compatible with XRechnung 2.3.x
+
+### Added
+
+* Test for Third Party Payment
+* Test for BR-CO-17 on currencies with rounding at totals in CII.
+
 ### Changed
 
 * Using [CEN Schematron Rules 1.3.9](https://github.com/ConnectingEurope/eInvoicing-EN16931/releases/tag/validation-1.3.9)
-* Using KoSIT Validator v1.5.0
+* Using [XRechnung Schematron 1.8.0](https://github.com/itplr-kosit/xrechnung-schematron/releases/tag/release-1.8.0)
+* Using [XRechnung Testsuite 2023-01-31](https://github.com/itplr-kosit/xrechnung-testsuite/releases/tag/release-2023-01-31)
+* Using [KoSIT Validator v1.5.0](https://github.com/itplr-kosit/validator/releases/tag/v1.5.0)
 * Tests to adhere to new CEN Rule set
+* Switched off rules BR-CO-16 and UBL-CR-470 in UBL Extension scenario for Third Party Payment implementation
 
 ## 2022-11-15
 

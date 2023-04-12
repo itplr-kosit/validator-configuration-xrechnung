@@ -1,8 +1,8 @@
 # Validator Configuration for XRechnung
 
-[Validator](https://github.com/itplr-kosit/validator) configuration for Universal Business Language (UBL) and UN/CEFACT Invoice and CreditNote documents against EN16931:2017 and the German [Core Invoice Usage Specification (CIUS) XRechnung and XRechnung Extension](https://www.xoev.de/die_standards/xrechnung-14741). It needs the [Validator](https://github.com/itplr-kosit/validator) to execute the rules.
+[Validator](https://github.com/itplr-kosit/validator) configuration for Universal Business Language (UBL) and UN/CEFACT Invoice and CreditNote documents against EN16931:2017 and the German [Core Invoice Usage Specification (CIUS) XRechnung and XRechnung Extension](https://xeinkauf.de/xrechnung/versionen-und-bundles/). It needs the [Validator](https://github.com/itplr-kosit/validator) to execute the rules.
 
-For general questions to the standard "XRechnung" and related components refer to the [official operations and support website](https://www.xoev.de/xrechnung/betrieb-und-support-16853).
+For general questions to the standard "XRechnung" and related components refer to the [official operations and support website](https://xeinkauf.de/kontakt/#support).
 
 For further technical information see the specific pages [on usage](docs/usage.md) and [on development](docs/development.md).
 
@@ -21,4 +21,4 @@ In particular this Validator Configuration integrates the following third-party 
 
 The git master branch always has the latest code. Since March 2018 new releases have the following naming and versioning scheme:
 
-The source code gets tagged with `release-${release-date}` and distributions get the name `validator-configuration-xrechnung_${xrechnung-version}_${release-date}` e.g. `validator-configuration-xrechnung_2.1.1_2021-11-15.zip`
+The source code gets tagged with `release-${release-date}` and distributions get the name `validator-configuration-xrechnung_${xrechnung-version}_${release-date}` e.g. `validator-configuration-xrechnung_2.3.1_2023-01-31.zip`

@@ -13,8 +13,8 @@ In an empty directory:
 # download validator
 curl -L "https://github.com/itplr-kosit/validator/releases/download/v1.5.0/validator-1.5.0-distribution.zip" --output validator.zip
 
-# download configuration (for 2.2.0)
-curl -L "https://github.com/itplr-kosit/validator-configuration-xrechnung/releases/download/release-2022-11-15/validator-configuration-xrechnung_2.2.0_2022-11-15.zip" --output validator-configuration.zip
+# download configuration (for 2.3.1)
+curl -L "https://github.com/itplr-kosit/validator-configuration-xrechnung/releases/download/release-2023-01-31/validator-configuration-xrechnung_2.3.1_2023-01-31.zip" --output validator-configuration.zip
 
 # download one most recent test document
 curl -L "https://raw.githubusercontent.com/itplr-kosit/xrechnung-testsuite/master/src/test/business-cases/standard/01.01a-INVOICE_ubl.xml" --output ubl.xml
@@ -39,7 +39,7 @@ unzip validator-configuration.zip
 Requires the `java` commandline application. See the [validator repository](https://github.com/itplr-kosit/validator) for system requirements.
 
 ```shell
-java -jar ${jar_of_your_choice}.jar -s scenarios.xml  -h ubl.xml
+java -jar ${jar_of_your_choice}.jar -s scenarios.xml -r ${PWD} -h ubl.xml
 ```
 
 Validation reports are then written to `${test-document-file-name}-report.xml` and `${test-document-file-name}-report.html` e.g. `ubl-report.xml` and `ubl-report.html` according to above example.
