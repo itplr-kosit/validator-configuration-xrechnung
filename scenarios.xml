@@ -60,7 +60,7 @@
     <validateWithSchematron>
       <resource>
         <name>Schematron rules for Invoice - CIUS XRechnung (UBL)</name>
-        <location>resources/xrechnung/@xrechnung.version@/xsl/XRechnung-UBL-validation-Invoice.xsl</location>
+        <location>resources/xrechnung/@xrechnung.version@/xsl/XRechnung-UBL-validation.xsl</location>
       </resource>
 
     </validateWithSchematron>
@@ -116,7 +116,7 @@
     <validateWithSchematron>
       <resource>
         <name>Schematron rules for Invoice - XRechnung (UBL)</name>
-        <location>resources/xrechnung/@xrechnung.version@/xsl/XRechnung-UBL-validation-Invoice.xsl</location>
+        <location>resources/xrechnung/@xrechnung.version@/xsl/XRechnung-UBL-validation.xsl</location>
       </resource>
     </validateWithSchematron>
     <createReport>
@@ -177,7 +177,7 @@
     <validateWithSchematron>
       <resource>
         <name>Schematron rules for CreditNote - CIUS XRechnung (UBL)</name>
-        <location>resources/xrechnung/@xrechnung.version@/xsl/XRechnung-UBL-validation-CreditNote.xsl</location>
+        <location>resources/xrechnung/@xrechnung.version@/xsl/XRechnung-UBL-validation.xsl</location>
       </resource>
     </validateWithSchematron>
     <createReport>

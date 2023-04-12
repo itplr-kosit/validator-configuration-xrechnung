@@ -7,14 +7,14 @@
     <cbc:IssueDate>2016-04-04+01:00</cbc:IssueDate>
     <cbc:InvoiceTypeCode>380</cbc:InvoiceTypeCode>
     <cbc:Note>#ADU#Es gelten unsere Allgem. Geschäftsbedingungen, die Sie unter […] finden.</cbc:Note>
-    <?xmute mutator="code" values="EU, E" schematron-invalid="ceninv:BR-CL-04" 
+    <?xmute mutator="code" values="EU, E" schematron-invalid="cenubl:BR-CL-04"
                 id="ubl-inv-document-currency-code" description="alpha-2 and alpha-1 not allowed" ?>
-    <?xmute mutator="identity" schematron-valid="ceninv:BR-CL-04" 
+    <?xmute mutator="identity" schematron-valid="cenubl:BR-CL-04"
                 id="ubl-inv-valid-document-currency-code" description="alpha-3 is allowed" ?>
     <cbc:DocumentCurrencyCode>EUR</cbc:DocumentCurrencyCode>
-    <?xmute mutator="code" values="EU, E" schematron-invalid="ceninv:BR-CL-05" 
+    <?xmute mutator="code" values="EU, E" schematron-invalid="cenubl:BR-CL-05"
                 id="ubl-inv-inv-tax-currency-code" description="alpha-2 and alpha-1 not allowed" ?>
-    <?xmute mutator="identity" schematron-valid="ceninv:BR-CL-05" 
+    <?xmute mutator="identity" schematron-valid="cenubl:BR-CL-05"
                 id="ubl-inv-valid-tax-currency-code" description="alpha-3 is allowed" ?>
     <cbc:TaxCurrencyCode>EUR</cbc:TaxCurrencyCode>
     <cbc:BuyerReference>04011000-12345-34</cbc:BuyerReference>
