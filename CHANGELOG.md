@@ -14,6 +14,7 @@ This release is compatible with XRechnung ?.?.?
 ## Changed
 
 * Unified UBL Invoice and Credit Note handling to integrate Schematron merge of UBL Invoice and Credit Note.
+* Added CEN integration test on BR-53 with BT-5, BT-6 and BT-110 and BT-111 in CII.
 
 ## 2023-02-17
 
@@ -47,7 +48,6 @@ This release is compatible with XRechnung 2.2.0
 
 ### Added
 
-* Test for unexpected behaviour of BR-53
 * Tests on interference of BR-DE-16 with BR-O-02, BR-O-03, and BR-O-04
 * Tests to monitor status of temporary Kosovo country codes "1A" and "XK" 
 * Test to monitor implementation of HUF rounding rules
