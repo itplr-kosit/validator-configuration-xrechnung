@@ -5,7 +5,7 @@
     xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
     <rsm:ExchangedDocumentContext>
         <ram:GuidelineSpecifiedDocumentContextParameter>
-            <ram:ID>urn:cen.eu:en16931:2017#compliant#urn:xoev-de:kosit:standard:xrechnung_2.2</ram:ID>
+            <ram:ID>urn:cen.eu:en16931:2017#compliant#urn:xoev-de:kosit:standard:xrechnung_2.3</ram:ID>
         </ram:GuidelineSpecifiedDocumentContextParameter>
     </rsm:ExchangedDocumentContext>
     <rsm:ExchangedDocument>
@@ -132,11 +132,11 @@
         </ram:ApplicableHeaderTradeAgreement>
         <ram:ApplicableHeaderTradeDelivery/>
         <ram:ApplicableHeaderTradeSettlement>
-            <?xmute mutator="identity" schematron-valid="cencii:BR-53" 
-                id="CII-BT-111-should-exist-if-bt-6-exists" description="cii BT-111 should exist if bt-6 exists" ?>     
+            <?xmute mutator="identity" schematron-valid="cencii:BR-53"
+                id="CII-BT-111-should-exist-if-bt-6-exists" description="cii BT-111 should exist if bt-6 exists" ?>
             <!-- [BR-53]-If the VAT accounting currency code (BT-6) is present, then the Invoice total VAT amount in accounting currency (BT-111) shall be provided. -->
             <!-- BT-6 -->
-            <ram:TaxCurrencyCode>EUR</ram:TaxCurrencyCode>
+            <ram:TaxCurrencyCode>USD</ram:TaxCurrencyCode>
             <!-- BT-5 -->
             <ram:InvoiceCurrencyCode>EUR</ram:InvoiceCurrencyCode>   
             <ram:SpecifiedTradeSettlementPaymentMeans>
@@ -158,11 +158,16 @@
             </ram:SpecifiedTradePaymentTerms>
             <ram:SpecifiedTradeSettlementHeaderMonetarySummation>
                 <ram:LineTotalAmount>314.86</ram:LineTotalAmount>
+                <!-- BT-109 -->
                 <ram:TaxBasisTotalAmount>314.86</ram:TaxBasisTotalAmount>
-                <!-- BT-111 -->
-                <?xmute mutator="remove" schematron-invalid="cencii:BR-53" 
-                id="cii-BT-111-should-exist-if-bt-6-exists-2" description="expected-to-fail: CII BT-111 should exist if bt-6 exists" ?> 
+                <!-- BT-110 -->
                 <ram:TaxTotalAmount currencyID="EUR">22.04</ram:TaxTotalAmount>
+                <!-- BT-111 -->
+                <?xmute mutator="remove" schematron-invalid="cencii:BR-53"
+                id="cii-BT-111-should-exist-if-bt-6-exists-2" description="CII BT-111 should exist if bt-6 exists" ?>
+                <?xmute mutator="code" attribute="currencyID" values="EUR" schematron-invalid="cencii:BR-53"?>
+                <ram:TaxTotalAmount currencyID="USD">24.03</ram:TaxTotalAmount>
+                <!-- BT-112 -->
                 <ram:GrandTotalAmount>336.9</ram:GrandTotalAmount>
                 <ram:DuePayableAmount>336.9</ram:DuePayableAmount>
             </ram:SpecifiedTradeSettlementHeaderMonetarySummation>
