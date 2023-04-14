@@ -242,8 +242,8 @@
                 <ram:TypeCode>VAT</ram:TypeCode>
                 <ram:BasisAmount>0</ram:BasisAmount>
                 <ram:CategoryCode>E</ram:CategoryCode>
-				<?xmute mutator="identity" schematron-valid="cencii:BR-E-10" id="cencii-BR-E-10-test" description="exemptionReasonCode should be provided"?>
-                <?xmute mutator="remove" schematron-invalid="cencii:BR-E-10" id="cencii-BR-E-10-test-2" description="exemptionReasonCode should be provided"?>
+				<?xmute mutator="identity" schematron-valid="cencii:BR-E-10" id="cencii-BR-E-10-test" description="exemptionReasonCode exists"?>
+                <?xmute mutator="remove" schematron-invalid="cencii:BR-E-10" id="cencii-BR-E-10-test-2" description="exemptionReason or exemptionReasonCode should be provided"?>
                 <!-- BT-121 -->
                 <ram:ExemptionReasonCode>vatex-eu-132-1a</ram:ExemptionReasonCode>
                 <ram:TaxPointDate>
