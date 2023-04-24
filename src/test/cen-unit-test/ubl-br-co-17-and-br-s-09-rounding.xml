@@ -78,9 +78,9 @@
             <!-- BT-116 -->
             <cbc:TaxableAmount currencyID="EUR">629.72</cbc:TaxableAmount>
             <!-- BT-117 -->
-            <?xmute mutator="identity" schematron-valid="ceninv:BR-CO-17 ceninv:BR-S-09" id="ubl-br-co-17-and-br-s-09"?>
-            <?xmute mutator="code" values="44.07, 44.09, 44.00, 45.00, 43.09, 45.07" schematron-valid="ceninv:BR-CO-17 ceninv:BR-S-09" id="ubl-br-co-17-and-br-s-09-valid" description="rounding divergences of up to +/- 1 accepted"?>
-            <?xmute mutator="code" values="43.07, 45.09, 43.00" schematron-invalid="ceninv:BR-CO-17 ceninv:BR-S-09" id="ubl-br-co-17-and-br-s-09-invalid" description="rounding divergences of more than +/- 1 not accepted"?>
+            <?xmute mutator="identity" schematron-valid="cenubl:BR-CO-17 cenubl:BR-S-09" id="ubl-br-co-17-and-br-s-09"?>
+            <?xmute mutator="code" values="44.07, 44.09, 44.00, 45.00, 43.09, 45.07" schematron-valid="cenubl:BR-CO-17 cenubl:BR-S-09" id="ubl-br-co-17-and-br-s-09-valid" description="rounding divergences of up to +/- 1 accepted"?>
+            <?xmute mutator="code" values="43.07, 45.09, 43.00" schematron-invalid="cenubl:BR-CO-17 cenubl:BR-S-09" id="ubl-br-co-17-and-br-s-09-invalid" description="rounding divergences of more than +/- 1 not accepted"?>
             <cbc:TaxAmount currencyID="EUR">44.08</cbc:TaxAmount>
             <cac:TaxCategory>
                 <!-- BT-118 -->
