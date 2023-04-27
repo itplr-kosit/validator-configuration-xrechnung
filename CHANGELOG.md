@@ -14,6 +14,7 @@ This release is compatible with XRechnung ?.?.?
 ### Added
 
 * Test for BR-CO-17 and BR-S-09 rounding rules in UBL
+* Tests to monitor implementation of BR-E-10
 
 ### Changed
 
@@ -56,7 +57,6 @@ This release is compatible with XRechnung 2.2.0
 * Tests to monitor status of temporary Kosovo country codes "1A" and "XK" 
 * Test to monitor implementation of HUF rounding rules
 * Test to monitor implementation of BR-CO-25
-* Tests to monitor implementation of BR-E-10
 * infrastructure to validate custom tests via Ant target `create-validator-reports-from-custom-tests`
 
 ### Changed
