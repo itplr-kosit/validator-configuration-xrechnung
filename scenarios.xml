@@ -11,7 +11,7 @@
   <description>
     <p>Checks whether XML Documents conform to XRechnung specification
             @xrechnung.version@
-            (https://www.xoev.de/die_standards/xrechnung-14741).</p>
+            (https://xeinkauf.de/xrechnung/versionen-und-bundles/).</p>
     <p>It uses CEN Schematron rules of @cen.spec.id@
             in version @cen.rules.version@ from @build.date@
             (https://github.com/ConnectingEurope/eInvoicing-EN16931/releases).</p>
@@ -60,7 +60,7 @@
     <validateWithSchematron>
       <resource>
         <name>Schematron rules for Invoice - CIUS XRechnung (UBL)</name>
-        <location>resources/xrechnung/@xrechnung.version@/xsl/XRechnung-UBL-validation-Invoice.xsl</location>
+        <location>resources/xrechnung/@xrechnung.version@/xsl/XRechnung-UBL-validation.xsl</location>
       </resource>
 
     </validateWithSchematron>
@@ -69,7 +69,7 @@
         <name>Validation report for XRechnung</name>
         <location>resources/xrechnung-report.xsl</location>
       </resource>
-      <customLevel level="information">BR-CL-01</customLevel>
+      <!-- custom level "information" for BR-CL-01 was removed as construction codes were added to Codelist 1001 with CEN 1.3.8 (see CEN issue https://github.com/ConnectingEurope/eInvoicing-EN16931/issues/309) --> 
       <customLevel level="warning">BR-CL-23</customLevel>
       <customLevel level="warning">BR-CL-21</customLevel>
     </createReport>
@@ -100,7 +100,7 @@
     <!-- Namespace for acceptMatch XPATH within validator report XML -->
     <namespace prefix="rep">http://www.xoev.de/de/validator/varl/1</namespace>
     
-    <match>exists(/invoice:Invoice/cbc:CustomizationID[ . = '@xrechnung.spec.id@#conformant#urn:xoev-de:kosit:extension:xrechnung_2.2'])</match>
+    <match>exists(/invoice:Invoice/cbc:CustomizationID[ . = '@xrechnung.extension.id@'])</match>
     <validateWithXmlSchema>
       <resource>
         <name>XML Schema for UBL 2.1 Invoice</name>
@@ -116,7 +116,7 @@
     <validateWithSchematron>
       <resource>
         <name>Schematron rules for Invoice - XRechnung (UBL)</name>
-        <location>resources/xrechnung/@xrechnung.version@/xsl/XRechnung-UBL-validation-Invoice.xsl</location>
+        <location>resources/xrechnung/@xrechnung.version@/xsl/XRechnung-UBL-validation.xsl</location>
       </resource>
     </validateWithSchematron>
     <createReport>
@@ -124,7 +124,7 @@
         <name>Validation report for XRechnung</name>
         <location>resources/xrechnung-report.xsl</location>
       </resource>
-      <customLevel level="information">BR-CL-01</customLevel>
+      <!-- custom level "information" for BR-CL-01 was removed as construction codes were added to Codelist 1001 with CEN 1.3.8 (see CEN issue https://github.com/ConnectingEurope/eInvoicing-EN16931/issues/309) --> 
       <customLevel level="information">BR-CL-21</customLevel>
       <customLevel level="warning">BR-CL-23</customLevel>
       <customLevel level="warning">BR-CL-24</customLevel>
@@ -132,6 +132,8 @@
       <customLevel level="information">BR-CL-11</customLevel>
       <customLevel level="information">BR-CL-25</customLevel>
       <customLevel level="information">BR-CL-26</customLevel>
+      <customLevel level="information">BR-CO-16</customLevel>
+      <customLevel level="information">UBL-CR-470</customLevel>
     </createReport>
     <acceptMatch>/rep:report/rep:assessment[1]/rep:accept[1]</acceptMatch>
   </scenario>
@@ -175,7 +177,7 @@
     <validateWithSchematron>
       <resource>
         <name>Schematron rules for CreditNote - CIUS XRechnung (UBL)</name>
-        <location>resources/xrechnung/@xrechnung.version@/xsl/XRechnung-UBL-validation-CreditNote.xsl</location>
+        <location>resources/xrechnung/@xrechnung.version@/xsl/XRechnung-UBL-validation.xsl</location>
       </resource>
     </validateWithSchematron>
     <createReport>
@@ -183,7 +185,7 @@
         <name>Validation report for XRechnung</name>
         <location>resources/xrechnung-report.xsl</location>
       </resource>
-      <customLevel level="information">BR-CL-01</customLevel>
+      <!-- custom level "information" for BR-CL-01 was removed as construction codes were added to Codelist 1001 with CEN 1.3.8 (see CEN issue https://github.com/ConnectingEurope/eInvoicing-EN16931/issues/309) --> 
       <customLevel level="warning">BR-CL-23</customLevel>
       <customLevel level="warning">BR-CL-21</customLevel>
     </createReport>
@@ -240,7 +242,7 @@
         <name>Validation report for XRechnung</name>
         <location>resources/xrechnung-report.xsl</location>
       </resource>
-      <customLevel level="information">BR-CL-01</customLevel>
+      <!-- custom level "information" for BR-CL-01 was removed as construction codes were added to Codelist 1001 with CEN 1.3.8 (see CEN issue https://github.com/ConnectingEurope/eInvoicing-EN16931/issues/309) --> 
       <customLevel level="warning">BR-CL-23</customLevel>
       <customLevel level="warning">BR-CL-21</customLevel>
     </createReport>
@@ -271,7 +273,7 @@
     <!-- Namespace for acceptMatch XPATH within validator report XML -->
     <namespace prefix="rep">http://www.xoev.de/de/validator/varl/1</namespace>
     
-    <match>exists(/rsm:CrossIndustryInvoice[rsm:ExchangedDocumentContext/ram:GuidelineSpecifiedDocumentContextParameter/ram:ID/text() = '@xrechnung.spec.id@#conformant#urn:xoev-de:kosit:extension:xrechnung_2.2'])</match>
+    <match>exists(/rsm:CrossIndustryInvoice[rsm:ExchangedDocumentContext/ram:GuidelineSpecifiedDocumentContextParameter/ram:ID/text() = '@xrechnung.extension.id@'])</match>
     <validateWithXmlSchema>
       <resource>
         <name>XML Schema for UN/CEFACT XML (SCRDM - CII
@@ -296,7 +298,7 @@
         <name>Validation report for XRechnung</name>
         <location>resources/xrechnung-report.xsl</location>
       </resource>
-      <customLevel level="information">BR-CL-01</customLevel>
+      <!-- custom level "information" for BR-CL-01 was removed as construction codes were added to Codelist 1001 with CEN 1.3.8 (see CEN issue https://github.com/ConnectingEurope/eInvoicing-EN16931/issues/309) --> 
       <customLevel level="warning">BR-CL-23</customLevel>
       <customLevel level="information">BR-CL-21</customLevel>
       <customLevel level="information">BR-CL-11</customLevel>

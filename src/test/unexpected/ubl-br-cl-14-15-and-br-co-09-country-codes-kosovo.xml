@@ -2,7 +2,7 @@
 <ubl:Invoice xmlns:ubl="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2"
   xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2"
   xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2">
-  <cbc:CustomizationID>urn:cen.eu:en16931:2017#compliant#urn:xoev-de:kosit:standard:xrechnung_2.2</cbc:CustomizationID>
+  <cbc:CustomizationID>urn:cen.eu:en16931:2017#compliant#urn:xoev-de:kosit:standard:xrechnung_2.3</cbc:CustomizationID>
   <cbc:ID>123456XX</cbc:ID>
   <cbc:IssueDate>2016-04-04</cbc:IssueDate>
   <cbc:InvoiceTypeCode>380</cbc:InvoiceTypeCode>
@@ -20,16 +20,16 @@
         <cbc:PostalZone>12345</cbc:PostalZone>
         <cac:Country>
           <!-- BT-40 -->
-          <?xmute mutator="identity" schematron-valid="ceninv:BR-CL-14" id="cen-valid-country-code-kosovo-bt-40"?>
-          <?xmute mutator="code" values="XK" schematron-valid="ceninv:BR-CL-14"
+          <?xmute mutator="identity" schematron-valid="cenubl:BR-CL-14" id="cen-valid-country-code-kosovo-bt-40"?>
+          <?xmute mutator="code" values="XK" schematron-valid="cenubl:BR-CL-14"
                 id="cen-inv-country-code-kosovo-bt-40" description="expected-to-pass: temporary code should be supported by CEN" ?>
           <cbc:IdentificationCode>1A</cbc:IdentificationCode>
         </cac:Country>
       </cac:PostalAddress>
       <cac:PartyTaxScheme>
         <!-- BT-31 -->
-        <?xmute mutator="identity" schematron-valid="ceninv:BR-CO-09" id="cen-valid-country-code-kosovo-bt-31" ?>
-        <?xmute mutator="code" values="XK 123456789" schematron-valid="ceninv:BR-CO-09"
+        <?xmute mutator="identity" schematron-valid="cenubl:BR-CO-09" id="cen-valid-country-code-kosovo-bt-31" ?>
+        <?xmute mutator="code" values="XK 123456789" schematron-valid="cenubl:BR-CO-09"
                 id="cen-inv-country-code-kosovo-bt-31" description="expected-to-pass: temporary code should be supported by CEN" ?>
         <cbc:CompanyID>1A 123456789</cbc:CompanyID>
         <cac:TaxScheme>
@@ -59,16 +59,16 @@
         <cbc:PostalZone>12345</cbc:PostalZone>
         <cac:Country>
           <!-- BT-55 -->
-          <?xmute mutator="identity" schematron-valid="ceninv:BR-CL-14" id="cen-valid-country-code-kosovo-bt-55" ?>
-          <?xmute mutator="code" values="XK" schematron-valid="ceninv:BR-CL-14"
+          <?xmute mutator="identity" schematron-valid="cenubl:BR-CL-14" id="cen-valid-country-code-kosovo-bt-55" ?>
+          <?xmute mutator="code" values="XK" schematron-valid="cenubl:BR-CL-14"
                 id="cen-inv-country-code-kosovo-bt-55" description="expected-to-pass: temporary code should be supported by CEN" ?>
           <cbc:IdentificationCode>1A</cbc:IdentificationCode>
         </cac:Country>
       </cac:PostalAddress>
       <cac:PartyTaxScheme>
         <!-- BT-48 -->
-        <?xmute mutator="identity" schematron-valid="ceninv:BR-CO-09" id="cen-valid-country-code-kosovo-bt-48"?>
-        <?xmute mutator="code" values="XK 123456789" schematron-valid="ceninv:BR-CO-09"
+        <?xmute mutator="identity" schematron-valid="cenubl:BR-CO-09" id="cen-valid-country-code-kosovo-bt-48"?>
+        <?xmute mutator="code" values="XK 123456789" schematron-valid="cenubl:BR-CO-09"
                 id="cen-inv-country-code-kosovo-bt-48" description="expected-to-pass: temporary code should be supported by CEN" ?>
         <cbc:CompanyID>1A 123456789</cbc:CompanyID>
         <cac:TaxScheme>
@@ -90,16 +90,16 @@
       <cbc:PostalZone>12345</cbc:PostalZone>
       <cac:Country>
         <!-- BT-69 -->
-        <?xmute mutator="identity" schematron-valid="ceninv:BR-CL-14" id="cen-valid-country-code-kosovo-bt-69"?>
-        <?xmute mutator="code" values="XK" schematron-valid="ceninv:BR-CL-14"
+        <?xmute mutator="identity" schematron-valid="cenubl:BR-CL-14" id="cen-valid-country-code-kosovo-bt-69"?>
+        <?xmute mutator="code" values="XK" schematron-valid="cenubl:BR-CL-14"
                 id="cen-inv-country-code-kosovo-bt-69" description="expected-to-pass: temporary code should be supported by CEN"?>
         <cbc:IdentificationCode>1A</cbc:IdentificationCode>
       </cac:Country>
     </cac:PostalAddress>
     <cac:PartyTaxScheme>
       <!-- BT-63 -->
-      <?xmute mutator="identity" schematron-valid="ceninv:BR-CO-09" id="cen-valid-country-code-kosovo-bt-63"?>
-      <?xmute mutator="code" values="XK 123456789" schematron-valid="ceninv:BR-CO-09"
+      <?xmute mutator="identity" schematron-valid="cenubl:BR-CO-09" id="cen-valid-country-code-kosovo-bt-63"?>
+      <?xmute mutator="code" values="XK 123456789" schematron-valid="cenubl:BR-CO-09"
                 id="cen-inv-country-code-kosovo-bt-63" description="expected-to-pass: temporary code should be supported by CEN" ?>
       <cbc:CompanyID>1A 123456789</cbc:CompanyID>
       <cac:TaxScheme>
@@ -114,8 +114,8 @@
         <cbc:PostalZone>12345</cbc:PostalZone>
         <cac:Country>
           <!-- BT-80 -->
-          <?xmute mutator="identity" schematron-valid="ceninv:BR-CL-14" id="cen-valid-country-code-kosovo-bt-80"?>
-          <?xmute mutator="code" values="XK" schematron-valid="ceninv:BR-CL-14"
+          <?xmute mutator="identity" schematron-valid="cenubl:BR-CL-14" id="cen-valid-country-code-kosovo-bt-80"?>
+          <?xmute mutator="code" values="XK" schematron-valid="cenubl:BR-CL-14"
                 id="cen-inv-country-code-kosovo-bt-80" description="expected-to-pass: temporary code should be supported by CEN" ?>
           <cbc:IdentificationCode>1A</cbc:IdentificationCode>
         </cac:Country>
@@ -172,8 +172,8 @@
       </cac:SellersItemIdentification>
       <cac:OriginCountry>
         <!-- BT-159 -->
-        <?xmute mutator="identity" schematron-valid="ceninv:BR-CL-15" id="cen-valid-country-code-kosovo-bt-159"?>
-        <?xmute mutator="code" values="XK" schematron-valid="ceninv:BR-CL-15"
+        <?xmute mutator="identity" schematron-valid="cenubl:BR-CL-15" id="cen-valid-country-code-kosovo-bt-159"?>
+        <?xmute mutator="code" values="XK" schematron-valid="cenubl:BR-CL-15"
                 id="cen-inv-country-code-kosovo-bt-159" description="expected-to-pass: temporary code should be supported by CEN"?>
         <cbc:IdentificationCode>1A</cbc:IdentificationCode>
       </cac:OriginCountry>

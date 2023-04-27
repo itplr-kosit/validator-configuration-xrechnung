@@ -7,14 +7,16 @@
   xmlns:ccts="urn:un:unece:uncefact:documentation:2"
   xmlns="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2">
 
-  <cbc:CustomizationID>urn:cen.eu:en16931:2017#compliant#urn:xoev-de:kosit:standard:xrechnung_2.2</cbc:CustomizationID>
+  <cbc:CustomizationID>urn:cen.eu:en16931:2017#compliant#urn:xoev-de:kosit:standard:xrechnung_2.3</cbc:CustomizationID>
   <cbc:ID>12115118</cbc:ID>
   <cbc:IssueDate>2015-01-09</cbc:IssueDate>
   <cbc:DueDate>2015-01-09</cbc:DueDate>
-  <?xmute mutator="code" values="326, 380, 384, 389, 381, 875, 876, 877" schematron-valid="xrinv:BR-DE-17" 
+  <?xmute mutator="code" values="326, 380, 384, 389, 381, 875, 876, 877" schematron-valid="xrubl:BR-DE-17"
                 id="inv-type-code" description="Code should be allowed" ?>
-  <?xmute mutator="code" values="381, 875, 876, 877" schematron-invalid="ceninv:BR-CL-01" 
+  <?xmute mutator="code" values="381" schematron-invalid="cenubl:BR-CL-01"
                 id="cen-inv-type-code" description="Codes not allowed" ?>
+  <?xmute mutator="code" values="875, 876, 877" schematron-valid="cenubl:BR-CL-01"
+                id="cen-inv-type-code" description="Codes should be allowed" ?>
   <cbc:InvoiceTypeCode>380</cbc:InvoiceTypeCode>
   <cbc:Note>Alle leveringen zijn franco. Alle prijzen zijn incl. BTW.
         Betalingstermijn: 14 dagen netto. Prijswijzigingen voorbehouden. Op al

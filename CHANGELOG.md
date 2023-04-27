@@ -13,6 +13,45 @@ This release is compatible with XRechnung ?.?.?
 
 ### Added
 
+* Test for BR-CO-17 and BR-S-09 rounding rules in UBL
+
+### Changed
+
+* Tests for BR-CO-17 and BR-S-09 rounding rules in CII merged
+* Unified UBL Invoice and Credit Note handling to integrate Schematron merge of UBL Invoice and Credit Note.
+
+## 2023-02-17
+
+This release is compatible with XRechnung 2.3.x
+
+### Changed
+
+* Using [XRechnung Schematron 1.8.1](https://github.com/itplr-kosit/xrechnung-schematron/releases/tag/release-1.8.1)
+
+## 2023-01-31
+
+This release is compatible with XRechnung 2.3.x
+
+### Added
+
+* Test for Third Party Payment
+* Test for BR-CO-17 on currencies with rounding at totals in CII.
+
+### Changed
+
+* Using [CEN Schematron Rules 1.3.9](https://github.com/ConnectingEurope/eInvoicing-EN16931/releases/tag/validation-1.3.9)
+* Using [XRechnung Schematron 1.8.0](https://github.com/itplr-kosit/xrechnung-schematron/releases/tag/release-1.8.0)
+* Using [XRechnung Testsuite 2023-01-31](https://github.com/itplr-kosit/xrechnung-testsuite/releases/tag/release-2023-01-31)
+* Using [KoSIT Validator v1.5.0](https://github.com/itplr-kosit/validator/releases/tag/v1.5.0)
+* Tests to adhere to new CEN Rule set
+* Switched off rules BR-CO-16 and UBL-CR-470 in UBL Extension scenario for Third Party Payment implementation
+
+## 2022-11-15
+
+This release is compatible with XRechnung 2.2.0
+
+### Added
+
 * Tests on interference of BR-DE-16 with BR-O-02, BR-O-03, and BR-O-04
 * Tests to monitor status of temporary Kosovo country codes "1A" and "XK" 
 * Test to monitor implementation of HUF rounding rules
@@ -23,6 +62,7 @@ This release is compatible with XRechnung ?.?.?
 ### Changed
 
 * Unexpected behaviour tests follow target state logic
+* Replaced hardcoded XR extension version in `scenarios.xml`
 
 ### Fixed
 
@@ -35,6 +75,7 @@ This release is compatible with XRechnung 2.2.0
 ### Added
 
 * Tests for unexpected behaviour of cen rules (see [Development Doc](./docs/development.md) "Unexpected Behaviour of CEN Rules")
+* Tests for BR-53 and BR-CO-15 in CII with same BT-5 and BT-6
 
 ### Changed
 
