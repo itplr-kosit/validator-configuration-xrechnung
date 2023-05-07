@@ -14,6 +14,12 @@ This release is compatible with XRechnung ?.?.?
 ### Added
 
 * Negative test for multiple BT-110 in UBL
+* Test for BR-CO-17 and BR-S-09 rounding rules in UBL
+
+### Changed
+
+* Tests for BR-CO-17 and BR-S-09 rounding rules in CII merged
+* Unified UBL Invoice and Credit Note handling to integrate Schematron merge of UBL Invoice and Credit Note.
 
 ## 2023-02-17
 
