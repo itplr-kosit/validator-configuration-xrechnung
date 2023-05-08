@@ -13,6 +13,7 @@ This release is compatible with XRechnung ?.?.?
 
 ### Added
 
+* Documentation of scenarios' custom levels
 * Test for BR-CO-17 and BR-S-09 rounding rules in UBL
 
 ### Changed

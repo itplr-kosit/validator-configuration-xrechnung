@@ -70,7 +70,9 @@
         <location>resources/xrechnung-report.xsl</location>
       </resource>
       <!-- custom level "information" for BR-CL-01 was removed as construction codes were added to Codelist 1001 with CEN 1.3.8 (see CEN issue https://github.com/ConnectingEurope/eInvoicing-EN16931/issues/309) --> 
+      <!-- overwrites CEN severity level "fatal" for codelist values of BT-130 "Invoiced quantity unit of measure code" and BT-150 "Item price base quantity unit of measure code" -->
       <customLevel level="warning">BR-CL-23</customLevel>
+      <!-- overwrites CEN severity level "fatal" for ISO 6523 values of BT-157 "Item standard identifier" scheme identifier -->
       <customLevel level="warning">BR-CL-21</customLevel>
     </createReport>
     <acceptMatch>/rep:report/rep:assessment[1]/rep:accept[1]</acceptMatch>
@@ -125,14 +127,23 @@
         <location>resources/xrechnung-report.xsl</location>
       </resource>
       <!-- custom level "information" for BR-CL-01 was removed as construction codes were added to Codelist 1001 with CEN 1.3.8 (see CEN issue https://github.com/ConnectingEurope/eInvoicing-EN16931/issues/309) --> 
+      <!-- overwrites CEN severity level "fatal" for ISO 6523 values of BT-157 "Item standard identifier" scheme identifier and to enable DIGA codes (BR-DEX-06) -->
       <customLevel level="information">BR-CL-21</customLevel>
+      <!-- overwrites CEN severity level "fatal" for codelist values of BT-130 "Invoiced quantity unit of measure code" and BT-150 "Item price base quantity unit of measure code" -->
       <customLevel level="warning">BR-CL-23</customLevel>
+      <!-- overwrites CEN severity level "fatal" to enable use of mime codes defined per BR-DEX-01 -->
       <customLevel level="warning">BR-CL-24</customLevel>
+      <!-- overwrites CEN severity level "fatal" for ISO 6523 values of BT-29, BT-46, and BT-60 scheme identifiers to enable DIGA codes (BR-DEX-04) -->
       <customLevel level="information">BR-CL-10</customLevel>
+      <!-- overwrites CEN severity level "fatal" for ISO 6523 values of BT-30, BT-47, and BT-61 scheme identifiers to enable DIGA codes (BR-DEX-05) -->
       <customLevel level="information">BR-CL-11</customLevel>
+      <!-- overwrites CEN severity level "fatal" for CEF EAS values of BT-34 and BT-49 scheme identifiers to enable DIGA codes (BR-DEX-07) -->
       <customLevel level="information">BR-CL-25</customLevel>
+      <!-- overwrites CEN severity level "fatal" for ISO 6523 values of BT-71 scheme identifier to enable DIGA codes (BR-DEX-08) -->
       <customLevel level="information">BR-CL-26</customLevel>
+      <!-- overwrites CEN severity level "fatal" to enable Third Party Payment calculations (BR-DEX-09) -->
       <customLevel level="information">BR-CO-16</customLevel>
+      <!-- overwrites CEN severity level "warning" for implementation of Third Party Payment (BG-DEX-09) -->
       <customLevel level="information">UBL-CR-470</customLevel>
     </createReport>
     <acceptMatch>/rep:report/rep:assessment[1]/rep:accept[1]</acceptMatch>
@@ -186,7 +197,9 @@
         <location>resources/xrechnung-report.xsl</location>
       </resource>
       <!-- custom level "information" for BR-CL-01 was removed as construction codes were added to Codelist 1001 with CEN 1.3.8 (see CEN issue https://github.com/ConnectingEurope/eInvoicing-EN16931/issues/309) --> 
+      <!-- overwrites CEN severity level "fatal" for codelist values of BT-130 "Invoiced quantity unit of measure code" and BT-150 "Item price base quantity unit of measure code" -->
       <customLevel level="warning">BR-CL-23</customLevel>
+      <!-- overwrites CEN severity level "fatal" for ISO 6523 values of BT-157 "Item standard identifier" scheme identifier -->
       <customLevel level="warning">BR-CL-21</customLevel>
     </createReport>
     <acceptMatch>/rep:report/rep:assessment[1]/rep:accept[1]</acceptMatch>
@@ -243,7 +256,9 @@
         <location>resources/xrechnung-report.xsl</location>
       </resource>
       <!-- custom level "information" for BR-CL-01 was removed as construction codes were added to Codelist 1001 with CEN 1.3.8 (see CEN issue https://github.com/ConnectingEurope/eInvoicing-EN16931/issues/309) --> 
+      <!-- overwrites CEN severity level "fatal" for codelist values of BT-130 "Invoiced quantity unit of measure code" and BT-150 "Item price base quantity unit of measure code" -->
       <customLevel level="warning">BR-CL-23</customLevel>
+      <!-- overwrites CEN severity level "fatal" for ISO 6523 values of BT-157 "Item standard identifier" scheme identifier -->
       <customLevel level="warning">BR-CL-21</customLevel>
     </createReport>
     <acceptMatch>/rep:report/rep:assessment[1]/rep:accept[1]</acceptMatch>
@@ -299,11 +314,17 @@
         <location>resources/xrechnung-report.xsl</location>
       </resource>
       <!-- custom level "information" for BR-CL-01 was removed as construction codes were added to Codelist 1001 with CEN 1.3.8 (see CEN issue https://github.com/ConnectingEurope/eInvoicing-EN16931/issues/309) --> 
+      <!-- overwrites CEN severity level "fatal" for codelist values of BT-130 "Invoiced quantity unit of measure code" and BT-150 "Item price base quantity unit of measure code" -->
       <customLevel level="warning">BR-CL-23</customLevel>
+      <!-- overwrites CEN severity level "fatal" for ISO 6523 values of BT-157 "Item standard identifier" scheme identifier and to enable DIGA codes (BR-DEX-06) -->
       <customLevel level="information">BR-CL-21</customLevel>
+      <!-- overwrites CEN severity level "fatal" for ISO 6523 values of BT-30, BT-47, and BT-61 scheme identifiers to enable DIGA codes (BR-DEX-05) -->
       <customLevel level="information">BR-CL-11</customLevel>
+      <!-- overwrites CEN severity level "fatal" for ISO 6523 values of BT-29, BT-46, and BT-60 scheme identifiers to enable DIGA codes (BR-DEX-04) -->
       <customLevel level="information">BR-CL-10</customLevel>
+      <!-- overwrites CEN severity level "fatal" for CEF EAS values of BT-34 and BT-49 scheme identifiers to enable DIGA codes (BR-DEX-07) -->
       <customLevel level="information">BR-CL-25</customLevel>
+      <!-- overwrites CEN severity level "fatal" for ISO 6523 values of BT-71 scheme identifier to enable DIGA codes (BR-DEX-08) -->
       <customLevel level="information">BR-CL-26</customLevel>
     </createReport>
     <acceptMatch>/rep:report/rep:assessment[1]/rep:accept[1]</acceptMatch>
