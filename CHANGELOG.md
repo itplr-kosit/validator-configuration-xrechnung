@@ -14,6 +14,7 @@ This release is compatible with XRechnung ?.?.?
 ### Added
 
 * Test for BR-CO-17 and BR-S-09 rounding rules in UBL
+* Tests to monitor implementation of BR-E-10
 
 ### Changed
 
