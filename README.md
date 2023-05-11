@@ -13,7 +13,7 @@ Each [release](https://github.com/itplr-kosit/validator-configuration-xrechnung/
 In particular this Validator Configuration integrates the following third-party artifacts:
 
 * [Schematron of EN16931:2017](https://github.com/ConnectingEurope/eInvoicing-EN16931)
-* [Schematron of CIUS XRechnung](https://github.com/itplr-kosit/xrechnung-schematron/)
+* [Schematron of CIUS XRechnung](https://projekte.kosit.org/xrechnung/xrechnung-schematron/)
 * [XML Schema of UBL Invoice and CreditNote version 2.1](http://docs.oasis-open.org/ubl/os-UBL-2.1/)
 * [XML Schema of UN/CEFACT uncoupled version 16B](http://www.unece.org/cefact/xml_schemas/index.html)
 
