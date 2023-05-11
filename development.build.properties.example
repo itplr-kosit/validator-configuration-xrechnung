@@ -8,7 +8,7 @@
 ##
 # The XRechnung Version this configuration implements
 ##
-#xrechnung.version=2.2.0
+#xrechnung.version=2.3.1
 
 ##
 # Set this property in order to activate targets for local development
@@ -33,7 +33,7 @@
 ##
 #xr.testsuite.download.url.prefix=file://${work.dir}/../xrechnung-testsuite/dist
 
-#xr.testsuite.version=2021-11-15
+#xr.testsuite.version=2023-05-12
 
 ##
 # Set this property in order to activate targets for local development
@@ -44,8 +44,8 @@
 ##
 # Set version of xrechnung schematron
 ##
-#xr.schematron.version.major.minor=1.6
-#xr.schematron.version.patch=1
+#xr.schematron.version.major.minor=1.8
+#xr.schematron.version.patch=2
 
 ###
 # Get schematron distribution from your local git project
