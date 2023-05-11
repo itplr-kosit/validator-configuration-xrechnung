@@ -40,14 +40,14 @@ The following example demonstrates how to use a different CEN Schematron release
 
 ```shell
 ant clean dist \
-  -Dcen.rules.version=1.3.5
+  -Dcen.rules.version=1.3.10
 ```
 
 The following example demonstrates how to use a different CEN Schematron release, downloaded from the CEN GitHub repository:
 
 ```shell
 ant clean dist \
-  -Dcen.rules.version=1.3.5 \
+  -Dcen.rules.version=1.3.10 \
 ```
 
 To test with the latest SNAPSHOT versions of the CEN rules, add the following property to the Ant call:
@@ -203,15 +203,15 @@ If you want to skip tests call `ant dist-only`.
   ```
 
 * Tag the last commit according to the following naming rule: 
-   `release-${date-of-scheduled-release-e.g. 2023-02-17}`
+   `release-${date-of-scheduled-release-e.g. 2023-05-12}`
   e.g.
-  `git tag release-2023-02-17 && git push origin release-2023-02-17`
+  `git tag release-2023-05-12 && git push origin release-2023-05-12`
 
 ### Publish
 
 * Draft a new release at https://github.com/itplr-kosit/validator-configuration-xrechnung/releases/new
   * Choose the git tag
-* Add a release title of the following scheme: `Validator Configuration 2023-02-17 compatible with XRechnung 2.3.x`.
+* Add a release title of the following scheme: `Validator Configuration 2023-05-12 compatible with XRechnung 2.3.x`.
 * Copy & paste the high quality changelog entries for this release from CHANGELOG.md.
 * Upload distribution zip and tick mark this release as a `pre-release`.
 
