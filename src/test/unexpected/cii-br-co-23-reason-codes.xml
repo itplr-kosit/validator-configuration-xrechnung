@@ -70,7 +70,6 @@
         <ram:ApplicableHeaderTradeAgreement>
             <ram:BuyerReference>Test2</ram:BuyerReference>
             <ram:SellerTradeParty>
-                <ram:ID/>
                 <ram:Name>Test GmbH</ram:Name>
                 <ram:SpecifiedLegalOrganization>
                     <ram:TradingBusinessName>Test GmbH</ram:TradingBusinessName>
@@ -101,9 +100,6 @@
             <ram:BuyerTradeParty>
                 <ram:ID>1000</ram:ID>
                 <ram:Name>Test BKK</ram:Name>
-                <ram:DefinedTradeContact>
-                    <ram:PersonName/>
-                </ram:DefinedTradeContact>
                 <ram:PostalTradeAddress>
                     <ram:PostcodeCode>12345</ram:PostcodeCode>
                     <ram:LineOne>Teststadt 1</ram:LineOne>
@@ -116,7 +112,6 @@
                 </ram:URIUniversalCommunication>
             </ram:BuyerTradeParty>
             <ram:SellerTaxRepresentativeTradeParty>
-                <ram:ID/>
                 <ram:Name>Test GmbH</ram:Name>
                 <ram:PostalTradeAddress>
                     <ram:PostcodeCode>13245</ram:PostcodeCode>

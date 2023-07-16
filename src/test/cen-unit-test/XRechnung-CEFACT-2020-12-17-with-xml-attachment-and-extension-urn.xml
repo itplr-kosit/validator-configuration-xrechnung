@@ -24,9 +24,6 @@
             <ram:LineID>1</ram:LineID>
          </ram:AssociatedDocumentLineDocument>
          <ram:SpecifiedTradeProduct>
-            <ram:GlobalID schemeID="0001"/>
-            <ram:SellerAssignedID/>
-            <ram:BuyerAssignedID/>
             <ram:Name>TestTestTest</ram:Name>
          </ram:SpecifiedTradeProduct>
          <ram:SpecifiedLineTradeAgreement>
@@ -63,9 +60,6 @@
          <ram:BuyerReference>TestTestTest</ram:BuyerReference>
          <ram:SellerTradeParty>
             <ram:Name>TestTestTest</ram:Name>
-            <ram:SpecifiedLegalOrganization>
-               <ram:ID/>
-            </ram:SpecifiedLegalOrganization>
             <ram:DefinedTradeContact>
                <ram:PersonName>TestTestTest</ram:PersonName>
                <ram:TelephoneUniversalCommunication>
@@ -88,11 +82,7 @@
             </ram:SpecifiedTaxRegistration>
          </ram:SellerTradeParty>
          <ram:BuyerTradeParty>
-            <ram:ID/>
             <ram:Name>TestTestTest</ram:Name>
-            <ram:SpecifiedLegalOrganization>
-               <ram:ID/>
-            </ram:SpecifiedLegalOrganization>
             <ram:PostalTradeAddress>
                <ram:PostcodeCode>12345</ram:PostcodeCode>
                <ram:CityName>Berlin</ram:CityName>
@@ -121,9 +111,6 @@
             <ram:PayeePartyCreditorFinancialAccount>
                <ram:IBANID>DE91100000000123456789</ram:IBANID>
             </ram:PayeePartyCreditorFinancialAccount>
-            <ram:PayeeSpecifiedCreditorFinancialInstitution>
-               <ram:BICID/>
-            </ram:PayeeSpecifiedCreditorFinancialInstitution>
          </ram:SpecifiedTradeSettlementPaymentMeans>
          <ram:ApplicableTradeTax>
             <ram:CalculatedAmount>1339185.6</ram:CalculatedAmount>
