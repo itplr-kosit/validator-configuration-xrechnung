@@ -13,11 +13,11 @@
     <?xmute mutator="identity" schematron-valid="cenubl:BR-CL-04"
                 id="ubl-inv-valid-document-currency-code" description="alpha-3 is allowed" ?>
     <cbc:DocumentCurrencyCode>EUR</cbc:DocumentCurrencyCode>
-    <?xmute mutator="code" values="EU, E" schematron-invalid="cenubl:BR-CL-05"
+    <?xmute mutator="code" values="GB, P" schematron-invalid="cenubl:BR-CL-05"
                 id="ubl-inv-inv-tax-currency-code" description="alpha-2 and alpha-1 not allowed" ?>
     <?xmute mutator="identity" schematron-valid="cenubl:BR-CL-05"
                 id="ubl-inv-valid-tax-currency-code" description="alpha-3 is allowed" ?>
-    <cbc:TaxCurrencyCode>EUR</cbc:TaxCurrencyCode>
+    <cbc:TaxCurrencyCode>GBP</cbc:TaxCurrencyCode>
     <cbc:BuyerReference>04011000-12345-34</cbc:BuyerReference>
     <cac:AccountingSupplierParty>
         <cac:Party>
@@ -93,6 +93,9 @@
                 </cac:TaxScheme>
             </cac:TaxCategory>
         </cac:TaxSubtotal>
+    </cac:TaxTotal>
+    <cac:TaxTotal>
+        <cbc:TaxAmount currencyID="GBP">22.04</cbc:TaxAmount>
     </cac:TaxTotal>
     <cac:LegalMonetaryTotal>
         <cbc:LineExtensionAmount currencyID="EUR">314.86</cbc:LineExtensionAmount>
