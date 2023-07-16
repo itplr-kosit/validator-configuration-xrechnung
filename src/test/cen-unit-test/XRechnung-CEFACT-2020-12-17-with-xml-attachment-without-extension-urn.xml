@@ -99,6 +99,9 @@
                <ram:CountryID>DE</ram:CountryID>
             </ram:PostalTradeAddress>
             <ram:URIUniversalCommunication>
+               <ram:URIID schemeID="EM">rechnungseingang@test.com</ram:URIID>
+            </ram:URIUniversalCommunication>
+            <ram:URIUniversalCommunication>
                <ram:URIID schemeID="0088"/>
             </ram:URIUniversalCommunication>
          </ram:BuyerTradeParty>

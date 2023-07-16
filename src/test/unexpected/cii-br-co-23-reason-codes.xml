@@ -111,6 +111,9 @@
                     <ram:CountryID>DE</ram:CountryID>
                     <ram:CountrySubDivisionName>BW</ram:CountrySubDivisionName>
                 </ram:PostalTradeAddress>
+                <ram:URIUniversalCommunication>
+                    <ram:URIID schemeID="EM">rechnungseingang@test.com</ram:URIID>
+                </ram:URIUniversalCommunication>
             </ram:BuyerTradeParty>
             <ram:SellerTaxRepresentativeTradeParty>
                 <ram:ID/>

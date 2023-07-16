@@ -297,6 +297,9 @@
 					<ram:CityName>Stadt</ram:CityName>
 					<ram:CountryID>DE</ram:CountryID>
 				</ram:PostalTradeAddress>
+				<ram:URIUniversalCommunication>
+					<ram:URIID schemeID="EM">rechnungseingang@test.com</ram:URIID>
+				</ram:URIUniversalCommunication>
 				<ram:SpecifiedTaxRegistration>
 					<ram:ID schemeID="VA">DE000011166</ram:ID>
 				</ram:SpecifiedTaxRegistration>

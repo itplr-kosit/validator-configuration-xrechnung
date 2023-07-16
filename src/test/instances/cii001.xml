@@ -600,6 +600,9 @@
           <ram:CityName>HEEMSKERK</ram:CityName>
           <ram:CountryID>NL</ram:CountryID>
         </ram:PostalTradeAddress>
+        <ram:URIUniversalCommunication>
+          <ram:URIID schemeID="EM">rechnungseingang@test.com</ram:URIID>
+        </ram:URIUniversalCommunication>
       </ram:BuyerTradeParty>
     </ram:ApplicableHeaderTradeAgreement>
     <ram:ApplicableHeaderTradeDelivery />

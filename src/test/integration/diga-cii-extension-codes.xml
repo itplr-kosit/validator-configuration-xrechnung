@@ -107,6 +107,9 @@
                     <ram:CityName>Berlin</ram:CityName>
                     <ram:CountryID>DE</ram:CountryID>
                 </ram:PostalTradeAddress>
+                <ram:URIUniversalCommunication>
+                    <ram:URIID schemeID="EM">rechnungseingang@test.com</ram:URIID>
+                </ram:URIUniversalCommunication>
             </ram:BuyerTradeParty>
         </ram:ApplicableHeaderTradeAgreement>
         <ram:ApplicableHeaderTradeDelivery>

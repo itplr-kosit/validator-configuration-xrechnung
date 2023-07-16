@@ -63,6 +63,7 @@ Musterstr. 36
   </cac:AccountingSupplierParty>
   <cac:AccountingCustomerParty>
     <cac:Party>
+      <cbc:EndpointID schemeID="EM">rechnungseingang@test.de</cbc:EndpointID>
       <cac:PartyName>
         <cbc:Name>Mustermann GmbH</cbc:Name>
       </cac:PartyName>

@@ -44,6 +44,7 @@
     </cac:AccountingSupplierParty>
     <cac:AccountingCustomerParty>
         <cac:Party>
+            <cbc:EndpointID schemeID="EM">rechnungseingang@test.de</cbc:EndpointID>
             <cac:PartyIdentification>
                 <cbc:ID>[Buyer identifier]</cbc:ID>
             </cac:PartyIdentification>
