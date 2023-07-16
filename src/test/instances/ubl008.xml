@@ -15,6 +15,7 @@
 
   <cac:AccountingSupplierParty>
     <cac:Party>
+      <cbc:EndpointID schemeID="EM">rechnungsausgang@test.com</cbc:EndpointID>
       <cac:PostalAddress>
         <cbc:StreetName>Postbus 7l</cbc:StreetName>
         <cbc:CityName>Velsen-Noord</cbc:CityName>

@@ -29,6 +29,7 @@ Musterstr. 36
   </cac:ProjectReference>
   <cac:AccountingSupplierParty>
     <cac:Party>
+      <cbc:EndpointID schemeID="EM">rechnungsausgang@test.com</cbc:EndpointID>
       <cac:PartyIdentification>
         <cbc:ID>456</cbc:ID>
       </cac:PartyIdentification>

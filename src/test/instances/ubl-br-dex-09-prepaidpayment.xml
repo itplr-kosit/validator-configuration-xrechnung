@@ -11,6 +11,7 @@
     <cbc:BuyerReference>04011000-12345-34</cbc:BuyerReference>
     <cac:AccountingSupplierParty>
         <cac:Party>
+            <cbc:EndpointID schemeID="EM">rechnungsausgang@test.com</cbc:EndpointID>
             <cac:PartyName>
                 <cbc:Name>[Seller trading name]</cbc:Name>
             </cac:PartyName>

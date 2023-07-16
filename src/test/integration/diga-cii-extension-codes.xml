@@ -89,6 +89,9 @@
                     <ram:CityName>Berlin</ram:CityName>
                     <ram:CountryID>DE</ram:CountryID>
                 </ram:PostalTradeAddress>
+                <ram:URIUniversalCommunication>
+                    <ram:URIID schemeID="EM">rechnungsausgang@test.com</ram:URIID>
+                </ram:URIUniversalCommunication>
                 <ram:SpecifiedTaxRegistration>
                     <ram:ID schemeID="VA">DE 123 456 789</ram:ID>
                 </ram:SpecifiedTaxRegistration>

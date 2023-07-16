@@ -21,6 +21,7 @@
   <cbc:BuyerReference>A test buyer reference</cbc:BuyerReference>
   <cac:AccountingSupplierParty>
     <cac:Party>
+      <cbc:EndpointID schemeID="EM">rechnungsausgang@test.com</cbc:EndpointID>
       <cac:PostalAddress>
         <cbc:StreetName>Postbus 7l</cbc:StreetName>
         <!-- Error XRechung -->

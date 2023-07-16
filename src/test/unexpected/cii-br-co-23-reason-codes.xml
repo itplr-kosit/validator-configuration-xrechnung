@@ -91,6 +91,9 @@
                     <ram:CountryID>DE</ram:CountryID>
                     <ram:CountrySubDivisionName>SN</ram:CountrySubDivisionName>
                 </ram:PostalTradeAddress>
+                <ram:URIUniversalCommunication>
+                    <ram:URIID schemeID="EM">rechnungsausgang@test.com</ram:URIID>
+                </ram:URIUniversalCommunication>
                 <ram:SpecifiedTaxRegistration>
                     <ram:ID schemeID="VA">DE123456789</ram:ID>
                 </ram:SpecifiedTaxRegistration>
