@@ -75,7 +75,7 @@
                <ram:CountryID>DE</ram:CountryID>
             </ram:PostalTradeAddress>
             <ram:URIUniversalCommunication>
-               <ram:URIID schemeID="0088"/>
+               <ram:URIID schemeID="0088">rechnungsausgang@test.de</ram:URIID>
             </ram:URIUniversalCommunication>
             <ram:SpecifiedTaxRegistration>
                <ram:ID schemeID="VA">DE1234</ram:ID>
@@ -89,10 +89,7 @@
                <ram:CountryID>DE</ram:CountryID>
             </ram:PostalTradeAddress>
             <ram:URIUniversalCommunication>
-               <ram:URIID schemeID="EM">rechnungseingang@test.com</ram:URIID>
-            </ram:URIUniversalCommunication>
-            <ram:URIUniversalCommunication>
-               <ram:URIID schemeID="0088"/>
+               <ram:URIID schemeID="0088">rechnungseingang@test.de</ram:URIID>
             </ram:URIUniversalCommunication>
          </ram:BuyerTradeParty>
          <ram:AdditionalReferencedDocument>

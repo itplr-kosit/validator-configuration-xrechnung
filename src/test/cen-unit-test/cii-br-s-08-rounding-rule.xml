@@ -191,7 +191,9 @@
       <ram:InvoiceCurrencyCode>EUR</ram:InvoiceCurrencyCode>
       <ram:SpecifiedTradeSettlementPaymentMeans>
         <ram:TypeCode>30</ram:TypeCode>
-        <ram:PayeePartyCreditorFinancialAccount />
+        <ram:PayeePartyCreditorFinancialAccount>
+          <ram:IBANID>DE57RABO0107307510</ram:IBANID>
+        </ram:PayeePartyCreditorFinancialAccount>
       </ram:SpecifiedTradeSettlementPaymentMeans>
       <ram:ApplicableTradeTax>
         <ram:CalculatedAmount>36.19</ram:CalculatedAmount>
