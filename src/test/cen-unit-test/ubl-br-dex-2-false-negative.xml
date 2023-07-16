@@ -168,7 +168,7 @@ Musterstr. 36
       <cac:AllowanceCharge>
         <cbc:ChargeIndicator>false</cbc:ChargeIndicator>
         <cbc:Amount currencyID="EUR">92.50</cbc:Amount>
-        <cbc:BaseAmount currencyID="EUR">1850.00</cbc:BaseAmount>
+        <cbc:BaseAmount currencyID="EUR">1942.50</cbc:BaseAmount>
       </cac:AllowanceCharge>
     </cac:Price>
     <cac:SubInvoiceLine>
@@ -190,7 +190,7 @@ Musterstr. 36
         <cac:AllowanceCharge>
           <cbc:ChargeIndicator>false</cbc:ChargeIndicator>
           <cbc:Amount currencyID="EUR">40.00</cbc:Amount>
-          <cbc:BaseAmount currencyID="EUR">800.00</cbc:BaseAmount>
+          <cbc:BaseAmount currencyID="EUR">120.00</cbc:BaseAmount>
         </cac:AllowanceCharge>
       </cac:Price>
     </cac:SubInvoiceLine>
@@ -213,7 +213,7 @@ Musterstr. 36
         <cac:AllowanceCharge>
           <cbc:ChargeIndicator>false</cbc:ChargeIndicator>
           <cbc:Amount currencyID="EUR">52.50</cbc:Amount>
-          <cbc:BaseAmount currencyID="EUR">1050.00</cbc:BaseAmount>
+          <cbc:BaseAmount currencyID="EUR">157.50</cbc:BaseAmount>
         </cac:AllowanceCharge>
       </cac:Price>
     </cac:SubInvoiceLine>
@@ -255,7 +255,7 @@ Musterstr. 36
       <cac:AllowanceCharge>
         <cbc:ChargeIndicator>false</cbc:ChargeIndicator>
         <cbc:Amount currencyID="EUR">30.00</cbc:Amount>
-        <cbc:BaseAmount currencyID="EUR">300.00</cbc:BaseAmount>
+        <cbc:BaseAmount currencyID="EUR">330.00</cbc:BaseAmount>
       </cac:AllowanceCharge>
     </cac:Price>
     <cac:SubInvoiceLine>
@@ -277,7 +277,7 @@ Musterstr. 36
         <cac:AllowanceCharge>
           <cbc:ChargeIndicator>false</cbc:ChargeIndicator>
           <cbc:Amount currencyID="EUR">20.00</cbc:Amount>
-          <cbc:BaseAmount currencyID="EUR">200.00</cbc:BaseAmount>
+          <cbc:BaseAmount currencyID="EUR">220.00</cbc:BaseAmount>
         </cac:AllowanceCharge>
       </cac:Price>
     </cac:SubInvoiceLine>
@@ -300,7 +300,7 @@ Musterstr. 36
         <cac:AllowanceCharge>
           <cbc:ChargeIndicator>false</cbc:ChargeIndicator>
           <cbc:Amount currencyID="EUR">10.00</cbc:Amount>
-          <cbc:BaseAmount currencyID="EUR">100.00</cbc:BaseAmount>
+          <cbc:BaseAmount currencyID="EUR">110.00</cbc:BaseAmount>
         </cac:AllowanceCharge>
       </cac:Price>
     </cac:SubInvoiceLine>
