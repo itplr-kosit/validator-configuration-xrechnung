@@ -166,7 +166,7 @@ Musterstr. 36
     <cac:Price>
       <cbc:PriceAmount currencyID="EUR">1850.00</cbc:PriceAmount>
       <cac:AllowanceCharge>
-        <cbc:ChargeIndicator>true</cbc:ChargeIndicator>
+        <cbc:ChargeIndicator>false</cbc:ChargeIndicator>
         <cbc:Amount currencyID="EUR">92.50</cbc:Amount>
         <cbc:BaseAmount currencyID="EUR">1850.00</cbc:BaseAmount>
       </cac:AllowanceCharge>
@@ -188,7 +188,7 @@ Musterstr. 36
       <cac:Price>
         <cbc:PriceAmount currencyID="EUR">80.00</cbc:PriceAmount>
         <cac:AllowanceCharge>
-          <cbc:ChargeIndicator>true</cbc:ChargeIndicator>
+          <cbc:ChargeIndicator>false</cbc:ChargeIndicator>
           <cbc:Amount currencyID="EUR">40.00</cbc:Amount>
           <cbc:BaseAmount currencyID="EUR">800.00</cbc:BaseAmount>
         </cac:AllowanceCharge>
@@ -211,7 +211,7 @@ Musterstr. 36
       <cac:Price>
         <cbc:PriceAmount currencyID="EUR">105.00</cbc:PriceAmount>
         <cac:AllowanceCharge>
-          <cbc:ChargeIndicator>true</cbc:ChargeIndicator>
+          <cbc:ChargeIndicator>false</cbc:ChargeIndicator>
           <cbc:Amount currencyID="EUR">52.50</cbc:Amount>
           <cbc:BaseAmount currencyID="EUR">1050.00</cbc:BaseAmount>
         </cac:AllowanceCharge>
@@ -253,7 +253,7 @@ Musterstr. 36
     <cac:Price>
       <cbc:PriceAmount currencyID="EUR">300.00</cbc:PriceAmount>
       <cac:AllowanceCharge>
-        <cbc:ChargeIndicator>true</cbc:ChargeIndicator>
+        <cbc:ChargeIndicator>false</cbc:ChargeIndicator>
         <cbc:Amount currencyID="EUR">30.00</cbc:Amount>
         <cbc:BaseAmount currencyID="EUR">300.00</cbc:BaseAmount>
       </cac:AllowanceCharge>
@@ -275,7 +275,7 @@ Musterstr. 36
       <cac:Price>
         <cbc:PriceAmount currencyID="EUR">200.00</cbc:PriceAmount>
         <cac:AllowanceCharge>
-          <cbc:ChargeIndicator>true</cbc:ChargeIndicator>
+          <cbc:ChargeIndicator>false</cbc:ChargeIndicator>
           <cbc:Amount currencyID="EUR">20.00</cbc:Amount>
           <cbc:BaseAmount currencyID="EUR">200.00</cbc:BaseAmount>
         </cac:AllowanceCharge>
@@ -298,7 +298,7 @@ Musterstr. 36
       <cac:Price>
         <cbc:PriceAmount currencyID="EUR">100.00</cbc:PriceAmount>
         <cac:AllowanceCharge>
-          <cbc:ChargeIndicator>true</cbc:ChargeIndicator>
+          <cbc:ChargeIndicator>false</cbc:ChargeIndicator>
           <cbc:Amount currencyID="EUR">10.00</cbc:Amount>
           <cbc:BaseAmount currencyID="EUR">100.00</cbc:BaseAmount>
         </cac:AllowanceCharge>
