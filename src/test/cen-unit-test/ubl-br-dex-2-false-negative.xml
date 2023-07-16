@@ -98,7 +98,7 @@ Musterstr. 36
     <cbc:ChargeIndicator>false</cbc:ChargeIndicator>
     <cbc:AllowanceChargeReasonCode>104</cbc:AllowanceChargeReasonCode>
     <cbc:AllowanceChargeReason>Sicherheitseinbehalt</cbc:AllowanceChargeReason>
-    <cbc:MultiplierFactorNumeric>0.05</cbc:MultiplierFactorNumeric>
+    <cbc:MultiplierFactorNumeric>5</cbc:MultiplierFactorNumeric>
     <cbc:Amount currencyID="EUR">628.63</cbc:Amount>
     <cbc:BaseAmount currencyID="EUR">12572.50</cbc:BaseAmount>
     <cac:TaxCategory>
