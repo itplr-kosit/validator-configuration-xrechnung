@@ -29,7 +29,7 @@
          <ram:SpecifiedLineTradeAgreement>
             <ram:GrossPriceProductTradePrice>
                <ram:ChargeAmount>12345</ram:ChargeAmount>
-               <ram:BasisQuantity unitCode="MIK">0</ram:BasisQuantity>
+               <ram:BasisQuantity unitCode="MIK">1</ram:BasisQuantity>
                <ram:AppliedTradeAllowanceCharge>
                   <ram:ChargeIndicator>
                      <udt:Indicator>false</udt:Indicator>
@@ -39,7 +39,7 @@
             </ram:GrossPriceProductTradePrice>
             <ram:NetPriceProductTradePrice>
                <ram:ChargeAmount>12345</ram:ChargeAmount>
-               <ram:BasisQuantity unitCode="MIK">0</ram:BasisQuantity>
+               <ram:BasisQuantity unitCode="MIK">1</ram:BasisQuantity>
             </ram:NetPriceProductTradePrice>
          </ram:SpecifiedLineTradeAgreement>
          <ram:SpecifiedLineTradeDelivery>
@@ -118,7 +118,7 @@
          </ram:ApplicableTradeTax>
          <ram:SpecifiedTradePaymentTerms>
             <ram:DueDateDateTime>
-               <udt:DateTimeString format="102">2020-12-31</udt:DateTimeString>
+               <udt:DateTimeString format="102">20201231</udt:DateTimeString>
             </ram:DueDateDateTime>
          </ram:SpecifiedTradePaymentTerms>
          <ram:SpecifiedTradeSettlementHeaderMonetarySummation>

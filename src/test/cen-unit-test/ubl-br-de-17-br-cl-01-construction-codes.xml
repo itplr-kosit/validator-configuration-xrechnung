@@ -49,7 +49,7 @@
       </cac:PartyLegalEntity>
       <cac:Contact>
         <cbc:Name>Testname</cbc:Name>
-        <cbc:Telephone>Testname</cbc:Telephone>
+        <cbc:Telephone>01234567</cbc:Telephone>
         <cbc:ElectronicMail>test@test.de</cbc:ElectronicMail>
       </cac:Contact>
     </cac:Party>
@@ -522,7 +522,7 @@
   </cac:InvoiceLine>
   <cac:InvoiceLine>
     <cbc:ID>20</cbc:ID>
-    <cbc:InvoicedQuantity unitCode="EA">6</cbc:InvoicedQuantity>
+    <cbc:InvoicedQuantity unitCode="EA">-6</cbc:InvoicedQuantity>
     <cbc:LineExtensionAmount currencyID="EUR">-109.98</cbc:LineExtensionAmount>
     <cac:Item>
       <cbc:Name>FRITUUR VET 10 KG RETOUR </cbc:Name>

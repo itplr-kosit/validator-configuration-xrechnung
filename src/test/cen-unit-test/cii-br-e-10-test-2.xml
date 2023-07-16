@@ -57,10 +57,10 @@
                 </ram:ApplicableTradeTax>
                 <ram:BillingSpecifiedPeriod>
                     <ram:StartDateTime>
-                        <udt:DateTimeString format="102">20160101</udt:DateTimeString>
+                        <udt:DateTimeString format="102">20180413</udt:DateTimeString>
                     </ram:StartDateTime>
                     <ram:EndDateTime>
-                        <udt:DateTimeString format="102">20161231</udt:DateTimeString>
+                        <udt:DateTimeString format="102">20180413</udt:DateTimeString>
                     </ram:EndDateTime>
                 </ram:BillingSpecifiedPeriod>
                 <ram:SpecifiedTradeSettlementLineMonetarySummation>
