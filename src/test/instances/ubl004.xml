@@ -6,9 +6,9 @@
   xmlns:udt="urn:oasis:names:specification:ubl:schema:xsd:UnqualifiedDataTypes-2"
   xmlns:ccts="urn:un:unece:uncefact:documentation:2"
   xmlns="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2">
-  <cbc:ProfileID>urn:fdc:peppol.eu:2017:poacc:billing:01:1.0</cbc:ProfileID>
   <!-- Gets replaced by ant build during test -->
   <cbc:CustomizationID>@xrechnung.spec.id@</cbc:CustomizationID>
+  <cbc:ProfileID>urn:fdc:peppol.eu:2017:poacc:billing:01:1.0</cbc:ProfileID>
   <cbc:ID>12115118</cbc:ID>
   <cbc:IssueDate>2015-01-09</cbc:IssueDate>
   <cbc:DueDate>2015-01-09</cbc:DueDate>
@@ -517,7 +517,7 @@
   </cac:InvoiceLine>
   <cac:InvoiceLine>
     <cbc:ID>20</cbc:ID>
-    <cbc:InvoicedQuantity unitCode="EA">6</cbc:InvoicedQuantity>
+    <cbc:InvoicedQuantity unitCode="EA">-6</cbc:InvoicedQuantity>
     <cbc:LineExtensionAmount currencyID="EUR">-109.98</cbc:LineExtensionAmount>
     <cac:Item>
       <cbc:Name>FRITUUR VET 10 KG RETOUR </cbc:Name>
