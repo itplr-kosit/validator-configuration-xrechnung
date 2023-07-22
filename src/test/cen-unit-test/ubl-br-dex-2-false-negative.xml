@@ -110,11 +110,10 @@ Musterstr. 36
     </cac:TaxCategory>
   </cac:AllowanceCharge>
   <cac:TaxTotal>
-    <!-- BT-110 -->
-    <cbc:TaxAmount currencyID="EUR">2251.75</cbc:TaxAmount>
+    <cbc:TaxAmount currencyID="EUR">2269.34</cbc:TaxAmount>
     <cac:TaxSubtotal>
-      <cbc:TaxableAmount currencyID="EUR">11851.37</cbc:TaxableAmount>
-      <cbc:TaxAmount currencyID="EUR">2251.75</cbc:TaxAmount>
+      <cbc:TaxableAmount currencyID="EUR">11943.87</cbc:TaxableAmount>
+      <cbc:TaxAmount currencyID="EUR">2269.34</cbc:TaxAmount>
       <cac:TaxCategory>
         <cbc:ID>S</cbc:ID>
         <cbc:Percent>19.00</cbc:Percent>
@@ -125,15 +124,12 @@ Musterstr. 36
     </cac:TaxSubtotal>
   </cac:TaxTotal>
   <cac:LegalMonetaryTotal>
-    <cbc:LineExtensionAmount currencyID="EUR">12480.00</cbc:LineExtensionAmount>
-    <!-- BT-109 -->
-    <cbc:TaxExclusiveAmount currencyID="EUR">11851.37</cbc:TaxExclusiveAmount>
-    <!-- BT-112 -->
-    <cbc:TaxInclusiveAmount currencyID="EUR">14103.12</cbc:TaxInclusiveAmount>
+    <cbc:LineExtensionAmount currencyID="EUR">12572.50</cbc:LineExtensionAmount>
+    <cbc:TaxExclusiveAmount currencyID="EUR">11943.87</cbc:TaxExclusiveAmount>
+    <cbc:TaxInclusiveAmount currencyID="EUR">14213.21</cbc:TaxInclusiveAmount>
     <cbc:AllowanceTotalAmount currencyID="EUR">628.63</cbc:AllowanceTotalAmount>
     <cbc:PrepaidAmount currencyID="EUR">4760.00</cbc:PrepaidAmount>
-    <!-- BT-115 -->
-    <cbc:PayableAmount currencyID="EUR">9343.12</cbc:PayableAmount>
+    <cbc:PayableAmount currencyID="EUR">9453.21</cbc:PayableAmount>
   </cac:LegalMonetaryTotal>
   <cac:InvoiceLine>
     <cbc:ID>1</cbc:ID>
@@ -156,7 +152,7 @@ Musterstr. 36
   <cac:InvoiceLine>
     <cbc:ID>2</cbc:ID>
     <cbc:InvoicedQuantity unitCode="XPP">1.00</cbc:InvoicedQuantity>
-    <cbc:LineExtensionAmount currencyID="EUR">1850.00</cbc:LineExtensionAmount>
+    <cbc:LineExtensionAmount currencyID="EUR">1942.50</cbc:LineExtensionAmount>
     <cac:Item>
       <cbc:Name>Honorar besondere Leistungen/nach Stunden (inkl. 5% Nebenkosten)</cbc:Name>
       <cac:ClassifiedTaxCategory>
@@ -178,7 +174,7 @@ Musterstr. 36
     <cac:SubInvoiceLine>
       <cbc:ID>2.1</cbc:ID>
       <cbc:InvoicedQuantity unitCode="HUR">10.00</cbc:InvoicedQuantity>
-      <cbc:LineExtensionAmount currencyID="EUR">800.00</cbc:LineExtensionAmount>
+      <cbc:LineExtensionAmount currencyID="EUR">840.00</cbc:LineExtensionAmount>
       <cac:Item>
         <cbc:Name>Dipl.-Ing / M.Sc. (inkl. 5% Nebenkosten)</cbc:Name>
         <cac:ClassifiedTaxCategory>
@@ -201,7 +197,7 @@ Musterstr. 36
     <cac:SubInvoiceLine>
       <cbc:ID>2.2</cbc:ID>
       <cbc:InvoicedQuantity unitCode="HUR">10.00</cbc:InvoicedQuantity>
-      <cbc:LineExtensionAmount currencyID="EUR">1050.00</cbc:LineExtensionAmount>
+      <cbc:LineExtensionAmount currencyID="EUR">1102.50</cbc:LineExtensionAmount>
       <cac:Item>
         <cbc:Name>BEratender Ingenieur (inkl. 5% Nebenkosten)</cbc:Name>
         <cac:ClassifiedTaxCategory>
@@ -255,11 +251,11 @@ Musterstr. 36
       </cac:ClassifiedTaxCategory>
     </cac:Item>
     <cac:Price>
-      <cbc:PriceAmount currencyID="EUR">330.00</cbc:PriceAmount>
+      <cbc:PriceAmount currencyID="EUR">300.00</cbc:PriceAmount>
       <cac:AllowanceCharge>
         <cbc:ChargeIndicator>false</cbc:ChargeIndicator>
         <cbc:Amount currencyID="EUR">30.00</cbc:Amount>
-        <cbc:BaseAmount currencyID="EUR">360.00</cbc:BaseAmount>
+        <cbc:BaseAmount currencyID="EUR">330.00</cbc:BaseAmount>
       </cac:AllowanceCharge>
     </cac:Price>
     <cac:SubInvoiceLine>
