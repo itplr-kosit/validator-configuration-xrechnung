@@ -4,6 +4,7 @@
                 id="ubl-inv-valid-subinvoiceline-total" description="Has correct subinvoiceline sums" ?>
 <ubl:Invoice xmlns:ubl="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:cec="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2">
   <cbc:CustomizationID>urn:cen.eu:en16931:2017#compliant#urn:xoev-de:kosit:standard:xrechnung_2.3#conformant#urn:xoev-de:kosit:extension:xrechnung_2.3</cbc:CustomizationID>
+  <cbc:ProfileID>urn:fdc:peppol.eu:2017:poacc:billing:01:1.0</cbc:ProfileID>
   <cbc:ID>Entwurf</cbc:ID>
   <cbc:IssueDate>2020-12-02</cbc:IssueDate>
   <cbc:InvoiceTypeCode>875</cbc:InvoiceTypeCode>
@@ -29,6 +30,7 @@ Musterstr. 36
   </cac:ProjectReference>
   <cac:AccountingSupplierParty>
     <cac:Party>
+      <cbc:EndpointID schemeID="EM">rechnungsausgang@test.com</cbc:EndpointID>
       <cac:PartyIdentification>
         <cbc:ID>456</cbc:ID>
       </cac:PartyIdentification>
@@ -61,6 +63,7 @@ Musterstr. 36
   </cac:AccountingSupplierParty>
   <cac:AccountingCustomerParty>
     <cac:Party>
+      <cbc:EndpointID schemeID="EM">rechnungseingang@test.de</cbc:EndpointID>
       <cac:PartyName>
         <cbc:Name>Mustermann GmbH</cbc:Name>
       </cac:PartyName>
@@ -95,7 +98,7 @@ Musterstr. 36
     <cbc:ChargeIndicator>false</cbc:ChargeIndicator>
     <cbc:AllowanceChargeReasonCode>104</cbc:AllowanceChargeReasonCode>
     <cbc:AllowanceChargeReason>Sicherheitseinbehalt</cbc:AllowanceChargeReason>
-    <cbc:MultiplierFactorNumeric>0.05</cbc:MultiplierFactorNumeric>
+    <cbc:MultiplierFactorNumeric>5</cbc:MultiplierFactorNumeric>
     <cbc:Amount currencyID="EUR">628.63</cbc:Amount>
     <cbc:BaseAmount currencyID="EUR">12572.50</cbc:BaseAmount>
     <cac:TaxCategory>
@@ -163,9 +166,9 @@ Musterstr. 36
     <cac:Price>
       <cbc:PriceAmount currencyID="EUR">1850.00</cbc:PriceAmount>
       <cac:AllowanceCharge>
-        <cbc:ChargeIndicator>true</cbc:ChargeIndicator>
+        <cbc:ChargeIndicator>false</cbc:ChargeIndicator>
         <cbc:Amount currencyID="EUR">92.50</cbc:Amount>
-        <cbc:BaseAmount currencyID="EUR">1850.00</cbc:BaseAmount>
+        <cbc:BaseAmount currencyID="EUR">1942.50</cbc:BaseAmount>
       </cac:AllowanceCharge>
     </cac:Price>
     <cac:SubInvoiceLine>
@@ -185,9 +188,9 @@ Musterstr. 36
       <cac:Price>
         <cbc:PriceAmount currencyID="EUR">80.00</cbc:PriceAmount>
         <cac:AllowanceCharge>
-          <cbc:ChargeIndicator>true</cbc:ChargeIndicator>
+          <cbc:ChargeIndicator>false</cbc:ChargeIndicator>
           <cbc:Amount currencyID="EUR">40.00</cbc:Amount>
-          <cbc:BaseAmount currencyID="EUR">800.00</cbc:BaseAmount>
+          <cbc:BaseAmount currencyID="EUR">120.00</cbc:BaseAmount>
         </cac:AllowanceCharge>
       </cac:Price>
     </cac:SubInvoiceLine>
@@ -208,9 +211,9 @@ Musterstr. 36
       <cac:Price>
         <cbc:PriceAmount currencyID="EUR">105.00</cbc:PriceAmount>
         <cac:AllowanceCharge>
-          <cbc:ChargeIndicator>true</cbc:ChargeIndicator>
+          <cbc:ChargeIndicator>false</cbc:ChargeIndicator>
           <cbc:Amount currencyID="EUR">52.50</cbc:Amount>
-          <cbc:BaseAmount currencyID="EUR">1050.00</cbc:BaseAmount>
+          <cbc:BaseAmount currencyID="EUR">157.50</cbc:BaseAmount>
         </cac:AllowanceCharge>
       </cac:Price>
     </cac:SubInvoiceLine>
@@ -250,9 +253,9 @@ Musterstr. 36
     <cac:Price>
       <cbc:PriceAmount currencyID="EUR">300.00</cbc:PriceAmount>
       <cac:AllowanceCharge>
-        <cbc:ChargeIndicator>true</cbc:ChargeIndicator>
+        <cbc:ChargeIndicator>false</cbc:ChargeIndicator>
         <cbc:Amount currencyID="EUR">30.00</cbc:Amount>
-        <cbc:BaseAmount currencyID="EUR">300.00</cbc:BaseAmount>
+        <cbc:BaseAmount currencyID="EUR">330.00</cbc:BaseAmount>
       </cac:AllowanceCharge>
     </cac:Price>
     <cac:SubInvoiceLine>
@@ -272,9 +275,9 @@ Musterstr. 36
       <cac:Price>
         <cbc:PriceAmount currencyID="EUR">200.00</cbc:PriceAmount>
         <cac:AllowanceCharge>
-          <cbc:ChargeIndicator>true</cbc:ChargeIndicator>
+          <cbc:ChargeIndicator>false</cbc:ChargeIndicator>
           <cbc:Amount currencyID="EUR">20.00</cbc:Amount>
-          <cbc:BaseAmount currencyID="EUR">200.00</cbc:BaseAmount>
+          <cbc:BaseAmount currencyID="EUR">220.00</cbc:BaseAmount>
         </cac:AllowanceCharge>
       </cac:Price>
     </cac:SubInvoiceLine>
@@ -295,9 +298,9 @@ Musterstr. 36
       <cac:Price>
         <cbc:PriceAmount currencyID="EUR">100.00</cbc:PriceAmount>
         <cac:AllowanceCharge>
-          <cbc:ChargeIndicator>true</cbc:ChargeIndicator>
+          <cbc:ChargeIndicator>false</cbc:ChargeIndicator>
           <cbc:Amount currencyID="EUR">10.00</cbc:Amount>
-          <cbc:BaseAmount currencyID="EUR">100.00</cbc:BaseAmount>
+          <cbc:BaseAmount currencyID="EUR">110.00</cbc:BaseAmount>
         </cac:AllowanceCharge>
       </cac:Price>
     </cac:SubInvoiceLine>

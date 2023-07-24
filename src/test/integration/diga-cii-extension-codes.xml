@@ -6,6 +6,9 @@
     xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100"
     xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
     <rsm:ExchangedDocumentContext>
+        <ram:BusinessProcessSpecifiedDocumentContextParameter>
+            <ram:ID>urn:fdc:peppol.eu:2017:poacc:billing:01:1.0</ram:ID>
+        </ram:BusinessProcessSpecifiedDocumentContextParameter>
         <ram:GuidelineSpecifiedDocumentContextParameter>
             <ram:ID>urn:cen.eu:en16931:2017#compliant#urn:xoev-de:kosit:standard:xrechnung_2.3#conformant#urn:xoev-de:kosit:extension:xrechnung_2.3</ram:ID>
         </ram:GuidelineSpecifiedDocumentContextParameter>
@@ -86,6 +89,9 @@
                     <ram:CityName>Berlin</ram:CityName>
                     <ram:CountryID>DE</ram:CountryID>
                 </ram:PostalTradeAddress>
+                <ram:URIUniversalCommunication>
+                    <ram:URIID schemeID="EM">rechnungsausgang@test.com</ram:URIID>
+                </ram:URIUniversalCommunication>
                 <ram:SpecifiedTaxRegistration>
                     <ram:ID schemeID="VA">DE 123 456 789</ram:ID>
                 </ram:SpecifiedTaxRegistration>
@@ -101,6 +107,9 @@
                     <ram:CityName>Berlin</ram:CityName>
                     <ram:CountryID>DE</ram:CountryID>
                 </ram:PostalTradeAddress>
+                <ram:URIUniversalCommunication>
+                    <ram:URIID schemeID="EM">rechnungseingang@test.com</ram:URIID>
+                </ram:URIUniversalCommunication>
             </ram:BuyerTradeParty>
         </ram:ApplicableHeaderTradeAgreement>
         <ram:ApplicableHeaderTradeDelivery>
@@ -139,7 +148,7 @@
                 <ram:RateApplicablePercent>19.00</ram:RateApplicablePercent>
             </ram:ApplicableTradeTax>
             <ram:SpecifiedTradePaymentTerms>
-                <ram:Description/>
+                <ram:Description>[Description]</ram:Description>
             </ram:SpecifiedTradePaymentTerms>
             <ram:SpecifiedTradeSettlementHeaderMonetarySummation>
                 <ram:LineTotalAmount>100.00</ram:LineTotalAmount>

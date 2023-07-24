@@ -8,6 +8,7 @@
   xmlns="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2">
   <!-- Gets replaced by ant build during test -->
   <cbc:CustomizationID>@xrechnung.spec.id@</cbc:CustomizationID>
+  <cbc:ProfileID>urn:fdc:peppol.eu:2017:poacc:billing:01:1.0</cbc:ProfileID>
   <cbc:ID>12115118</cbc:ID>
   <cbc:IssueDate>2015-01-09</cbc:IssueDate>
   <cbc:CreditNoteTypeCode>326</cbc:CreditNoteTypeCode>
@@ -15,6 +16,7 @@
 
   <cac:AccountingSupplierParty>
     <cac:Party>
+      <cbc:EndpointID schemeID="EM">rechnungsausgang@test.com</cbc:EndpointID>
       <cac:PostalAddress>
         <cbc:StreetName>Postbus 7l</cbc:StreetName>
         <cbc:CityName>Velsen-Noord</cbc:CityName>
@@ -42,6 +44,7 @@
   </cac:AccountingSupplierParty>
   <cac:AccountingCustomerParty>
     <cac:Party>
+      <cbc:EndpointID schemeID="EM">rechnungseingang@test.de</cbc:EndpointID>
       <cac:PartyIdentification>
         <cbc:ID>10202</cbc:ID>
       </cac:PartyIdentification>
