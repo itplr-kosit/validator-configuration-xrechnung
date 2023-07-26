@@ -185,7 +185,7 @@ If you want to skip tests call `ant dist-only`.
 * Are all issues scheduled for the release solved?
 * Is everything merged to master branch?
 * Does the configuration refer to the correct version of XRechnung Specification?
-* Does the sceanrio match refer to the correct XRechnung Specification?
+* Does the scenario match refer to the correct XRechnung Specification?
 * Make sure that XRechnung Schematron and testsuite are already released and used by this release version.
 * Make sure that CHANGELOG.md is up to date.
 
@@ -203,15 +203,15 @@ If you want to skip tests call `ant dist-only`.
   ```
 
 * Tag the last commit according to the following naming rule: 
-   `release-${date-of-scheduled-release-e.g. 2023-05-12}`
+   `release-${date-of-scheduled-release-e.g. 2023-07-31}`
   e.g.
-  `git tag release-2023-05-12 && git push origin release-2023-05-12`
+  `git tag release-2023-05-12 && git push origin release-2023-07-31`
 
 ### Publish
 
 * Draft a new release at https://github.com/itplr-kosit/validator-configuration-xrechnung/releases/new
   * Choose the git tag
-* Add a release title of the following scheme: `Validator Configuration 2023-05-12 compatible with XRechnung 2.3.x`.
+* Add a release title of the following scheme: `Validator Configuration 2023-07-31 compatible with XRechnung 3.0.x`.
 * Copy & paste the high quality changelog entries for this release from CHANGELOG.md.
 * Upload distribution zip and tick mark this release as a `pre-release`.
 
