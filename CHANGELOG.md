@@ -13,6 +13,7 @@ This release is compatible with XRechnung ?.?.?
 
 ### Changed
 
+* Using [CEN Schematron Rules 1.3.10](https://github.com/ConnectingEurope/eInvoicing-EN16931/releases/tag/validation-1.3.10)
 * Tests to comply with updated Schematron rules
 
 ## 2023-05-12
