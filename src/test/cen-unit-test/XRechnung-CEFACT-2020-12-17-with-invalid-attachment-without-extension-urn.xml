@@ -63,7 +63,7 @@
             <ram:DefinedTradeContact>
                <ram:PersonName>TestTestTest</ram:PersonName>
                <ram:TelephoneUniversalCommunication>
-                  <ram:CompleteNumber>TestTestTest</ram:CompleteNumber>
+                  <ram:CompleteNumber>01234</ram:CompleteNumber>
                </ram:TelephoneUniversalCommunication>
                <ram:EmailURIUniversalCommunication>
                   <ram:URIID>TestTestTest@TestTestTest-invalid-domain.test</ram:URIID>

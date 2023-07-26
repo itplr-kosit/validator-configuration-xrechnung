@@ -5,7 +5,7 @@
                       xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
    <ExchangedDocumentContext>
       <ram:BusinessProcessSpecifiedDocumentContextParameter>
-         <ram:ID>XRechnung 2.0.0</ram:ID>
+         <ram:ID>XRechnung 3.0.0</ram:ID>
       </ram:BusinessProcessSpecifiedDocumentContextParameter>
       <ram:GuidelineSpecifiedDocumentContextParameter>
          <ram:ID>urn:cen.eu:en16931:2017#compliant#urn:xeinkauf.de:kosit:xrechnung_3.0#conformant#urn:xeinkauf.de:kosit:extension:xrechnung_3.0</ram:ID>
