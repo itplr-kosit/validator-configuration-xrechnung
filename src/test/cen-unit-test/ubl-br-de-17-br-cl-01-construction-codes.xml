@@ -7,7 +7,7 @@
   xmlns:ccts="urn:un:unece:uncefact:documentation:2"
   xmlns="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2">
 
-  <cbc:CustomizationID>urn:cen.eu:en16931:2017#compliant#urn:xoev-de:kosit:standard:xrechnung_2.3</cbc:CustomizationID>
+  <cbc:CustomizationID>urn:cen.eu:en16931:2017#compliant#urn:xeinkauf.de:kosit:xrechnung_3.0</cbc:CustomizationID>
   <cbc:ProfileID>urn:fdc:peppol.eu:2017:poacc:billing:01:1.0</cbc:ProfileID>
   <cbc:ID>12115118</cbc:ID>
   <cbc:IssueDate>2015-01-09</cbc:IssueDate>
