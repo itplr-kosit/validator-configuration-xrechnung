@@ -15,6 +15,7 @@ This release is compatible with XRechnung 3.3.?
 
 * Using [CEN Schematron Rules 1.3.10](https://github.com/ConnectingEurope/eInvoicing-EN16931/releases/tag/validation-1.3.10)
 * Tests to comply with updated Schematron rules
+* Removed task `remove` from  Ant target `create-validator-reports-from-testsuite`
 
 ## 2023-05-12
 

@@ -577,14 +577,6 @@
     <fail unless="testsuite.instances.dir"
       message="Property testsuite.instances.dir must exist for this target to work" />
 
-    <!-- deleting files which never can be valid -->
-    <delete verbose="false" failonerror="true">
-      <fileset dir="${testsuite.instances.dir}">
-        <include name="00.01*.xml" />
-        <include name="00.02*.xml" />
-      </fileset>
-    </delete>
-
     <echo>Creating validation reports with ${lib.dir}/${validator.jar} for ${testsuite.instances.dir}.</echo>
     <java jar="${lib.dir}/${validator.jar}" failonerror="true" fork="true" dir="${build.dir}">
       <arg value="-s" />
