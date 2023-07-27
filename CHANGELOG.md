@@ -9,12 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## 2023-07-31
 
-This release is compatible with XRechnung 3.3.?
+This release is compatible with XRechnung 3.3.x
 
 ### Changed
 
 * Using [CEN Schematron Rules 1.3.10](https://github.com/ConnectingEurope/eInvoicing-EN16931/releases/tag/validation-1.3.10)
-* Tests to comply with updated Schematron rules
+* Test files in accordance with new Schematron rules (see [XRechnung Schematron 2.0.0](https://github.com/itplr-kosit/xrechnung-schematron/releases/tag/release-2.0.0))
 * Removed task `remove` from  Ant target `create-validator-reports-from-testsuite`
 
 ## 2023-05-12
