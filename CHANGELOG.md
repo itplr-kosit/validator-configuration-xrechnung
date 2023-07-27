@@ -14,6 +14,8 @@ This release is compatible with XRechnung 3.3.x
 ### Changed
 
 * Using [CEN Schematron Rules 1.3.10](https://github.com/ConnectingEurope/eInvoicing-EN16931/releases/tag/validation-1.3.10)
+* Using [XRechnung Schematron 2.0.0](https://github.com/itplr-kosit/xrechnung-schematron/releases/tag/release-2.0.0)
+* Using [XRechnung Testsuite 2023-07-31](https://github.com/itplr-kosit/xrechnung-testsuite/releases/tag/release-2023-07-31)
 * Test files in accordance with new Schematron rules (see [XRechnung Schematron 2.0.0](https://github.com/itplr-kosit/xrechnung-schematron/releases/tag/release-2.0.0))
 * Removed task `remove` from  Ant target `create-validator-reports-from-testsuite`
 
@@ -29,6 +31,8 @@ This release is compatible with XRechnung 2.3.x
 
 ### Changed
 
+* Using [XRechnung Schematron 1.8.2](https://github.com/itplr-kosit/xrechnung-schematron/releases/tag/release-1.8.2)
+* Using [XRechnung Testsuite 2023-05-12](https://github.com/itplr-kosit/xrechnung-testsuite/releases/tag/release-2023-05-12)
 * Tests for BR-CO-17 and BR-S-09 rounding rules in CII merged
 * Unified UBL Invoice and Credit Note handling to integrate Schematron merge of UBL Invoice and Credit Note.
 
