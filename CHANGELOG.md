@@ -14,6 +14,7 @@ This release is compatible with XRechnung 3.0.x
 ### Changed
 
 * Using [XRechnung Schematron 2.0.1](https://github.com/itplr-kosit/xrechnung-schematron/releases/tag/release-2.0.1)
+* Using [XRechnung Testsuite 2023-09-22](https://github.com/itplr-kosit/xrechnung-testsuite/releases/tag/release-2023-09-22)
 
 ## 2023-07-31
 
