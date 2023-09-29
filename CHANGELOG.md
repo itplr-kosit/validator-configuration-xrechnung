@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 This release is compatible with XRechnung ?.?.x
 
+### Added
+
+* Test for BR-65 with multiple BT-158 in CII
+
 ## 2023-09-22
 
 This release is compatible with XRechnung 3.0.x
