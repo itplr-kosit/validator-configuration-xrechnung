@@ -18,17 +18,17 @@
   <property name="testsuite.instances.dir" location="${test.build.dir}/testsuite" />
 
   <!-- Naming -->
-  <property name="xrechnung.version.major.minor" value="2.3" />
+  <property name="xrechnung.version.major.minor" value="3.0" />
   <property name="xrechnung.version.patch" value="1" />
   <property name="xrechnung.version"
     value="${xrechnung.version.major.minor}.${xrechnung.version.patch}" />
   <property name="cen.spec.id" value="urn:cen.eu:en16931:2017" />
   <property name="xrechnung.spec.id"
-    value="${cen.spec.id}#compliant#urn:xoev-de:kosit:standard:xrechnung_${xrechnung.version.major.minor}" />
+    value="${cen.spec.id}#compliant#urn:xeinkauf.de:kosit:xrechnung_${xrechnung.version.major.minor}" />
   <property name="xrechnung.extension.id"
-    value="${xrechnung.spec.id}#conformant#urn:xoev-de:kosit:extension:xrechnung_${xrechnung.version.major.minor}" />
+    value="${xrechnung.spec.id}#conformant#urn:xeinkauf.de:kosit:extension:xrechnung_${xrechnung.version.major.minor}" />
 
-  <property name="validator.configuration.version.full" value="2023-04-31-SNAPSHOT" />
+  <property name="validator.configuration.version.full" value="2023-11-15-SNAPSHOT" />
   <property name="dist.name"
     value="validator-configuration-xrechnung_${xrechnung.version}_${validator.configuration.version.full}.zip" />
   <!-- 3rd party resources -->
@@ -63,7 +63,7 @@
     value="${ubl.download.url.prefix}/${ubl.schema.zip}" />
 
   <!-- set to "master" if you want latest code -->
-  <property name="cen.rules.version" value="1.3.9" />
+  <property name="cen.rules.version" value="1.3.11" />
   <property name="cen.rules.version.download" value="${cen.rules.version}" />
   <property name="cen.download.url.owner" value="ConnectingEurope" />
   <property name="cen.download.url.prefix"
@@ -76,7 +76,7 @@
 
 
   <!-- XRechnung Schematron Rules section -->
-  <property name="xr.schematron.version.major.minor" value="1.8" />
+  <property name="xr.schematron.version.major.minor" value="2.0" />
   <property name="xr.schematron.version.patch" value="1" />
   <property name="xr.schematron.version.full"
     value="${xr.schematron.version.major.minor}.${xr.schematron.version.patch}" />
@@ -87,7 +87,7 @@
     value="xrechnung-${xrechnung.version}-schematron-${xr.schematron.version.full}.zip" />
   <property name="xr.schematron.download.url" value="${xr.schematron.download.url.prefix}/${xr.schematron.zip}" />  
 
-  <property name="xr.testsuite.version" value="2023-01-31" />
+  <property name="xr.testsuite.version" value="2023-09-22" />
   <property name="xr.testsuite.download.url.prefix"
     value="https://github.com/itplr-kosit/xrechnung-testsuite/releases/download" />
 
@@ -576,14 +576,6 @@
     description="Only test XRechnung Configuration" unless="test.skip">
     <fail unless="testsuite.instances.dir"
       message="Property testsuite.instances.dir must exist for this target to work" />
-
-    <!-- deleting files which never can be valid -->
-    <delete verbose="false" failonerror="true">
-      <fileset dir="${testsuite.instances.dir}">
-        <include name="00.01*.xml" />
-        <include name="00.02*.xml" />
-      </fileset>
-    </delete>
 
     <echo>Creating validation reports with ${lib.dir}/${validator.jar} for ${testsuite.instances.dir}.</echo>
     <java jar="${lib.dir}/${validator.jar}" failonerror="true" fork="true" dir="${build.dir}">
