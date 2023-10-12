@@ -157,12 +157,12 @@
                 <ram:RateApplicablePercent>7</ram:RateApplicablePercent>
             </ram:ApplicableTradeTax>
             <ram:SpecifiedTradePaymentTerms>
-                <!-- BT-20 Payment terms -->
+                <!-- BT-20 "Payment terms" -->
                 <ram:Description>Teil 1 zahlbar bis</ram:Description>
                 <?xmute mutator="identity" schematron-invalid="cencii:CII-SR-453" ?>
                 <?xmute mutator="remove" schematron-valid="cencii:CII-SR-453" ?>
                 <ram:Description>Teil 1 zahlbar bis</ram:Description>
-                <!-- BT-9 Payment due date -->
+                <!-- BT-9 "Payment due date" -->
                 <ram:DueDateDateTime>
                     <udt:DateTimeString format="102">20230301</udt:DateTimeString>
                 </ram:DueDateDateTime>
@@ -170,9 +170,9 @@
             <?xmute mutator="identity" schematron-invalid="cencii:CII-SR-452" ?>
             <?xmute mutator="remove" schematron-valid="cencii:CII-SR-452" ?>
             <ram:SpecifiedTradePaymentTerms>
-                <!-- BT-20 Payment terms -->
+                <!-- BT-20 "Payment terms" -->
                 <ram:Description>Teil 3 zahlbar bis</ram:Description>
-                <!-- BT-9 Payment due date -->
+                <!-- BT-9 "Payment due date" -->
                 <ram:DueDateDateTime>
                     <udt:DateTimeString format="102">20230303</udt:DateTimeString>
                 </ram:DueDateDateTime>
