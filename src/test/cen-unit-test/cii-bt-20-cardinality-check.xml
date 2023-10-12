@@ -4,8 +4,11 @@
                           xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100"
                           xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
     <rsm:ExchangedDocumentContext>
+        <ram:BusinessProcessSpecifiedDocumentContextParameter>
+            <ram:ID>urn:fdc:peppol.eu:2017:poacc:billing:01:1.0</ram:ID>
+        </ram:BusinessProcessSpecifiedDocumentContextParameter>
         <ram:GuidelineSpecifiedDocumentContextParameter>
-            <ram:ID>urn:cen.eu:en16931:2017#compliant#urn:xoev-de:kosit:standard:xrechnung_2.3</ram:ID>
+            <ram:ID>urn:cen.eu:en16931:2017#compliant#urn:xeinkauf.de:kosit:xrechnung_3.0</ram:ID>
         </ram:GuidelineSpecifiedDocumentContextParameter>
     </rsm:ExchangedDocumentContext>
     <rsm:ExchangedDocument>
@@ -115,6 +118,9 @@
                     <ram:CityName>[Seller city]</ram:CityName>
                     <ram:CountryID>DE</ram:CountryID>
                 </ram:PostalTradeAddress>
+                <ram:URIUniversalCommunication>
+                    <ram:URIID schemeID="EM">rechnungsausgang@test.com</ram:URIID>
+                </ram:URIUniversalCommunication>
                 <ram:SpecifiedTaxRegistration>
                     <ram:ID schemeID="VA">DE 123456789</ram:ID>
                 </ram:SpecifiedTaxRegistration>
@@ -128,6 +134,9 @@
                     <ram:CityName>[Buyer city]</ram:CityName>
                     <ram:CountryID>DE</ram:CountryID>
                 </ram:PostalTradeAddress>
+                <ram:URIUniversalCommunication>
+                    <ram:URIID schemeID="EM">rechnungseingang@test.com</ram:URIID>
+                </ram:URIUniversalCommunication>
             </ram:BuyerTradeParty>
         </ram:ApplicableHeaderTradeAgreement>
         <ram:ApplicableHeaderTradeDelivery/>
@@ -148,15 +157,22 @@
                 <ram:RateApplicablePercent>7</ram:RateApplicablePercent>
             </ram:ApplicableTradeTax>
             <ram:SpecifiedTradePaymentTerms>
-                <ram:Description>Teil 1 zahlbar sofort ohne Abzug.</ram:Description>
-                <?xmute mutator="identity" schematron-invalid="cencii:BR-CO-25" ?>
-                <?xmute mutator="remove" schematron-valid="cencii:BR-CO-25" ?>
-                <ram:Description>Teil 2 zahlbar sofort ohne Abzug.</ram:Description>
+                <!-- BT-20 Payment terms -->
+                <ram:Description>Teil 1 zahlbar bis</ram:Description>
+                <?xmute mutator="identity" schematron-invalid="cencii:CII-SR-453" ?>
+                <?xmute mutator="remove" schematron-valid="cencii:CII-SR-453" ?>
+                <ram:Description>Teil 1 zahlbar bis</ram:Description>
+                <!-- BT-9 Payment due date -->
+                <ram:DueDateDateTime>
+                    <udt:DateTimeString format="102">20230301</udt:DateTimeString>
+                </ram:DueDateDateTime>
             </ram:SpecifiedTradePaymentTerms>
-            <?xmute mutator="identity" schematron-invalid="cencii:BR-CO-25" ?>
-            <?xmute mutator="remove" schematron-valid="cencii:BR-CO-25" ?>
+            <?xmute mutator="identity" schematron-invalid="cencii:CII-SR-452" ?>
+            <?xmute mutator="remove" schematron-valid="cencii:CII-SR-452" ?>
             <ram:SpecifiedTradePaymentTerms>
+                <!-- BT-20 Payment terms -->
                 <ram:Description>Teil 3 zahlbar bis</ram:Description>
+                <!-- BT-9 Payment due date -->
                 <ram:DueDateDateTime>
                     <udt:DateTimeString format="102">20230303</udt:DateTimeString>
                 </ram:DueDateDateTime>
