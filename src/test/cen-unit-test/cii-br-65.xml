@@ -35,8 +35,8 @@
                 <ram:DesignatedProductClassification>
                     <!-- BT-158 -->
                     <?xmute mutator="identity" schematron-valid="cencii:BR-65" id="cii-br-65-scheme-id-exists"?>
-                    <?xmute mutator="remove" attribute="listID" schematron-invalid="cencii:BR-65" id="cii-br-65-no-scheme-id" description="expected-to-fail: schemeId should exist with BT-158"?>
-                    <?xmute mutator="empty" attribute="listID" schematron-invalid="cencii:BR-65 cencii:BR-CL-13" id="cii-br-65-scheme-id-empty" description="expected-to-fail: schemeId should exist with BT-158"?>
+                    <?xmute mutator="remove" attribute="listID" schematron-invalid="cencii:BR-65" id="cii-br-65-no-scheme-id" description="schemeId should exist with BT-158"?>
+                    <?xmute mutator="empty" attribute="listID" schematron-invalid="cencii:BR-65 cencii:BR-CL-13" id="cii-br-65-scheme-id-empty" description="schemeId should exist with BT-158"?>
                     <ram:ClassCode listID="MN">ABCDEF123</ram:ClassCode>
                 </ram:DesignatedProductClassification>
             </ram:SpecifiedTradeProduct>
