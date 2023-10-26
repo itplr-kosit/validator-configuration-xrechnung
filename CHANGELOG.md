@@ -9,10 +9,44 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## UNRELEASED
 
-This release is compatible with XRechnung ?.?.?
+This release is compatible with XRechnung ?.?.x
 
-## Changed
+## 2023-09-22
 
+This release is compatible with XRechnung 3.0.x
+
+### Changed
+
+* Using [XRechnung Schematron 2.0.1](https://github.com/itplr-kosit/xrechnung-schematron/releases/tag/release-2.0.1)
+* Using [XRechnung Testsuite 2023-09-22](https://github.com/itplr-kosit/xrechnung-testsuite/releases/tag/release-2023-09-22)
+
+## 2023-07-31
+
+This release is compatible with XRechnung 3.0.x
+
+### Changed
+
+* Using [CEN Schematron Rules 1.3.10](https://github.com/ConnectingEurope/eInvoicing-EN16931/releases/tag/validation-1.3.10)
+* Using [XRechnung Schematron 2.0.0](https://github.com/itplr-kosit/xrechnung-schematron/releases/tag/release-2.0.0)
+* Using [XRechnung Testsuite 2023-07-31](https://github.com/itplr-kosit/xrechnung-testsuite/releases/tag/release-2023-07-31)
+* Test files in accordance with new Schematron rules (see [XRechnung Schematron 2.0.0](https://github.com/itplr-kosit/xrechnung-schematron/releases/tag/release-2.0.0))
+* Removed task `remove` from  Ant target `create-validator-reports-from-testsuite`
+
+## 2023-05-12
+
+This release is compatible with XRechnung 2.3.x
+
+### Added
+
+* Documentation of scenarios' custom levels
+* Test for BR-CO-17 and BR-S-09 rounding rules in UBL
+* Tests to monitor implementation of BR-E-10
+
+### Changed
+
+* Using [XRechnung Schematron 1.8.2](https://github.com/itplr-kosit/xrechnung-schematron/releases/tag/release-1.8.2)
+* Using [XRechnung Testsuite 2023-05-12](https://github.com/itplr-kosit/xrechnung-testsuite/releases/tag/release-2023-05-12)
+* Tests for BR-CO-17 and BR-S-09 rounding rules in CII merged
 * Unified UBL Invoice and Credit Note handling to integrate Schematron merge of UBL Invoice and Credit Note.
 * Added CEN integration test on BR-53 with BT-5, BT-6 and BT-110 and BT-111 in CII.
 

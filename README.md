@@ -13,7 +13,7 @@ Each [release](https://github.com/itplr-kosit/validator-configuration-xrechnung/
 In particular this Validator Configuration integrates the following third-party artifacts:
 
 * [Schematron of EN16931:2017](https://github.com/ConnectingEurope/eInvoicing-EN16931)
-* [Schematron of CIUS XRechnung](https://github.com/itplr-kosit/xrechnung-schematron/)
+* [Schematron of CIUS XRechnung](https://projekte.kosit.org/xrechnung/xrechnung-schematron/)
 * [XML Schema of UBL Invoice and CreditNote version 2.1](http://docs.oasis-open.org/ubl/os-UBL-2.1/)
 * [XML Schema of UN/CEFACT uncoupled version 16B](http://www.unece.org/cefact/xml_schemas/index.html)
 
@@ -21,4 +21,4 @@ In particular this Validator Configuration integrates the following third-party 
 
 The git master branch always has the latest code. Since March 2018 new releases have the following naming and versioning scheme:
 
-The source code gets tagged with `release-${release-date}` and distributions get the name `validator-configuration-xrechnung_${xrechnung-version}_${release-date}` e.g. `validator-configuration-xrechnung_2.3.1_2023-01-31.zip`
+The source code gets tagged with `release-${release-date}` and distributions get the name `validator-configuration-xrechnung_${xrechnung-version}_${release-date}` e.g. `validator-configuration-xrechnung_3.0.1_2023-09-22.zip`

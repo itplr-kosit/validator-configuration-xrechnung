@@ -4,8 +4,11 @@
     xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100"
     xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
     <rsm:ExchangedDocumentContext>
+        <ram:BusinessProcessSpecifiedDocumentContextParameter>
+            <ram:ID>urn:fdc:peppol.eu:2017:poacc:billing:01:1.0</ram:ID>
+        </ram:BusinessProcessSpecifiedDocumentContextParameter>
         <ram:GuidelineSpecifiedDocumentContextParameter>
-            <ram:ID>urn:cen.eu:en16931:2017#compliant#urn:xoev-de:kosit:standard:xrechnung_2.3</ram:ID>
+            <ram:ID>urn:cen.eu:en16931:2017#compliant#urn:xeinkauf.de:kosit:xrechnung_3.0</ram:ID>
         </ram:GuidelineSpecifiedDocumentContextParameter>
     </rsm:ExchangedDocumentContext>
     <rsm:ExchangedDocument>
@@ -67,7 +70,6 @@
         <ram:ApplicableHeaderTradeAgreement>
             <ram:BuyerReference>Test2</ram:BuyerReference>
             <ram:SellerTradeParty>
-                <ram:ID/>
                 <ram:Name>Test GmbH</ram:Name>
                 <ram:SpecifiedLegalOrganization>
                     <ram:TradingBusinessName>Test GmbH</ram:TradingBusinessName>
@@ -88,6 +90,9 @@
                     <ram:CountryID>DE</ram:CountryID>
                     <ram:CountrySubDivisionName>SN</ram:CountrySubDivisionName>
                 </ram:PostalTradeAddress>
+                <ram:URIUniversalCommunication>
+                    <ram:URIID schemeID="EM">rechnungsausgang@test.com</ram:URIID>
+                </ram:URIUniversalCommunication>
                 <ram:SpecifiedTaxRegistration>
                     <ram:ID schemeID="VA">DE123456789</ram:ID>
                 </ram:SpecifiedTaxRegistration>
@@ -95,9 +100,6 @@
             <ram:BuyerTradeParty>
                 <ram:ID>1000</ram:ID>
                 <ram:Name>Test BKK</ram:Name>
-                <ram:DefinedTradeContact>
-                    <ram:PersonName/>
-                </ram:DefinedTradeContact>
                 <ram:PostalTradeAddress>
                     <ram:PostcodeCode>12345</ram:PostcodeCode>
                     <ram:LineOne>Teststadt 1</ram:LineOne>
@@ -105,9 +107,11 @@
                     <ram:CountryID>DE</ram:CountryID>
                     <ram:CountrySubDivisionName>BW</ram:CountrySubDivisionName>
                 </ram:PostalTradeAddress>
+                <ram:URIUniversalCommunication>
+                    <ram:URIID schemeID="EM">rechnungseingang@test.com</ram:URIID>
+                </ram:URIUniversalCommunication>
             </ram:BuyerTradeParty>
             <ram:SellerTaxRepresentativeTradeParty>
-                <ram:ID/>
                 <ram:Name>Test GmbH</ram:Name>
                 <ram:PostalTradeAddress>
                     <ram:PostcodeCode>13245</ram:PostcodeCode>
