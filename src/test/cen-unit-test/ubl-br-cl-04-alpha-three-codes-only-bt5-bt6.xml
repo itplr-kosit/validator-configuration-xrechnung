@@ -2,7 +2,8 @@
 <ubl:Invoice xmlns:ubl="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2"
              xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2"
              xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2">
-    <cbc:CustomizationID>urn:cen.eu:en16931:2017#compliant#urn:xoev-de:kosit:standard:xrechnung_2.3</cbc:CustomizationID>
+    <cbc:CustomizationID>urn:cen.eu:en16931:2017#compliant#urn:xeinkauf.de:kosit:xrechnung_3.0</cbc:CustomizationID>
+    <cbc:ProfileID>urn:fdc:peppol.eu:2017:poacc:billing:01:1.0</cbc:ProfileID>
     <cbc:ID>123456XX</cbc:ID>
     <cbc:IssueDate>2016-04-04+01:00</cbc:IssueDate>
     <cbc:InvoiceTypeCode>380</cbc:InvoiceTypeCode>
@@ -12,14 +13,15 @@
     <?xmute mutator="identity" schematron-valid="cenubl:BR-CL-04"
                 id="ubl-inv-valid-document-currency-code" description="alpha-3 is allowed" ?>
     <cbc:DocumentCurrencyCode>EUR</cbc:DocumentCurrencyCode>
-    <?xmute mutator="code" values="EU, E" schematron-invalid="cenubl:BR-CL-05"
+    <?xmute mutator="code" values="GB, P" schematron-invalid="cenubl:BR-CL-05"
                 id="ubl-inv-inv-tax-currency-code" description="alpha-2 and alpha-1 not allowed" ?>
     <?xmute mutator="identity" schematron-valid="cenubl:BR-CL-05"
                 id="ubl-inv-valid-tax-currency-code" description="alpha-3 is allowed" ?>
-    <cbc:TaxCurrencyCode>EUR</cbc:TaxCurrencyCode>
+    <cbc:TaxCurrencyCode>GBP</cbc:TaxCurrencyCode>
     <cbc:BuyerReference>04011000-12345-34</cbc:BuyerReference>
     <cac:AccountingSupplierParty>
         <cac:Party>
+            <cbc:EndpointID schemeID="EM">rechnungsausgang@test.com</cbc:EndpointID>
             <cac:PartyName>
                 <cbc:Name>[Seller trading name]</cbc:Name>
             </cac:PartyName>
@@ -51,6 +53,7 @@
     </cac:AccountingSupplierParty>
     <cac:AccountingCustomerParty>
         <cac:Party>
+            <cbc:EndpointID schemeID="EM">rechnungseingang@test.de</cbc:EndpointID>
             <cac:PartyIdentification>
                 <cbc:ID>[Buyer identifier]</cbc:ID>
             </cac:PartyIdentification>
@@ -90,6 +93,9 @@
                 </cac:TaxScheme>
             </cac:TaxCategory>
         </cac:TaxSubtotal>
+    </cac:TaxTotal>
+    <cac:TaxTotal>
+        <cbc:TaxAmount currencyID="GBP">22.04</cbc:TaxAmount>
     </cac:TaxTotal>
     <cac:LegalMonetaryTotal>
         <cbc:LineExtensionAmount currencyID="EUR">314.86</cbc:LineExtensionAmount>

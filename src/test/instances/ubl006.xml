@@ -8,6 +8,7 @@
   xmlns="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2">
   <!-- No scenario matches without CustomizationID -->
   <!--<cbc:CustomizationID>urn:cen.eu:en16931:2017</cbc:CustomizationID>-->
+  <cbc:ProfileID>urn:fdc:peppol.eu:2017:poacc:billing:01:1.0</cbc:ProfileID>
   <cbc:ID>12115118</cbc:ID>
   <cbc:IssueDate>2015-01-09</cbc:IssueDate>
   <cbc:DueDate>2015-01-09</cbc:DueDate>
@@ -21,6 +22,7 @@
   <cbc:BuyerReference>A test buyer reference</cbc:BuyerReference>
   <cac:AccountingSupplierParty>
     <cac:Party>
+      <cbc:EndpointID schemeID="EM">rechnungsausgang@test.com</cbc:EndpointID>
       <cac:PostalAddress>
         <cbc:StreetName>Postbus 7l</cbc:StreetName>
         <cbc:CityName>Velsen-Noord</cbc:CityName>
@@ -48,6 +50,7 @@
   </cac:AccountingSupplierParty>
   <cac:AccountingCustomerParty>
     <cac:Party>
+      <cbc:EndpointID schemeID="EM">rechnungseingang@test.de</cbc:EndpointID>
       <cac:PartyIdentification>
         <cbc:ID>10202</cbc:ID>
       </cac:PartyIdentification>
@@ -513,7 +516,7 @@
   </cac:InvoiceLine>
   <cac:InvoiceLine>
     <cbc:ID>20</cbc:ID>
-    <cbc:InvoicedQuantity unitCode="EA">6</cbc:InvoicedQuantity>
+    <cbc:InvoicedQuantity unitCode="EA">-6</cbc:InvoicedQuantity>
     <cbc:LineExtensionAmount currencyID="EUR">-109.98</cbc:LineExtensionAmount>
     <cac:Item>
       <cbc:Name>FRITUUR VET 10 KG RETOUR </cbc:Name>
