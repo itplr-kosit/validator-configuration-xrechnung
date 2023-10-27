@@ -215,7 +215,7 @@
   </cac:TaxTotal>
   <cac:TaxTotal>
     <!-- BT-110 -->
-    <?xmute mutator="identity" schematron-invalid="cenubl:BR-CO-15" id="ubl-br-co-15-no-multiple-bt-110-allowed-2" description="ubl br-co-15 no multiple bt-110 allowed"?>
+    <?xmute mutator="identity" schematron-invalid="cenubl:BR-CO-15" id="ubl-br-co-15-no-multiple-bt-110-allowed-3" description="ubl br-co-15 no multiple bt-110 allowed"?>
     <cbc:TaxAmount currencyID="EUR">0</cbc:TaxAmount>
       <cac:TaxSubtotal>
       <cbc:TaxableAmount currencyID="EUR">0</cbc:TaxableAmount>
