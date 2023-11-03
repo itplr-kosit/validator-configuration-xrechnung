@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 This release is compatible with XRechnung ?.?.x
 
+### Added
+
+* Test on multiple BT-20 "Payment terms" in CII
+
 ### Changed
 
 * Using [CEN Schematron Rules 1.3.11](https://github.com/ConnectingEurope/eInvoicing-EN16931/releases/tag/validation-1.3.11)
