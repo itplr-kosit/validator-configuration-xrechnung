@@ -164,8 +164,8 @@
                     <udt:DateTimeString format="102">20230301</udt:DateTimeString>
                 </ram:DueDateDateTime>
             </ram:SpecifiedTradePaymentTerms>
-            <?xmute mutator="identity" schematron-invalid="cencii:CII-SR-452" ?>
-            <?xmute mutator="remove" schematron-valid="cencii:CII-SR-452" ?>
+            <?xmute mutator="identity" schematron-invalid="cencii:CII-SR-452" id="illegal-specified-trade-payment-terms" description="more than one SpecifiedTradePaymentTerms not allowed" ?>
+            <?xmute mutator="remove" schematron-valid="cencii:CII-SR-452" id="specified-trade-payment-terms-removed" description="one SpecifiedTradePaymentTerms allowed" ?>
             <ram:SpecifiedTradePaymentTerms>
                 <!-- BT-20 "Payment terms" -->
                 <ram:Description>Teil 2 zahlbar bis</ram:Description>
