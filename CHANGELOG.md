@@ -15,6 +15,7 @@ This release is compatible with XRechnung ?.?.x
 
 * Test for BR-65 with multiple BT-158 in CII
 * Test on multiple BT-20 "Payment terms" in CII
+* Tests for CII-SR-453 in CII
 
 ### Changed
 
