@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 This release is compatible with XRechnung ?.?.x
 
+### Added
+
+* Added CEN integration test on BR-53 with BT-5, BT-6 and BT-110 and BT-111 in CII.
+
 ## 2023-09-22
 
 This release is compatible with XRechnung 3.0.x
@@ -48,7 +52,6 @@ This release is compatible with XRechnung 2.3.x
 * Using [XRechnung Testsuite 2023-05-12](https://github.com/itplr-kosit/xrechnung-testsuite/releases/tag/release-2023-05-12)
 * Tests for BR-CO-17 and BR-S-09 rounding rules in CII merged
 * Unified UBL Invoice and Credit Note handling to integrate Schematron merge of UBL Invoice and Credit Note.
-* Added CEN integration test on BR-53 with BT-5, BT-6 and BT-110 and BT-111 in CII.
 
 ## 2023-02-17
 
