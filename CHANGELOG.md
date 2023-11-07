@@ -13,7 +13,7 @@ This release is compatible with XRechnung ?.?.x
 
 ### Added
 
-* Added CEN integration test on BR-53 with BT-5, BT-6 and BT-110 and BT-111 in CII.
+* CEN integration test on BR-53 with BT-5, BT-6 and BT-110 and BT-111 in CII.
 
 ## 2023-09-22
 
