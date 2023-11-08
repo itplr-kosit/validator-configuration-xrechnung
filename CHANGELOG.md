@@ -13,6 +13,7 @@ This release is compatible with XRechnung ?.?.x
 
 ### Added
 
+* CEN integration test on BR-53 with BT-5, BT-6 and BT-110 and BT-111 in CII.
 * Test for BR-65 with multiple BT-158 in CII
 * Test on multiple BT-20 "Payment terms" in CII
 
