@@ -145,7 +145,7 @@
             <ram:TaxCurrencyCode>USD</ram:TaxCurrencyCode>
             <!-- BT-5 -->
             <?xmute mutator="code" values="USD" schematron-invalid="cencii:BR-53"
-                id="cii-BT-111-should-exist-if-bt-6-exists" description="cii BT-111 should exist if bt-6 exists" ?>
+                id="cii-BT-6-same-as-BT-5" description="cii BT-6 must not be identical with BT-5" ?>
             <ram:InvoiceCurrencyCode>EUR</ram:InvoiceCurrencyCode>        
             <ram:SpecifiedTradeSettlementPaymentMeans>
                 <ram:TypeCode>58</ram:TypeCode>
