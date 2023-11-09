@@ -20,6 +20,7 @@ This release is compatible with XRechnung ?.?.x
 ### Changed
 
 * Using [CEN Schematron Rules 1.3.11](https://github.com/ConnectingEurope/eInvoicing-EN16931/releases/tag/validation-1.3.11)
+* set CII-SR-453 customLevel to "error"
 
 ## 2023-09-22
 
