@@ -17,6 +17,7 @@ This release is compatible with XRechnung ?.?.x
 * Unit test for BR-65 with multiple BT-158 in CII
 * Unit test on multiple BT-20 "Payment terms" in CII
 * Unit test on CII-SR-454
+* Negative test for multiple BT-110 in UBL
 
 ### Changed
 
