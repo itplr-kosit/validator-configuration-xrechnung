@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100"
-    xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100"
-    xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100"
-    xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
+                          xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100"
+                          xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100"
+                          xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
     <rsm:ExchangedDocumentContext>
         <ram:BusinessProcessSpecifiedDocumentContextParameter>
             <ram:ID>urn:fdc:peppol.eu:2017:poacc:billing:01:1.0</ram:ID>
@@ -140,11 +140,8 @@
             </ram:BuyerTradeParty>
         </ram:ApplicableHeaderTradeAgreement>
         <ram:ApplicableHeaderTradeDelivery/>
-        <ram:ApplicableHeaderTradeSettlement>            
-            <!-- BT-6 -->
-            <ram:TaxCurrencyCode>USD</ram:TaxCurrencyCode>
-            <!-- BT-5 -->
-            <ram:InvoiceCurrencyCode>EUR</ram:InvoiceCurrencyCode>        
+        <ram:ApplicableHeaderTradeSettlement>
+            <ram:InvoiceCurrencyCode>EUR</ram:InvoiceCurrencyCode>
             <ram:SpecifiedTradeSettlementPaymentMeans>
                 <ram:TypeCode>58</ram:TypeCode>
                 <ram:PayeePartyCreditorFinancialAccount>
@@ -160,21 +157,29 @@
                 <ram:RateApplicablePercent>7</ram:RateApplicablePercent>
             </ram:ApplicableTradeTax>
             <ram:SpecifiedTradePaymentTerms>
-                <ram:Description>Zahlbar sofort ohne Abzug.</ram:Description>
+                <!-- BT-20 "Payment terms" -->
+                <ram:Description>Teil 1 zahlbar bis</ram:Description>                
+                <!-- BT-9 "Payment due date" -->
+                <ram:DueDateDateTime>
+                    <udt:DateTimeString format="102">20230301</udt:DateTimeString>
+                </ram:DueDateDateTime>
+            </ram:SpecifiedTradePaymentTerms>
+            <?xmute mutator="identity" schematron-invalid="cencii:CII-SR-452" id="illegal-specified-trade-payment-terms" description="more than one SpecifiedTradePaymentTerms not allowed" ?>
+            <?xmute mutator="remove" schematron-valid="cencii:CII-SR-452" id="specified-trade-payment-terms-removed" description="one SpecifiedTradePaymentTerms allowed" ?>
+            <ram:SpecifiedTradePaymentTerms>
+                <!-- BT-20 "Payment terms" -->
+                <ram:Description>Teil 2 zahlbar bis</ram:Description>
+                <!-- BT-9 "Payment due date" -->
+                <ram:DueDateDateTime>
+                    <udt:DateTimeString format="102">20230303</udt:DateTimeString>
+                </ram:DueDateDateTime>
             </ram:SpecifiedTradePaymentTerms>
             <ram:SpecifiedTradeSettlementHeaderMonetarySummation>
                 <ram:LineTotalAmount>314.86</ram:LineTotalAmount>
-                <!-- BT-109 -->
                 <ram:TaxBasisTotalAmount>314.86</ram:TaxBasisTotalAmount>
-                <?xmute mutator="identity" schematron-valid="cencii:BR-53" 
-                id="cii-BT-111-should-exist-if-bt-6-exists" description="cii BT-111 should exist if bt-6 exists" ?>   
-                <?xmute mutator="code" attribute="currencyID" values="EUR" schematron-invalid="cencii:BR-53" 
-                id="cii-BT-111-should-exist-if-bt-6-exists-2" description="cii BT-111 should exist if bt-6 exists" ?>            
-                <!-- BT-110 or BT-111 -->
-                <ram:TaxTotalAmount currencyID="USD">22.04</ram:TaxTotalAmount>
-                <!-- BT-112 -->
-                <ram:GrandTotalAmount>314.86</ram:GrandTotalAmount>
-                <ram:DuePayableAmount>314.86</ram:DuePayableAmount>
+                <ram:TaxTotalAmount currencyID="EUR">22.04</ram:TaxTotalAmount>
+                <ram:GrandTotalAmount>336.9</ram:GrandTotalAmount>
+                <ram:DuePayableAmount>336.9</ram:DuePayableAmount>
             </ram:SpecifiedTradeSettlementHeaderMonetarySummation>
         </ram:ApplicableHeaderTradeSettlement>
     </rsm:SupplyChainTradeTransaction>

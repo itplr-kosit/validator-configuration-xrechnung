@@ -13,7 +13,16 @@ This release is compatible with XRechnung ?.?.x
 
 ### Added
 
-* Negative tests for multiple BT-110 in UBL
+* Unit test on BR-53 with BT-5, BT-6 and BT-110 and BT-111 in CII.
+* Unit test for BR-65 with multiple BT-158 in CII
+* Unit test on multiple BT-20 "Payment terms" in CII
+* Unit test on CII-SR-454
+* Negative test for multiple BT-110 in UBL
+
+### Changed
+
+* Using [CEN Schematron Rules 1.3.11](https://github.com/ConnectingEurope/eInvoicing-EN16931/releases/tag/validation-1.3.11)
+* set CII-SR-453 customLevel to "error"
 
 ## 2023-09-22
 
