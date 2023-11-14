@@ -205,7 +205,7 @@ If you want to skip tests call `ant dist-only`.
 * Tag the last commit according to the following naming rule: 
    `release-${date-of-scheduled-release-e.g. 2023-11-15}`
   e.g.
-  `git tag release-2023-09-22 && git push origin release-2023-11-15`
+  `git tag release-2023-11-15 && git push origin release-2023-11-15`
 
 ### Publish
 
