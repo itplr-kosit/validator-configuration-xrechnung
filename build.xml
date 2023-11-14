@@ -28,7 +28,7 @@
   <property name="xrechnung.extension.id"
     value="${xrechnung.spec.id}#conformant#urn:xeinkauf.de:kosit:extension:xrechnung_${xrechnung.version.major.minor}" />
 
-  <property name="validator.configuration.version.full" value="2023-11-15-SNAPSHOT" />
+  <property name="validator.configuration.version.full" value="2023-11-15" />
   <property name="dist.name"
     value="validator-configuration-xrechnung_${xrechnung.version}_${validator.configuration.version.full}.zip" />
   <!-- 3rd party resources -->
@@ -77,7 +77,7 @@
 
   <!-- XRechnung Schematron Rules section -->
   <property name="xr.schematron.version.major.minor" value="2.0" />
-  <property name="xr.schematron.version.patch" value="1" />
+  <property name="xr.schematron.version.patch" value="2" />
   <property name="xr.schematron.version.full"
     value="${xr.schematron.version.major.minor}.${xr.schematron.version.patch}" />
 
