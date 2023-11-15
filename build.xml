@@ -28,7 +28,7 @@
   <property name="xrechnung.extension.id"
     value="${xrechnung.spec.id}#conformant#urn:xeinkauf.de:kosit:extension:xrechnung_${xrechnung.version.major.minor}" />
 
-  <property name="validator.configuration.version.full" value="2023-11-15" />
+  <property name="validator.configuration.version.full" value="2024-01-31-SNAPSHOT" />
   <property name="dist.name"
     value="validator-configuration-xrechnung_${xrechnung.version}_${validator.configuration.version.full}.zip" />
   <!-- 3rd party resources -->
