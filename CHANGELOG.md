@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 This release is compatible with XRechnung ?.?.?
 
+### Added
+
+* CEN unexpected test on decimal places in BT-131 "Invoice line net amount" in CII
+
 ## 2023-11-15
 
 This release is compatible with XRechnung 3.0.x
