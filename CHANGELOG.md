@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 This release is compatible with XRechnung ?.?.?
 
+### Added
+
+* Unit tests for multiple BT-7 "Value added tax point date" and BT-8 "Value added tax point date code" in CII
+
 ## 2023-11-15
 
 This release is compatible with XRechnung 3.0.x
