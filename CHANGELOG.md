@@ -14,6 +14,7 @@ This release is compatible with XRechnung ?.?.?
 ### Added
 
 * CEN unexpected test on decimal places in BT-131 "Invoice line net amount" in CII
+* CEN unexpected tests on BR-AE-02, BR-AE-03, and BR-AE-04 with BT-32 and no BT-31 in CII
 
 ## 2023-11-15
 
