@@ -226,9 +226,9 @@
                 <ram:TypeCode>VAT</ram:TypeCode>
                 <ram:BasisAmount>10781.25</ram:BasisAmount>
                 <ram:CategoryCode>S</ram:CategoryCode>
+                <!-- only one BT-7 should be allowed -->
+                <!-- BT-7 -->
                 <ram:TaxPointDate>
-                    <!-- only one BT-7 should be allowed -->
-                    <!-- BT-7 -->
                     <udt:DateString format="102">20180413</udt:DateString>
                 </ram:TaxPointDate>
                 <ram:RateApplicablePercent>19</ram:RateApplicablePercent>
@@ -239,9 +239,9 @@
                 <ram:BasisAmount>0</ram:BasisAmount>
                 <ram:CategoryCode>E</ram:CategoryCode>
                 <ram:ExemptionReasonCode>vatex-eu-132-1a</ram:ExemptionReasonCode>
+                <!-- only one BT-7 should be allowed -->
+                <!-- BT-7 -->
                 <ram:TaxPointDate>
-                    <!-- only one BT-7 should be allowed -->
-                    <!-- BT-7 -->
                     <udt:DateString format="102">20180415</udt:DateString>
                 </ram:TaxPointDate>
                 <ram:RateApplicablePercent>0</ram:RateApplicablePercent>
