@@ -15,6 +15,10 @@ This release is compatible with XRechnung ?.?.?
 
 * CEN unexpected test on decimal places in BT-131 "Invoice line net amount" in CII
 
+### Changed
+
+* set CII-SR-452 customLevel to "error"
+
 ## 2023-11-15
 
 This release is compatible with XRechnung 3.0.x

@@ -104,4 +104,16 @@
     Should have error about CII-SR-453
   </a:assertion>
 
+  <a:assertion report-doc="cii-bt-20-cardinality-check-2-report.xml"
+    test="/rep:report/rep:scenarioMatched[1]/rep:validationStepResult[2]/rep:message[ @code = 'CII-SR-452' and @level='warning']">
+
+    Should have information about CII-SR-452
+  </a:assertion>
+
+  <a:assertion report-doc="cii-bt-20-cardinality-check-2-report.xml"
+    test="/rep:report/rep:assessment/rep:reject/rep:explanation/html:html/html:body/html:table[2]/html:tbody/html:tr[@class = 'error']/html:td[text() = 'CII-SR-452']">
+
+    Should have error about CII-SR-452
+  </a:assertion>
+
 </a:assertions>
