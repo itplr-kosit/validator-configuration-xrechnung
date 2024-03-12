@@ -17,9 +17,8 @@ This release is compatible with XRechnung ?.?.?
 
 ### Changed
 
-* set CII-SR-452 customLevel to "error" enforce correct cardinality of BT-9 "Payment due date" and BT-20 "Payment terms"
-
-* set CII-SR-453 customLevel to "error" enforce exactly one BG-30 within BG-25
+* set CII-SR-452 customLevel to "error" to enforce correct cardinality of BT-9 "Payment due date" and BT-20 "Payment terms" in CII
+* set CII-SR-454 customLevel to "error" to enforce exactly one BG-30 "Line VAT information" within BG-25 "Invoice line" in CII
 
 ## 2023-11-15
 
