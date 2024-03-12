@@ -264,6 +264,8 @@
       <customLevel level="error">CII-SR-452</customLevel>
       <!-- overwrites CEN severity level "warning" to replace BR-DE-18a in CII -->
       <customLevel level="error">CII-SR-453</customLevel>
+       <!-- overwrites CEN severity level "warning" to enforce exactly one BG-30 within BG-25 -->
+      <customLevel level="error">CII-SR-454</customLevel>
     </createReport>
     <acceptMatch>/rep:report/rep:assessment[1]/rep:accept[1]</acceptMatch>
   </scenario>
@@ -334,6 +336,8 @@
       <customLevel level="error">CII-SR-452</customLevel>
       <!-- overwrites CEN severity level "warning" to replace BR-DE-18a in CII -->
       <customLevel level="error">CII-SR-453</customLevel>
+      <!-- overwrites CEN severity level "warning" to enforce exactly one BG-30 within BG-25 -->
+      <customLevel level="error">CII-SR-454</customLevel>
     </createReport>
     <acceptMatch>/rep:report/rep:assessment[1]/rep:accept[1]</acceptMatch>
   </scenario>
