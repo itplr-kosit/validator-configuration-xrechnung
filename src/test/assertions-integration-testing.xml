@@ -116,13 +116,13 @@
     Should have error about CII-SR-453
   </a:assertion>
 
-  <a:assertion report-doc="cii-cii-sr-454-test-report.xml"
+  <a:assertion report-doc="cii-cii-sr-454-negative-test-report.xml"
     test="/rep:report/rep:scenarioMatched[1]/rep:validationStepResult[2]/rep:message[ @code = 'CII-SR-454' and @level='warning']">
 
     Should have information about CII-SR-454
   </a:assertion>
 
-  <a:assertion report-doc="cii-cii-sr-454-test-report.xml"
+  <a:assertion report-doc="cii-cii-sr-454-negative-test-report.xml"
     test="/rep:report/rep:assessment/rep:reject/rep:explanation/html:html/html:body/html:table[2]/html:tbody/html:tr[@class = 'error']/html:td[text() = 'CII-SR-454']">
 
     Should have error about CII-SR-454
