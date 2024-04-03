@@ -671,6 +671,8 @@
         <include name="cii-br-s-08-rounding-rule.xml"/>
         <include name="ubl-br-dex-2-false-negative.xml"/>
         <include name="cii-bt-20-cardinality-check.xml"/>
+        <include name="cii-bt-20-cardinality-check-2.xml"/>
+        <include name="cii-cii-sr-454-negative-test.xml"/>
         <!-- Local files - not in repository -->
         <include name="XRechnung-CEFACT*.xml"/>
       </fileset>
