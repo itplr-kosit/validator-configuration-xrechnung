@@ -13,7 +13,14 @@ This release is compatible with XRechnung ?.?.?
 
 ### Added
 
+* CEN unexpected test on decimal places in BT-131 "Invoice line net amount" in CII
+* CEN unexpected tests on BR-AE-02, BR-AE-03, and BR-AE-04 with BT-32 and no BT-31 in CII
 * Unit tests for multiple BT-7 "Value added tax point date" and BT-8 "Value added tax point date code" in CII
+
+### Changed
+
+* set CII-SR-452 customLevel to "error" to enforce correct cardinality of BT-9 "Payment due date" and BT-20 "Payment terms" in CII
+* set CII-SR-454 customLevel to "error" to enforce exactly one BG-30 "Line VAT information" within BG-25 "Invoice line" in CII
 
 ## 2023-11-15
 
