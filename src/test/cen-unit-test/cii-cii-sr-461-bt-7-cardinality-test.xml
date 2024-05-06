@@ -226,9 +226,10 @@
                 <ram:TypeCode>VAT</ram:TypeCode>
                 <ram:BasisAmount>10781.25</ram:BasisAmount>
                 <ram:CategoryCode>S</ram:CategoryCode>
-                <!-- only one BT-8 should be allowed -->
-                <!-- BT-8 -->
-                <ram:DueDateTypeCode>5</ram:DueDateTypeCode>
+                <!-- BT-7 -->
+                <ram:TaxPointDate>
+                    <udt:DateString format="102">20180413</udt:DateString>
+                </ram:TaxPointDate>
                 <ram:RateApplicablePercent>19</ram:RateApplicablePercent>
             </ram:ApplicableTradeTax>
             <ram:ApplicableTradeTax>
@@ -237,9 +238,17 @@
                 <ram:BasisAmount>0</ram:BasisAmount>
                 <ram:CategoryCode>E</ram:CategoryCode>
                 <ram:ExemptionReasonCode>vatex-eu-132-1a</ram:ExemptionReasonCode>
-                <!-- only one BT-8 should be allowed -->
-                <!-- BT-8 -->
-                <ram:DueDateTypeCode>29</ram:DueDateTypeCode>
+                <!-- only one BT-7 allowed -->
+                <!-- BT-7 -->
+                <?xmute mutator="identity"
+                            schematron-invalid="cencii:CII-SR-461" id="cii-more-than-one-BT-7-invalid"
+                            description="more than one BT-7 not allowed" ?>
+                <?xmute mutator="remove"
+                            schematron-valid="cencii:CII-SR-461" id="cii-maximum-one-BT-7-valid"
+                            description="one BT-7 allowed" ?>
+                <ram:TaxPointDate>
+                    <udt:DateString format="102">20180415</udt:DateString>
+                </ram:TaxPointDate>
                 <ram:RateApplicablePercent>0</ram:RateApplicablePercent>
             </ram:ApplicableTradeTax>
             <ram:BillingSpecifiedPeriod>
