@@ -68,8 +68,8 @@
                     <ram:URIID schemeID="EM">rechnungsausgang@test.com</ram:URIID>
                 </ram:URIUniversalCommunication>
                 <!-- BT-31 -->
-                <?xmute mutator="identity" schematron-valid="cencii:BR-AE-02 cencii:BR-AE-03" id="cii-br-ae-02-br-ae-03-with-bt-31"?>
-                <?xmute mutator="remove" schematron-valid="cencii:BR-AE-02 cencii:BR-AE-03" id="cii-br-ae-02-br-ae-03-without-bt-31" description="expected-to-fail: BR-AE-02 and BR-AE-03 should be valid with BT-32"?>
+                <?xmute mutator="identity" schematron-valid="cencii:BR-AE-02 cencii:BR-AE-04" id="cii-br-ae-02-br-ae-04-with-bt-31"?>
+                <?xmute mutator="remove" schematron-valid="cencii:BR-AE-02 cencii:BR-AE-04" id="cii-br-ae-02-br-ae-04-without-bt-31" description="BR-AE-02 and BR-AE-04 should be valid with BT-32"?>
                 <ram:SpecifiedTaxRegistration>
                     <ram:ID schemeID="VA">DE152138634</ram:ID>
                 </ram:SpecifiedTaxRegistration>
@@ -125,13 +125,13 @@
                 <ram:CalculatedAmount>0.00</ram:CalculatedAmount>
                 <ram:TypeCode>VAT</ram:TypeCode>
                 <ram:ExemptionReason>als gemeinnützig anerkannt</ram:ExemptionReason>
-                <ram:BasisAmount>183.00</ram:BasisAmount>
+                <ram:BasisAmount>233.00</ram:BasisAmount>
                 <ram:CategoryCode>AE</ram:CategoryCode>
                 <ram:RateApplicablePercent>0.00</ram:RateApplicablePercent>
             </ram:ApplicableTradeTax>
             <ram:SpecifiedTradeAllowanceCharge>
                 <ram:ChargeIndicator>
-                    <udt:Indicator>false</udt:Indicator>
+                    <udt:Indicator>true</udt:Indicator>
                 </ram:ChargeIndicator>
                 <ram:CalculationPercent>100.0000</ram:CalculationPercent>
                 <ram:BasisAmount>25.00</ram:BasisAmount>
@@ -151,12 +151,12 @@
             </ram:SpecifiedTradePaymentTerms>
             <ram:SpecifiedTradeSettlementHeaderMonetarySummation>
                 <ram:LineTotalAmount>208.00</ram:LineTotalAmount>
-                <ram:ChargeTotalAmount>0.00</ram:ChargeTotalAmount>
-                <ram:AllowanceTotalAmount>25.00</ram:AllowanceTotalAmount>
-                <ram:TaxBasisTotalAmount>183.00</ram:TaxBasisTotalAmount>
+                <ram:ChargeTotalAmount>25.00</ram:ChargeTotalAmount>
+                <ram:AllowanceTotalAmount>0.00</ram:AllowanceTotalAmount>
+                <ram:TaxBasisTotalAmount>233.00</ram:TaxBasisTotalAmount>
                 <ram:TaxTotalAmount currencyID="EUR">0.00</ram:TaxTotalAmount>
-                <ram:GrandTotalAmount>183.00</ram:GrandTotalAmount>
-                <ram:DuePayableAmount>183.00</ram:DuePayableAmount>
+                <ram:GrandTotalAmount>233.00</ram:GrandTotalAmount>
+                <ram:DuePayableAmount>233.00</ram:DuePayableAmount>
             </ram:SpecifiedTradeSettlementHeaderMonetarySummation>
         </ram:ApplicableHeaderTradeSettlement>
     </rsm:SupplyChainTradeTransaction>
