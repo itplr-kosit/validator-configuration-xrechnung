@@ -8,7 +8,7 @@ For further technical information see the specific pages [on usage](docs/usage.m
 
 ## Releases
 
-Each [release](https://github.com/itplr-kosit/validator-configuration-xrechnung/releases) contains all necessary XML Schema and Schematron rules to validate UBL and CII invoice XML documents for conformity with [CIUS and Extension XRechnung](https://www.xoev.de/xrechnung-16828).
+Each [release](https://github.com/itplr-kosit/validator-configuration-xrechnung/releases) contains all necessary XML Schema and Schematron rules to validate UBL and CII invoice XML documents for conformity with [CIUS and Extension XRechnung](https://xeinkauf.de/xrechnung/versionen-und-bundles/).
 
 In particular this Validator Configuration integrates the following third-party artifacts:
 
@@ -21,4 +21,4 @@ In particular this Validator Configuration integrates the following third-party 
 
 The git master branch always has the latest code. Since March 2018 new releases have the following naming and versioning scheme:
 
-The source code gets tagged with `release-${release-date}` and distributions get the name `validator-configuration-xrechnung_${xrechnung-version}_${release-date}` e.g. `validator-configuration-xrechnung_3.0.1_2023-09-22.zip`
+The source code gets tagged with `release-${release-date}` and distributions get the name `validator-configuration-xrechnung_${xrechnung-version}_${release-date}` e.g. `validator-configuration-xrechnung_3.0.2_2024-06-20.zip`
