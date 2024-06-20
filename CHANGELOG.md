@@ -25,6 +25,8 @@ This release is compatible with XRechnung ?.?.?
 * set CII-SR-452 customLevel to "error" to enforce correct cardinality of BT-9 "Payment due date" and BT-20 "Payment terms" in CII
 * set CII-SR-454 customLevel to "error" to enforce exactly one BG-30 "Line VAT information" within BG-25 "Invoice line" in CII
 * tests on BR-AE-02, BR-AE-03, and BR-AE-04 moved from `src/test/unexpected` to `src/test/cen-unit-tests`
+* tests `cen-unit-test/cii-br-s-08-rounding-rule.xml` and `unexpected/br-co-23-reason-codes.xml` to comply with BR-CL-23
+* tests `cen-unit-test/cii-br-e-10-test.xml` and `cen-unit-test/cii-br-e-10-test-2.xml` to comply with CII-SR-461
 
 ## 2023-11-15
 

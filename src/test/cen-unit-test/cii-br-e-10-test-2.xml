@@ -243,9 +243,6 @@
                 <ram:ExemptionReason>als gemeinnützig anerkannt</ram:ExemptionReason>
                 <ram:BasisAmount>0</ram:BasisAmount>
                 <ram:CategoryCode>E</ram:CategoryCode>				
-                <ram:TaxPointDate>
-                    <udt:DateString format="102">20180413</udt:DateString>
-                </ram:TaxPointDate>
                 <ram:RateApplicablePercent>0</ram:RateApplicablePercent>
             </ram:ApplicableTradeTax>
             <ram:BillingSpecifiedPeriod>
