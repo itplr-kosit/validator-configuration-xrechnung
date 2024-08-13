@@ -328,6 +328,8 @@
       <customLevel level="information">BR-CL-11</customLevel>
       <!-- overwrites CEN severity level "fatal" for ISO 6523 values of BT-29, BT-46, and BT-60 scheme identifiers to enable DIGA codes (BR-DEX-04) -->
       <customLevel level="information">BR-CL-10</customLevel>
+      <!-- overwrites CEN severity level "fatal" to enable use of mime codes defined per BR-DEX-01 -->
+      <customLevel level="warning">BR-CL-24</customLevel>
       <!-- overwrites CEN severity level "fatal" for CEF EAS values of BT-34 and BT-49 scheme identifiers to enable DIGA codes (BR-DEX-07) -->
       <customLevel level="information">BR-CL-25</customLevel>
       <!-- overwrites CEN severity level "fatal" for ISO 6523 values of BT-71 scheme identifier to enable DIGA codes (BR-DEX-08) -->

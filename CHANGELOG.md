@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 This release is compatible with XRechnung ?.?.?
 
+### Added
+
+* Custom level for BR-CL-24 in CII Extension to support BR-DEX-01
+
 
 ## 2024-06-20
 
