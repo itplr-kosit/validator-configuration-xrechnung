@@ -15,6 +15,9 @@ This release is compatible with XRechnung ?.?.?
 
 * Custom level for BR-CL-24 in CII Extension to support BR-DEX-01
 
+### Changed
+
+* custom level for BR-CL-24 in UBL Invoice Extension set to "information"
 
 ## 2024-06-20
 
