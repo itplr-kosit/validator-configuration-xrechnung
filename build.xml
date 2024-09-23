@@ -427,7 +427,7 @@
 
   <target name="retrieve-all-schema-rules"
     depends="retrieve-ubl-schema,retrieve-cen-rules,provide-xrechnung-schematron,retrieve-cii-schema"
-    description="Retrieve and preapre all 3rd party XSDs and XSLTs" />
+    description="Retrieve and prepare all 3rd party XSDs and XSLTs" />
   
   <target name="compile-cen-rules-only" description="Works for zip from master and release zips">
     
