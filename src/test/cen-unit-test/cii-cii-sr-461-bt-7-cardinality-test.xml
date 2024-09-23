@@ -247,6 +247,9 @@
                             schematron-valid="cencii:CII-SR-461" id="cii-maximum-one-BT-7-valid"
                             description="one BT-7 allowed" ?>
                 <ram:TaxPointDate>
+                    <?xmute mutator="code" values="20180413"
+                            schematron-invalid="cencii:CII-SR-461" id="cii-more-than-one-identical-BT-7-invalid"
+                            description="more than one BT-7 not allowed" ?>
                     <udt:DateString format="102">20180415</udt:DateString>
                 </ram:TaxPointDate>
                 <ram:RateApplicablePercent>0</ram:RateApplicablePercent>
