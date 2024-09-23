@@ -11,6 +11,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 This release is compatible with XRechnung ?.?.?
 
+### Changed
+
+* CEN unit tests on CII-SR-461 and CII-SR-462 to consider identical and divergent duplicates of BT-7 and BT-8
 
 ## 2024-06-20
 
