@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 This release is compatible with XRechnung ?.?.?
 
+### Changed
+
+* Download URL for CII schema files to avoid build file caused by captcha check
+
 
 ## 2024-06-20
 
