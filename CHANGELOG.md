@@ -18,6 +18,7 @@ This release is compatible with XRechnung ?.?.?
 ### Changed
 
 * custom level for BR-CL-24 in UBL Invoice Extension set to "information"
+* CEN unit tests on CII-SR-461 and CII-SR-462 to consider identical and divergent duplicates of BT-7 and BT-8
 
 ## 2024-06-20
 
