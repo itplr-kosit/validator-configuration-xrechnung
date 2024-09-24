@@ -11,8 +11,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 This release is compatible with XRechnung ?.?.?
 
+### Added
+
+* Custom level for BR-CL-24 in CII Extension to support BR-DEX-01
+
 ### Changed
 
+* custom level for BR-CL-24 in UBL Invoice Extension set to "information"
 * CEN unit tests on CII-SR-461 and CII-SR-462 to consider identical and divergent duplicates of BT-7 and BT-8
 
 ## 2024-06-20
