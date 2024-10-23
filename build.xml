@@ -50,10 +50,11 @@
   <property name="saxon.jar" value="saxon9he.jar" />
 
   <property name="cii.version" value="D16B" />
-  <property name="cii.schema.zip" value="D16B_SCRDM__Subset__CII.zip" />
+  <property name="cii.schema.artifact.id" value="D16B_SCRDM__Subset__CII" />
+  <property name="cii.schema.zip" value="${cii.schema.artifact.id}-${cii.version}.zip" />
   <property name="cii.schema.uncoupled.zip" value="d16b-cii-uncoupled.zip" />
   <property name="cii.download.url"
-    value="http://www.unece.org/fileadmin/DAM/cefact/xml_schemas/${cii.schema.zip}" />
+    value="https://projekte.kosit.org/api/v4/projects/356/packages/maven/de/xeinkauf/${cii.schema.artifact.id}/${cii.version}/${cii.schema.zip}" />
   <property name="ubl.version" value="2.1" />
   <property name="ubl.download.url.prefix"
     value="http://docs.oasis-open.org/ubl/os-UBL-${ubl.version}" />
@@ -426,7 +427,7 @@
 
   <target name="retrieve-all-schema-rules"
     depends="retrieve-ubl-schema,retrieve-cen-rules,provide-xrechnung-schematron,retrieve-cii-schema"
-    description="Retrieve and preapre all 3rd party XSDs and XSLTs" />
+    description="Retrieve and prepare all 3rd party XSDs and XSLTs" />
   
   <target name="compile-cen-rules-only" description="Works for zip from master and release zips">
     
