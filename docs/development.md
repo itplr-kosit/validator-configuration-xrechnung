@@ -203,15 +203,15 @@ If you want to skip tests call `ant dist-only`.
   ```
 
 * Tag the last commit according to the following naming rule: 
-   `release-${date-of-scheduled-release-e.g. 2024-06-20}`
+   `release-${date-of-scheduled-release-e.g. 2024-10-31}`
   e.g.
-  `git tag release-2024-06-20 && git push origin release-2024-06-20`
+  `git tag release-2024-10-31 && git push origin release-2024-10-31`
 
 ### Publish
 
 * Draft a new release at https://github.com/itplr-kosit/validator-configuration-xrechnung/releases/new
   * Choose the git tag
-* Add a release title of the following scheme: `Validator Configuration 2024-06-20 compatible with XRechnung 3.0.x`.
+* Add a release title of the following scheme: `Validator Configuration 2024-10-31 compatible with XRechnung 3.0.x`.
 * Copy & paste the high quality changelog entries for this release from CHANGELOG.md.
 * Upload distribution zip and tick mark this release as a `pre-release`.
 
