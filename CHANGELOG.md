@@ -17,6 +17,8 @@ This release is compatible with XRechnung 3.0.x
 
 ### Changed
 
+* Using [XRechnung Schematron 2.2.0](https://github.com/itplr-kosit/xrechnung-schematron/releases/tag/release-2.2.0)
+* Using [XRechnung Testsuite 2024-10-31](https://github.com/itplr-kosit/xrechnung-testsuite/releases/tag/release-2024-10-31)
 * Custom level for BR-CL-24 in UBL Invoice Extension set to "information"
 * Download URL for CII schema files to avoid build fail caused by captcha check
 * CEN unit tests on CII-SR-461 and CII-SR-462 to consider identical and divergent duplicates of BT-7 and BT-8
