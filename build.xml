@@ -88,7 +88,7 @@
     value="xrechnung-${xrechnung.version}-schematron-${xr.schematron.version.full}.zip" />
   <property name="xr.schematron.download.url" value="${xr.schematron.download.url.prefix}/${xr.schematron.zip}" />  
 
-  <property name="xr.testsuite.version" value="2024-10-31" />
+  <property name="xr.testsuite.version" value="2025-01-31-SNAPSHOT" />
   <property name="xr.testsuite.download.url.prefix"
     value="https://github.com/itplr-kosit/xrechnung-testsuite/releases/download" />
 
