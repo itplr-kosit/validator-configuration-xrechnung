@@ -243,8 +243,8 @@
                             schematron-invalid="cencii:CII-SR-462" id="cii-more-than-one-BT-8-invalid"
                             description="more than one BT-8 not allowed" ?>
                 <?xmute mutator="code" values="5"
-                            schematron-invalid="cencii:CII-SR-462" id="cii-more-than-one-identical-BT-8-invalid"
-                            description="more than one BT-8 not allowed" ?>
+                            schematron-valid="cencii:CII-SR-462" id="cii-more-than-one-identical-BT-8-allowed"
+                            description="more than one identical BT-8 allowed" ?>
                 <?xmute mutator="remove"
                             schematron-valid="cencii:CII-SR-462" id="cii-maximum-one-BT-8-valid"
                             description="one BT-8 allowed" ?>
