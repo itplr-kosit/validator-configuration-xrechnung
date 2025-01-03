@@ -92,7 +92,7 @@
                 <ram:SpecifiedTradeSettlementLineMonetarySummation>
                     <!-- BT-131 -->
                     <?xmute mutator="identity" schematron-valid="cencii:BR-DEC-23" id="cii-br-dec-23-decimals-valid"?>
-                    <?xmute mutator="code" values="26.0701" schematron-invalid="cencii:BR-DEC-23" id="cii-br-dec-23-decimals-invalid" description="expected-to-fail: only 2 decimals should be allowed in BT-131"?>
+                    <?xmute mutator="code" values="26.0701" schematron-invalid="cencii:BR-DEC-23" id="cii-br-dec-23-decimals-invalid" description="only 2 decimals should be allowed in BT-131"?>
                     <ram:LineTotalAmount>26.07</ram:LineTotalAmount>
                 </ram:SpecifiedTradeSettlementLineMonetarySummation>
             </ram:SpecifiedLineTradeSettlement>
