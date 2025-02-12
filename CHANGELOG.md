@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 This release is compatible with XRechnung ?.?.?
 
+### Added
+
+* CEN unexpected test on missing BT-22 with multiple BT-1 in CII
+
 ### Changed
 
 * Using [CEN Schematron Rules 1.3.13](https://github.com/ConnectingEurope/eInvoicing-EN16931/releases/tag/validation-1.3.13)
