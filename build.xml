@@ -704,12 +704,14 @@
   </target>
 
   <target name="dist-only" description="Generate the distribution without testing">
+    <mkdir dir="${build.dir}/docs" />
     <copy todir="${build.dir}">
       <fileset dir="${basedir}">
         <include name="README.md" />
         <include name="CHANGELOG.md" />
       </fileset>
     </copy>
+    <copy file="docs/usage.md" todir="${build.dir}/docs" failonerror="true" filtering="true" />
     <zip destfile="${dist.dir}/${dist.name}" basedir="${build.dir}"
       excludes="download/**,test/**,schematron/**,reports/**" />
   </target>
