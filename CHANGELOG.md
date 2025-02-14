@@ -13,7 +13,7 @@ This release is compatible with XRechnung ?.?.?
 
 ### Added
 
-* CEN unexpected test on missing BT-22 with multiple BT-1 in CII
+* CEN unexpected test `cii-sr-030-wrong-cardinality-bt-22.xml`on missing BT-22 in CII
 
 ### Changed
 
