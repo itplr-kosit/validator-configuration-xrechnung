@@ -25,8 +25,8 @@
       </ram:IncludedNote>
       <!-- BT-22 -->
       <ram:IncludedNote>
-        <?xmute mutator="identity" schematron-valid="cencii:CII-SR-030" id="cii-br-sr-030-valid" description="BT-22 should be valid"?>
-        <?xmute mutator="remove" schematron-invalid="cencii:CII-SR-030" id="cii-br-sr-030-bt-22-removed" description="expected-to-fail: BT-22 should exists"?>
+        <?xmute mutator="identity" schematron-valid="cencii:CII-SR-030" id="cii-sr-030-valid" ?>
+        <?xmute mutator="remove" schematron-invalid="cencii:CII-SR-030" id="cii-sr-030-bt-22-removed" description="expected-to-fail: BT-22 should exist"?>
         <ram:Content>Beispielvertrag</ram:Content>
         <ram:SubjectCode>AAI</ram:SubjectCode>
       </ram:IncludedNote>
