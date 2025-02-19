@@ -16,7 +16,8 @@ This release is compatible with XRechnung ?.?.?
 * Using [CEN Schematron Rules 1.3.13](https://github.com/ConnectingEurope/eInvoicing-EN16931/releases/tag/validation-1.3.13)
 * CEN Unit Test `cii-cii-sr-462-bt-8-cardinality-test.xml`
 * `cii-br-dec-23-test.xml` moved from CEN Unexpected Tests to CEN Unit Tests
-* added docs/usage.md to dist, path to development.md in readme.md
+* added docs/usage.md to dist
+* path to development.md in readme.md
 
 ## 2024-10-31
 
