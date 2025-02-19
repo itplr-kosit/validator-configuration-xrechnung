@@ -4,7 +4,7 @@
 
 For general questions to the standard "XRechnung" and related components refer to the [official operations and support website](https://xeinkauf.de/kontakt/#support).
 
-For further technical information see the specific pages [on usage](docs/usage.md) and [on development](docs/development.md).
+For further technical information see the specific pages [on usage](docs/usage.md) and [on development](https://github.com/itplr-kosit/validator-configuration-xrechnung/blob/master/docs/development.md).
 
 ## Releases
 
