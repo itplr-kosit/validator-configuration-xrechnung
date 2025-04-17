@@ -74,6 +74,7 @@
       <customLevel level="warning">BR-CL-23</customLevel>
       <!-- overwrites CEN severity level "fatal" for ISO 6523 values of BT-157 "Item standard identifier" scheme identifier -->
       <customLevel level="warning">BR-CL-21</customLevel>
+      <!-- <customLevel level="fatal">UBL-CR-646</customLevel> -->
     </createReport>
     <acceptMatch>/rep:report/rep:assessment[1]/rep:accept[1]</acceptMatch>
   </scenario>
@@ -131,6 +132,7 @@
       <customLevel level="warning">BR-CL-23</customLevel>
       <!-- overwrites CEN severity level "fatal" for ISO 6523 values of BT-157 "Item standard identifier" scheme identifier -->
       <customLevel level="warning">BR-CL-21</customLevel>
+      <!-- <customLevel level="fatal">UBL-CR-646</customLevel> -->
     </createReport>
     <acceptMatch>/rep:report/rep:assessment[1]/rep:accept[1]</acceptMatch>
   </scenario>
@@ -203,6 +205,7 @@
       <customLevel level="information">BR-CO-16</customLevel>
       <!-- overwrites CEN severity level "warning" for implementation of Third Party Payment (BG-DEX-09) -->
       <customLevel level="information">UBL-CR-470</customLevel>
+      <customLevel level="information">UBL-CR-646</customLevel>
     </createReport>
     <acceptMatch>/rep:report/rep:assessment[1]/rep:accept[1]</acceptMatch>
   </scenario>
@@ -323,6 +326,9 @@
       <customLevel level="error">CII-SR-453</customLevel>
        <!-- overwrites CEN severity level "warning" to enforce exactly one BG-30 within BG-25 -->
       <customLevel level="error">CII-SR-454</customLevel>
+      <!-- The rule checks the occurence of ram:ActualAmount (BT-147), which has a cardinality of 0..1 in the EN, but 0..n in CII.
+      When the error level is raised, the selection of the first occurence of ram:ActualAmount (xrechnung-schematron!186 (16e2f344)) is obsolete and can be reverted. -->
+      <customLevel level="error">CII-SR-440</customLevel>
     </createReport>
     <acceptMatch>/rep:report/rep:assessment[1]/rep:accept[1]</acceptMatch>
   </scenario>
@@ -388,6 +394,9 @@
       <customLevel level="error">CII-SR-453</customLevel>
       <!-- overwrites CEN severity level "warning" to enforce exactly one BG-30 within BG-25 -->
       <customLevel level="error">CII-SR-454</customLevel>
+      <!-- The rule checks the occurence of ram:ActualAmount (BT-147), which has a cardinality of 0..1 in the EN, but 0..n in CII.
+      When the error level is raised, the selection of the first occurence of ram:ActualAmount (xrechnung-schematron!186 (16e2f344)) is obsolete and can be reverted. -->
+      <customLevel level="error">CII-SR-440</customLevel>
     </createReport>
     <acceptMatch>/rep:report/rep:assessment[1]/rep:accept[1]</acceptMatch>
   </scenario>
@@ -462,6 +471,9 @@
       <customLevel level="error">CII-SR-453</customLevel>
       <!-- overwrites CEN severity level "warning" to enforce exactly one BG-30 within BG-25 -->
       <customLevel level="error">CII-SR-454</customLevel>
+      <!-- The rule checks the occurence of ram:ActualAmount (BT-147), which has a cardinality of 0..1 in the EN, but 0..n in CII.
+      When the error level is raised, the selection of the first occurence of ram:ActualAmount (xrechnung-schematron!186 (16e2f344)) is obsolete and can be reverted. -->
+      <customLevel level="error">CII-SR-440</customLevel>
     </createReport>
     <acceptMatch>/rep:report/rep:assessment[1]/rep:accept[1]</acceptMatch>
   </scenario>
