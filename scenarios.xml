@@ -79,65 +79,6 @@
     <acceptMatch>/rep:report/rep:assessment[1]/rep:accept[1]</acceptMatch>
   </scenario>
 
-  <!-- XRECHNUNG CVD UBL Invoice -->
-
-  <scenario>
-    <name>EN16931 XRechnung CVD (UBL Invoice)</name>
-    <description>
-      <p>Validates UBL Invoice (CVD) in version @ubl.version@</p>
-      <p>Uses UBL Invoice @ubl.version@ XML Schema,
-        Schematron rules from EN16931:2017, and XRechnung
-        @xrechnung.version@ </p>
-      <p>Download of UBL XML Schema on @build.date@ from
-        @ubl.download.url@</p>
-      <p>Download of UBL Schematron rules on @build.date@ from
-        @cen.download.url.ubl@</p>
-      <p>Download of XRechnung Schematron rules on @build.date@ from
-        @xrechnung.download.url@</p>
-    </description>
-    <!-- UBL Invoice namespaces -->
-    <namespace prefix="cbc"
-    >urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2</namespace>
-    <namespace prefix="invoice"
-    >urn:oasis:names:specification:ubl:schema:xsd:Invoice-2</namespace>
-    <!-- Namespace for acceptMatch XPATH within validator report XML -->
-    <namespace prefix="rep">http://www.xoev.de/de/validator/varl/1</namespace>
-    <match>exists(/invoice:Invoice/cbc:CustomizationID[ . = '@xrechnung.cvd.id@']) </match>
-    <validateWithXmlSchema>
-      <resource>
-        <name>XML Schema for UBL 2.1 Invoice</name>
-        <location>resources/ubl/2.1/xsd/maindoc/UBL-Invoice-2.1.xsd</location>
-      </resource>
-    </validateWithXmlSchema>
-    <validateWithSchematron>
-      <resource>
-        <name>Schematron rules for EN16931 (UBL)</name>
-        <location>resources/ubl/2.1/xsl/EN16931-UBL-validation.xsl</location>
-      </resource>
-    </validateWithSchematron>
-    <validateWithSchematron>
-      <resource>
-        <name>Schematron rules for Invoice - CIUS XRechnung (UBL)</name>
-        <location>resources/xrechnung/@xrechnung.version@/xsl/XRechnung-UBL-validation.xsl</location>
-      </resource>
-
-    </validateWithSchematron>
-    <createReport>
-      <resource>
-        <name>Validation report for XRechnung</name>
-        <location>resources/xrechnung-report.xsl</location>
-      </resource>
-      <!-- custom level "information" for BR-CL-01 was removed as construction codes were added to Codelist 1001 with CEN 1.3.8 (see CEN issue https://github.com/ConnectingEurope/eInvoicing-EN16931/issues/309) -->
-      <!-- overwrites CEN severity level "fatal" for codelist values of BT-130 "Invoiced quantity unit of measure code" and BT-150 "Item price base quantity unit of measure code" -->
-      <customLevel level="warning">BR-CL-23</customLevel>
-      <!-- overwrites CEN severity level "fatal" for ISO 6523 values of BT-157 "Item standard identifier" scheme identifier -->
-      <customLevel level="warning">BR-CL-21</customLevel>
-      <!-- <customLevel level="fatal">UBL-CR-646</customLevel> -->
-    </createReport>
-    <acceptMatch>/rep:report/rep:assessment[1]/rep:accept[1]</acceptMatch>
-  </scenario>
-
-  
   <!-- XRECHNUNG Extension UBL Invoice -->
   
   <scenario>
@@ -205,6 +146,7 @@
       <customLevel level="information">BR-CO-16</customLevel>
       <!-- overwrites CEN severity level "warning" for implementation of Third Party Payment (BG-DEX-09) -->
       <customLevel level="information">UBL-CR-470</customLevel>
+      <!-- overwrites CEN severity level "warning" for implementation of Sub Invoice Lines (BG-DEX-01) -->
       <customLevel level="information">UBL-CR-646</customLevel>
     </createReport>
     <acceptMatch>/rep:report/rep:assessment[1]/rep:accept[1]</acceptMatch>
@@ -333,74 +275,6 @@
     <acceptMatch>/rep:report/rep:assessment[1]/rep:accept[1]</acceptMatch>
   </scenario>
 
-  <!-- XRechnung CVD (CIUS) CII -->
-
-  <scenario>
-    <name>EN16931 XRechnung CVD (CII)</name>
-    <description>
-      <p>Validates UN/CEFACT XML (SCRDM - CII uncoupled) version
-        @cii.version@</p>
-      <p>Uses UN/CEFACT (SCRDM - CII uncoupled) version
-        @cii.version@ XML Schema, Schematron rules from EN16931:2017,
-        and XRechnung Schematron rules version @xrechnung.version@ </p>
-      <p>Download of CII uncoupled XML Schema on @build.date@ from
-        @cii.download.url@</p>
-      <p>Download of CII Schematron rules on @build.date@ from
-        @cen.download.url.cii@ </p>
-      <p>Download of XRechnung Schematron rules on @build.date@ from
-        @xrechnung.download.url@</p>
-    </description>
-    <!-- CII namespaces -->
-    <namespace prefix="rsm"
-    >urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100</namespace>
-    <namespace prefix="ram"
-    >urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100</namespace>
-    <!-- Namespace for acceptMatch XPATH within validator report XML -->
-    <namespace prefix="rep">http://www.xoev.de/de/validator/varl/1</namespace>
-
-    <match>exists(/rsm:CrossIndustryInvoice[rsm:ExchangedDocumentContext/ram:GuidelineSpecifiedDocumentContextParameter/ram:ID/text() = '@xrechnung.cvd.id@'])</match>
-    <validateWithXmlSchema>
-      <resource>
-        <name>XML Schema for UN/CEFACT XML (SCRDM - CII
-          uncoupled)</name>
-        <location>resources/cii/16b/xsd/CrossIndustryInvoice_100pD16B.xsd</location>
-      </resource>
-    </validateWithXmlSchema>
-    <validateWithSchematron>
-      <resource>
-        <name>Schematron rules for EN16931 (CII)</name>
-        <location>resources/cii/16b/xsl/EN16931-CII-validation.xsl</location>
-      </resource>
-    </validateWithSchematron>
-    <validateWithSchematron>
-      <resource>
-        <name>Schematron rules for CIUS XRechnung (CII)</name>
-        <location>resources/xrechnung/@xrechnung.version@/xsl/XRechnung-CII-validation.xsl</location>
-      </resource>
-    </validateWithSchematron>
-    <createReport>
-      <resource>
-        <name>Validation report for XRechnung</name>
-        <location>resources/xrechnung-report.xsl</location>
-      </resource>
-      <!-- custom level "information" for BR-CL-01 was removed as construction codes were added to Codelist 1001 with CEN 1.3.8 (see CEN issue https://github.com/ConnectingEurope/eInvoicing-EN16931/issues/309) -->
-      <!-- overwrites CEN severity level "fatal" for codelist values of BT-130 "Invoiced quantity unit of measure code" and BT-150 "Item price base quantity unit of measure code" -->
-      <customLevel level="warning">BR-CL-23</customLevel>
-      <!-- overwrites CEN severity level "fatal" for ISO 6523 values of BT-157 "Item standard identifier" scheme identifier -->
-      <customLevel level="warning">BR-CL-21</customLevel>
-      <!-- overwrites CEN severity level "warning" to enforce correct cardinality of BT-9 "Payment due date" and BT-20 "Payment terms" -->
-      <customLevel level="error">CII-SR-452</customLevel>
-      <!-- overwrites CEN severity level "warning" to replace BR-DE-18a in CII -->
-      <customLevel level="error">CII-SR-453</customLevel>
-      <!-- overwrites CEN severity level "warning" to enforce exactly one BG-30 within BG-25 -->
-      <customLevel level="error">CII-SR-454</customLevel>
-      <!-- The rule checks the occurence of ram:ActualAmount (BT-147), which has a cardinality of 0..1 in the EN, but 0..n in CII.
-      When the error level is raised, the selection of the first occurence of ram:ActualAmount (xrechnung-schematron!186 (16e2f344)) is obsolete and can be reverted. -->
-      <customLevel level="error">CII-SR-440</customLevel>
-    </createReport>
-    <acceptMatch>/rep:report/rep:assessment[1]/rep:accept[1]</acceptMatch>
-  </scenario>
-  
   <!-- XRechnung Extension CII -->
   <scenario>
     <name>EN16931 XRechnung Extension (CII)</name>
