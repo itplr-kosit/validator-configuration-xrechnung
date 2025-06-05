@@ -27,7 +27,7 @@
     value="${cen.spec.id}#compliant#urn:xeinkauf.de:kosit:xrechnung_${xrechnung.version.major.minor}" />
   <property name="xrechnung.extension.id"
     value="${xrechnung.spec.id}#conformant#urn:xeinkauf.de:kosit:extension:xrechnung_${xrechnung.version.major.minor}" />
-  <property name="xrechnung.cvd.version.major.minor" value="1.0" />
+  <property name="xrechnung.cvd.version.major.minor" value="0.9" />
   <property name="xrechnung.cvd.id"
             value="${xrechnung.spec.id}#compliant#urn:xeinkauf.de:kosit:cvd:xrechnung_${xrechnung.cvd.version.major.minor}" />
 
