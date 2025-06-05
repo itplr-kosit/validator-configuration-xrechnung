@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 This release is compatible with XRechnung ?.?.?
 
+### Fixed
+
+* severity level of UBL-SR-646 set to "information" in UBL extension scenario to allow for sub invoice lines
+
 ## 2025-03-21
 
 This release is compatible with XRechnung 3.0.x
