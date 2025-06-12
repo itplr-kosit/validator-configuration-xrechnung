@@ -128,4 +128,17 @@
     Should have error about CII-SR-454
   </a:assertion> 
 
+  <a:assertion report-doc="cvd-br-tmp-cvd-01-code-report.xml"
+    test="/rep:report/rep:scenarioMatched[1]/rep:validationStepResult[2]/rep:message[ @code = 'BR-CL-13' and @level='error']">
+    
+    Should have error about BR-CL-13
+  </a:assertion>
+  
+  <a:assertion report-doc="cvd-br-tmp-cvd-01-code-report.xml"
+    test="/rep:report/rep:assessment/rep:accept/rep:explanation/html:html/html:body/html:table[2]/html:tbody/html:tr[@class = 'information']/html:td[text() = 'BR-CL-13']">
+    
+    Should have information about BR-CL-13
+  </a:assertion>
+  
+  
 </a:assertions>
