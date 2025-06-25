@@ -27,7 +27,6 @@
     value="${cen.spec.id}#compliant#urn:xeinkauf.de:kosit:xrechnung_${xrechnung.version.major.minor}" />
   <property name="xrechnung.extension.id"
     value="${xrechnung.spec.id}#conformant#urn:xeinkauf.de:kosit:extension:xrechnung_${xrechnung.version.major.minor}" />
-
   <property name="validator.configuration.version.full" value="2025-06-30-SNAPSHOT" />
   <property name="dist.name"
     value="validator-configuration-xrechnung_${xrechnung.version}_${validator.configuration.version.full}.zip" />
@@ -670,7 +669,6 @@
     <copy todir="${test.docs.integration.dir}" verbose="true">
       <fileset dir="${test.docs.cen.unit.dir}">
         <include name="cii-br-s-08-rounding-rule.xml"/>
-        <include name="ubl-br-dex-2-false-negative.xml"/>
         <include name="cii-bt-20-cardinality-check.xml"/>
         <include name="cii-bt-20-cardinality-check-2.xml"/>
         <include name="cii-cii-sr-454-negative-test.xml"/>
