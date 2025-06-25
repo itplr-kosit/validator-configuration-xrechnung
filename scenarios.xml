@@ -74,10 +74,12 @@
       <customLevel level="warning">BR-CL-23</customLevel>
       <!-- overwrites CEN severity level "fatal" for ISO 6523 values of BT-157 "Item standard identifier" scheme identifier -->
       <customLevel level="warning">BR-CL-21</customLevel>
+      <!-- overwrites CEN severity level "warning" for implementation of Sub Invoice Lines (BG-DEX-01) -->
+      <customLevel level="error">UBL-CR-646</customLevel>
     </createReport>
     <acceptMatch>/rep:report/rep:assessment[1]/rep:accept[1]</acceptMatch>
   </scenario>
-  
+
   <!-- XRECHNUNG Extension UBL Invoice -->
   
   <scenario>
@@ -145,11 +147,12 @@
       <customLevel level="information">BR-CO-16</customLevel>
       <!-- overwrites CEN severity level "warning" for implementation of Third Party Payment (BG-DEX-09) -->
       <customLevel level="information">UBL-CR-470</customLevel>
+      <!-- overwrites CEN severity level "warning" for implementation of Sub Invoice Lines (BG-DEX-01) -->
+      <customLevel level="information">UBL-CR-646</customLevel>
     </createReport>
     <acceptMatch>/rep:report/rep:assessment[1]/rep:accept[1]</acceptMatch>
   </scenario>
-  
-  
+
   <scenario>
     <name>EN16931 XRechnung (UBL CreditNote)</name>
     <description>
@@ -269,7 +272,7 @@
     </createReport>
     <acceptMatch>/rep:report/rep:assessment[1]/rep:accept[1]</acceptMatch>
   </scenario>
-  
+
   <!-- XRechnung Extension CII -->
   <scenario>
     <name>EN16931 XRechnung Extension (CII)</name>

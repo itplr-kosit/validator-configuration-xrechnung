@@ -9,16 +9,6 @@
   <a:assertion report-doc="cii-br-s-08-rounding-rule-report.xml"
     test="/rep:report/rep:assessment/rep:accept"
     >Report has status accept</a:assertion>
-
-
-  <a:assertion report-doc="ubl-br-dex-2-false-negative-report.xml"
-    test="/rep:report/rep:assessment/rep:accept"
-    >Report accepts invoice</a:assertion>
-  
-  <a:assertion report-doc="ubl-br-dex-2-false-negative-report.xml" 
-    test="/rep:report/rep:scenarioMatched[1]/rep:validationStepResult[2]/rep:message[ @code = 'UBL-CR-646' and @level='warning']">
-    Should have warning about UBL-CR-646
-  </a:assertion>
   
   <a:assertion report-doc="diga-cii-extension-codes-report.xml"
     test="/rep:report/rep:scenarioMatched[1]/rep:validationStepResult[2]/rep:message[ @code = 'BR-CL-21' and @level='error']">
@@ -126,6 +116,26 @@
     test="/rep:report/rep:assessment/rep:reject/rep:explanation/html:html/html:body/html:table[2]/html:tbody/html:tr[@class = 'error']/html:td[text() = 'CII-SR-454']">
 
     Should have error about CII-SR-454
-  </a:assertion> 
+  </a:assertion>
+  
+  <a:assertion report-doc="ubl-cr-646-sub-invoice-lines-cius-report.xml" 
+    test="/rep:report/rep:scenarioMatched[1]/rep:validationStepResult[2]/rep:message[ @code = 'UBL-CR-646' and @level='warning']">
+    Should have warning about UBL-CR-646
+  </a:assertion>
+  
+  <a:assertion report-doc="ubl-cr-646-sub-invoice-lines-cius-report.xml" 
+    test="/rep:report/rep:assessment/rep:reject/rep:explanation/html:html/html:body/html:table[2]/html:tbody/html:tr[@class = 'error']/html:td[text() = 'UBL-CR-646']">
+    Should have error about UBL-CR-646
+  </a:assertion>
+  
+  <a:assertion report-doc="ubl-cr-646-sub-invoice-lines-extension-report.xml" 
+    test="/rep:report/rep:scenarioMatched[1]/rep:validationStepResult[2]/rep:message[ @code = 'UBL-CR-646' and @level='warning']">
+    Should have warning about UBL-CR-646
+  </a:assertion>
+  
+  <a:assertion report-doc="ubl-cr-646-sub-invoice-lines-extension-report.xml" 
+    test="/rep:report/rep:assessment/rep:accept/rep:explanation/html:html/html:body/html:table[2]/html:tbody/html:tr[@class = 'information']/html:td[text() = 'UBL-CR-646']">
+    Should have information about UBL-CR-646
+  </a:assertion>
 
 </a:assertions>
