@@ -63,7 +63,7 @@
     value="${ubl.download.url.prefix}/${ubl.schema.zip}" />
 
   <!-- set to "master" if you want latest code -->
-  <property name="cen.rules.version" value="1.3.13" />
+  <property name="cen.rules.version" value="1.3.14.2" />
   <property name="cen.rules.version.download" value="${cen.rules.version}" />
   <property name="cen.download.url.owner" value="ConnectingEurope" />
   <property name="cen.download.url.prefix"
@@ -615,6 +615,7 @@
   </target>
 
   <target name="retrieve-xmute" depends="init">
+    <property name="xmute.download.url.prefix" value="file:///C:/Users/PeepoShy/IdeaProjects/xml-mutate" />
     <fail unless="xmute.download.url.prefix"
       message="Property xmute.download.url.prefix must exist for this target to work" />
     <property name="xmute.version.full" value="0.5" />
@@ -623,15 +624,10 @@
       dest="${lib.dir}/${xmute.jar}" verbose="true" skipexisting="false" usetimestamp="true" />
   </target>
 
-
-
-
-
   <target name="test-cen-expected-behaviour" depends="compile, init-test, retrieve-xmute"
     description="Test Schematron Rules with XML-Mutate" if="xmute.download.url.prefix">
     <echo>Generate and test instances with expected behaviour ...</echo>
     <java jar="${lib.dir}/${xmute.jar}" failonerror="true" fork="true" dir="${basedir}">
-
       <arg value="--schematron" />
       <arg value="xrubl=${resource.xsl.xr.ubl}" />
       <arg value="--schematron" />
@@ -642,7 +638,6 @@
       <arg value="${test.docs.cen.unit.dir}" />
     </java>
   </target>
-
 
   <target name="test-integration" depends="init-test, provide-validator, provide-testsuite, test-cen-expected-behaviour, test-integration-only" 
     description="Integration testing result of XRechnung Configuration"></target>
