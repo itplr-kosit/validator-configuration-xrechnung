@@ -61,6 +61,9 @@
             </cac:PartyLegalEntity>
         </cac:Party>
     </cac:AccountingCustomerParty>
+    <cac:Delivery>
+        <cbc:ActualDeliveryDate>2016-06-21</cbc:ActualDeliveryDate>
+    </cac:Delivery>
     <cac:PaymentMeans>
         <cbc:PaymentMeansCode>58</cbc:PaymentMeansCode>
         <cac:PayeeFinancialAccount>

@@ -85,6 +85,9 @@
             </cac:Contact>
         </cac:Party>
     </cac:AccountingCustomerParty>
+    <cac:Delivery>
+        <cbc:ActualDeliveryDate>2016-06-21</cbc:ActualDeliveryDate>
+    </cac:Delivery>
     <!-- BG-21 -->
     <cac:AllowanceCharge>
         <cbc:ChargeIndicator>true</cbc:ChargeIndicator>
