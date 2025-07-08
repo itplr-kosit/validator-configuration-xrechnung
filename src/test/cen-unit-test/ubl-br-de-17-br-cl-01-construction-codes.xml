@@ -76,6 +76,9 @@
       </cac:Contact>
     </cac:Party>
   </cac:AccountingCustomerParty>
+  <cac:Delivery>
+    <cbc:ActualDeliveryDate>2016-06-21</cbc:ActualDeliveryDate>
+  </cac:Delivery>
   <cac:PaymentMeans>
     <cbc:PaymentMeansCode>30</cbc:PaymentMeansCode>
     <cbc:PaymentID>Deb. 10202 / Fact. 12115118</cbc:PaymentID>

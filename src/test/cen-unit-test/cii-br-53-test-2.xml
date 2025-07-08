@@ -139,7 +139,13 @@
                 </ram:URIUniversalCommunication>
             </ram:BuyerTradeParty>
         </ram:ApplicableHeaderTradeAgreement>
-        <ram:ApplicableHeaderTradeDelivery/>
+        <ram:ApplicableHeaderTradeDelivery>
+            <ram:ActualDeliverySupplyChainEvent>
+                <ram:OccurrenceDateTime>
+                    <udt:DateTimeString format="102">20160404</udt:DateTimeString>
+                </ram:OccurrenceDateTime>
+            </ram:ActualDeliverySupplyChainEvent>
+        </ram:ApplicableHeaderTradeDelivery>
         <ram:ApplicableHeaderTradeSettlement>
             <?xmute mutator="identity" schematron-valid="cencii:BR-53"
                 id="CII-BT-111-should-exist-if-bt-6-exists" description="cii BT-111 should exist if bt-6 exists" ?>
