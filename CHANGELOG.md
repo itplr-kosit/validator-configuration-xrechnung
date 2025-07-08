@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 This release is compatible with XRechnung ?.?.?
 
+### Added
+
+* Scenarios for matching XRechnung CVD invoices
+
 ### Changed
 
 * Using [CEN Schematron Rules 1.3.14.2](https://github.com/ConnectingEurope/eInvoicing-EN16931/releases/tag/validation-1.3.14.2)
