@@ -113,8 +113,13 @@
             <ram:IssuerAssignedID>ABC-123</ram:IssuerAssignedID>
          </ram:BuyerOrderReferencedDocument>
       </ram:ApplicableHeaderTradeAgreement>
-      <ram:ApplicableHeaderTradeDelivery/>
-      <ram:ApplicableHeaderTradeSettlement>
+      <ram:ApplicableHeaderTradeDelivery>
+         <ram:ActualDeliverySupplyChainEvent>
+            <ram:OccurrenceDateTime>
+               <udt:DateTimeString format="102">20160404</udt:DateTimeString>
+            </ram:OccurrenceDateTime>
+         </ram:ActualDeliverySupplyChainEvent>
+      </ram:ApplicableHeaderTradeDelivery><ram:ApplicableHeaderTradeSettlement>
          <ram:PaymentReference>Ref. 1</ram:PaymentReference>
          <ram:InvoiceCurrencyCode>EUR</ram:InvoiceCurrencyCode>
          <ram:SpecifiedTradeSettlementPaymentMeans>

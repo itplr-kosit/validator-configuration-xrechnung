@@ -139,7 +139,13 @@
                 </ram:URIUniversalCommunication>
             </ram:BuyerTradeParty>
         </ram:ApplicableHeaderTradeAgreement>
-        <ram:ApplicableHeaderTradeDelivery/>
+        <ram:ApplicableHeaderTradeDelivery>
+            <ram:ActualDeliverySupplyChainEvent>
+                <ram:OccurrenceDateTime>
+                    <udt:DateTimeString format="102">20160404</udt:DateTimeString>
+                </ram:OccurrenceDateTime>
+            </ram:ActualDeliverySupplyChainEvent>
+        </ram:ApplicableHeaderTradeDelivery>
         <ram:ApplicableHeaderTradeSettlement>            
             <!-- BT-6 -->
             <ram:TaxCurrencyCode>USD</ram:TaxCurrencyCode>
