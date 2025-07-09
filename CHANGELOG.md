@@ -18,6 +18,9 @@ This release is compatible with XRechnung 3.0.x
 ### Changed
 
 * Using [CEN Schematron Rules 1.3.14.2](https://github.com/ConnectingEurope/eInvoicing-EN16931/releases/tag/validation-1.3.14.2)
+* Using [XRechnung Schematron 2.4.0](https://github.com/itplr-kosit/xrechnung-schematron/releases/tag/release-2.4.0)
+* Using [XRechnung Testsuite 2025-07-10](https://github.com/itplr-kosit/xrechnung-testsuite/releases/tag/release-2025-07-10)
+
 
 ### Fixed
 
