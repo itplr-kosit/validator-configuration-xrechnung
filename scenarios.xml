@@ -10,13 +10,13 @@
   <date>@build.date@</date>
   <description>
     <p>Checks whether XML Documents conform to XRechnung specification
-            @xrechnung.version@
-            (https://xeinkauf.de/xrechnung/versionen-und-bundles/).</p>
+      @xrechnung.version@ (https://xeinkauf.de/xrechnung/versionen-und-bundles/) and XRechnung CVD specification @xrechnung.cvd.version.major.minor@
+            (https://xeinkauf.de/xrechnung/cvd/).</p>
     <p>It uses CEN Schematron rules of @cen.spec.id@
             in version @cen.rules.version@ from @build.date@
             (https://github.com/ConnectingEurope/eInvoicing-EN16931/releases).</p>
     <p>It uses Schematron Rules version @xrechnung.rules.version.full@ for XRechnung specification version
-            @xrechnung.version@ 
+            @xrechnung.version@ and for XRechnung CVD specification version @xrechnung.cvd.version.major.minor@
             (@xrechnung.download.url@).</p>
   </description>
 
@@ -161,8 +161,8 @@
     <description>
       <p>Validates UBL Invoice (CVD) in version @ubl.version@</p>
       <p>Uses UBL Invoice @ubl.version@ XML Schema,
-        Schematron rules from EN16931:2017, and XRechnung
-        @xrechnung.version@ </p>
+        Schematron rules from EN16931:2017, XRechnung
+        @xrechnung.version@, and XRechnung CVD @xrechnung.cvd.version.major.minor@</p>
       <p>Download of UBL XML Schema on @build.date@ from
         @ubl.download.url@</p>
       <p>Download of UBL Schematron rules on @build.date@ from
@@ -273,8 +273,8 @@
     <description>
       <p>Validates UBL CrediteNote version @ubl.version@</p>
       <p>Uses UBL CreditNote @ubl.version@ XML Schema, 
-        Schematron rules from EN16931:2017, and XRechnung
-        @xrechnung.version@ </p>
+        Schematron rules from EN16931:2017, XRechnung
+        @xrechnung.version@, and XRechnung CVD @xrechnung.cvd.version.major.minor@</p>
       <p>Download of UBL XML Schema on @build.date@ from
         @ubl.download.url@</p>
       <p>Download of UBL Schematron rules on @build.date@ from
@@ -473,7 +473,7 @@
         @cii.version@</p>
       <p>Uses UN/CEFACT (SCRDM - CII uncoupled) version
         @cii.version@ XML Schema, Schematron rules from EN16931:2017,
-        and XRechnung Schematron rules version @xrechnung.version@ </p>
+        XRechnung @xrechnung.version@, and XRechnung CVD @xrechnung.cvd.version.major.minor@ </p>
       <p>Download of CII uncoupled XML Schema on @build.date@ from
         @cii.download.url@</p>
       <p>Download of CII Schematron rules on @build.date@ from
