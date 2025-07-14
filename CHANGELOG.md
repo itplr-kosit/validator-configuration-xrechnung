@@ -13,7 +13,7 @@ This release is compatible with XRechnung ?.?.?
 
 ### Added
 
-* Added custom level "error" for UBL-SR-646 in CVD UBL Invoice and UBL CreditNote scenarios to prohibit sub invoice lines in CVD
+* Added custom level "error" for UBL-CR-646 in CVD UBL Invoice and UBL CreditNote scenarios to prohibit sub invoice lines in CVD
 
 ## 2025-07-10
 
