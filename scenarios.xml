@@ -74,7 +74,7 @@
       <customLevel level="warning">BR-CL-23</customLevel>
       <!-- overwrites CEN severity level "fatal" for ISO 6523 values of BT-157 "Item standard identifier" scheme identifier -->
       <customLevel level="warning">BR-CL-21</customLevel>
-      <!-- overwrites CEN severity level "warning" for implementation of Sub Invoice Lines (BG-DEX-01) -->
+      <!-- overwrites CEN severity level "warning" to prevent Sub Invoice Lines (BG-DEX-01) -->
       <customLevel level="error">UBL-CR-646</customLevel>
     </createReport>
     <acceptMatch>/rep:report/rep:assessment[1]/rep:accept[1]</acceptMatch>
@@ -209,7 +209,7 @@
       <customLevel level="warning">BR-CL-23</customLevel>
       <!-- overwrites CEN severity level "fatal" for ISO 6523 values of BT-157 "Item standard identifier" scheme identifier -->
       <customLevel level="warning">BR-CL-21</customLevel>
-      <!-- overwrites CEN severity level "warning" for implementation of Sub Invoice Lines (BG-DEX-01) -->
+      <!-- overwrites CEN severity level "warning" to prevent Sub Invoice Lines (BG-DEX-01) -->
       <customLevel level="error">UBL-CR-646</customLevel>
     </createReport>
     <acceptMatch>/rep:report/rep:assessment[1]/rep:accept[1]</acceptMatch>
@@ -323,7 +323,7 @@
       <customLevel level="warning">BR-CL-23</customLevel>
       <!-- overwrites CEN severity level "fatal" for ISO 6523 values of BT-157 "Item standard identifier" scheme identifier -->
       <customLevel level="warning">BR-CL-21</customLevel>
-      <!-- overwrites CEN severity level "warning" for implementation of Sub Invoice Lines (BG-DEX-01) -->
+      <!-- overwrites CEN severity level "warning" to prevent Sub Invoice Lines (BG-DEX-01) -->
       <customLevel level="error">UBL-CR-646</customLevel>
     </createReport>
     <acceptMatch>/rep:report/rep:assessment[1]/rep:accept[1]</acceptMatch>
