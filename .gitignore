@@ -1,3 +1,5 @@
+.settings/
+bin/
 dist/
 build/
 lib/
