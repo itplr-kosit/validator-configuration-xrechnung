@@ -168,10 +168,10 @@
                 <ram:LineTotalAmount>314.86</ram:LineTotalAmount>
                 <!-- BT-109 -->
                 <ram:TaxBasisTotalAmount>314.86</ram:TaxBasisTotalAmount>
-                <?xmute mutator="identity" schematron-valid="cencii:BR-53" 
-                id="cii-BT-111-should-exist-if-bt-6-exists-2" description="cii BT-111 should exist if bt-6 exists" ?>   
-                <?xmute mutator="code" attribute="currencyID" values="EUR" schematron-invalid="cencii:BR-53" 
-                id="cii-BT-111-should-exist-if-bt-6-exists-3" description="cii BT-111 should exist if bt-6 exists" ?>            
+                <?xmute mutator="identity" schematron-valid="cencii:BR-53"
+                id="cii-BT-111-should-exist-if-bt-6-exists-2" description="cii BT-111 should exist if bt-6 exists" ?>
+                <?xmute mutator="code" attribute="currencyID" values="EUR" schematron-invalid="cencii:BR-53"
+                id="cii-BT-111-should-exist-if-bt-6-exists-3" description="cii BT-111 should exist if bt-6 exists" ?>
                 <!-- BT-110 or BT-111 -->
                 <ram:TaxTotalAmount currencyID="USD">22.04</ram:TaxTotalAmount>
                 <!-- BT-112 -->
