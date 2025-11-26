@@ -384,6 +384,8 @@
       <customLevel level="warning">BR-CL-23</customLevel>
       <!-- overwrites CEN severity level "fatal" for ISO 6523 values of BT-157 "Item standard identifier" scheme identifier -->
       <customLevel level="warning">BR-CL-21</customLevel>
+      <!-- overwrites CEN severity level "warning" to enforce correct cardinality of BT-147 "Item price discount" -->
+      <customLevel level="error">CII-SR-440</customLevel>
       <!-- overwrites CEN severity level "warning" to enforce correct cardinality of BT-9 "Payment due date" and BT-20 "Payment terms" -->
       <customLevel level="error">CII-SR-452</customLevel>
       <!-- overwrites CEN severity level "warning" to replace BR-DE-18a in CII -->
@@ -458,6 +460,8 @@
       <customLevel level="information">BR-CL-25</customLevel>
       <!-- overwrites CEN severity level "fatal" for ISO 6523 values of BT-71 scheme identifier to enable DIGA codes (BR-DEX-08) -->
       <customLevel level="information">BR-CL-26</customLevel>
+      <!-- overwrites CEN severity level "warning" to enforce correct cardinality of BT-147 "Item price discount" -->
+      <customLevel level="error">CII-SR-440</customLevel>
       <!-- overwrites CEN severity level "warning" to enforce correct cardinality of BT-9 "Payment due date" and BT-20 "Payment terms" -->
       <customLevel level="error">CII-SR-452</customLevel>
       <!-- overwrites CEN severity level "warning" to replace BR-DE-18a in CII -->
@@ -525,6 +529,8 @@
       <customLevel level="warning">BR-CL-23</customLevel>
       <!-- overwrites CEN severity level "fatal" for ISO 6523 values of BT-157 "Item standard identifier" scheme identifier -->
       <customLevel level="warning">BR-CL-21</customLevel>
+      <!-- overwrites CEN severity level "warning" to enforce correct cardinality of BT-147 "Item price discount" -->
+      <customLevel level="error">CII-SR-440</customLevel>
       <!-- overwrites CEN severity level "warning" to enforce correct cardinality of BT-9 "Payment due date" and BT-20 "Payment terms" -->
       <customLevel level="error">CII-SR-452</customLevel>
       <!-- overwrites CEN severity level "warning" to replace BR-DE-18a in CII -->
