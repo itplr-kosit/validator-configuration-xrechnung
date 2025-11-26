@@ -14,6 +14,7 @@ This release is compatible with XRechnung ?.?.?
 ### Added
 
 * Added custom level "error" for UBL-CR-646 in CVD UBL Invoice and UBL CreditNote scenarios to prohibit sub invoice lines in CVD
+* Using [CEN Schematron Rules 1.3.15](https://github.com/ConnectingEurope/eInvoicing-EN16931/releases/tag/validation-1.3.15)
 
 ## 2025-07-10
 
