@@ -3,10 +3,10 @@
         validator</description>
   <!-- set global default properties for this build -->
   
-  <property name="xsbi.abu.dir" location="${basedir}/_vendor/xsbi-0.1.0/abu" />
+  <property name="xsbi.dir" location="${basedir}/_vendor/xsbi-0.2.0-SNAPSHOT/abu" />
   
-  <import file="${xsbi.abu.dir}/abu-common.xml" />
-  <include file="${xsbi.abu.dir}/abu-saxon-provider.xml" />
+  <import file="${xsbi.dir}/abu-common.xml" />
+  <include file="${xsbi.dir}/abu-saxon-provider.xml" />
   
   <!-- main build directories -->
   <property name="src.dir" location="${basedir}/src" />
@@ -181,23 +181,20 @@
     </sequential>
   </macrodef>
 
-  <target name="init" description="Initializes build directory structure and ISO timestamp">
+  <target name="init" depends="abu-common.init" description="Initializes build directory structure and ISO timestamp">
     
     <!-- sets the property cen.master.target if version is set to master and the only downloads from master instaead of release.  -->
     <condition property="cen.master.target">
       <equals arg1="${cen.rules.version}" arg2="master" />
     </condition>
-    
+
     <!-- Create timestamps -->
     <tstamp>
       <format property="build.date" pattern="yyyy-MM-dd" />
     </tstamp>
     <echo>Build date: ${build.date}</echo>
     <!-- Create the build directory structure used by compile -->
-    <mkdir dir="${build.dir}" />
     <mkdir dir="${download.dir}" />
-    <mkdir dir="${lib.dir}" />
-    <mkdir dir="${dist.dir}" />
   </target>
 
   <target name="delete-saxon" depends="init" description="Remove downloaded Saxon-HE stuff">

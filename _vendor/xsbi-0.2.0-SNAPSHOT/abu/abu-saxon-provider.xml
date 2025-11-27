@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." name="abu-saxon-provider" default="provide-saxon">
+
+  <property name="saxon-he.major.version" value="12" />
+  <property name="saxon-he.minor.version" value="8" />
+
+  <property name="saxon-he.version"
+    value="${saxon-he.major.version}-${saxon-he.minor.version}" />
+
+  <!-- original name exmaple: saxon-he-12.8.jar -->
+  <property name="saxon-he.jar.name"
+    value="saxon-he-${saxon-he.major.version}.${saxon-he.minor.version}.jar" />
+
+  <property name="saxon-he.zip.name"
+    value="saxon${saxon-he.major.version}he.zip" />
+
+  <target name="init">
+    <echo message="Calling ${ant.project.name} init task (from ${ant.file})" />
+    <fail message="Required property download.dir not available">
+      <condition>
+        <not>
+          <isset property="download.dir" />
+        </not>
+      </condition>
+    </fail>
+    <fail message="Required property lib.dir not available">
+      <condition>
+        <not>
+          <isset property="lib.dir" />
+        </not>
+      </condition>
+    </fail>
+    <mkdir dir="${download.dir}" />
+    <mkdir dir="${lib.dir}" />
+  </target>
+
+
+  <target name="retrieve-saxon" depends="init"
+    description="Download Saxon-HE and add jar to lib dir">
+
+    <get
+      src="https://github.com/Saxonica/Saxon-HE/releases/download/SaxonHE-${saxon-he.version}/SaxonHE${saxon-he.version}J.zip"
+      dest="${download.dir}/${saxon-he.zip.name}" verbose="true"
+      skipexisting="true" usetimestamp="true" />
+
+  </target>
+
+
+
+  <target name="provide-saxon" depends="retrieve-saxon">
+    <echo
+      message="Extract ${saxon-he.jar.name} from ${download.dir}/${saxon-he.zip.name} into ${lib.dir}" />
+    <unzip src="${download.dir}/${saxon-he.zip.name}" dest="${lib.dir}">
+      <patternset>
+        <include name="${saxon-he.jar.name}" />
+      </patternset>
+      <flattenmapper />
+    </unzip>
+
+  </target>
+
+
+
+</project>
