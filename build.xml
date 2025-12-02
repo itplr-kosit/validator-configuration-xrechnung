@@ -631,7 +631,7 @@
     <target name="retrieve-xmute" depends="init" if="xmute.download.url.prefix">
         <property name="xmute.version.full" value="0.6" />
         <property name="xmute.jar" value="xml-mutate.jar" />
-        <get src="${xmute.download.url.prefix}/xml-mutate-${xmute.version.full}.jar"
+        <get src="${xmute.download.url.prefix}/target/xml-mutate-${xmute.version.full}.jar"
              dest="${lib.dir}/${xmute.jar}" verbose="true" skipexisting="false" usetimestamp="true" />
     </target>
 
