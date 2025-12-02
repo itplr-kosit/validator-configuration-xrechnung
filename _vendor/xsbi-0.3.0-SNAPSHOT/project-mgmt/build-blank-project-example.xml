@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." name="blank-project">
+
+   <property name="xsbi.dir" location="${basedir}/src/xsbi/abu" />
+ 
+<!--  <property name="xsbi.dir" location="${basedir}/../abu" />-->
+
+  <import file="${xsbi.dir}/abu-common.xml" />
+  <include file="${xsbi.dir}/abu-common-tasks.xml" />
+
+
+
+
+</project>

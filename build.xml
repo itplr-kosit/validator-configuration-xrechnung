@@ -3,7 +3,7 @@
         validator</description>
   <!-- set global default properties for this build -->
   
-  <property name="xsbi.dir" location="${basedir}/_vendor/xsbi-0.2.0-SNAPSHOT/abu" />
+  <property name="xsbi.dir" location="${basedir}/_vendor/xsbi-0.3.0-SNAPSHOT/abu" />
   
   <import file="${xsbi.dir}/abu-common.xml" />
   <include file="${xsbi.dir}/abu-saxon-provider.xml" />

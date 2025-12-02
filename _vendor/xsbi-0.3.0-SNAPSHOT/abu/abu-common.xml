@@ -110,15 +110,16 @@
       <property name="xsbi.full.name" value="xsbi-${xsbi.version}" />
       <property name="xsbi.zip.name" value="${xsbi.full.name}.zip" />
       <property name="xsbi.download.dir" value="${lib.dir}" />
-
+      <echo message="Try to access xsbi at @{src-dir}/${xsbi.zip.name}" />
       <makeurl file="@{src-dir}/${xsbi.zip.name}" property="xsbi.download.url"
         validate="true" />
       <mkdir dir="${xsbi.download.dir}" />
-      <get src="${xsbi.download.url}" dest="${xsbi.download.dir}" ignoreerrors="false"
-        maxtime="60" />
+      <echo message="downloading-xsbi from ${xsbi.download.url}" />
+      <get src="${xsbi.download.url}" dest="${xsbi.download.dir}"
+        ignoreerrors="false" maxtime="60" />
       <mkdir dir="@{dest}/${xsbi.full.name}" />
-      <unzip src="${xsbi.download.dir}/${xsbi.zip.name}" dest="@{dest}/${xsbi.full.name}"
-        overwrite="@{overwrite}" />
+      <unzip src="${xsbi.download.dir}/${xsbi.zip.name}"
+        dest="@{dest}/${xsbi.full.name}" overwrite="@{overwrite}" />
 
     </sequential>
   </macrodef>
