@@ -147,6 +147,7 @@
         destdir="@{workdir}" deleteonexit="@{deleteonexit}" />
 
         <!-- Download SchXslt skeletons -->
+        <!-- TODO In einen Schritt überführen (sollte mit schxslt möglich sein) -->
         <property name="schematron.schxslt.url" value="https://codeberg.org/SchXslt/schxslt/releases/download/v1.10.1/schxslt-1.10.1-xslt-only.zip" />
         <get src="${schematron.schxslt.url}" dest="${lib.dir}/schxslt.zip" verbose="true" skipexisting="true" usetimestamp="true" httpusecaches="true" />
         <unzip src="${lib.dir}/schxslt.zip" dest="${lib.dir}" />
@@ -628,7 +629,7 @@
   </target>
 
     <target name="retrieve-xmute" depends="init" if="xmute.download.url.prefix">
-        <property name="xmute.version.full" value="0.5" />
+        <property name="xmute.version.full" value="0.6" />
         <property name="xmute.jar" value="xml-mutate.jar" />
         <get src="${xmute.download.url.prefix}/xml-mutate-${xmute.version.full}.jar"
              dest="${lib.dir}/${xmute.jar}" verbose="true" skipexisting="false" usetimestamp="true" />
@@ -656,7 +657,6 @@
     description="Test for unexpected behaviour in CEN Schematron Rules">
     <echo>Generate and test instances with unexpected behaviour ...</echo>
     <java jar="${lib.dir}/${xmute.jar}" failonerror="true" fork="true" dir="${basedir}">
-
       <arg value="--schematron" />
       <arg value="xrubl=${resource.xsl.xr.ubl}" />
       <arg value="--schematron" />
