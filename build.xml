@@ -545,7 +545,6 @@
   </target>
 
   <target name="retrieve-xmute" depends="init">
-    <property name="xmute.download.url.prefix" value="file:///C:/Users/PeepoShy/IdeaProjects/xml-mutate" />
     <fail unless="xmute.download.url.prefix"
       message="Property xmute.download.url.prefix must exist for this target to work" />
     <property name="xmute.version.full" value="0.5" />

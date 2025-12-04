@@ -237,7 +237,7 @@
                 <ram:TypeCode>VAT</ram:TypeCode>
                 <ram:BasisAmount>0</ram:BasisAmount>
                 <ram:CategoryCode>E</ram:CategoryCode>
-                <ram:ExemptionReasonCode>vatex-eu-132-1a</ram:ExemptionReasonCode>
+                <ram:ExemptionReasonCode>VATEX-EU-132-1A</ram:ExemptionReasonCode>
                 <!-- only one BT-7 allowed -->
                 <!-- BT-7 -->
                 <?xmute mutator="identity"
