@@ -1,4 +1,4 @@
-<project name="xrechnung-validation-configuration" default="compile" basedir=".">
+<project name="xrechnung-validation-configuration" default="compile" basedir="." >
   <description>Build the XRechnung validation configuration for ITPLR-KoSIT
         validator</description>
   <!-- set global default properties for this build -->
@@ -95,6 +95,8 @@
   <property name="xr.testsuite.download.url.prefix"
     value="https://github.com/itplr-kosit/xrechnung-testsuite/releases/download" />
 
+  <property name="xmute.version.full" value="0.6" />
+  <property name="xmute.jar" value="xml-mutate-${xmute.version.full}.jar" />
 
   <!-- root/work directory where KoSIT validationtool expects Schema(s)-and trons -->
   <property name="repository.dir" location="${build.dir}" />
@@ -111,7 +113,6 @@
 
   <!-- Resource directories -->
   <property name="reports.schema.dir" location="${resource.dir}/xsd" />
-
 
   <property name="reports.dir" location="${build.dir}/reports" />
 
@@ -145,36 +146,36 @@
         deleteonexit="@{deleteonexit}" />
       <tempfile property="check-schematron.xsl" prefix="check-schematron" suffix=".xsl"
         destdir="@{workdir}" deleteonexit="@{deleteonexit}" />
-      <!-- Download schematron skeletons -->
-      <property name="schematron.skeleton.url"
-        value="https://raw.githubusercontent.com/Schematron/schematron/master/trunk/schematron/code" />
-      <get src="${schematron.skeleton.url}/iso_dsdl_include.xsl" dest="@{workdir}" verbose="true"
-        skipexisting="true" usetimestamp="true" httpusecaches="true" />
-      <get src="${schematron.skeleton.url}/iso_abstract_expand.xsl" dest="@{workdir}" verbose="true"
-        skipexisting="true" usetimestamp="true" httpusecaches="true" />
-      <get src="${schematron.skeleton.url}/iso_svrl_for_@{schematronbinding}.xsl" dest="@{workdir}"
-        verbose="true" skipexisting="true" usetimestamp="true" httpusecaches="true" />
-      <get src="${schematron.skeleton.url}/iso_schematron_skeleton_for_saxon.xsl" dest="@{workdir}"
-        verbose="true" skipexisting="true" usetimestamp="true" httpusecaches="true" />
-      <!-- expand inclusions -->
-      <xslt style="@{workdir}/iso_dsdl_include.xsl" in="@{schematron}"
-        out="@{workdir}/${schematron.basename}-expanded.sch" classpath="@{saxon.jar}">
-        <factory name="net.sf.saxon.TransformerFactoryImpl" />
-      </xslt>
-      <!-- expand abstract patterns -->
-      <xslt style="@{workdir}/iso_abstract_expand.xsl"
-        in="@{workdir}/${schematron.basename}-expanded.sch"
-        out="@{workdir}/${schematron.basename}-unabstract.sch" classpath="@{saxon.jar}">
-        <factory name="net.sf.saxon.TransformerFactoryImpl" />
-      </xslt>
-      <!-- svrl it -->
-      <xslt style="@{workdir}/iso_svrl_for_@{schematronbinding}.xsl"
-        in="@{workdir}/${schematron.basename}-unabstract.sch"
-        out="@{outdir}/${schematron.basename}.xslt" classpath="@{saxon.jar}">
-        <factory name="net.sf.saxon.TransformerFactoryImpl" />
-        <param name="generate-fired-rule" expression="false" />
-        <param name="full-path-notation" expression="3" />
-      </xslt>
+
+        <!-- Download SchXslt skeletons -->
+        <!-- TODO In einen Schritt überführen (sollte mit schxslt möglich sein) -->
+        <property name="schematron.schxslt.url" value="https://codeberg.org/SchXslt/schxslt/releases/download/v1.10.1/schxslt-1.10.1-xslt-only.zip" />
+        <get src="${schematron.schxslt.url}" dest="${lib.dir}/schxslt.zip" verbose="true" skipexisting="true" usetimestamp="true" httpusecaches="true" />
+        <unzip src="${lib.dir}/schxslt.zip" dest="${lib.dir}" />
+        <delete file="${lib.dir}/schxslt.zip" verbose="true" />
+
+        <xslt in="@{schematron}"
+              style="${lib.dir}/schxslt-1.10.1/2.0/include.xsl"
+              out="@{outdir}/${schematron.basename}-includes.sch"
+              classpath="@{saxon.jar}">
+            <factory name="net.sf.saxon.TransformerFactoryImpl" />
+        </xslt>
+
+        <xslt in="@{outdir}/${schematron.basename}-includes.sch"
+              style="${lib.dir}/schxslt-1.10.1/2.0/expand.xsl"
+              out="@{outdir}/${schematron.basename}-expanded.sch"
+              classpath="@{saxon.jar}">
+            <factory name="net.sf.saxon.TransformerFactoryImpl" />
+        </xslt>
+
+        <xslt in="@{outdir}/${schematron.basename}-expanded.sch"
+              style="${lib.dir}/schxslt-1.10.1/2.0/compile-for-svrl.xsl"
+              out="@{outdir}/${schematron.basename}.xslt"
+              classpath="@{saxon.jar}">
+            <factory name="net.sf.saxon.TransformerFactoryImpl" />
+            <param name="generate-fired-rule" expression="false" />
+            <param name="full-path-notation" expression="3" />
+        </xslt>
       <echo message="finished schematron compile output to @{outdir}/${schematron.basename}.xslt" />
     </sequential>
   </macrodef>
@@ -184,6 +185,10 @@
     <!-- sets the property cen.master.target if version is set to master and the only downloads from master instaead of release.  -->
     <condition property="cen.master.target">
       <equals arg1="${cen.rules.version}" arg2="master" />
+    </condition>
+    
+    <condition property="xmute.jar.available">
+      <available file="${lib.dir}/${xmute.jar}"/>
     </condition>
     
     <!-- Create timestamps -->
@@ -263,12 +268,8 @@
     </unzip>
   </target>
 
-
-
   <property name="xr.testsuite.zip"
     value="xrechnung-${xrechnung.version}-testsuite-${xr.testsuite.version}.zip" />
-
-
 
   <target name="retrieve-xr-testsuite-from-local-build" depends="init"
     if="develop.local.xr.testsuite">
@@ -283,7 +284,6 @@
       src="${xr.testsuite.download.url.prefix}/release-${xr.testsuite.version}/${xr.testsuite.zip}"
       dest="${download.dir}" verbose="true" skipexisting="true" usetimestamp="true" />
   </target>
-
 
   <target name="retrieve-xr-testsuite"
     depends="init-test, retrieve-xr-testsuite-from-local-build, retrieve-xr-testsuite-from-github-release">
@@ -397,16 +397,30 @@
 
 
   <target name="provide-xrechnung-schematron"
-    depends="init, retrieve-xrechnung-schematron-from-local-build, retrieve-xrechnung-schematron-from-github-release"
-    description="Retrieve and prepare XRechnung Schemtaron">
-    <!-- Prepare XRechnung Schematron -->
+    depends="init, retrieve-xrechnung-schematron-from-local-build, retrieve-xrechnung-schematron-from-github-release, prepare-saxon"
+    description="Retrieve and prepare XRechnung Schematron with static rule IDs">
+    <!-- Extract pre-compiled XRechnung Schematron XSL files -->
     <unzip src="${download.dir}/${xr.schematron.zip}"
-      dest="${resource.dir}/xrechnung/${xrechnung.version}/xsl">
+      dest="${download.dir}/xrechnung-schematron">
       <patternset>
         <include name="**/XRechnung*.xsl" />
       </patternset>
-      <flattenmapper />
     </unzip>
+    
+    <!-- Convert dynamic id attributes to static for xml-mutate compatibility -->
+    <xslt in="${download.dir}/xrechnung-schematron/schematron/ubl/XRechnung-UBL-validation.xsl"
+          out="${resource.xsl.xr.ubl}"
+          style="${src.dir}/convert-dynamic-id-to-static.xsl">
+      <classpath location="${lib.dir}/${saxon.jar}" />
+      <factory name="net.sf.saxon.TransformerFactoryImpl" />
+    </xslt>
+    
+    <xslt in="${download.dir}/xrechnung-schematron/schematron/cii/XRechnung-CII-validation.xsl"
+          out="${resource.xsl.xr.cii}"
+          style="${src.dir}/convert-dynamic-id-to-static.xsl">
+      <classpath location="${lib.dir}/${saxon.jar}" />
+      <factory name="net.sf.saxon.TransformerFactoryImpl" />
+    </xslt>
 
   </target>
 
@@ -618,19 +632,16 @@
       <arg value="${test.docs.custom.dir}"/>
     </java>
   </target>
-
-  <target name="retrieve-xmute" depends="init">
-    <property name="xmute.download.url.prefix" value="file:///C:/Users/PeepoShy/IdeaProjects/xml-mutate" />
-    <fail unless="xmute.download.url.prefix"
-      message="Property xmute.download.url.prefix must exist for this target to work" />
-    <property name="xmute.version.full" value="0.5" />
-    <property name="xmute.jar" value="xml-mutate.jar" />
-    <get src="${xmute.download.url.prefix}/target/xml-mutate-${xmute.version.full}.jar"
-      dest="${lib.dir}/${xmute.jar}" verbose="true" skipexisting="false" usetimestamp="true" />
-  </target>
+  
+    <target name="retrieve-xmute" depends="init" unless="xmute.jar.available">
+      <fail unless="xmute.download.url.prefix"
+        message="Property xmute.download.url.prefix must exist for this target to work" />
+      <get src="${xmute.download.url.prefix}/target/xml-mutate-${xmute.version.full}.jar"
+             dest="${lib.dir}/${xmute.jar}" verbose="true" skipexisting="false" usetimestamp="true" />
+    </target>
 
   <target name="test-cen-expected-behaviour" depends="compile, init-test, retrieve-xmute"
-    description="Test Schematron Rules with XML-Mutate" if="xmute.download.url.prefix">
+    description="Test Schematron Rules with XML-Mutate">
     <echo>Generate and test instances with expected behaviour ...</echo>
     <java jar="${lib.dir}/${xmute.jar}" failonerror="true" fork="true" dir="${basedir}">
       <arg value="--schematron" />
@@ -651,7 +662,6 @@
     description="Test for unexpected behaviour in CEN Schematron Rules">
     <echo>Generate and test instances with unexpected behaviour ...</echo>
     <java jar="${lib.dir}/${xmute.jar}" failonerror="true" fork="true" dir="${basedir}">
-
       <arg value="--schematron" />
       <arg value="xrubl=${resource.xsl.xr.ubl}" />
       <arg value="--schematron" />
@@ -719,7 +729,11 @@
     <!-- Delete the ${build} and ${dist} directory trees -->
     <delete dir="${build.dir}" verbose="true" includeEmptyDirs="true" />
     <delete dir="${dist.dir}" />
-    <delete dir="${lib.dir}" />
-    <delete dir="${reports.dir}" />
   </target>
+  
+  <target name="clean-lib">
+    <delete dir="${lib.dir}" />
+  </target>
+  
+  <target name="clean-all" depends="clean,clean-lib" />
 </project>
