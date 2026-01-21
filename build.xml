@@ -724,7 +724,11 @@
     <!-- Delete the ${build} and ${dist} directory trees -->
     <delete dir="${build.dir}" verbose="true" includeEmptyDirs="true" />
     <delete dir="${dist.dir}" />
-    <delete dir="${lib.dir}" />
-    <delete dir="${reports.dir}" />
   </target>
+  
+  <target name="clean-lib">
+    <delete dir="${lib.dir}" />
+  </target>
+  
+  <target name="clean-all" depends="clean,clean-lib" />
 </project>
