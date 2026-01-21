@@ -1,4 +1,4 @@
-<project name="xrechnung-validation-configuration" default="compile" basedir="." xmlns:if="ant:if" xmlns:unless="ant:unless">
+<project name="xrechnung-validation-configuration" default="compile" basedir="." >
   <description>Build the XRechnung validation configuration for ITPLR-KoSIT
         validator</description>
   <!-- set global default properties for this build -->
