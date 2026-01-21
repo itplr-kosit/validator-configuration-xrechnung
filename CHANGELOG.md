@@ -17,7 +17,9 @@ This release is compatible with XRechnung ?.?.?
 
 ### Changed
 
+* Using [KoSIT Validator v1.6.0](https://github.com/itplr-kosit/validator/releases/tag/v1.6.0)
 * Using [CEN Schematron Rules 1.3.15](https://github.com/ConnectingEurope/eInvoicing-EN16931/releases/tag/validation-1.3.15)
+* Using [Schxslt 1.10.1](https://codeberg.org/SchXslt/schxslt/releases/tag/v1.10.1)
 
 ## 2025-07-10
 
