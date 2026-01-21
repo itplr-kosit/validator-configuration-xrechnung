@@ -1,4 +1,4 @@
-<project name="xrechnung-validation-configuration" default="compile" basedir=".">
+<project name="xrechnung-validation-configuration" default="compile" basedir="." xmlns:if="ant:if" xmlns:unless="ant:unless">
   <description>Build the XRechnung validation configuration for ITPLR-KoSIT
         validator</description>
   <!-- set global default properties for this build -->
@@ -95,6 +95,8 @@
   <property name="xr.testsuite.download.url.prefix"
     value="https://github.com/itplr-kosit/xrechnung-testsuite/releases/download" />
 
+  <property name="xmute.version.full" value="0.6" />
+  <property name="xmute.jar" value="xml-mutate-${xmute.version.full}.jar" />
 
   <!-- root/work directory where KoSIT validationtool expects Schema(s)-and trons -->
   <property name="repository.dir" location="${build.dir}" />
@@ -111,7 +113,6 @@
 
   <!-- Resource directories -->
   <property name="reports.schema.dir" location="${resource.dir}/xsd" />
-
 
   <property name="reports.dir" location="${build.dir}/reports" />
 
@@ -184,6 +185,10 @@
     <!-- sets the property cen.master.target if version is set to master and the only downloads from master instaead of release.  -->
     <condition property="cen.master.target">
       <equals arg1="${cen.rules.version}" arg2="master" />
+    </condition>
+    
+    <condition property="xmute.jar.available">
+      <available file="${lib.dir}/${xmute.jar}"/>
     </condition>
     
     <!-- Create timestamps -->
@@ -627,16 +632,16 @@
       <arg value="${test.docs.custom.dir}"/>
     </java>
   </target>
-
-    <target name="retrieve-xmute" depends="init" if="xmute.download.url.prefix">
-        <property name="xmute.version.full" value="0.6" />
-        <property name="xmute.jar" value="xml-mutate.jar" />
-        <get src="${xmute.download.url.prefix}/target/xml-mutate-${xmute.version.full}.jar"
+  
+    <target name="retrieve-xmute" depends="init" unless="xmute.jar.available">
+      <fail unless="xmute.download.url.prefix"
+        message="Property xmute.download.url.prefix must exist for this target to work" />
+      <get src="${xmute.download.url.prefix}/target/xml-mutate-${xmute.version.full}.jar"
              dest="${lib.dir}/${xmute.jar}" verbose="true" skipexisting="false" usetimestamp="true" />
     </target>
 
   <target name="test-cen-expected-behaviour" depends="compile, init-test, retrieve-xmute"
-    description="Test Schematron Rules with XML-Mutate" if="xmute.download.url.prefix">
+    description="Test Schematron Rules with XML-Mutate">
     <echo>Generate and test instances with expected behaviour ...</echo>
     <java jar="${lib.dir}/${xmute.jar}" failonerror="true" fork="true" dir="${basedir}">
       <arg value="--schematron" />
