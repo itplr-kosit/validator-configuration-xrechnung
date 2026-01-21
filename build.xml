@@ -36,14 +36,14 @@
     value="validator-configuration-xrechnung_${xrechnung.version}_${validator.configuration.version.full}.zip" />
   <!-- 3rd party resources -->
   <!-- KoSIT XML Validator -->
-  <property name="validator.version" value="1.5.0" />
+  <property name="validator.version" value="1.6.0" />
   <property name="validator.download.url.prefix"
     value="https://github.com/itplr-kosit/validator/releases/download" />
     
-  <property name="validator.zip" value="validator-${validator.version}-distribution.zip" />
+  <property name="validator.zip" value="validator-${validator.version}.zip" />
   
   <!-- Pick by default the standalone distribution -->  
-  <property name="validator.jar" value="validationtool-${validator.version}-standalone.jar" />
+  <property name="validator.jar" value="validator-${validator.version}-standalone.jar" />
 
   <!-- Part of the download path -->
   <property name="saxon.url.version" value="9.9" />
