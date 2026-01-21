@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 This release is compatible with XRechnung ?.?.?
 
+### Added
+
+* Added custom level "error" for UBL-CR-646 in CVD UBL Invoice and UBL CreditNote scenarios to prohibit sub invoice lines in CVD
+
 ### Changed
 
 * Using [Schxslt 1.10.1](https://codeberg.org/SchXslt/schxslt/releases/tag/v1.10.1)
