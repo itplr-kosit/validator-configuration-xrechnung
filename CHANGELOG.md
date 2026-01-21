@@ -15,6 +15,10 @@ This release is compatible with XRechnung ?.?.?
 
 * Added custom level "error" for UBL-CR-646 in CVD UBL Invoice and UBL CreditNote scenarios to prohibit sub invoice lines in CVD
 
+### Changed
+
+* Using [Schxslt 1.10.1](https://codeberg.org/SchXslt/schxslt/releases/tag/v1.10.1)
+
 ## 2025-07-10
 
 This release is compatible with XRechnung 3.0.x
