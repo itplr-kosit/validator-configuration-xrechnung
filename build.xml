@@ -60,7 +60,7 @@
     value="https://projekte.kosit.org/api/v4/projects/356/packages/maven/de/xeinkauf/${cii.schema.artifact.id}/${cii.version}/${cii.schema.zip}" />
   <property name="ubl.version" value="2.1" />
   <property name="ubl.download.url.prefix"
-    value="http://docs.oasis-open.org/ubl/os-UBL-${ubl.version}" />
+    value="https://docs.oasis-open.org/ubl/os-UBL-${ubl.version}" />
   <property name="ubl.schema.zip" value="UBL-${ubl.version}.zip" />
 
   <property name="ubl.download.url"
