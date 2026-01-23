@@ -3,6 +3,7 @@ build/
 lib/
 reports/
 test-reports/
+download/
 
 # configuration files
 .ant-targets-build.xml
