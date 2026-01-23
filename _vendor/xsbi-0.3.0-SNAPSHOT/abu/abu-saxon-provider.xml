@@ -76,7 +76,21 @@
     </unzip>
     <echo message="classpath for ${lib.dir}/${saxon-he.jar.name}" />
     <!-- this classpath should work after execution of provide-saxon -->
-
+    <available-saxon/>
 
   </target>
+  
+  <macrodef name="available-saxon">
+    
+    <sequential>
+      <!-- logic to maybe verify that all is good -->
+      <property name="saxon.available" value="true" />
+    </sequential>
+  </macrodef>
+  
+  <target name="delete-saxon" depends="init" description="Remove downloaded Saxon-HE stuff">
+    <delete file="${download.dir}/SaxonHE${saxon.file.version}.zip" />
+    <delete file="${lib.dir}/${saxon.jar}" />
+  </target>
+
 </project>
