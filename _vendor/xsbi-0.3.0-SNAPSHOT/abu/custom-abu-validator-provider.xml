@@ -59,8 +59,15 @@
   
   
   <target name="retrieve-validator"
-    depends="init, retrieve-validator-from-local-build, retrieve-validator-from-github-release">
-    <!-- add check something was downloaded -->
+    depends="retrieve-validator-from-local-build, retrieve-validator-from-github-release">
+
+    <fail message="validator.zip not available">
+      <condition>
+        <not>
+          <available file="${download.dir}/${validator.zip}" />
+        </not>
+      </condition>
+    </fail>
   </target>
 
   <target name="provide-validator" depends="init, retrieve-validator"
