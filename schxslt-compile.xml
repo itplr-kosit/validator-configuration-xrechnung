@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="schxslt-compile-abu" basedir="." xmlns:if="ant:if" xmlns:unless="ant:unless">
+  <description>
+    Ant Build Unit (ABU) for compiling Schematron files to XSLT using SchXslt.
+    Optimized for performance with up-to-date checks and conditional execution.
+  </description>
+
+  <property name="schxslt.version" value="1.10.1" />
+  <property name="schxslt.url" value="https://codeberg.org/SchXslt/schxslt/releases/download/v${schxslt.version}/schxslt-${schxslt.version}-xslt-only.zip" />
+  
+  <target name="check-schxslt-available">
+    <available file="${lib.dir}/schxslt-${schxslt.version}/2.0/compile-for-svrl.xsl" 
+               property="schxslt.available" />
+  </target>
+
+  <target name="download-schxslt" depends="check-schxslt-available" unless="schxslt.available"
+          description="Download SchXslt transformation stylesheets if not already present">
+    <echo message="Downloading SchXslt ${schxslt.version}..." />
+    <get src="${schxslt.url}" 
+         dest="${lib.dir}/schxslt.zip" 
+         verbose="true" 
+         skipexisting="false" 
+         usetimestamp="true" 
+         httpusecaches="true" />
+    <unzip src="${lib.dir}/schxslt.zip" dest="${lib.dir}" />
+    <delete file="${lib.dir}/schxslt.zip" verbose="false" />
+    <echo message="SchXslt ${schxslt.version} downloaded and extracted." />
+  </target>
+
+  <target name="schxslt-compile" depends="download-schxslt"
+          description="Compile Schematron to XSLT using SchXslt pipeline">
+    
+    <fail unless="schematron.input" message="Property 'schematron.input' must be set" />
+    <fail unless="xslt.output" message="Property 'xslt.output' must be set" />
+    
+    <local name="compile.needed" />
+    <property name="saxon.jar.path" value="${lib.dir}/${saxon.jar}" />
+    
+    <uptodate property="compile.uptodate" targetfile="${xslt.output}">
+      <srcfiles file="${schematron.input}" />
+    </uptodate>
+    
+    <condition property="compile.needed">
+      <not>
+        <isset property="compile.uptodate" />
+      </not>
+    </condition>
+    
+    <sequential if:set="compile.needed">
+      <echo message="Compiling '${schematron.input}' to '${xslt.output}'..." />
+      
+      <xslt in="${schematron.input}"
+            style="${lib.dir}/schxslt-${schxslt.version}/2.0/pipeline-for-svrl.xsl"
+            out="${xslt.output}"
+            classpath="${saxon.jar.path}">
+        <factory name="net.sf.saxon.TransformerFactoryImpl" />
+        <param name="generate-fired-rule" expression="false" />
+        <param name="full-path-notation" expression="3" />
+      </xslt>
+      
+      <echo message="Compilation complete: ${xslt.output}" />
+    </sequential>
+    
+    <echo if:set="compile.uptodate" message="Skipping compilation - '${xslt.output}' is up-to-date" />
+  </target>
+
+  <macrodef name="compile-schematron" 
+            description="Macro wrapper for compiling a single Schematron file">
+    <attribute name="schematron" description="Input Schematron file (.sch)" />
+    <attribute name="outdir" description="Output directory for compiled XSLT" />
+    <attribute name="workdir" description="Deprecated - no longer needed with pipeline approach" />
+    <attribute name="insuffix" default="sch" description="Input file suffix" />
+    <attribute name="saxon.jar" default="${lib.dir}/${saxon.jar}" description="Path to Saxon JAR" />
+    
+    <sequential>
+      <local name="basename.local" />
+      <basename file="@{schematron}" suffix="@{insuffix}" property="basename.local" />
+      
+      <antcall target="schxslt-compile">
+        <param name="schematron.input" value="@{schematron}" />
+        <param name="xslt.output" value="@{outdir}/${basename.local}.xslt" />
+        <param name="saxon.jar" value="@{saxon.jar}" />
+      </antcall>
+    </sequential>
+  </macrodef>
+
+</project>
