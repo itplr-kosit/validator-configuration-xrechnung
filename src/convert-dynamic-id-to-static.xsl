@@ -13,7 +13,7 @@
     <xsl:template match="svrl:failed-assert[xsl:attribute[@name='id']] | svrl:successful-report[xsl:attribute[@name='id']]">
         <xsl:copy><xsl:attribute name="id">
                 <xsl:value-of select="xsl:attribute[@name='id']"/>
-        </xsl:attribute>
+            </xsl:attribute>
             <xsl:apply-templates select="@*"/>
             <xsl:apply-templates select="node()[not(self::xsl:attribute[@name='id'])]"/>
         </xsl:copy>
