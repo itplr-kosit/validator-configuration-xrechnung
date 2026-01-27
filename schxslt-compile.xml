@@ -27,7 +27,7 @@
     <echo message="SchXslt ${schxslt.version} downloaded and extracted." />
   </target>
 
-  <target name="schxslt-compile" depends="download-schxslt"
+  <target name="schematron-compile-schxslt" depends="download-schxslt"
           description="Compile Schematron to XSLT using SchXslt pipeline">
     
     <fail unless="schematron.input" message="Property 'schematron.input' must be set" />
@@ -76,7 +76,7 @@
       <local name="basename.local" />
       <basename file="@{schematron}" suffix="@{insuffix}" property="basename.local" />
       
-      <antcall target="schxslt-compile">
+      <antcall target="schematron-compile-schxslt">
         <param name="schematron.input" value="@{schematron}" />
         <param name="xslt.output" value="@{outdir}/${basename.local}.xslt" />
         <param name="saxon.jar" value="@{saxon.jar}" />
