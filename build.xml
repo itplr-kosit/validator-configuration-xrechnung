@@ -1,4 +1,4 @@
-<project name="xrechnung-validation-configuration" default="compile" basedir=".">
+<project name="xrechnung-validation-configuration" default="compile" basedir="." >
   <description>Build the XRechnung validation configuration for ITPLR-KoSIT
         validator</description>
   <!-- set global default properties for this build -->
@@ -43,6 +43,7 @@
   <property name="dist.name"
     value="validator-configuration-xrechnung_${xrechnung.version}_${validator.configuration.version.full}.zip" />
   <!-- 3rd party resources -->
+
   <property name="cii.version" value="D16B" />
   <property name="cii.schema.artifact.id" value="D16B_SCRDM__Subset__CII" />
   <property name="cii.schema.zip" value="${cii.schema.artifact.id}-${cii.version}.zip" />
@@ -110,6 +111,65 @@
   <macrodef name="xslt-saxon">
     <sequential>
       <fail message="Not implemented yet" />
+    </sequential>
+  </macrodef>
+
+  <macrodef name="schematron-compile" description="Compiles Schematron to XSLT using Saxon">
+    <attribute name="schematron" description="Schematron file to compile." />
+    <attribute name="workdir"
+      description="Base directory in which to download Schematron Skeleton and keep intermediaries." />
+    <attribute name="outdir" />
+    <attribute name="insuffix" default="sch" />
+    <attribute name="saxon.jar" default="${lib.dir}/${saxon.jar}"
+      description="Location of Saxon jar." />
+    <attribute name="deleteonexit" default="true"
+      description="Whether to delete intermediate XSLT files on exit. Note if not deleting, then subsequent runs of macro produce wrong results!" />
+    <attribute name="schematronbinding" default="xslt2"
+      description="Which XSLT version to build for." />
+    <sequential>
+      <local name="schematron.basename" />
+      <basename file="@{schematron}" suffix="@{insuffix}" property="schematron.basename" />
+      <echo message="Compiling '@{schematron}' Schematron with basename='${schematron.basename}'" />
+      <mkdir dir="@{workdir}" />
+      <tempfile property="expanded.sch" prefix="expanded" suffix=".sch" destdir="@{workdir}"
+        deleteonexit="@{deleteonexit}" />
+      <tempfile property="unabstract.sch" prefix="unabstract" suffix=".sch" destdir="@{workdir}"
+        deleteonexit="@{deleteonexit}" />
+      <tempfile property="schematron.xsl" prefix="schematron" suffix=".xsl" destdir="@{workdir}"
+        deleteonexit="@{deleteonexit}" />
+      <tempfile property="check-schematron.xsl" prefix="check-schematron" suffix=".xsl"
+        destdir="@{workdir}" deleteonexit="@{deleteonexit}" />
+
+        <!-- Download SchXslt skeletons -->
+        <!-- TODO In einen Schritt überführen (sollte mit schxslt möglich sein) -->
+        <property name="schematron.schxslt.url" value="https://codeberg.org/SchXslt/schxslt/releases/download/v1.10.1/schxslt-1.10.1-xslt-only.zip" />
+        <get src="${schematron.schxslt.url}" dest="${lib.dir}/schxslt.zip" verbose="true" skipexisting="true" usetimestamp="true" httpusecaches="true" />
+        <unzip src="${lib.dir}/schxslt.zip" dest="${lib.dir}" />
+        <delete file="${lib.dir}/schxslt.zip" verbose="true" />
+
+        <xslt in="@{schematron}"
+              style="${lib.dir}/schxslt-1.10.1/2.0/include.xsl"
+              out="@{outdir}/${schematron.basename}-includes.sch"
+              classpath="@{saxon.jar}">
+            <factory name="net.sf.saxon.TransformerFactoryImpl" />
+        </xslt>
+
+        <xslt in="@{outdir}/${schematron.basename}-includes.sch"
+              style="${lib.dir}/schxslt-1.10.1/2.0/expand.xsl"
+              out="@{outdir}/${schematron.basename}-expanded.sch"
+              classpath="@{saxon.jar}">
+            <factory name="net.sf.saxon.TransformerFactoryImpl" />
+        </xslt>
+
+        <xslt in="@{outdir}/${schematron.basename}-expanded.sch"
+              style="${lib.dir}/schxslt-1.10.1/2.0/compile-for-svrl.xsl"
+              out="@{outdir}/${schematron.basename}.xslt"
+              classpath="@{saxon.jar}">
+            <factory name="net.sf.saxon.TransformerFactoryImpl" />
+            <param name="generate-fired-rule" expression="false" />
+            <param name="full-path-notation" expression="3" />
+        </xslt>
+      <echo message="finished schematron compile output to @{outdir}/${schematron.basename}.xslt" />
     </sequential>
   </macrodef>
 
