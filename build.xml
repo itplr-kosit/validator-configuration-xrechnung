@@ -7,7 +7,7 @@
   
   <import file="${xsbi.dir}/abu-common.xml" />
   <include file="${xsbi.dir}/abu-saxon-provider.xml" />
-  <include file="${xsbi.dir}/custom-abu-validator-provider.xml" />
+  <include file="${xsbi.dir}/abu-validator-provider.xml" />
   <include file="${xsbi.dir}/custom-abu-schxslt.xml" />
 
   <!-- main build directories -->
@@ -133,12 +133,11 @@
     <mkdir dir="${download.dir}" />
   </target>
 
-
   <target name="prepare-saxon" depends="abu-saxon-provider.provide-saxon" />
 
   <target name="abu-saxon-provider.delete-saxon" />
 
-  <target name="provide-validator" depends="custom-abu-validator-provider.provide-validator" />
+  <target name="provide-validator" depends="abu-validator-provider.provide-validator" />
 
   <property name="xr.testsuite.zip"
     value="xrechnung-${xrechnung.version}-testsuite-${xr.testsuite.version}.zip" />
@@ -316,7 +315,7 @@
     depends="retrieve-ubl-schema,retrieve-cen-rules,provide-xrechnung-schematron,retrieve-cii-schema"
     description="Retrieve and prepare all 3rd party XSDs and XSLTs" />
   
-  <target name="compile-cen-rules-only" description="Works for zip from master and release zips">
+  <target name="compile-cen-rules-only" depends="abu-saxon-provider.provide-saxon" description="Works for zip from master and release zips">
     
     <schematron-compile-schxslt schematron="${download.dir}/schematron/EN16931-UBL-validation.sch"
       insuffix="sch" workdir="${build.dir}/schematron" outdir="${build.dir}" />
@@ -336,7 +335,7 @@
     </xslt>
   </target>
 
-  <target name="compile-cen-rules" depends="retrieve-cen-rules,prepare-saxon,compile-cen-rules-only"
+  <target name="compile-cen-rules" depends="retrieve-cen-rules,compile-cen-rules-only"
     description="Works for zip from master and release zips"/>
 
 

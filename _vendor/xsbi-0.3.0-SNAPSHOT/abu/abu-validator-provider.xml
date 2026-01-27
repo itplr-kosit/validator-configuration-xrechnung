@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project basedir="." name="custom-abu-validator-provider" default="provide-validator">
+<project basedir="." name="abu-validator-provider" default="provide-validator">
 
   <!-- 
   Provides Validator dependency either from most mature release destination 
@@ -59,8 +59,7 @@
   
   
   <target name="retrieve-validator"
-    depends="retrieve-validator-from-local-build, retrieve-validator-from-github-release">
-
+    depends="init, retrieve-validator-from-local-build, retrieve-validator-from-github-release">
     <fail message="validator.zip not available">
       <condition>
         <not>
