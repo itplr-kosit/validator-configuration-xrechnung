@@ -12,8 +12,8 @@
    <property name="test.src.dir" location="${src.dir}/test" />
    <property name="test.build.dir" location="${build.dir}/test" />
 
-   <import file="../xs-build-infrastructure/src/main/abu/abu-saxon-provider.xml"/>
-   <import file="../xs-build-infrastructure/src/main/abu/abu-schematron-schxslt.xml"/>
+   <import file="${basedir}/xs-build-infrastructure/src/main/abu/abu-saxon-provider.xml"/>
+   <import file="${basedir}/xs-build-infrastructure/src/main/abu/abu-schematron-schxslt.xml"/>
 
    <property name="test.docs.custom.dir" location="${test.src.dir}/custom"></property>
    <property name="test.docs.dir" location="${test.build.dir}" />
