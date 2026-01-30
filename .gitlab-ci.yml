@@ -9,7 +9,6 @@ stages:
   - publish
 
 variables:
-  GIT_SUBMODULE_STRATEGY: recursive
   XSE_COMPONENT_PROJECT_ID: "356"
   XSE_COMPONENT_PACKAGE_REGISTRY_URL_PREFIX: "${CI_API_V4_URL}/projects/${XSE_COMPONENT_PROJECT_ID}/packages/maven"
 

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." name="abu-schematron-schxslt" default="provide-schxslt">
+
+  <description>
+    Ant Build Unit (ABU) for compiling Schematron files to XSLT using SchXslt.
+    </description>
+
+  <property name="schxslt.version" value="1.10.1" />
+  <property name="schxslt.url"
+    value="https://codeberg.org/SchXslt/schxslt/releases/download/v${schxslt.version}/schxslt-${schxslt.version}-xslt-only.zip" />
+
+  <target name="init">
+    <available
+      file="${lib.dir}/schxslt-${schxslt.version}/2.0/compile-for-svrl.xsl"
+      property="schxslt.available" />
+  </target>
+
+  <target name="provide-schxslt" depends="init" unless="schxslt.available"
+    description="Download SchXslt transformation stylesheets if not already present">
+    <echo message="Downloading SchXslt ${schxslt.version}..." />
+    <get src="${schxslt.url}" dest="${lib.dir}/schxslt.zip" verbose="true"
+      skipexisting="false" usetimestamp="true" httpusecaches="true" />
+    <unzip src="${lib.dir}/schxslt.zip" dest="${lib.dir}" />
+
+    <echo message="SchXslt ${schxslt.version} downloaded and extracted." />
+  </target>
+
+  <macrodef name="derive-xslt-filename">
+    <attribute name="schematron" description="Input Schematron file (.sch)" />
+    <attribute name="insuffix" default="sch" description="Input file suffix" />
+<!--    <attribute name="outsuffix" default="xsl" description="Output file suffix" />-->
+<!--      <local name="xslt.legacy.output.file" />
+      <local name="create.legacy.alias" />
+-->
+<!--      <property name="xslt.legacy.output.file"
+        value="@{outdir}/${schematron.basename}.xslt" />
+      <condition property="create.legacy.alias">
+        <not>
+          <equals arg1="@{outsuffix}" arg2="xslt" />
+        </not>
+      </condition>
+-->    <attribute name="property" default="xslt.output.file"
+      description="Property name with derived XSLT filename as value" />
+
+    <sequential>
+
+      <basename file="@{schematron}" suffix="@{insuffix}"
+        property="schematron.basename" />
+      <property name="xslt.output.file" value="${schematron.basename}.xsl" />
+    </sequential>
+  </macrodef>
+
+  <macrodef name="schematron-compile-schxslt"
+    description="Compile Schematron file to XSLT using SchXslt pipeline">
+    <attribute name="schematron" description="Input Schematron file (.sch)" />
+    <attribute name="outdir" description="Output directory for compiled XSLT" />
+    <attribute name="insuffix" default="sch" description="Input file suffix" />
+
+      <!--  <copy file="${xslt.output.file}" tofile="${xslt.legacy.output.file}" overwrite="true" failonerror="false" />
+-->
+    <sequential>
+      <local name="xslt.output.file" />
+      <local name="schematron.basename" />
+
+      <echo
+        message="Starting schematron-compile-schxslt with schematron=@{schematron} and outdir='@{outdir}'" />
+      <fail message="outdir must be set">
+        <condition>
+          <and>
+            <equals arg1="@{outdir}" arg2="" />
+            <not>
+              <isset property="@{outdir}" />
+            </not>
+          </and>
+        </condition>
+      </fail>
+      <fail unless="abu.available.saxon"
+        message="In order to use this abu you first need to make Saxon available via abu-saxon-provider" />
+
+      <basename file="@{schematron}" suffix="@{insuffix}" property="schematron.basename" />
+      <property name="xslt.output.file" value="${schematron.basename}.xsl" />
+
+
+      <echo
+        message="Compiling '@{schematron}' to '@{outdir}/${xslt.output.file}'..." />
+
+      <xslt in="@{schematron}"
+        style="${lib.dir}/schxslt-${schxslt.version}/2.0/pipeline-for-svrl.xsl"
+        out="@{outdir}/${xslt.output.file}" classpathref="cp.saxon.xslt">
+        <factory name="net.sf.saxon.TransformerFactoryImpl" />
+        <param name="generate-fired-rule" expression="false" />
+        <param name="full-path-notation" expression="3" />
+      </xslt>
+
+      <echo message="Compilation complete: ${xslt.output.file}" />
+
+    </sequential>
+  </macrodef>
+
+  <target name="check-schematron-compile-need" depends="provide-schxslt">
+    <fail unless="schematron.file"
+      message="Property 'schematron.file' must be set to the full path" />
+
+    <fail unless="xslt.output.dir"
+      message="Property 'xslt.output.dir' must be set" />
+
+    <!-- sets property xslt.output.file-->
+    <derive-xslt-filename schematron="${schematron.file}" />
+
+    <echo
+      message="Is ${schematron.file} more recent then ${xslt.output.dir}/${xslt.output.file}" />
+    <uptodate property="schxslt.compile.needed" targetfile="${schematron.file}">
+      <srcfiles file="${xslt.output.dir}/${xslt.output.file}" />
+    </uptodate>
+    <echo message="Compilation needed=${schxslt.compile.needed}" />
+  </target>
+
+  <target name="schematron-compile-schxslt"
+    depends="provide-schxslt, check-schematron-compile-need"
+    description="Compile Schematron to XSLT using SchXslt pipeline (calls compile-schematron macrodef)" if="schxslt.compile.needed">
+
+
+    <echo message="Executing target schematron-compile-schxslt" />
+    <schematron-compile-schxslt schematron="${schematron.file}"
+      outdir="${xslt.output.dir}" />
+  </target>
+
+</project>

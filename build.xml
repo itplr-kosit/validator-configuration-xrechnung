@@ -12,8 +12,11 @@
    <property name="test.src.dir" location="${src.dir}/test" />
    <property name="test.build.dir" location="${build.dir}/test" />
 
-   <import file="${basedir}/xs-build-infrastructure/src/main/abu/abu-saxon-provider.xml"/>
-   <import file="${basedir}/xs-build-infrastructure/src/main/abu/abu-schematron-schxslt.xml"/>
+    <property name="xsbi.dir" location="${basedir}/_vendor/xsbi-0.3.0-SNAPSHOT/abu" />
+
+    <import file="${xsbi.dir}/abu-common.xml" />
+    <include file="${xsbi.dir}/abu-saxon-provider.xml" />
+    <include file="${xsbi.dir}/abu-schematron-schxslt.xml" />
 
    <property name="test.docs.custom.dir" location="${test.src.dir}/custom"></property>
    <property name="test.docs.dir" location="${test.build.dir}" />
@@ -92,7 +95,7 @@
     value="xrechnung-${xrechnung.version}-schematron-${xr.schematron.version.full}.zip" />
   <property name="xr.schematron.download.url" value="${xr.schematron.download.url.prefix}/${xr.schematron.zip}" />  
 
-  <property name="xr.testsuite.version" value="2026-01-31" />
+  <property name="xr.testsuite.version" value="2025-07-10" />
   <property name="xr.testsuite.download.url.prefix"
     value="https://github.com/itplr-kosit/xrechnung-testsuite/releases/download" />
 
@@ -378,12 +381,12 @@
     <!-- Creating schematron now using Saxon 9he-->
     <!-- according to https://www.saxonica.com/html/documentation/using-xsl/xsltfromant.html-->
     <!-- customize CEN schematron rules for UBL -->
-    <xslt in="${build.dir}/EN16931-UBL-validation.xslt" out="${resource.xsl.cen.ubl}"
+    <xslt in="${build.dir}/EN16931-UBL-validation.xsl" out="${resource.xsl.cen.ubl}"
       style="${src.dir}/remove-dead-apply-templates.xsl" classpathref="cp.saxon.xslt">
       <factory name="net.sf.saxon.TransformerFactoryImpl" />
     </xslt>
     <!-- customize CEN schematron rules for CII -->
-    <xslt in="${build.dir}/EN16931-CII-validation.xslt" out="${resource.xsl.cen.cii}"
+    <xslt in="${build.dir}/EN16931-CII-validation.xsl" out="${resource.xsl.cen.cii}"
       style="${src.dir}/remove-dead-apply-templates.xsl" classpathref="cp.saxon.xslt">
       <factory name="net.sf.saxon.TransformerFactoryImpl" />
     </xslt>
