@@ -1,25 +1,29 @@
 <project name="xrechnung-validation-configuration" default="compile" basedir="." >
-  <description>Build the XRechnung validation configuration for ITPLR-KoSIT
-        validator</description>
-  <!-- set global default properties for this build -->
-  <!-- main build directories -->
-  <property name="src.dir" location="${basedir}/src" />
-  <property name="lib.dir" location="${basedir}/lib" />
-  <property name="build.dir" location="${basedir}/build" />
-  <property name="download.dir" location="${build.dir}/download" />
-  <property name="dist.dir" location="${basedir}/dist" />
-  <property name="test.src.dir" location="${src.dir}/test" />
-  <property name="test.build.dir" location="${build.dir}/test" />
-  <property name="test.docs.custom.dir" location="${test.src.dir}/custom"></property>
-  <property name="test.docs.dir" location="${test.build.dir}" />
-  <property name="test.docs.cen.unit.unexpected.dir" location="${test.docs.dir}/unexpected" />
-  <property name="test.docs.cen.unit.dir" location="${test.docs.dir}/cen-unit-test" />
-  <property name="test.docs.integration.dir" location="${test.docs.dir}/integration" />
-  <property name="testsuite.instances.dir" location="${test.build.dir}/testsuite" />
+   <description>Build the XRechnung validation configuration for ITPLR-KoSIT
+         validator</description>
 
-  <!-- Naming -->
-  <property name="xrechnung.version.major.minor" value="3.0" />
-  <property name="xrechnung.version.patch" value="2" />
+    <import file="../xs-build-infrastructure/src/main/abu/abu-saxon-provider.xml"/>
+    <import file="../xs-build-infrastructure/src/main/abu/abu-schematron-schxslt.xml"/>
+
+    <!-- set global default properties for this build -->
+   <!-- main build directories (must be defined before importing ABUs) -->
+   <property name="src.dir" location="${basedir}/src" />
+   <property name="lib.dir" location="${basedir}/lib" />
+   <property name="build.dir" location="${basedir}/build" />
+   <property name="download.dir" location="${build.dir}/download" />
+   <property name="dist.dir" location="${basedir}/dist" />
+   <property name="test.src.dir" location="${src.dir}/test" />
+   <property name="test.build.dir" location="${build.dir}/test" />
+   <property name="test.docs.custom.dir" location="${test.src.dir}/custom"></property>
+   <property name="test.docs.dir" location="${test.build.dir}" />
+   <property name="test.docs.cen.unit.unexpected.dir" location="${test.docs.dir}/unexpected" />
+   <property name="test.docs.cen.unit.dir" location="${test.docs.dir}/cen-unit-test" />
+   <property name="test.docs.integration.dir" location="${test.docs.dir}/integration" />
+   <property name="testsuite.instances.dir" location="${test.build.dir}/testsuite" />
+
+   <!-- Naming -->
+   <property name="xrechnung.version.major.minor" value="3.0" />
+   <property name="xrechnung.version.patch" value="2" />
   <property name="xrechnung.version"
     value="${xrechnung.version.major.minor}.${xrechnung.version.patch}" />
   <property name="cen.spec.id" value="urn:cen.eu:en16931:2017" />
@@ -30,10 +34,10 @@
   <property name="xrechnung.cvd.version.major.minor" value="0.9" />
   <property name="xrechnung.cvd.id"
     value="${xrechnung.spec.id}#compliant#urn:xeinkauf.de:kosit:xrechnung:cvd_${xrechnung.cvd.version.major.minor}" />
-
   <property name="validator.configuration.version.full" value="2025-10-31-SNAPSHOT" />
   <property name="dist.name"
     value="validator-configuration-xrechnung_${xrechnung.version}_${validator.configuration.version.full}.zip" />
+
   <!-- 3rd party resources -->
   <!-- KoSIT XML Validator -->
   <property name="validator.version" value="1.6.0" />
@@ -45,12 +49,8 @@
   <!-- Pick by default the standalone distribution -->  
   <property name="validator.jar" value="validator-${validator.version}-standalone.jar" />
 
-  <!-- Part of the download path -->
-  <property name="saxon.url.version" value="9.9" />
-  <!-- Part of the download path -->
-  <property name="saxon.file.version" value="9-9-1-8J" />
-  <!-- the name of the JAR file in the downloaded ZIP file -->
-  <property name="saxon.jar" value="saxon9he.jar" />
+  <!-- the name of the Saxon JAR file in the lib dir (provided by abu-saxon-provider) -->
+  <property name="saxon.jar" value="${saxon-he.jar.name}" />
 
   <property name="cii.version" value="D16B" />
   <property name="cii.schema.artifact.id" value="D16B_SCRDM__Subset__CII" />
@@ -121,64 +121,6 @@
       <fail message="Not implemented yet" />
     </sequential>
   </macrodef>
-  <macrodef name="schematron-compile" description="Compiles Schematron to XSLT using Saxon">
-    <attribute name="schematron" description="Schematron file to compile." />
-    <attribute name="workdir"
-      description="Base directory in which to download Schematron Skeleton and keep intermediaries." />
-    <attribute name="outdir" />
-    <attribute name="insuffix" default="sch" />
-    <attribute name="saxon.jar" default="${lib.dir}/${saxon.jar}"
-      description="Location of Saxon jar." />
-    <attribute name="deleteonexit" default="true"
-      description="Whether to delete intermediate XSLT files on exit. Note if not deleting, then subsequent runs of macro produce wrong results!" />
-    <attribute name="schematronbinding" default="xslt2"
-      description="Which XSLT version to build for." />
-    <sequential>
-      <local name="schematron.basename" />
-      <basename file="@{schematron}" suffix="@{insuffix}" property="schematron.basename" />
-      <echo message="Compiling '@{schematron}' Schematron with basename='${schematron.basename}'" />
-      <mkdir dir="@{workdir}" />
-      <tempfile property="expanded.sch" prefix="expanded" suffix=".sch" destdir="@{workdir}"
-        deleteonexit="@{deleteonexit}" />
-      <tempfile property="unabstract.sch" prefix="unabstract" suffix=".sch" destdir="@{workdir}"
-        deleteonexit="@{deleteonexit}" />
-      <tempfile property="schematron.xsl" prefix="schematron" suffix=".xsl" destdir="@{workdir}"
-        deleteonexit="@{deleteonexit}" />
-      <tempfile property="check-schematron.xsl" prefix="check-schematron" suffix=".xsl"
-        destdir="@{workdir}" deleteonexit="@{deleteonexit}" />
-
-        <!-- Download SchXslt skeletons -->
-        <!-- TODO In einen Schritt überführen (sollte mit schxslt möglich sein) -->
-        <property name="schematron.schxslt.url" value="https://codeberg.org/SchXslt/schxslt/releases/download/v1.10.1/schxslt-1.10.1-xslt-only.zip" />
-        <get src="${schematron.schxslt.url}" dest="${lib.dir}/schxslt.zip" verbose="true" skipexisting="true" usetimestamp="true" httpusecaches="true" />
-        <unzip src="${lib.dir}/schxslt.zip" dest="${lib.dir}" />
-        <delete file="${lib.dir}/schxslt.zip" verbose="true" />
-
-        <xslt in="@{schematron}"
-              style="${lib.dir}/schxslt-1.10.1/2.0/include.xsl"
-              out="@{outdir}/${schematron.basename}-includes.sch"
-              classpath="@{saxon.jar}">
-            <factory name="net.sf.saxon.TransformerFactoryImpl" />
-        </xslt>
-
-        <xslt in="@{outdir}/${schematron.basename}-includes.sch"
-              style="${lib.dir}/schxslt-1.10.1/2.0/expand.xsl"
-              out="@{outdir}/${schematron.basename}-expanded.sch"
-              classpath="@{saxon.jar}">
-            <factory name="net.sf.saxon.TransformerFactoryImpl" />
-        </xslt>
-
-        <xslt in="@{outdir}/${schematron.basename}-expanded.sch"
-              style="${lib.dir}/schxslt-1.10.1/2.0/compile-for-svrl.xsl"
-              out="@{outdir}/${schematron.basename}.xslt"
-              classpath="@{saxon.jar}">
-            <factory name="net.sf.saxon.TransformerFactoryImpl" />
-            <param name="generate-fired-rule" expression="false" />
-            <param name="full-path-notation" expression="3" />
-        </xslt>
-      <echo message="finished schematron compile output to @{outdir}/${schematron.basename}.xslt" />
-    </sequential>
-  </macrodef>
 
   <target name="init" description="Initializes build directory structure and ISO timestamp">
     
@@ -201,26 +143,6 @@
     <mkdir dir="${download.dir}" />
     <mkdir dir="${lib.dir}" />
     <mkdir dir="${dist.dir}" />
-  </target>
-
-
-  <target name="prepare-saxon" depends="init"
-    description="Download Saxon-HE and add jar to library directory">
-    <get
-      src="https://sourceforge.net/projects/saxon/files/Saxon-HE/${saxon.url.version}/SaxonHE${saxon.file.version}.zip/download"
-      dest="${download.dir}/SaxonHE${saxon.file.version}.zip" verbose="true" skipexisting="true"
-      usetimestamp="true" />
-    <unzip src="${download.dir}/SaxonHE${saxon.file.version}.zip" dest="${lib.dir}">
-      <patternset>
-        <include name="**/${saxon.jar}" />
-      </patternset>
-      <flattenmapper />
-    </unzip>
-  </target>
-
-  <target name="delete-saxon" depends="init" description="Remove downloaded Saxon-HE stuff">
-    <delete file="${download.dir}/SaxonHE${saxon.file.version}.zip" />
-    <delete file="${lib.dir}/${saxon.jar}" />
   </target>
 
 
@@ -397,7 +319,7 @@
 
 
   <target name="provide-xrechnung-schematron"
-    depends="init, retrieve-xrechnung-schematron-from-local-build, retrieve-xrechnung-schematron-from-github-release, prepare-saxon"
+    depends="init, retrieve-xrechnung-schematron-from-local-build, retrieve-xrechnung-schematron-from-github-release, abu-saxon-provider.provide-saxon"
     description="Retrieve and prepare XRechnung Schematron with static rule IDs">
     <!-- Extract pre-compiled XRechnung Schematron XSL files -->
     <unzip src="${download.dir}/${xr.schematron.zip}"
@@ -410,15 +332,13 @@
     <!-- Convert dynamic id attributes to static for xml-mutate compatibility -->
     <xslt in="${download.dir}/xrechnung-schematron/schematron/ubl/XRechnung-UBL-validation.xsl"
           out="${resource.xsl.xr.ubl}"
-          style="${src.dir}/convert-dynamic-id-to-static.xsl">
-      <classpath location="${lib.dir}/${saxon.jar}" />
+          style="${src.dir}/convert-dynamic-id-to-static.xsl" classpathref="cp.saxon.xslt">
       <factory name="net.sf.saxon.TransformerFactoryImpl" />
     </xslt>
     
     <xslt in="${download.dir}/xrechnung-schematron/schematron/cii/XRechnung-CII-validation.xsl"
           out="${resource.xsl.xr.cii}"
-          style="${src.dir}/convert-dynamic-id-to-static.xsl">
-      <classpath location="${lib.dir}/${saxon.jar}" />
+          style="${src.dir}/convert-dynamic-id-to-static.xsl" classpathref="cp.saxon.xslt">
       <factory name="net.sf.saxon.TransformerFactoryImpl" />
     </xslt>
 
@@ -448,27 +368,25 @@
   
   <target name="compile-cen-rules-only" description="Works for zip from master and release zips">
     
-    <schematron-compile schematron="${download.dir}/schematron/EN16931-UBL-validation.sch"
-      insuffix="sch" workdir="${build.dir}/schematron" outdir="${build.dir}" />
-    <schematron-compile schematron="${download.dir}/schematron/EN16931-CII-validation.sch"
-      insuffix="sch" workdir="${build.dir}/schematron" outdir="${build.dir}" />
+    <schematron-compile-schxslt schematron="${download.dir}/schematron/EN16931-UBL-validation.sch"
+      insuffix="sch" outdir="${build.dir}" />
+    <schematron-compile-schxslt schematron="${download.dir}/schematron/EN16931-CII-validation.sch"
+      insuffix="sch" outdir="${build.dir}" />
     <!-- Creating schematron now using Saxon 9he-->
     <!-- according to https://www.saxonica.com/html/documentation/using-xsl/xsltfromant.html-->
     <!-- customize CEN schematron rules for UBL -->
     <xslt in="${build.dir}/EN16931-UBL-validation.xslt" out="${resource.xsl.cen.ubl}"
-      style="${src.dir}/remove-dead-apply-templates.xsl">
-      <classpath location="${lib.dir}/${saxon.jar}" />
+      style="${src.dir}/remove-dead-apply-templates.xsl" classpathref="cp.saxon.xslt">
       <factory name="net.sf.saxon.TransformerFactoryImpl" />
     </xslt>
     <!-- customize CEN schematron rules for CII -->
     <xslt in="${build.dir}/EN16931-CII-validation.xslt" out="${resource.xsl.cen.cii}"
-      style="${src.dir}/remove-dead-apply-templates.xsl">
-      <classpath location="${lib.dir}/${saxon.jar}" />
+      style="${src.dir}/remove-dead-apply-templates.xsl" classpathref="cp.saxon.xslt">
       <factory name="net.sf.saxon.TransformerFactoryImpl" />
     </xslt>
   </target>
 
-  <target name="compile-cen-rules" depends="retrieve-cen-rules,prepare-saxon,compile-cen-rules-only"
+  <target name="compile-cen-rules" depends="retrieve-cen-rules,abu-saxon-provider.provide-saxon,abu-schematron-schxslt.provide-schxslt,compile-cen-rules-only"
     description="Works for zip from master and release zips"/>
 
 
@@ -498,7 +416,7 @@
 
 
   <target name="compile"
-    depends="compile-scenario,retrieve-all-schema-rules,compile-cen-rules,prepare-saxon"
+    depends="compile-scenario,retrieve-all-schema-rules,compile-cen-rules,abu-saxon-provider.provide-saxon"
     description="Compile XSDs and XSLTs into validation configuration conformat repository directory">
     <echo>Compiling Schemas and XSLTs ...</echo>
     <copy file="${src.dir}/default-report.xsl" todir="${resource.dir}" />
@@ -541,8 +459,7 @@
     <mkdir dir="${testsuite.instances.dir}" />
     <!-- customize scenarios.xml for testing purpose -->
     <xslt in="${repository.dir}/scenarios.xml" out="${test.build.dir}/scenarios.xml"
-      style="${src.dir}/create-test-scenario.xsl">
-      <classpath location="${lib.dir}/${saxon.jar}" />
+      style="${src.dir}/create-test-scenario.xsl" classpathref="cp.saxon.xslt">
       <factory name="net.sf.saxon.TransformerFactoryImpl" />
     </xslt>
   </target>
@@ -563,8 +480,7 @@
       <fileset dir="${reports.dir}" includes="*-report.xml" />
     </schemavalidate>
     <echo>Schematron validating reports ...</echo>
-    <xslt style="${src.dir}/report.sch.xsl" includes="${reports.dir}/*.xml" destdir="${reports.dir}">
-      <classpath location="${lib.dir}/${saxon.jar}" />
+    <xslt style="${src.dir}/report.sch.xsl" includes="${reports.dir}/*.xml" destdir="${reports.dir}" classpathref="cp.saxon.xslt">
       <factory name="net.sf.saxon.TransformerFactoryImpl" />
     </xslt>
   </target>
