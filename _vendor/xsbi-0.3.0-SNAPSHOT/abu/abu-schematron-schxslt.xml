@@ -60,7 +60,6 @@
 -->
     <sequential>
       <local name="xslt.output.file" />
-      <local name="schematron.basename" />
 
       <echo
         message="Starting schematron-compile-schxslt with schematron=@{schematron} and outdir='@{outdir}'" />
@@ -77,9 +76,7 @@
       <fail unless="abu.available.saxon"
         message="In order to use this abu you first need to make Saxon available via abu-saxon-provider" />
 
-      <basename file="@{schematron}" suffix="@{insuffix}" property="schematron.basename" />
-      <property name="xslt.output.file" value="${schematron.basename}.xsl" />
-
+      <derive-xslt-filename schematron="@{schematron}" />
 
       <echo
         message="Compiling '@{schematron}' to '@{outdir}/${xslt.output.file}'..." />

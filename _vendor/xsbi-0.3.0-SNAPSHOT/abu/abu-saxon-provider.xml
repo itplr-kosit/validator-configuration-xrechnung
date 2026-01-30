@@ -57,6 +57,7 @@
   <target name="provide-xmlresolver" depends="retrieve-xml-resolver">
     <!-- currently directly downloading jar into lib -->
   </target>
+
   <target name="retrieve-saxon" depends="init"
     description="Download Saxon-HE and add jar to lib dir">
     <get
@@ -79,4 +80,13 @@
     <property name="abu.available.saxon" value="true" />
 
   </target>
+
+  <macrodef name="abu-available-saxon">
+
+    <sequential>
+      <!-- logic to maybe verify that all is good -->
+      <property name="abu.available.saxon" value="true" />
+    </sequential>
+  </macrodef>
+
 </project>

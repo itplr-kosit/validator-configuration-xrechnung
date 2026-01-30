@@ -3,6 +3,9 @@ build/
 lib/
 reports/
 test-reports/
+_vendor/*/project-mgmt
+_vendor/*/xslt
+download/
 
 # configuration files
 .ant-targets-build.xml

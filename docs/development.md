@@ -11,7 +11,7 @@ The following dependencies are downloaded automatically from within the build sc
 * UBL Schema
 * CII Schema
 * CEN Schematron
-* Saxon HE 9.9.x
+* Saxon HE 12.8
 
 ### Testing
 
