@@ -725,6 +725,43 @@
   </target>
 
   <target name="dist" depends="compile,test, dist-only" description="Generate the distribution"> </target>
+
+  <!-- CI/CD targets -->
+  <target name="release-env-file" depends="dist-only"
+    description="Generate build.env file with Maven coordinates for CI/CD deployment">
+    <property name="build.env.file" value="${build.dir}/build.env" />
+    
+    <loadresource property="project.group.id.path">
+      <concat>de.kosit</concat>
+      <filterchain>
+        <replaceregex pattern="\." replace="/" />
+      </filterchain>
+    </loadresource>
+    
+    <echo file="${build.env.file}" append="false" encoding="UTF-8"
+      message="GROUP_ID=de.kosit${line.separator}" />
+    <echo file="${build.env.file}" append="true" encoding="UTF-8"
+      message="ARTIFACT_ID=validator-configuration-xrechnung${line.separator}" />
+    <echo file="${build.env.file}" append="true" encoding="UTF-8"
+      message="PACKAGE_VERSION=${validator.configuration.version.full}${line.separator}" />
+    <echo file="${build.env.file}" append="true" encoding="UTF-8"
+      message="PACKAGE_BINARY=${dist.name}${line.separator}" />
+    <echo file="${build.env.file}" append="true" encoding="UTF-8"
+      message="MAVEN_PACKAGE_NAME=${project.group.id.path}/validator-configuration-xrechnung${line.separator}" />
+    <echo file="${build.env.file}" append="true" encoding="UTF-8"
+      message="XRECHNUNG_VERSION=${xrechnung.version}${line.separator}" />
+    
+    <echo message="Created ${build.env.file} with deployment metadata" />
+    <echo message="GROUP_ID=de.kosit" />
+    <echo message="ARTIFACT_ID=validator-configuration-xrechnung" />
+    <echo message="PACKAGE_VERSION=${validator.configuration.version.full}" />
+    <echo message="PACKAGE_BINARY=${dist.name}" />
+    <echo message="XRECHNUNG_VERSION=${xrechnung.version}" />
+  </target>
+
+  <target name="release" depends="compile, test, dist-only, release-env-file"
+    description="Build distribution and generate CI/CD metadata for release" />
+
   <target name="clean" description="clean up">
     <!-- Delete the ${build} and ${dist} directory trees -->
     <delete dir="${build.dir}" verbose="true" includeEmptyDirs="true" />
