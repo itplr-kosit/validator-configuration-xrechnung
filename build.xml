@@ -2,9 +2,6 @@
    <description>Build the XRechnung validation configuration for ITPLR-KoSIT
          validator</description>
 
-    <import file="../xs-build-infrastructure/src/main/abu/abu-saxon-provider.xml"/>
-    <import file="../xs-build-infrastructure/src/main/abu/abu-schematron-schxslt.xml"/>
-
     <!-- set global default properties for this build -->
    <!-- main build directories (must be defined before importing ABUs) -->
    <property name="src.dir" location="${basedir}/src" />
@@ -14,6 +11,10 @@
    <property name="dist.dir" location="${basedir}/dist" />
    <property name="test.src.dir" location="${src.dir}/test" />
    <property name="test.build.dir" location="${build.dir}/test" />
+
+   <import file="../xs-build-infrastructure/src/main/abu/abu-saxon-provider.xml"/>
+   <import file="../xs-build-infrastructure/src/main/abu/abu-schematron-schxslt.xml"/>
+
    <property name="test.docs.custom.dir" location="${test.src.dir}/custom"></property>
    <property name="test.docs.dir" location="${test.build.dir}" />
    <property name="test.docs.cen.unit.unexpected.dir" location="${test.docs.dir}/unexpected" />
@@ -97,6 +98,8 @@
 
   <property name="xmute.version.full" value="0.6" />
   <property name="xmute.jar" value="xml-mutate-${xmute.version.full}.jar" />
+  <property name="xmute.download.url" 
+    value="https://projekte.kosit.org/api/v4/projects/356/packages/maven/de/kosit/xml-mutate/${xmute.version.full}/${xmute.jar}" />
 
   <!-- root/work directory where KoSIT validationtool expects Schema(s)-and trons -->
   <property name="repository.dir" location="${build.dir}" />
@@ -550,11 +553,10 @@
   </target>
   
     <target name="retrieve-xmute" depends="init" unless="xmute.jar.available">
-      <fail unless="xmute.download.url.prefix"
-        message="Property xmute.download.url.prefix must exist for this target to work" />
-      <get src="${xmute.download.url.prefix}/target/xml-mutate-${xmute.version.full}.jar"
-             dest="${lib.dir}/${xmute.jar}" verbose="true" skipexisting="false" usetimestamp="true" />
-    </target>
+    <echo message="Downloading xml-mutate ${xmute.version.full} from GitLab xse-component-repository" />
+    <get src="${xmute.download.url}"
+           dest="${lib.dir}/${xmute.jar}" verbose="true" skipexisting="false" usetimestamp="true" />
+  </target>
 
   <target name="test-cen-expected-behaviour" depends="compile, init-test, retrieve-xmute"
     description="Test Schematron Rules with XML-Mutate">
