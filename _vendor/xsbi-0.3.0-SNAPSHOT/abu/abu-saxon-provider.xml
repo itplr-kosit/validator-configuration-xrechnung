@@ -57,6 +57,7 @@
   <target name="provide-xmlresolver" depends="retrieve-xml-resolver">
     <!-- currently directly downloading jar into lib -->
   </target>
+
   <target name="retrieve-saxon" depends="init"
     description="Download Saxon-HE and add jar to lib dir">
     <get
@@ -76,21 +77,17 @@
     </unzip>
     <echo message="classpath for ${lib.dir}/${saxon-he.jar.name}" />
     <!-- this classpath should work after execution of provide-saxon -->
-    <available-saxon/>
-
+    <abu-available-saxon/>
   </target>
-  
-  <macrodef name="available-saxon">
-    
+
+
+  <macrodef name="abu-available-saxon">
+
     <sequential>
       <!-- logic to maybe verify that all is good -->
-      <property name="saxon.available" value="true" />
+      <property name="abu.available.saxon" value="true" />
     </sequential>
   </macrodef>
-  
-  <target name="delete-saxon" depends="init" description="Remove downloaded Saxon-HE stuff">
-    <delete file="${download.dir}/SaxonHE${saxon.file.version}.zip" />
-    <delete file="${lib.dir}/${saxon.jar}" />
-  </target>
+
 
 </project>
