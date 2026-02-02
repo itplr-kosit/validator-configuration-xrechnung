@@ -527,7 +527,6 @@
     </java>
   </target>
 
-
   <target name="test" depends="init-test, test-validator-assertions,create-validator-reports-from-testsuite, test-cen-expected-behaviour, test-integration, create-validator-reports-from-custom-tests">
     <echo message="Testing all"/>
   </target>
