@@ -78,7 +78,6 @@
 
       <derive-xslt-filename schematron="@{schematron}" />
 
-
       <echo
         message="Compiling '@{schematron}' to '@{outdir}/${xslt.output.file}'..." />
 

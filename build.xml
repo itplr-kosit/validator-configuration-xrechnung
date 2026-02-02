@@ -1,43 +1,53 @@
-<project name="xrechnung-validation-configuration" default="compile" basedir=".">
-  <description>Build the XRechnung validation configuration for ITPLR-KoSIT validator</description>
-  <!-- set global default properties for this build -->
+<project name="xrechnung-validation-configuration" default="compile" basedir="." >
+   <description>Build the XRechnung validation configuration for ITPLR-KoSIT
+         validator</description>
 
-  <property name="xsbi.dir" location="${basedir}/_vendor/xsbi-0.3.0-SNAPSHOT/abu"/>
+    <!-- set global default properties for this build -->
+   <!-- main build directories (must be defined before importing ABUs) -->
+   <property name="src.dir" location="${basedir}/src" />
+   <property name="lib.dir" location="${basedir}/lib" />
+   <property name="build.dir" location="${basedir}/build" />
+   <property name="download.dir" location="${build.dir}/download" />
+   <property name="dist.dir" location="${basedir}/dist" />
+   <property name="test.src.dir" location="${src.dir}/test" />
+   <property name="test.build.dir" location="${build.dir}/test" />
 
-  <import file="${xsbi.dir}/abu-common.xml"/>
-  <include file="${xsbi.dir}/abu-saxon-provider.xml"/>
-  <include file="${xsbi.dir}/abu-validator-provider.xml"/>
-  <include file="${xsbi.dir}/abu-schematron-schxslt.xml"/>
+    <property name="xsbi.dir" location="${basedir}/_vendor/xsbi-0.3.0-SNAPSHOT/abu" />
 
-  <!-- main build directories -->
-  <property name="src.dir" location="${basedir}/src"/>
-  <property name="lib.dir" location="${basedir}/lib"/>
-  <property name="build.dir" location="${basedir}/build"/>
-  <property name="download.dir" location="${build.dir}/download"/>
-  <property name="dist.dir" location="${basedir}/dist"/>
-  <property name="test.src.dir" location="${src.dir}/test"/>
-  <property name="test.build.dir" location="${build.dir}/test"/>
-  <property name="test.docs.custom.dir" location="${test.src.dir}/custom"/>
-  <property name="test.docs.dir" location="${test.build.dir}"/>
-  <property name="test.docs.cen.unit.unexpected.dir" location="${test.docs.dir}/unexpected"/>
-  <property name="test.docs.cen.unit.dir" location="${test.docs.dir}/cen-unit-test"/>
-  <property name="test.docs.integration.dir" location="${test.docs.dir}/integration"/>
-  <property name="testsuite.instances.dir" location="${test.build.dir}/testsuite"/>
+    <import file="${xsbi.dir}/abu-common.xml" />
+    <include file="${xsbi.dir}/abu-saxon-provider.xml" />
+    <include file="${xsbi.dir}/abu-schematron-schxslt.xml" />
+  <include file="${xsbi.dir}/abu-validator-provider.xml" />
+  
 
-  <!-- Naming -->
-  <property name="xrechnung.version.major.minor" value="3.0"/>
-  <property name="xrechnung.version.patch" value="2"/>
-  <property name="xrechnung.version" value="${xrechnung.version.major.minor}.${xrechnung.version.patch}"/>
-  <property name="cen.spec.id" value="urn:cen.eu:en16931:2017"/>
-  <property name="xrechnung.spec.id" value="${cen.spec.id}#compliant#urn:xeinkauf.de:kosit:xrechnung_${xrechnung.version.major.minor}"/>
-  <property name="xrechnung.extension.id" value="${xrechnung.spec.id}#conformant#urn:xeinkauf.de:kosit:extension:xrechnung_${xrechnung.version.major.minor}"/>
-  <property name="xrechnung.cvd.version.major.minor" value="0.9"/>
-  <property name="xrechnung.cvd.id" value="${xrechnung.spec.id}#compliant#urn:xeinkauf.de:kosit:xrechnung:cvd_${xrechnung.cvd.version.major.minor}"/>
+   <property name="test.docs.custom.dir" location="${test.src.dir}/custom"></property>
+   <property name="test.docs.dir" location="${test.build.dir}" />
+   <property name="test.docs.cen.unit.unexpected.dir" location="${test.docs.dir}/unexpected" />
+   <property name="test.docs.cen.unit.dir" location="${test.docs.dir}/cen-unit-test" />
+   <property name="test.docs.integration.dir" location="${test.docs.dir}/integration" />
+   <property name="testsuite.instances.dir" location="${test.build.dir}/testsuite" />
 
-  <property name="validator.configuration.version.full" value="2026-01-31-SNAPSHOT"/>
-  <property name="dist.name" value="validator-configuration-xrechnung_${xrechnung.version}_${validator.configuration.version.full}.zip"/>
+   <!-- Naming -->
+   <property name="xrechnung.version.major.minor" value="3.0" />
+   <property name="xrechnung.version.patch" value="2" />
+  <property name="xrechnung.version"
+    value="${xrechnung.version.major.minor}.${xrechnung.version.patch}" />
+  <property name="cen.spec.id" value="urn:cen.eu:en16931:2017" />
+  <property name="xrechnung.spec.id"
+    value="${cen.spec.id}#compliant#urn:xeinkauf.de:kosit:xrechnung_${xrechnung.version.major.minor}" />
+  <property name="xrechnung.extension.id"
+    value="${xrechnung.spec.id}#conformant#urn:xeinkauf.de:kosit:extension:xrechnung_${xrechnung.version.major.minor}" />
+  <property name="xrechnung.cvd.version.major.minor" value="0.9" />
+  <property name="xrechnung.cvd.id"
+    value="${xrechnung.spec.id}#compliant#urn:xeinkauf.de:kosit:xrechnung:cvd_${xrechnung.cvd.version.major.minor}" />
+  <property name="validator.configuration.version.full" value="2025-10-31-SNAPSHOT" />
+  <property name="dist.name"
+    value="validator-configuration-xrechnung_${xrechnung.version}_${validator.configuration.version.full}.zip" />
+
   <!-- 3rd party resources -->
 
+  <!-- the name of the Saxon JAR file in the lib dir (provided by abu-saxon-provider) -->
+  <property name="saxon.jar" value="${saxon-he.jar.name}" />
   <property name="cii.version" value="D16B"/>
   <property name="cii.schema.artifact.id" value="D16B_SCRDM__Subset__CII"/>
   <property name="cii.schema.zip" value="${cii.schema.artifact.id}-${cii.version}.zip"/>
@@ -68,12 +78,14 @@
   <property name="xr.schematron.zip" value="xrechnung-${xrechnung.version}-schematron-${xr.schematron.version.full}.zip"/>
   <property name="xr.schematron.download.url" value="${xr.schematron.download.url.prefix}/${xr.schematron.zip}"/>
 
-  <property name="xr.testsuite.version" value="2026-01-31" />
+  <property name="xr.testsuite.version" value="2025-07-10" />
   <property name="xr.testsuite.download.url.prefix"
     value="https://github.com/itplr-kosit/xrechnung-testsuite/releases/download" />
 
-  <property name="xmute.version.full" value="0.6"/>
-  <property name="xmute.jar" value="xml-mutate-${xmute.version.full}.jar"/>
+  <property name="xmute.version.full" value="0.6" />
+  <property name="xmute.jar" value="xml-mutate-${xmute.version.full}.jar" />
+  <property name="xmute.download.url" 
+    value="https://projekte.kosit.org/api/v4/projects/356/packages/maven/de/kosit/xml-mutate/${xmute.version.full}/${xmute.jar}" />
 
   <!-- root/work directory where KoSIT validationtool expects Schema(s)-and trons -->
   <property name="repository.dir" location="${build.dir}"/>
@@ -92,7 +104,7 @@
 
   <macrodef name="xslt-saxon">
     <sequential>
-      <fail message="Not implemented yet"/>
+      <fail message="Not implemented yet" />
     </sequential>
   </macrodef>
 
@@ -134,6 +146,7 @@
   </target>
 
   <target name="retrieve-xr-testsuite" depends="init-test, retrieve-xr-testsuite-from-local-build, retrieve-xr-testsuite-from-github-release">
+
     <!-- add check something was downloaded -->
   </target>
 
@@ -229,7 +242,9 @@
   </target>
 
 
-  <target name="provide-xrechnung-schematron" depends="init, retrieve-xrechnung-schematron-from-local-build, retrieve-xrechnung-schematron-from-github-release, prepare-saxon" description="Retrieve and prepare XRechnung Schematron with static rule IDs">
+  <target name="provide-xrechnung-schematron"
+    depends="init, retrieve-xrechnung-schematron-from-local-build, retrieve-xrechnung-schematron-from-github-release, abu-saxon-provider.provide-saxon"
+    description="Retrieve and prepare XRechnung Schematron with static rule IDs">
     <!-- Extract pre-compiled XRechnung Schematron XSL files -->
     <unzip src="${download.dir}/${xr.schematron.zip}" dest="${download.dir}/xrechnung-schematron">
       <patternset>
@@ -238,12 +253,16 @@
     </unzip>
 
     <!-- Convert dynamic id attributes to static for xml-mutate compatibility -->
-    <xslt in="${download.dir}/xrechnung-schematron/schematron/ubl/XRechnung-UBL-validation.xsl" out="${resource.xsl.xr.ubl}" style="${src.dir}/convert-dynamic-id-to-static.xsl" classpathref="cp.saxon.xslt">
-      <factory name="net.sf.saxon.TransformerFactoryImpl"/>
+    <xslt in="${download.dir}/xrechnung-schematron/schematron/ubl/XRechnung-UBL-validation.xsl"
+          out="${resource.xsl.xr.ubl}"
+          style="${src.dir}/convert-dynamic-id-to-static.xsl" classpathref="cp.saxon.xslt">
+      <factory name="net.sf.saxon.TransformerFactoryImpl" />
     </xslt>
-
-    <xslt in="${download.dir}/xrechnung-schematron/schematron/cii/XRechnung-CII-validation.xsl" out="${resource.xsl.xr.cii}" style="${src.dir}/convert-dynamic-id-to-static.xsl" classpathref="cp.saxon.xslt">
-      <factory name="net.sf.saxon.TransformerFactoryImpl"/>
+    
+    <xslt in="${download.dir}/xrechnung-schematron/schematron/cii/XRechnung-CII-validation.xsl"
+          out="${resource.xsl.xr.cii}"
+          style="${src.dir}/convert-dynamic-id-to-static.xsl" classpathref="cp.saxon.xslt">
+      <factory name="net.sf.saxon.TransformerFactoryImpl" />
     </xslt>
   </target>
 
@@ -296,7 +315,6 @@
 
   <target name="compile-cen-rules" depends="retrieve-cen-rules,compile-cen-rules-only" description="Works for zip from master and release zips"/>
 
-
   <target name="compile-scenario" depends="init">
     <filter token="build.date" value="${build.date}"/>
     <filter token="cen.spec.id" value="${cen.spec.id}"/>
@@ -319,7 +337,10 @@
     <copy file="scenarios.xml" todir="${repository.dir}" failonerror="true" filtering="true"/>
   </target>
 
-  <target name="compile" depends="compile-scenario,retrieve-all-schema-rules,compile-cen-rules,prepare-saxon" description="Compile XSDs and XSLTs into validation configuration conformat repository directory">
+
+  <target name="compile"
+    depends="compile-scenario,retrieve-all-schema-rules,compile-cen-rules,abu-saxon-provider.provide-saxon"
+    description="Compile XSDs and XSLTs into validation configuration conformat repository directory">
     <echo>Compiling Schemas and XSLTs ...</echo>
     <copy file="${src.dir}/default-report.xsl" todir="${resource.dir}"/>
     <copy file="${src.dir}/xrechnung-report.xsl" todir="${resource.dir}"/>
@@ -358,8 +379,9 @@
     <mkdir dir="${resource.dir}/xsd"/>
     <mkdir dir="${testsuite.instances.dir}"/>
     <!-- customize scenarios.xml for testing purpose -->
-    <xslt in="${repository.dir}/scenarios.xml" out="${test.build.dir}/scenarios.xml" style="${src.dir}/create-test-scenario.xsl" classpathref="cp.saxon.xslt">
-      <factory name="net.sf.saxon.TransformerFactoryImpl"/>
+    <xslt in="${repository.dir}/scenarios.xml" out="${test.build.dir}/scenarios.xml"
+      style="${src.dir}/create-test-scenario.xsl" classpathref="cp.saxon.xslt">
+      <factory name="net.sf.saxon.TransformerFactoryImpl" />
     </xslt>
   </target>
 
@@ -376,7 +398,7 @@
     </schemavalidate>
     <echo>Schematron validating reports ...</echo>
     <xslt style="${src.dir}/report.sch.xsl" includes="${reports.dir}/*.xml" destdir="${reports.dir}" classpathref="cp.saxon.xslt">
-      <factory name="net.sf.saxon.TransformerFactoryImpl"/>
+      <factory name="net.sf.saxon.TransformerFactoryImpl" />
     </xslt>
   </target>
 
@@ -436,10 +458,11 @@
       <arg value="${test.docs.custom.dir}"/>
     </java>
   </target>
-
-  <target name="retrieve-xmute" depends="init" unless="xmute.jar.available">
-    <fail unless="xmute.download.url.prefix" message="Property xmute.download.url.prefix must exist for this target to work"/>
-    <get src="${xmute.download.url.prefix}/target/xml-mutate-${xmute.version.full}.jar" dest="${lib.dir}/${xmute.jar}" verbose="true" skipexisting="false" usetimestamp="true"/>
+  
+    <target name="retrieve-xmute" depends="init" unless="xmute.jar.available">
+    <echo message="Downloading xml-mutate ${xmute.version.full} from GitLab xse-component-repository" />
+    <get src="${xmute.download.url}"
+           dest="${lib.dir}/${xmute.jar}" verbose="true" skipexisting="false" usetimestamp="true" />
   </target>
 
   <target name="test-cen-expected-behaviour" depends="compile, init-test, retrieve-xmute" description="Test Schematron Rules with XML-Mutate">
@@ -521,8 +544,44 @@
     <zip destfile="${dist.dir}/${dist.name}" basedir="${build.dir}" excludes="download/**,test/**,schematron/**,reports/**"/>
   </target>
 
-  <target name="dist" depends="compile,test, dist-only" description="Generate the distribution"/>
+  <target name="dist" depends="compile,test, dist-only" description="Generate the distribution"> </target>
 
+  <!-- CI/CD targets -->
+  <target name="release-env-file" depends="dist-only"
+    description="Generate build.env file with Maven coordinates for CI/CD deployment">
+    <property name="build.env.file" value="${build.dir}/build.env" />
+    
+    <loadresource property="project.group.id.path">
+      <concat>de.kosit</concat>
+      <filterchain>
+        <replaceregex pattern="\." replace="/" />
+      </filterchain>
+    </loadresource>
+    
+    <echo file="${build.env.file}" append="false" encoding="UTF-8"
+      message="GROUP_ID=de.kosit${line.separator}" />
+    <echo file="${build.env.file}" append="true" encoding="UTF-8"
+      message="ARTIFACT_ID=validator-configuration-xrechnung${line.separator}" />
+    <echo file="${build.env.file}" append="true" encoding="UTF-8"
+      message="PACKAGE_VERSION=${validator.configuration.version.full}${line.separator}" />
+    <echo file="${build.env.file}" append="true" encoding="UTF-8"
+      message="PACKAGE_BINARY=${dist.name}${line.separator}" />
+    <echo file="${build.env.file}" append="true" encoding="UTF-8"
+      message="MAVEN_PACKAGE_NAME=${project.group.id.path}/validator-configuration-xrechnung${line.separator}" />
+    <echo file="${build.env.file}" append="true" encoding="UTF-8"
+      message="XRECHNUNG_VERSION=${xrechnung.version}${line.separator}" />
+    
+    <echo message="Created ${build.env.file} with deployment metadata" />
+    <echo message="GROUP_ID=de.kosit" />
+    <echo message="ARTIFACT_ID=validator-configuration-xrechnung" />
+    <echo message="PACKAGE_VERSION=${validator.configuration.version.full}" />
+    <echo message="PACKAGE_BINARY=${dist.name}" />
+    <echo message="XRECHNUNG_VERSION=${xrechnung.version}" />
+  </target>
+
+  <target name="release" depends="compile, test, dist-only, release-env-file"
+    description="Build distribution and generate CI/CD metadata for release" />
+  
   <target name="clean" depends="abu-common.clean"/>
 
   <target name="clean-lib" depends="abu-common.clean-lib"/>

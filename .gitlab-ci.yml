@@ -1,0 +1,91 @@
+default:
+  image: projekte.kosit.org:5050/xse/xse-build-common/ant-base:latest
+
+stages:
+  - build
+  - test
+  - deploy
+  - release
+  - publish
+
+variables:
+  XSE_COMPONENT_PROJECT_ID: "356"
+  XSE_COMPONENT_PACKAGE_REGISTRY_URL_PREFIX: "${CI_API_V4_URL}/projects/${XSE_COMPONENT_PROJECT_ID}/packages/maven"
+
+# using for env var creation see for how it works
+# https://docs.gitlab.com/ee/ci/variables/#pass-an-environment-variable-to-another-job
+# https://docs.gitlab.com/ee/ci/yaml/artifacts_reports.html#artifactsreportsdotenv
+build-job:
+  stage: build
+  image: projekte.kosit.org:5050/xse/xse-build-common/ant-base:latest
+  script:
+    - echo "$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH"
+    - ant release
+    - cat build/build.env
+  artifacts:
+    paths:
+      - dist/
+      - build/
+    expire_in: 1 day
+    reports:
+      dotenv: build/build.env
+
+deploy-to-xse-component-repository:
+  stage: deploy
+  image: maven:3.8.5-openjdk-17
+  variables:
+    REPO_ID: "xse-component-repository"
+    FILE_PATH: "dist/${PACKAGE_BINARY}"
+  rules:
+    - if: $CI_COMMIT_TAG
+  dependencies:
+    - build-job
+  script:
+    - env
+    # Create a temporary settings.xml for authentication
+    - |
+      echo "<settings><servers><server><id>${REPO_ID}</id><configuration><httpHeaders><property><name>Job-Token</name><value>${CI_JOB_TOKEN}</value></property></httpHeaders></configuration></server></servers></settings>" > /tmp/settings.xml
+    - mvn deploy:deploy-file
+      -Durl=${XSE_COMPONENT_PACKAGE_REGISTRY_URL_PREFIX}
+      -DrepositoryId=${REPO_ID}
+      -Dfile=${FILE_PATH}
+      -DgroupId=${GROUP_ID}
+      -DartifactId=${ARTIFACT_ID}
+      -Dversion=${PACKAGE_VERSION}
+      -Dpackaging=zip
+      -Dskip=snapshots
+      --settings /tmp/settings.xml
+
+# started from https://docs.gitlab.com/ee/ci/yaml/#release
+# current strategy: only maintainer can create tag with v prefix, hence only then a release is triggered by maintainer here
+release_job:
+  stage: release
+  image: registry.gitlab.com/gitlab-org/cli:latest
+  rules:
+    # Run this job when a tag is created manually and starts with v
+    - if: $CI_COMMIT_TAG && $CI_COMMIT_TAG =~ /^v/
+    # run only manually when tag does NOT start with v
+    - if: $CI_COMMIT_TAG && $CI_COMMIT_TAG !~ /^v/
+      when: manual
+  dependencies:
+    - build-job
+  script:
+    - echo "running release_job with validator config version=${PACKAGE_VERSION} and tag=$CI_COMMIT_TAG"
+    # Validate that tag matches expected pattern: v{version}
+    - |
+      EXPECTED_TAG="v${PACKAGE_VERSION}"
+      if [ "$CI_COMMIT_TAG" = "$EXPECTED_TAG" ] || [[ "$CI_COMMIT_TAG" =~ ^v ]]; then
+        echo "Tag validation passed: $CI_COMMIT_TAG"
+      else
+        echo "WARNING: Tag $CI_COMMIT_TAG does not match expected pattern $EXPECTED_TAG"
+      fi
+  release:
+    name: 'Release $CI_COMMIT_TAG'
+    description: 'validator-configuration-xrechnung release $CI_COMMIT_TAG for XRechnung ${XRECHNUNG_VERSION}'
+    tag_name: '$CI_COMMIT_TAG'
+    ref: '$CI_COMMIT_TAG'
+    assets:
+      links:
+        - name: 'Validator Configuration ZIP'
+          url: '${XSE_COMPONENT_PACKAGE_REGISTRY_URL_PREFIX}/${MAVEN_PACKAGE_NAME}/${PACKAGE_VERSION}/${PACKAGE_BINARY}'
+          link_type: 'package'
