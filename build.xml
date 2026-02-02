@@ -541,7 +541,7 @@
       </fileset>
     </copy>
     <copy file="docs/usage.md" todir="${build.dir}/docs" failonerror="true" filtering="true"/>
-    <zip destfile="${dist.dir}/${dist.name}" basedir="${build.dir}" excludes="download/**,test/**,schematron/**,reports/**"/>
+    <zip destfile="${dist.dir}/${dist.name}" basedir="${build.dir}" excludes="download/**,test/**,schematron/**,reports/**,build.env"/>
   </target>
 
   <target name="dist" depends="compile,test, dist-only" description="Generate the distribution"> </target>
