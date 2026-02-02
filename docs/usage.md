@@ -16,7 +16,7 @@ Note: We always refer the latest version of the validator. You can use a previou
 curl -L "https://github.com/itplr-kosit/validator/releases/download/v1.6.0/validator-1.6.0-distribution.zip" --output validator.zip
 
 # download configuration (for 3.0.2)
-curl -L "https://github.com/itplr-kosit/validator-configuration-xrechnung/releases/download/release-2026-01-31/validator-configuration-xrechnung_3.0.2_2025-03-21.zip" --output validator-configuration.zip
+curl -L "https://github.com/itplr-kosit/validator-configuration-xrechnung/releases/download/release-2026-01-31/validator-configuration-xrechnung_3.0.2_2026-01-31.zip" --output validator-configuration.zip
 
 # download one most recent test document
 curl -L "https://raw.githubusercontent.com/itplr-kosit/xrechnung-testsuite/master/src/test/business-cases/standard/01.01a-INVOICE_ubl.xml" --output ubl.xml
