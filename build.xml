@@ -581,10 +581,5 @@
 
   <target name="release" depends="compile, test, dist-only, release-env-file"
     description="Build distribution and generate CI/CD metadata for release" />
-  
-  <target name="clean" depends="abu-common.clean"/>
 
-  <target name="clean-lib" depends="abu-common.clean-lib"/>
-
-  <target name="clean-all" depends="abu-common.clean-all"/>
 </project>
