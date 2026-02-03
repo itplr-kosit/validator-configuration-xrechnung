@@ -74,13 +74,14 @@
   <property name="xr.schematron.version.patch" value="0"/>
   <property name="xr.schematron.version.full" value="${xr.schematron.version.major.minor}.${xr.schematron.version.patch}"/>
 
-  <property name="xr.schematron.download.url.prefix" value="https://github.com/itplr-kosit/xrechnung-schematron/releases/download/release-${xr.schematron.version.full}"/>
+  <property name="xr.schematron.download.url.prefix" value="https://projekte.kosit.org/api/v4/projects/356/packages/maven/de/xeinkauf/xrechnung-${xrechnung.version}-schematron/${xr.schematron.version.full}"/>
   <property name="xr.schematron.zip" value="xrechnung-${xrechnung.version}-schematron-${xr.schematron.version.full}.zip"/>
   <property name="xr.schematron.download.url" value="${xr.schematron.download.url.prefix}/${xr.schematron.zip}"/>
 
   <property name="xr.testsuite.version" value="2026-01-31" />
   <property name="xr.testsuite.download.url.prefix"
-    value="https://github.com/itplr-kosit/xrechnung-testsuite/releases/download" />
+    value="https://projekte.kosit.org/api/v4/projects/356/packages/maven/de/xeinkauf/xrechnung-${xrechnung.version}-testsuite/${xr.testsuite.version}" />
+  <property name="xrechnung.testsuite.zip" value="xrechnung-${xrechnung.version}-testsuite-${xr.testsuite.version}.zip" />
 
   <property name="xmute.version.full" value="0.6" />
   <property name="xmute.jar" value="xml-mutate-${xmute.version.full}.jar" />
