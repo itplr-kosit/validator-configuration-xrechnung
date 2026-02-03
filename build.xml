@@ -141,12 +141,12 @@
     <get src="${xr.testsuite.download.url.prefix}/${xr.testsuite.zip}" dest="${download.dir}" verbose="true" skipexisting="false" usetimestamp="false" httpusecaches="false"/>
   </target>
 
-  <target name="retrieve-xr-testsuite-from-github-release" depends="init-test" unless="develop.local.xr.testsuite">
+  <target name="retrieve-xr-testsuite-from-component-repository" depends="init-test" unless="develop.local.xr.testsuite">
 
-    <get src="${xr.testsuite.download.url.prefix}/release-${xr.testsuite.version}/${xr.testsuite.zip}" dest="${download.dir}" verbose="true" skipexisting="true" usetimestamp="true"/>
+    <get src="${xr.testsuite.download.url.prefix}/${xr.testsuite.zip}" dest="${download.dir}" verbose="true" skipexisting="true" usetimestamp="true"/>
   </target>
 
-  <target name="retrieve-xr-testsuite" depends="init-test, retrieve-xr-testsuite-from-local-build, retrieve-xr-testsuite-from-github-release">
+  <target name="retrieve-xr-testsuite" depends="init-test, retrieve-xr-testsuite-from-local-build, retrieve-xr-testsuite-from-component-repository">
 
     <!-- add check something was downloaded -->
   </target>
@@ -237,14 +237,14 @@
     <get src="${xr.schematron.download.url}" dest="${download.dir}" verbose="true" skipexisting="false" usetimestamp="false" httpusecaches="false"/>
   </target>
 
-  <target name="retrieve-xrechnung-schematron-from-github-release" depends="init" unless="develop.local.xr.schematron">
+  <target name="retrieve-xrechnung-schematron-from-component-repository" depends="init" unless="develop.local.xr.schematron">
     <echo message="Loading from GitHub ${xr.schematron.download.url}"/>
     <get src="${xr.schematron.download.url}" dest="${download.dir}" verbose="true" skipexisting="true" usetimestamp="true"/>
   </target>
 
 
   <target name="provide-xrechnung-schematron"
-    depends="init, retrieve-xrechnung-schematron-from-local-build, retrieve-xrechnung-schematron-from-github-release, abu-saxon-provider.provide-saxon"
+    depends="init, retrieve-xrechnung-schematron-from-local-build, retrieve-xrechnung-schematron-from-component-repository, abu-saxon-provider.provide-saxon"
     description="Retrieve and prepare XRechnung Schematron with static rule IDs">
     <!-- Extract pre-compiled XRechnung Schematron XSL files -->
     <unzip src="${download.dir}/${xr.schematron.zip}" dest="${download.dir}/xrechnung-schematron">
