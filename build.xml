@@ -42,7 +42,7 @@
     value="${xrechnung.spec.id}#compliant#urn:xeinkauf.de:kosit:xrechnung:cvd_${xrechnung.cvd.version.major.minor}" />
   <property name="validator.configuration.version.full" value="2026-01-31" />
   <property name="dist.name"
-    value="validator-configuration-xrechnung_${xrechnung.version}_${validator.configuration.version.full}.zip" />
+    value="xrechnung-${xrechnung.version}-validator-configuration-${validator.configuration.version.full}.zip" />
 
   <!-- 3rd party resources -->
 
@@ -102,6 +102,11 @@
   <property name="reports.schema.dir" location="${resource.dir}/xsd"/>
 
   <property name="reports.dir" location="${build.dir}/reports"/>
+  
+  <!-- ci/cd  -->
+  <property name="project.group.id" value="de.xeinkauf" />
+  <property name="project.artifact.id"
+    value="xrechnung-${xrechnung.version}-validator-configuration" />
 
   <macrodef name="xslt-saxon">
     <sequential>
@@ -559,24 +564,18 @@
     </loadresource>
     
     <echo file="${build.env.file}" append="false" encoding="UTF-8"
-      message="GROUP_ID=de.kosit${line.separator}" />
+      message="GROUP_ID=${project.group.id}${line.separator}" />
     <echo file="${build.env.file}" append="true" encoding="UTF-8"
-      message="ARTIFACT_ID=validator-configuration-xrechnung${line.separator}" />
+      message="ARTIFACT_ID=${project.artifact.id}${line.separator}" />
     <echo file="${build.env.file}" append="true" encoding="UTF-8"
       message="PACKAGE_VERSION=${validator.configuration.version.full}${line.separator}" />
     <echo file="${build.env.file}" append="true" encoding="UTF-8"
       message="PACKAGE_BINARY=${dist.name}${line.separator}" />
     <echo file="${build.env.file}" append="true" encoding="UTF-8"
-      message="MAVEN_PACKAGE_NAME=${project.group.id.path}/validator-configuration-xrechnung${line.separator}" />
+      message="MAVEN_PACKAGE_NAME=${project.group.id.path}/${project.artifact.id}${line.separator}" />
     <echo file="${build.env.file}" append="true" encoding="UTF-8"
       message="XRECHNUNG_VERSION=${xrechnung.version}${line.separator}" />
-    
-    <echo message="Created ${build.env.file} with deployment metadata" />
-    <echo message="GROUP_ID=de.kosit" />
-    <echo message="ARTIFACT_ID=validator-configuration-xrechnung" />
-    <echo message="PACKAGE_VERSION=${validator.configuration.version.full}" />
-    <echo message="PACKAGE_BINARY=${dist.name}" />
-    <echo message="XRECHNUNG_VERSION=${xrechnung.version}" />
+
   </target>
 
   <target name="release" depends="compile, test, dist-only, release-env-file"
