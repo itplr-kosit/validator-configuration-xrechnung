@@ -75,24 +75,6 @@ ant -propertyfile ${your.own.property.file.name}
 
 ## Test Approach
 
-### Installing XML Mutate
-
-`XML Mutate` needs to be build and setup manually - see https://projekte.kosit.org/kosit/xml-mutate for installation details.
-
-Additionally a custom property needs to point to the XML Mutate binary and the version
-* Property `xmute.download.url.prefix` indicates the URL to the cloned repository (as e.g. in `file:///../xml-mutate`)
-* Property `xmute.version.full` indicates the full version number of the created binary JAR file (defaults to `0.5`).
-
-Example Ant call (for Windows users):
-
-```
-ant clean dist \
-  -Dxmute.download.url.prefix=file:///C:/dev/git3p/xml-mutate \
-  -Dxmute.version.full=0.5
-```
-
-Hint: we recommend that you place the properties `xmute.download.url.prefix` and `xmute.version.full` in the "development properties file" (see above).
-
 ### Configuration Report Tests
 
 All test instances in `src/test/instances` are designed to trigger certain kinds of report outputs. This is to test the report output on a technical level.
@@ -195,26 +177,24 @@ If you want to skip tests call `ant dist-only`.
 * Create the distribution 
    * Do **not** use your development properties file.
    * Use the `clean` target to build and test everything from scratch
+   
+### Deploy
 
-  This requires setting some properties at command line:
-
-  ```
-  ant -Dxmute.download.url.prefix='file:/home/renzo/projects/xml-mutate/' clean dist
-  ```
-
-* Tag the last commit according to the following naming rule: 
-   `release-${date-of-scheduled-release-e.g. 2025-07-10}`
-  e.g.
-  `git tag release-2025-07-10 && git push origin release-2025-07-10`
+* Tag the last commit according to the following naming rule: `${date-of-scheduled-release}-{rc}` e.g.
+  `git tag 2026-01-31-rc1 && git push origin 2026-01-31-rc1`
 
 ### Publish
 
-* Draft a new release at https://github.com/itplr-kosit/validator-configuration-xrechnung/releases/new
-  * Choose the git tag
-* Add a release title of the following scheme: `Validator Configuration 2025-07-10 compatible with XRechnung 3.0.x`.
-* Copy & paste the high quality changelog entries for this release from CHANGELOG.md.
-* Upload distribution zip and tick mark this release as a `pre-release`.
+* If **all** released components are checked to be okay, tag the last commit according to the following naming rule: 
+   `v${date-of-scheduled-release-e.g. 2025-07-10}`
+  e.g.
+  `git tag v2026-01-31 && git push origin v2026-01-31`
 
+* The tag will trigger a release pipeline and create a GitLab release
+* Copy & paste the high quality changelog entries for this release from CHANGELOG.md.
+* Add a release title of the following scheme: `Validator Configuration 2026-01-31 compatible with XRechnung 3.0.x`.
+
+* Publish the new release in GitHub
 
 ### Post-Release
 
