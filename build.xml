@@ -40,7 +40,7 @@
   <property name="xrechnung.cvd.version.major.minor" value="0.9" />
   <property name="xrechnung.cvd.id"
     value="${xrechnung.spec.id}#compliant#urn:xeinkauf.de:kosit:xrechnung:cvd_${xrechnung.cvd.version.major.minor}" />
-  <property name="validator.configuration.version.full" value="2026-01-31" />
+  <property name="validator.configuration.version.full" value="2026-07-31-SNAPSHOT" />
   <property name="dist.name"
     value="xrechnung-${xrechnung.version}-validator-configuration-${validator.configuration.version.full}.zip" />
 
