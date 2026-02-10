@@ -136,7 +136,6 @@
 
   <target name="prepare-saxon" depends="abu-saxon-provider.provide-saxon"/>
 
-  <target name="abu-saxon-provider.delete-saxon"/>
 
   <target name="provide-validator" depends="abu-validator-provider.provide-validator"/>
 
