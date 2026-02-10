@@ -289,16 +289,10 @@
 
   <target name="retrieve-all-schema-rules" depends="retrieve-ubl-schema,retrieve-cen-rules,provide-xrechnung-schematron,retrieve-cii-schema" description="Retrieve and prepare all 3rd party XSDs and XSLTs"/>
 
-  <target name="compile-cen-rules-only" depends="abu-saxon-provider.provide-saxon,compile-cen-ubl,compile-cen-cii" description="Works for zip from master and release zips"/>
+  <target name="compile-cen-rules-only" depends="abu-saxon-provider.provide-saxon,abu-schematron-schxslt.provide-schxslt,compile-cen-ubl,compile-cen-cii" description="Works for zip from master and release zips"/>
 
   <target name="compile-cen-ubl">
-    <antcall target="abu-schematron-schxslt.schematron-compile-schxslt">
-      <param name="schematron" value="${download.dir}/schematron/EN16931-UBL-validation.sch"/>
-      <param name="insuffix" value="sch"/>
-      <param name="outdir" value="${build.dir}"/>
-      <param name="schematron.file" value="${download.dir}/schematron/EN16931-UBL-validation.sch"/>
-      <param name="xslt.output.dir" value="${build.dir}"/>
-    </antcall>
+    <schematron-compile-schxslt schematron="${download.dir}/schematron/EN16931-UBL-validation.sch" outdir="${build.dir}"/>
     <!-- customize CEN schematron rules for UBL -->
     <xslt in="${build.dir}/EN16931-UBL-validation.xsl" out="${resource.xsl.cen.ubl}" style="${src.dir}/remove-dead-apply-templates.xsl" classpathref="cp.saxon.xslt">
       <factory name="net.sf.saxon.TransformerFactoryImpl"/>
@@ -306,13 +300,7 @@
   </target>
 
   <target name="compile-cen-cii">
-    <antcall target="abu-schematron-schxslt.schematron-compile-schxslt">
-      <param name="schematron" value="${download.dir}/schematron/EN16931-CII-validation.sch"/>
-      <param name="insuffix" value="sch"/>
-      <param name="outdir" value="${build.dir}"/>
-      <param name="schematron.file" value="${download.dir}/schematron/EN16931-CII-validation.sch"/>
-      <param name="xslt.output.dir" value="${build.dir}"/>
-    </antcall>
+    <schematron-compile-schxslt schematron="${download.dir}/schematron/EN16931-CII-validation.sch" outdir="${build.dir}"/>
     <!-- customize CEN schematron rules for CII -->
     <xslt in="${build.dir}/EN16931-CII-validation.xsl" out="${resource.xsl.cen.cii}" style="${src.dir}/remove-dead-apply-templates.xsl" classpathref="cp.saxon.xslt">
       <factory name="net.sf.saxon.TransformerFactoryImpl"/>
