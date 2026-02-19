@@ -510,6 +510,8 @@
         <include name="cii-bt-20-cardinality-check.xml"/>
         <include name="cii-bt-20-cardinality-check-2.xml"/>
         <include name="cii-cii-sr-454-negative-test.xml"/>
+        <include name="cii-cii-sr-456-negative-test.xml"/>
+        <include name="cii-cii-sr-466-negative-test.xml"/>
         <!-- Local files - not in repository -->
         <include name="XRechnung-CEFACT*.xml"/>
       </fileset>

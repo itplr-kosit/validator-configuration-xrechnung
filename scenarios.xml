@@ -390,6 +390,10 @@
       <customLevel level="error">CII-SR-453</customLevel>
        <!-- overwrites CEN severity level "warning" to enforce exactly one BG-30 within BG-25 -->
       <customLevel level="error">CII-SR-454</customLevel>
+      <!-- overwrites CEN severity level "fatal" to enforce maximum one DefinedTradeContact of BuyerTradeParty -->
+      <customLevel level="error">CII-SR-456</customLevel>
+      <!-- overwrites CEN severity level "warning" to enforce only one BT-56 "Buyer contact point" -->
+      <customLevel level="error">CII-SR-466</customLevel>
     </createReport>
     <acceptMatch>/rep:report/rep:assessment[1]/rep:accept[1]</acceptMatch>
   </scenario>
@@ -464,6 +468,10 @@
       <customLevel level="error">CII-SR-453</customLevel>
       <!-- overwrites CEN severity level "warning" to enforce exactly one BG-30 within BG-25 -->
       <customLevel level="error">CII-SR-454</customLevel>
+      <!-- overwrites CEN severity level "fatal" to enforce maximum one DefinedTradeContact of BuyerTradeParty -->
+      <customLevel level="error">CII-SR-456</customLevel>
+      <!-- overwrites CEN severity level "warning" to enforce only one BT-56 "Buyer contact point" -->
+      <customLevel level="error">CII-SR-466</customLevel>
     </createReport>
     <acceptMatch>/rep:report/rep:assessment[1]/rep:accept[1]</acceptMatch>
   </scenario>
@@ -531,6 +539,10 @@
       <customLevel level="error">CII-SR-453</customLevel>
       <!-- overwrites CEN severity level "warning" to enforce exactly one BG-30 within BG-25 -->
       <customLevel level="error">CII-SR-454</customLevel>
+      <!-- overwrites CEN severity level "fatal" to enforce maximum one DefinedTradeContact of BuyerTradeParty -->
+      <customLevel level="error">CII-SR-456</customLevel>
+      <!-- overwrites CEN severity level "warning" to enforce only one BT-56 "Buyer contact point" -->
+      <customLevel level="error">CII-SR-466</customLevel>
     </createReport>
     <acceptMatch>/rep:report/rep:assessment[1]/rep:accept[1]</acceptMatch>
   </scenario>
