@@ -85,8 +85,6 @@
         style="${lib.dir}/schxslt-${schxslt.version}/2.0/pipeline-for-svrl.xsl"
         out="@{outdir}/${xslt.output.file}" classpathref="cp.saxon.xslt">
         <factory name="net.sf.saxon.TransformerFactoryImpl" />
-        <param name="generate-fired-rule" expression="false" />
-        <param name="full-path-notation" expression="3" />
       </xslt>
 
       <echo message="Compilation complete: ${xslt.output.file}" />
