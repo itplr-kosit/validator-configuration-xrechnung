@@ -293,18 +293,12 @@
 
   <target name="compile-cen-ubl">
     <schematron-compile-schxslt schematron="${download.dir}/schematron/EN16931-UBL-validation.sch" outdir="${build.dir}"/>
-    <!-- customize CEN schematron rules for UBL -->
-    <xslt in="${build.dir}/EN16931-UBL-validation.xsl" out="${resource.xsl.cen.ubl}" style="${src.dir}/remove-dead-apply-templates.xsl" classpathref="cp.saxon.xslt">
-      <factory name="net.sf.saxon.TransformerFactoryImpl"/>
-    </xslt>
+    <copy file="${build.dir}/EN16931-UBL-validation.xsl" tofile="${resource.xsl.cen.ubl}" overwrite="true"/>
   </target>
 
   <target name="compile-cen-cii">
     <schematron-compile-schxslt schematron="${download.dir}/schematron/EN16931-CII-validation.sch" outdir="${build.dir}"/>
-    <!-- customize CEN schematron rules for CII -->
-    <xslt in="${build.dir}/EN16931-CII-validation.xsl" out="${resource.xsl.cen.cii}" style="${src.dir}/remove-dead-apply-templates.xsl" classpathref="cp.saxon.xslt">
-      <factory name="net.sf.saxon.TransformerFactoryImpl"/>
-    </xslt>
+    <copy file="${build.dir}/EN16931-CII-validation.xsl" tofile="${resource.xsl.cen.cii}" overwrite="true"/>
   </target>
 
   <target name="compile-cen-rules" depends="retrieve-cen-rules,compile-cen-rules-only" description="Works for zip from master and release zips"/>
