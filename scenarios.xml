@@ -391,7 +391,7 @@
        <!-- overwrites CEN severity level "warning" to enforce exactly one BG-30 within BG-25 -->
       <customLevel level="error">CII-SR-454</customLevel>
       <!-- overwrites CEN severity level "fatal" to enforce maximum one DefinedTradeContact of BuyerTradeParty -->
-      <customLevel level="error">CII-SR-456</customLevel>
+      <customLevel level="error">CII-SR-465</customLevel>
       <!-- overwrites CEN severity level "warning" to enforce only one BT-56 "Buyer contact point" -->
       <customLevel level="error">CII-SR-466</customLevel>
     </createReport>
@@ -469,7 +469,7 @@
       <!-- overwrites CEN severity level "warning" to enforce exactly one BG-30 within BG-25 -->
       <customLevel level="error">CII-SR-454</customLevel>
       <!-- overwrites CEN severity level "fatal" to enforce maximum one DefinedTradeContact of BuyerTradeParty -->
-      <customLevel level="error">CII-SR-456</customLevel>
+      <customLevel level="error">CII-SR-465</customLevel>
       <!-- overwrites CEN severity level "warning" to enforce only one BT-56 "Buyer contact point" -->
       <customLevel level="error">CII-SR-466</customLevel>
     </createReport>
@@ -540,7 +540,7 @@
       <!-- overwrites CEN severity level "warning" to enforce exactly one BG-30 within BG-25 -->
       <customLevel level="error">CII-SR-454</customLevel>
       <!-- overwrites CEN severity level "fatal" to enforce maximum one DefinedTradeContact of BuyerTradeParty -->
-      <customLevel level="error">CII-SR-456</customLevel>
+      <customLevel level="error">CII-SR-465</customLevel>
       <!-- overwrites CEN severity level "warning" to enforce only one BT-56 "Buyer contact point" -->
       <customLevel level="error">CII-SR-466</customLevel>
     </createReport>

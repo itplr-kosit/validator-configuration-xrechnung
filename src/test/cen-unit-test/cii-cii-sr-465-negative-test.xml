@@ -83,7 +83,7 @@
             <ram:BuyerTradeParty>
                 <ram:ID>[Buyer identifier]</ram:ID>
                 <ram:Name>[Buyer name]</ram:Name>
-                <!-- Two DefinedTradeContact elements to trigger CII-SR-456 violation -->
+                <!-- Two DefinedTradeContact elements to trigger CII-SR-465 violation -->
                 <ram:DefinedTradeContact>
                     <ram:PersonName>Buyer Contact 1</ram:PersonName>
                     <ram:TelephoneUniversalCommunication>
@@ -94,10 +94,10 @@
                     </ram:EmailURIUniversalCommunication>
                 </ram:DefinedTradeContact>
                 <?xmute mutator="identity"
-                            schematron-invalid="cencii:CII-SR-456" id="cii-sr-456-two-contacts-invalid"
+                            schematron-invalid="cencii:CII-SR-465" id="cii-sr-465-two-contacts-invalid"
                             description="DefinedTradeContact of BuyerTradeParty shall exist maximum once" ?>
                 <?xmute mutator="remove"
-                            schematron-valid="cencii:CII-SR-456" id="cii-sr-456-two-contacts-valid"
+                            schematron-valid="cencii:CII-SR-465" id="cii-sr-465-two-contacts-valid"
                             description="DefinedTradeContact of BuyerTradeParty shall exist maximum once" ?>
                 <ram:DefinedTradeContact>
                     <ram:PersonName>Buyer Contact 2</ram:PersonName>

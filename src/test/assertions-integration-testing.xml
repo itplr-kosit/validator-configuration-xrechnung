@@ -118,16 +118,16 @@
     Should have error about CII-SR-454
   </a:assertion>
   
-  <a:assertion report-doc="cii-cii-sr-456-negative-test-report.xml"
-    test="/rep:report/rep:scenarioMatched[1]/rep:validationStepResult[2]/rep:message[ @code = 'CII-SR-456' and @level='error']">
+  <a:assertion report-doc="cii-cii-sr-465-negative-test-report.xml"
+    test="/rep:report/rep:scenarioMatched[1]/rep:validationStepResult[2]/rep:message[ @code = 'CII-SR-465' and @level='error']">
 
-    Should have error about CII-SR-456
+    Should have error about CII-SR-465
   </a:assertion>
 
-  <a:assertion report-doc="cii-cii-sr-456-negative-test-report.xml"
-    test="/rep:report/rep:assessment/rep:reject/rep:explanation/html:html/html:body/html:table[2]/html:tbody/html:tr[@class = 'error']/html:td[text() = 'CII-SR-456']">
+  <a:assertion report-doc="cii-cii-sr-465-negative-test-report.xml"
+    test="/rep:report/rep:assessment/rep:reject/rep:explanation/html:html/html:body/html:table[2]/html:tbody/html:tr[@class = 'error']/html:td[text() = 'CII-SR-465']">
 
-    Should have error about CII-SR-456 in assessment
+    Should have error about CII-SR-465 in assessment
   </a:assertion>
 
   <a:assertion report-doc="cii-cii-sr-466-negative-test-report.xml"
