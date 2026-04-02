@@ -119,9 +119,9 @@
   </a:assertion>
   
   <a:assertion report-doc="cii-cii-sr-465-negative-test-report.xml"
-    test="/rep:report/rep:scenarioMatched[1]/rep:validationStepResult[2]/rep:message[ @code = 'CII-SR-465' and @level='error']">
+    test="/rep:report/rep:scenarioMatched[1]/rep:validationStepResult[2]/rep:message[ @code = 'CII-SR-465' and @level='warning']">
 
-    Should have error about CII-SR-465
+    Should have warning about CII-SR-465
   </a:assertion>
 
   <a:assertion report-doc="cii-cii-sr-465-negative-test-report.xml"
