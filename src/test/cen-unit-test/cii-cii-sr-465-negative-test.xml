@@ -58,8 +58,16 @@
                     <ram:ID>[HRA-Eintrag]</ram:ID>
                     <ram:TradingBusinessName>[Seller trading name]</ram:TradingBusinessName>
                 </ram:SpecifiedLegalOrganization>
+                <!-- Both PersonName and DepartmentName to trigger CII-SR-465 violation -->
                 <ram:DefinedTradeContact>
-                    <ram:PersonName>nicht vorhanden</ram:PersonName>
+                    <ram:PersonName>Seller Contact Person</ram:PersonName>
+                    <?xmute mutator="identity"
+                                schematron-invalid="cencii:CII-SR-465" id="cii-sr-465-both-names-invalid"
+                                description="Only one BT-41 Seller contact point is allowed" ?>
+                    <?xmute mutator="remove"
+                                schematron-valid="cencii:CII-SR-465" id="cii-sr-465-both-names-valid"
+                                description="Only one BT-41 Seller contact point is allowed" ?>
+                    <ram:DepartmentName>Seller Department</ram:DepartmentName>
                     <ram:TelephoneUniversalCommunication>
                         <ram:CompleteNumber>+49 1234-5678</ram:CompleteNumber>
                     </ram:TelephoneUniversalCommunication>
@@ -83,29 +91,13 @@
             <ram:BuyerTradeParty>
                 <ram:ID>[Buyer identifier]</ram:ID>
                 <ram:Name>[Buyer name]</ram:Name>
-                <!-- Two DefinedTradeContact elements to trigger CII-SR-465 violation -->
                 <ram:DefinedTradeContact>
-                    <ram:PersonName>Buyer Contact 1</ram:PersonName>
+                    <ram:PersonName>Buyer Contact</ram:PersonName>
                     <ram:TelephoneUniversalCommunication>
                         <ram:CompleteNumber>+49 1111-1111</ram:CompleteNumber>
                     </ram:TelephoneUniversalCommunication>
                     <ram:EmailURIUniversalCommunication>
-                        <ram:URIID>buyer1@email.de</ram:URIID>
-                    </ram:EmailURIUniversalCommunication>
-                </ram:DefinedTradeContact>
-                <?xmute mutator="identity"
-                            schematron-invalid="cencii:CII-SR-465" id="cii-sr-465-two-contacts-invalid"
-                            description="DefinedTradeContact of BuyerTradeParty shall exist maximum once" ?>
-                <?xmute mutator="remove"
-                            schematron-valid="cencii:CII-SR-465" id="cii-sr-465-two-contacts-valid"
-                            description="DefinedTradeContact of BuyerTradeParty shall exist maximum once" ?>
-                <ram:DefinedTradeContact>
-                    <ram:PersonName>Buyer Contact 2</ram:PersonName>
-                    <ram:TelephoneUniversalCommunication>
-                        <ram:CompleteNumber>+49 2222-2222</ram:CompleteNumber>
-                    </ram:TelephoneUniversalCommunication>
-                    <ram:EmailURIUniversalCommunication>
-                        <ram:URIID>buyer2@email.de</ram:URIID>
+                        <ram:URIID>buyer@email.de</ram:URIID>
                     </ram:EmailURIUniversalCommunication>
                 </ram:DefinedTradeContact>
                 <ram:PostalTradeAddress>
