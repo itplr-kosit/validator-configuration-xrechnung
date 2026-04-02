@@ -43,7 +43,7 @@
       description="Property name with derived XSLT filename as value" />
 
     <sequential>
-
+      <local name="schematron.basename" />
       <basename file="@{schematron}" suffix="@{insuffix}"
         property="schematron.basename" />
       <property name="xslt.output.file" value="${schematron.basename}.xsl" />
