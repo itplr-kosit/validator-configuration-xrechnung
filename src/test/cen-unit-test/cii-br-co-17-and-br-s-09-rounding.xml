@@ -314,7 +314,7 @@
 			<ram:SpecifiedTradeSettlementPaymentMeans>
 				<ram:TypeCode>70</ram:TypeCode>
 				<ram:PayeePartyCreditorFinancialAccount>
-					<ram:IBANID>DE02120300000000202051</ram:IBANID>
+					<ram:IBANID>DE79000000001234567890</ram:IBANID>
 				</ram:PayeePartyCreditorFinancialAccount>
 			</ram:SpecifiedTradeSettlementPaymentMeans>
 		    <!--		        
