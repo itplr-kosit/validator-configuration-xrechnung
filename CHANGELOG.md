@@ -15,6 +15,10 @@ This release is compatible with XRechnung ?.?.?
 
 * custom level "error" for CII-SR-465 and CII-SR-466
 
+### Changed
+
+* dummy IBANs in test files
+
 
 ## 2026-01-31
 
