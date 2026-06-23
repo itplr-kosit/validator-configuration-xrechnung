@@ -10,7 +10,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## UNRELEASED
 
 This release is compatible with XRechnung ?.?.?
+### Changed
 
+* Using [CEN Schematron Rules 1.3.16](https://github.com/ConnectingEurope/eInvoicing-EN16931/releases/tag/validation-1.3.16)
 
 ## 2026-01-31
 
