@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 This release is compatible with XRechnung ?.?.?
 
+### Added
+
+* custom level "error" for CII-SR-465 and CII-SR-466
+
 
 ## 2026-01-31
 
