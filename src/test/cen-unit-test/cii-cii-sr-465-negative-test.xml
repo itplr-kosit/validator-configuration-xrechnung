@@ -60,12 +60,18 @@
                 </ram:SpecifiedLegalOrganization>
                 <!-- Both PersonName and DepartmentName to trigger CII-SR-465 violation -->
                 <ram:DefinedTradeContact>
-                    <ram:PersonName>Seller Contact Person</ram:PersonName>
                     <?xmute mutator="identity"
-                                schematron-invalid="cencii:CII-SR-465" id="cii-sr-465-both-names-invalid"
+                                schematron-invalid="cencii:CII-SR-465" id="cii-sr-465-both-names-invalid-1"
                                 description="Only one BT-41 Seller contact point is allowed" ?>
                     <?xmute mutator="remove"
-                                schematron-valid="cencii:CII-SR-465" id="cii-sr-465-both-names-valid"
+                                schematron-valid="cencii:CII-SR-465" id="cii-sr-465-both-names-valid-1"
+                                description="Only one BT-41 Seller contact point is allowed" ?>
+                    <ram:PersonName>Seller Contact Person</ram:PersonName>
+                    <?xmute mutator="identity"
+                                schematron-invalid="cencii:CII-SR-465" id="cii-sr-465-both-names-invalid-2"
+                                description="Only one BT-41 Seller contact point is allowed" ?>
+                    <?xmute mutator="remove"
+                                schematron-valid="cencii:CII-SR-465" id="cii-sr-465-both-names-valid-2"
                                 description="Only one BT-41 Seller contact point is allowed" ?>
                     <ram:DepartmentName>Seller Department</ram:DepartmentName>
                     <ram:TelephoneUniversalCommunication>

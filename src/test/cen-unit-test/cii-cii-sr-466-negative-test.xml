@@ -85,12 +85,18 @@
                 <ram:Name>[Buyer name]</ram:Name>
                 <!-- Both PersonName and DepartmentName to trigger CII-SR-466 violation -->
                 <ram:DefinedTradeContact>
-                    <ram:PersonName>Buyer Contact Person</ram:PersonName>
                     <?xmute mutator="identity"
-                                schematron-invalid="cencii:CII-SR-466" id="cii-sr-466-both-names-invalid"
+                                schematron-invalid="cencii:CII-SR-466" id="cii-sr-466-both-names-invalid-1"
                                 description="Only one BT-56 Buyer contact point is allowed" ?>
                     <?xmute mutator="remove"
-                                schematron-valid="cencii:CII-SR-466" id="cii-sr-466-both-names-valid"
+                                schematron-valid="cencii:CII-SR-466" id="cii-sr-466-both-names-valid-1"
+                                description="Only one BT-56 Buyer contact point is allowed" ?>
+                    <ram:PersonName>Buyer Contact Person</ram:PersonName>
+                    <?xmute mutator="identity"
+                                schematron-invalid="cencii:CII-SR-466" id="cii-sr-466-both-names-invalid-2"
+                                description="Only one BT-56 Buyer contact point is allowed" ?>
+                    <?xmute mutator="remove"
+                                schematron-valid="cencii:CII-SR-466" id="cii-sr-466-both-names-valid-2"
                                 description="Only one BT-56 Buyer contact point is allowed" ?>
                     <ram:DepartmentName>Buyer Department</ram:DepartmentName>
                     <ram:TelephoneUniversalCommunication>
