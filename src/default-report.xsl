@@ -36,6 +36,7 @@
       <xsl:apply-templates select="in:validationResultsXmlSchema" />
       <xsl:apply-templates select="in:validationResultsSchematron" />
       <xsl:apply-templates select="in:validationResultsWellformedness" />
+      <xsl:apply-templates select="in:processingError" />
     </xsl:variable>
 
     <!-- Zwischenergebnis: Der an sich fertige Bericht, dem lediglich noch die Bewertung fehlt -->
@@ -108,6 +109,27 @@
     <xsl:element name="s:{local-name()}">
       <xsl:apply-templates select="node() | attribute()" mode="copy" />
     </xsl:element>
+  </xsl:template>
+
+
+  <!-- ************************************************************************************** -->
+  <!-- *                                                                                    * -->
+  <!-- * Processing errors (XSLT transformation failures etc.)                             * -->
+  <!-- *                                                                                    * -->
+  <!-- ************************************************************************************** -->
+
+  <xsl:template match="in:processingError">
+    <xsl:variable name="id" as="xs:string">val-processing-error</xsl:variable>
+    <xsl:variable name="messages" as="element(rep:message)*">
+      <xsl:for-each select="in:error">
+        <rep:message id="{concat($id, '.', position())}" level="error" code="processing-error">
+          <xsl:value-of select="." />
+        </rep:message>
+      </xsl:for-each>
+    </xsl:variable>
+    <rep:validationStepResult id="{$id}" valid="false">
+      <xsl:sequence select="$messages" />
+    </rep:validationStepResult>
   </xsl:template>
 
 

@@ -319,6 +319,12 @@
 
 
 	  <!--RULE -->
+   <xsl:template match="rep:message[@code = 'processing-error']" priority="1001" mode="M6">
+      <!-- Processing errors from failed XSLT transformations have no XML location -->
+      <xsl:apply-templates select="*" mode="M6"/>
+   </xsl:template>
+
+	  <!--RULE -->
    <xsl:template match="rep:message" priority="1000" mode="M6">
 
 		<!--ASSERT -->

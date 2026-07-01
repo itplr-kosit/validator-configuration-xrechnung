@@ -42,6 +42,9 @@
     </sch:pattern>
     
     <sch:pattern>
+        <sch:rule context="rep:message[@code = 'processing-error']">
+            <!-- Processing errors from failed XSLT transformations have no XML location -->
+        </sch:rule>
         <sch:rule context="rep:message">
             <sch:assert test="@lineNumber or @xpathLocation">Some kind of error location must be given.</sch:assert>
         </sch:rule>
