@@ -114,7 +114,7 @@
                 <ram:TypeCode>1</ram:TypeCode>
                 <ram:Information>Rechnung</ram:Information>
                 <ram:PayeePartyCreditorFinancialAccount>
-                    <ram:IBANID>DE54500800000192632400</ram:IBANID>
+                    <ram:IBANID>DE79000000001234567890</ram:IBANID>
                     <ram:AccountName>Mustermann GmbH</ram:AccountName>
                 </ram:PayeePartyCreditorFinancialAccount>
                 <ram:PayeeSpecifiedCreditorFinancialInstitution>

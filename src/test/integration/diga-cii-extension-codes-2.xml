@@ -145,7 +145,7 @@
                 <ram:TypeCode>30</ram:TypeCode>
                 <ram:PayeePartyCreditorFinancialAccount>
                     <!-- IBAN -->
-                    <ram:IBANID>DE75512108001245126199</ram:IBANID>
+                    <ram:IBANID>DE79000000001234567890</ram:IBANID>
                 </ram:PayeePartyCreditorFinancialAccount>
             </ram:SpecifiedTradeSettlementPaymentMeans>
             <ram:ApplicableTradeTax>

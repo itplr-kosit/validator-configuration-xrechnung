@@ -10,9 +10,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## UNRELEASED
 
 This release is compatible with XRechnung ?.?.?
+
+### Added
+
+* custom level "error" for CII-SR-465 and CII-SR-466
+
 ### Changed
 
 * Using [CEN Schematron Rules 1.3.16](https://github.com/ConnectingEurope/eInvoicing-EN16931/releases/tag/validation-1.3.16)
+* dummy IBANs in test files
 
 ## 2026-01-31
 

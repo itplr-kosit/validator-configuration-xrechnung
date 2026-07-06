@@ -107,7 +107,7 @@
     <cac:PaymentMeans>
         <cbc:PaymentMeansCode>30</cbc:PaymentMeansCode>
         <cac:PayeeFinancialAccount>
-            <cbc:ID>DE94820800000815609800</cbc:ID>
+            <cbc:ID>DE79000000001234567890</cbc:ID>
         </cac:PayeeFinancialAccount>
     </cac:PaymentMeans>
     <!-- BG-20 -->

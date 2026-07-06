@@ -68,7 +68,7 @@
   <cac:PaymentMeans>
     <cbc:PaymentMeansCode>31</cbc:PaymentMeansCode>
     <cac:PayeeFinancialAccount>
-      <cbc:ID>DE091111222233334444</cbc:ID>
+      <cbc:ID>DE79000000001234567890</cbc:ID>
     </cac:PayeeFinancialAccount>
   </cac:PaymentMeans>
   <cac:PaymentTerms>

@@ -118,6 +118,30 @@
     Should have error about CII-SR-454
   </a:assertion>
   
+  <a:assertion report-doc="cii-cii-sr-465-negative-test-report.xml"
+    test="/rep:report/rep:scenarioMatched[1]/rep:validationStepResult[2]/rep:message[ @code = 'CII-SR-465' and @level='warning']">
+
+    Should have warning about CII-SR-465
+  </a:assertion>
+
+  <a:assertion report-doc="cii-cii-sr-465-negative-test-report.xml"
+    test="/rep:report/rep:assessment/rep:reject/rep:explanation/html:html/html:body/html:table[2]/html:tbody/html:tr[@class = 'error']/html:td[text() = 'CII-SR-465']">
+
+    Should have error about CII-SR-465 in assessment
+  </a:assertion>
+
+  <a:assertion report-doc="cii-cii-sr-466-negative-test-report.xml"
+    test="/rep:report/rep:scenarioMatched[1]/rep:validationStepResult[2]/rep:message[ @code = 'CII-SR-466' and @level='warning']">
+
+    Should have warning about CII-SR-466
+  </a:assertion>
+
+  <a:assertion report-doc="cii-cii-sr-466-negative-test-report.xml"
+    test="/rep:report/rep:assessment/rep:reject/rep:explanation/html:html/html:body/html:table[2]/html:tbody/html:tr[@class = 'error']/html:td[text() = 'CII-SR-466']">
+
+    Should have error about CII-SR-466 in assessment
+  </a:assertion>
+
   <a:assertion report-doc="ubl-cr-646-sub-invoice-lines-cius-report.xml" 
     test="/rep:report/rep:scenarioMatched[1]/rep:validationStepResult[2]/rep:message[ @code = 'UBL-CR-646' and @level='warning']">
     Should have warning about UBL-CR-646
@@ -150,5 +174,45 @@
     Should have information about BR-CL-13
   </a:assertion>
   
-  
+
+ <a:assertion report-doc="ubl-br-dex-01-extension-mime-code-report.xml"
+    test="/rep:report/rep:assessment/rep:accept">
+    Document with application/xml attachment must be accepted in Extension UBL scenario
+  </a:assertion>
+
+  <a:assertion report-doc="ubl-br-dex-01-extension-mime-code-report.xml"
+    test="/rep:report/rep:scenarioMatched[1]/rep:validationStepResult[2]/rep:message[@code = 'BR-CL-24']">
+    BR-CL-24 must be present in CEN validation step for application/xml mimeCode in Extension UBL scenario
+  </a:assertion>
+
+  <a:assertion report-doc="ubl-br-dex-01-extension-mime-code-report.xml"
+    test="/rep:report/rep:assessment/rep:accept/rep:explanation/html:html/html:body/html:table[2]/html:tbody/html:tr[@class = 'information']/html:td[text() = 'BR-CL-24']">
+    BR-CL-24 must be shown as information (downgraded) in the report for Extension UBL scenario
+  </a:assertion>
+
+  <a:assertion report-doc="ubl-br-dex-01-extension-mime-code-report.xml"
+    test="not(/rep:report/rep:scenarioMatched[1]/rep:validationStepResult[3]/rep:message[@code = 'BR-DEX-01'])">
+    BR-DEX-01 must NOT fire for application/xml in Extension UBL scenario
+  </a:assertion>
+
+  <a:assertion report-doc="cii-br-dex-01-extension-mime-code-report.xml"
+    test="/rep:report/rep:assessment/rep:accept">
+    Document with application/xml attachment must be accepted in Extension CII scenario
+  </a:assertion>
+
+  <a:assertion report-doc="cii-br-dex-01-extension-mime-code-report.xml"
+    test="/rep:report/rep:scenarioMatched[1]/rep:validationStepResult[2]/rep:message[@code = 'BR-CL-24']">
+    BR-CL-24 must be present in CEN validation step for application/xml mimeCode in Extension CII scenario
+  </a:assertion>
+
+  <a:assertion report-doc="cii-br-dex-01-extension-mime-code-report.xml"
+    test="/rep:report/rep:assessment/rep:accept/rep:explanation/html:html/html:body/html:table[2]/html:tbody/html:tr[@class = 'information']/html:td[text() = 'BR-CL-24']">
+    BR-CL-24 must be shown as information (downgraded) in the report for Extension CII scenario
+  </a:assertion>
+
+  <a:assertion report-doc="cii-br-dex-01-extension-mime-code-report.xml"
+    test="not(/rep:report/rep:scenarioMatched[1]/rep:validationStepResult[3]/rep:message[@code = 'BR-DEX-01'])">
+    BR-DEX-01 must NOT fire for application/xml in Extension CII scenario
+  </a:assertion>
+
 </a:assertions>

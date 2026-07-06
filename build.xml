@@ -136,7 +136,6 @@
 
   <target name="prepare-saxon" depends="abu-saxon-provider.provide-saxon"/>
 
-  <target name="abu-saxon-provider.delete-saxon"/>
 
   <target name="provide-validator" depends="abu-validator-provider.provide-validator"/>
 
@@ -492,6 +491,8 @@
         <include name="cii-bt-20-cardinality-check.xml"/>
         <include name="cii-bt-20-cardinality-check-2.xml"/>
         <include name="cii-cii-sr-454-negative-test.xml"/>
+        <include name="cii-cii-sr-465-negative-test.xml"/>
+        <include name="cii-cii-sr-466-negative-test.xml"/>
         <!-- Local files - not in repository -->
         <include name="XRechnung-CEFACT*.xml"/>
       </fileset>
@@ -507,7 +508,7 @@
       <arg value="-r"/>
       <arg value="${build.dir}"/>
       <arg value="--check-assertions"/>
-      <arg value="${test.docs.dir}/assertions-integration-testing.xml"/>
+      <arg value="${test.src.dir}/assertions-integration-testing.xml"/>
       <arg value="--html"/>
       <arg value="-o"/>
       <arg value="${reports.dir}/integration"/>
