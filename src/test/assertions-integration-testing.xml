@@ -142,6 +142,18 @@
     Should have error about CII-SR-466 in assessment
   </a:assertion>
 
+  <a:assertion report-doc="cii-cii-sr-475-negative-test-report.xml"
+    test="/rep:report/rep:assessment/rep:accept">
+
+    Document with two ram:Name in one BG-24 should be accepted (CII-SR-475 is downgraded to information, BR-TMP-4 is warning)
+  </a:assertion>
+
+  <a:assertion report-doc="cii-cii-sr-476-negative-test-report.xml"
+    test="/rep:report/rep:assessment/rep:accept">
+
+    Document with two ram:AttachmentBinaryObject in one BG-24 should be accepted (CII-SR-476 is downgraded to information, BR-TMP-5 is warning)
+  </a:assertion>
+
   <a:assertion report-doc="ubl-cr-646-sub-invoice-lines-cius-report.xml" 
     test="/rep:report/rep:scenarioMatched[1]/rep:validationStepResult[2]/rep:message[ @code = 'UBL-CR-646' and @level='warning']">
     Should have warning about UBL-CR-646

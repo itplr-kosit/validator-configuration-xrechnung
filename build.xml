@@ -493,6 +493,8 @@
         <include name="cii-cii-sr-454-negative-test.xml"/>
         <include name="cii-cii-sr-465-negative-test.xml"/>
         <include name="cii-cii-sr-466-negative-test.xml"/>
+        <include name="cii-cii-sr-475-negative-test.xml"/>
+        <include name="cii-cii-sr-476-negative-test.xml"/>
         <!-- Local files - not in repository -->
         <include name="XRechnung-CEFACT*.xml"/>
       </fileset>

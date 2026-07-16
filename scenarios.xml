@@ -394,6 +394,10 @@
       <customLevel level="error">CII-SR-465</customLevel>
       <!-- overwrites CEN severity level "warning" to enforce only one BT-56 "Buyer contact point" -->
       <customLevel level="error">CII-SR-466</customLevel>
+      <!-- overwrites CEN severity level "warning" because CII-SR-475 has a wrong rule context (see https://github.com/ConnectingEurope/eInvoicing-EN16931/issues/508); replaced by BR-TMP-4 -->
+      <customLevel level="information">CII-SR-475</customLevel>
+      <!-- overwrites CEN severity level "warning" because CII-SR-476 has a wrong rule context (see https://github.com/ConnectingEurope/eInvoicing-EN16931/issues/508); replaced by BR-TMP-5 -->
+      <customLevel level="information">CII-SR-476</customLevel>
     </createReport>
     <acceptMatch>/rep:report/rep:assessment[1]/rep:accept[1]</acceptMatch>
   </scenario>
@@ -472,6 +476,10 @@
       <customLevel level="error">CII-SR-465</customLevel>
       <!-- overwrites CEN severity level "warning" to enforce only one BT-56 "Buyer contact point" -->
       <customLevel level="error">CII-SR-466</customLevel>
+      <!-- overwrites CEN severity level "warning" because CII-SR-475 has a wrong rule context (see https://github.com/ConnectingEurope/eInvoicing-EN16931/issues/508); replaced by BR-TMP-4 -->
+      <customLevel level="information">CII-SR-475</customLevel>
+      <!-- overwrites CEN severity level "warning" because CII-SR-476 has a wrong rule context (see https://github.com/ConnectingEurope/eInvoicing-EN16931/issues/508); replaced by BR-TMP-5 -->
+      <customLevel level="information">CII-SR-476</customLevel>
     </createReport>
     <acceptMatch>/rep:report/rep:assessment[1]/rep:accept[1]</acceptMatch>
   </scenario>
@@ -543,6 +551,10 @@
       <customLevel level="error">CII-SR-465</customLevel>
       <!-- overwrites CEN severity level "warning" to enforce only one BT-56 "Buyer contact point" -->
       <customLevel level="error">CII-SR-466</customLevel>
+      <!-- overwrites CEN severity level "warning" because CII-SR-475 has a wrong rule context (see https://github.com/ConnectingEurope/eInvoicing-EN16931/issues/508); replaced by BR-TMP-4 -->
+      <customLevel level="information">CII-SR-475</customLevel>
+      <!-- overwrites CEN severity level "warning" because CII-SR-476 has a wrong rule context (see https://github.com/ConnectingEurope/eInvoicing-EN16931/issues/508); replaced by BR-TMP-5 -->
+      <customLevel level="information">CII-SR-476</customLevel>
     </createReport>
     <acceptMatch>/rep:report/rep:assessment[1]/rep:accept[1]</acceptMatch>
   </scenario>

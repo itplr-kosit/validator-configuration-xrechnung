@@ -14,6 +14,7 @@ This release is compatible with XRechnung ?.?.?
 ### Added
 
 * custom level "error" for CII-SR-465 and CII-SR-466
+* custom level "information" for CII-SR-475 and CII-SR-476 because both rules have a wrong rule context in CEN Schematron 1.3.16 (see https://github.com/ConnectingEurope/eInvoicing-EN16931/issues/508); replaced by BR-TMP-4 and BR-TMP-5 in XRechnung Schematron
 
 ### Changed
 
