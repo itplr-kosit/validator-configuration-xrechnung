@@ -391,10 +391,11 @@
       <mapper type="glob" from="*.xml" to="*.svrl.xml"/>
     </xslt>
     <echo>Checking SVRL for failures ...</echo>
+    <makeurl file="${svrl.dir}" property="svrl.dir.url"/>
     <java classname="net.sf.saxon.Transform" classpathref="cp.saxon.xslt" fork="yes" failonerror="yes">
       <arg value="-s:${src.dir}/check-svrl.xsl"/>
       <arg value="-xsl:${src.dir}/check-svrl.xsl"/>
-      <arg value="svrl.dir=${svrl.dir}"/>
+      <arg value="svrl.dir=${svrl.dir.url}"/>
     </java>
   </target>
 
