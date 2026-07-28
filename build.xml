@@ -12,7 +12,7 @@
    <property name="test.src.dir" location="${src.dir}/test" />
    <property name="test.build.dir" location="${build.dir}/test" />
 
-    <property name="xsbi.dir" location="${basedir}/_vendor/xsbi-0.3.0-SNAPSHOT/abu" />
+    <property name="xsbi.dir" location="${basedir}/_vendor/xsbi-0.5.0-SNAPSHOT/abu" />
 
     <import file="${xsbi.dir}/abu-common.xml" />
     <include file="${xsbi.dir}/abu-saxon-provider.xml" />
@@ -102,6 +102,7 @@
   <property name="reports.schema.dir" location="${resource.dir}/xsd"/>
 
   <property name="reports.dir" location="${build.dir}/reports"/>
+  <property name="svrl.dir" location="${reports.dir}/svrl"/>
   
   <!-- ci/cd  -->
   <property name="project.group.id" value="de.xeinkauf" />
@@ -384,9 +385,17 @@
       <fileset dir="${reports.dir}" includes="*-report.xml"/>
     </schemavalidate>
     <echo>Schematron validating reports ...</echo>
-    <xslt style="${src.dir}/report.sch.xsl" includes="${reports.dir}/*.xml" destdir="${reports.dir}" classpathref="cp.saxon.xslt">
+    <mkdir dir="${svrl.dir}"/>
+    <xslt style="${src.dir}/report.sch.xsl" includes="${reports.dir}/*.xml" destdir="${svrl.dir}" classpathref="cp.saxon.xslt">
       <factory name="net.sf.saxon.TransformerFactoryImpl" />
+      <mapper type="glob" from="*.xml" to="*.svrl.xml"/>
     </xslt>
+    <echo>Checking SVRL for failures ...</echo>
+    <java classname="net.sf.saxon.Transform" classpathref="cp.saxon.xslt" fork="yes" failonerror="yes">
+      <arg value="-s:${src.dir}/check-svrl.xsl"/>
+      <arg value="-xsl:${src.dir}/check-svrl.xsl"/>
+      <arg value="svrl.dir=${svrl.dir}"/>
+    </java>
   </target>
 
   <target name="test-validator-assertions-only" description="Only test XRechnung Configuration" unless="test.skip">

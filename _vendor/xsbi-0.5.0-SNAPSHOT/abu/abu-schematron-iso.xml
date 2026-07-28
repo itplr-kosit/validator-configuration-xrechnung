@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." name="abu-iso-schematron">
+
+  <macrodef name="schematron-compile-iso"
+    description="Compiles Schematron to XSLT using Saxon">
+    <attribute name="schematron" description="Schematron file to compile." />
+    <attribute name="workdir"
+      description="Base directory in which to download Schematron Skeleton and keep intermediaries." />
+    <attribute name="outdir" />
+    <attribute name="overwrite" default="false" />
+    <attribute name="insuffix" default="sch" />
+    <attribute name="saxon.jar" default="${lib.dir}/${saxon.jar}"
+      description="Location of Saxon jar." />
+    <attribute name="deleteonexit" default="true"
+      description="Whether to delete intermediate XSLT files on exit. Note if not deleting, then subsequent runs of macro produce wrong results!" />
+    <attribute name="schematronbinding" default="xslt2"
+      description="Which XSLT version to build for." />
+    <sequential>
+      <local name="schematron.basename" />
+
+      <fail message="sacon is not et provided" unless="saxon.available" />
+
+      <basename file="@{schematron}" suffix="@{insuffix}"
+        property="schematron.basename" />
+      <echo
+        message="Compiling '@{schematron}' Schematron with basename='${schematron.basename}'" />
+      <mkdir dir="@{workdir}" />
+      <tempfile property="expanded.sch" prefix="expanded" suffix=".sch"
+        destdir="@{workdir}" deleteonexit="@{deleteonexit}" />
+      <tempfile property="unabstract.sch" prefix="unabstract" suffix=".sch"
+        destdir="@{workdir}" deleteonexit="@{deleteonexit}" />
+      <tempfile property="schematron.xsl" prefix="schematron" suffix=".xsl"
+        destdir="@{workdir}" deleteonexit="@{deleteonexit}" />
+      <tempfile property="check-schematron.xsl" prefix="check-schematron"
+        suffix=".xsl" destdir="@{workdir}" deleteonexit="@{deleteonexit}" />
+      <!-- Download schematron skeletons -->
+      <property name="schematron.skeleton.url"
+        value="https://raw.githubusercontent.com/Schematron/schematron/master/trunk/schematron/code" />
+      <get src="${schematron.skeleton.url}/iso_dsdl_include.xsl"
+        dest="@{workdir}" verbose="true" skipexisting="true" usetimestamp="true"
+        httpusecaches="true" />
+      <get src="${schematron.skeleton.url}/iso_abstract_expand.xsl"
+        dest="@{workdir}" verbose="true" skipexisting="true" usetimestamp="true"
+        httpusecaches="true" />
+      <get
+        src="${schematron.skeleton.url}/iso_svrl_for_@{schematronbinding}.xsl"
+        dest="@{workdir}" verbose="true" skipexisting="true" usetimestamp="true"
+        httpusecaches="true" />
+      <get
+        src="${schematron.skeleton.url}/iso_schematron_skeleton_for_saxon.xsl"
+        dest="@{workdir}" verbose="true" skipexisting="true" usetimestamp="true"
+        httpusecaches="true" />
+      <!-- expand inclusions -->
+      <xslt style="@{workdir}/iso_dsdl_include.xsl" in="@{schematron}"
+        out="@{workdir}/${schematron.basename}-expanded.sch"
+        classpath="@{saxon.jar}" force="@{overwrite}">
+        <factory name="net.sf.saxon.TransformerFactoryImpl" />
+      </xslt>
+      <!-- expand abstract patterns -->
+      <xslt style="@{workdir}/iso_abstract_expand.xsl"
+        in="@{workdir}/${schematron.basename}-expanded.sch"
+        out="@{workdir}/${schematron.basename}-unabstract.sch"
+        classpath="@{saxon.jar}" force="@{overwrite}">
+        <factory name="net.sf.saxon.TransformerFactoryImpl" />
+      </xslt>
+      <!-- svrl it -->
+      <xslt style="@{workdir}/iso_svrl_for_@{schematronbinding}.xsl"
+        in="@{workdir}/${schematron.basename}-unabstract.sch"
+        out="@{outdir}/${schematron.basename}.xsl" classpath="@{saxon.jar}"
+        force="@{overwrite}">
+        <factory name="net.sf.saxon.TransformerFactoryImpl" />
+        <param name="generate-fired-rule" expression="true" />
+        <param name="full-path-notation" expression="3" />
+      </xslt>
+      <echo
+        message="finished schematron compile output to @{outdir}/${schematron.basename}.xsl"
+       />
+    </sequential>
+  </macrodef>
+
+
+</project>

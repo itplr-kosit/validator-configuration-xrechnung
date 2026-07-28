@@ -28,25 +28,15 @@
   <macrodef name="derive-xslt-filename">
     <attribute name="schematron" description="Input Schematron file (.sch)" />
     <attribute name="insuffix" default="sch" description="Input file suffix" />
-<!--    <attribute name="outsuffix" default="xsl" description="Output file suffix" />-->
-<!--      <local name="xslt.legacy.output.file" />
-      <local name="create.legacy.alias" />
--->
-<!--      <property name="xslt.legacy.output.file"
-        value="@{outdir}/${schematron.basename}.xslt" />
-      <condition property="create.legacy.alias">
-        <not>
-          <equals arg1="@{outsuffix}" arg2="xslt" />
-        </not>
-      </condition>
--->    <attribute name="property" default="xslt.output.file"
+    <attribute name="xslt-file-extension" default="xsl"
+      description="The file extension for the compiled XSLT fil. Default is xsl" />
+    <attribute name="property" default="xslt.output.file"
       description="Property name with derived XSLT filename as value" />
-
     <sequential>
-      <local name="schematron.basename" />
       <basename file="@{schematron}" suffix="@{insuffix}"
         property="schematron.basename" />
-      <property name="xslt.output.file" value="${schematron.basename}.xsl" />
+      <property name="xslt.output.file"
+        value="${schematron.basename}.@{xslt-file-extension}" />
     </sequential>
   </macrodef>
 
@@ -55,9 +45,8 @@
     <attribute name="schematron" description="Input Schematron file (.sch)" />
     <attribute name="outdir" description="Output directory for compiled XSLT" />
     <attribute name="insuffix" default="sch" description="Input file suffix" />
-
-      <!--  <copy file="${xslt.output.file}" tofile="${xslt.legacy.output.file}" overwrite="true" failonerror="false" />
--->
+    <attribute name="xslt-file-extension" default="xsl"
+      description="The file extension for the compiled XSLT fil. Default is xsl" />
     <sequential>
       <local name="xslt.output.file" />
 
@@ -76,7 +65,8 @@
       <fail unless="abu.available.saxon"
         message="In order to use this abu you first need to make Saxon available via abu-saxon-provider" />
 
-      <derive-xslt-filename schematron="@{schematron}" />
+      <derive-xslt-filename schematron="@{schematron}" xslt-file-extension="@{xslt-file-extension}"/>
+
 
       <echo
         message="Compiling '@{schematron}' to '@{outdir}/${xslt.output.file}'..." />
@@ -112,7 +102,8 @@
 
   <target name="schematron-compile-schxslt"
     depends="provide-schxslt, check-schematron-compile-need"
-    description="Compile Schematron to XSLT using SchXslt pipeline (calls compile-schematron macrodef)" if="schxslt.compile.needed">
+    description="Compile Schematron to XSLT using SchXslt pipeline (calls compile-schematron macrodef)"
+    if="schxslt.compile.needed">
 
 
     <echo message="Executing target schematron-compile-schxslt" />
