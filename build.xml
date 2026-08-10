@@ -288,14 +288,14 @@
 
   <target name="retrieve-all-schema-rules" depends="retrieve-ubl-schema,retrieve-cen-rules,provide-xrechnung-schematron,retrieve-cii-schema" description="Retrieve and prepare all 3rd party XSDs and XSLTs"/>
 
-  <target name="compile-cen-rules-only" depends="abu-saxon-provider.provide-saxon,abu-schematron-schxslt.provide-schxslt,compile-cen-ubl,compile-cen-cii" description="Works for zip from master and release zips"/>
+  <target name="compile-cen-rules-only" depends="compile-cen-ubl,compile-cen-cii" description="Works for zip from master and release zips"/>
 
-  <target name="compile-cen-ubl">
+  <target name="compile-cen-ubl" depends="prepare-saxon,abu-schematron-schxslt.provide-schxslt">
     <schematron-compile-schxslt schematron="${download.dir}/schematron/EN16931-UBL-validation.sch" outdir="${build.dir}"/>
     <copy file="${build.dir}/EN16931-UBL-validation.xsl" tofile="${resource.xsl.cen.ubl}" overwrite="true"/>
   </target>
 
-  <target name="compile-cen-cii">
+  <target name="compile-cen-cii" depends="prepare-saxon,abu-schematron-schxslt.provide-schxslt">
     <schematron-compile-schxslt schematron="${download.dir}/schematron/EN16931-CII-validation.sch" outdir="${build.dir}"/>
     <copy file="${build.dir}/EN16931-CII-validation.xsl" tofile="${resource.xsl.cen.cii}" overwrite="true"/>
   </target>
@@ -326,7 +326,7 @@
 
 
   <target name="compile"
-    depends="compile-scenario,retrieve-all-schema-rules,compile-cen-rules,abu-saxon-provider.provide-saxon"
+    depends="compile-scenario,retrieve-all-schema-rules,compile-cen-rules,prepare-saxon"
     description="Compile XSDs and XSLTs into validation configuration conformat repository directory">
     <echo>Compiling Schemas and XSLTs ...</echo>
     <copy file="${src.dir}/default-report.xsl" todir="${resource.dir}"/>
@@ -446,7 +446,7 @@
     </java>
   </target>
   
-    <target name="retrieve-xmute" depends="init" unless="xmute.jar.available">
+  <target name="retrieve-xmute" depends="init" unless="xmute.jar.available">
     <echo message="Downloading xml-mutate ${xmute.version.full} from GitLab xse-component-repository" />
     <get src="${xmute.download.url}"
            dest="${lib.dir}/${xmute.jar}" verbose="true" skipexisting="false" usetimestamp="true" />
