@@ -26,6 +26,12 @@
   <xsl:variable name="custom-levels" as="element(s:customLevel)*"
     select="//s:customLevel" />
 
+  <xsl:variable name="processing-errors" as="element(in:processingError)?"
+    select="/in:createReportInput/in:processingError" />
+
+  <xsl:variable name="has-processing-error" as="xs:boolean"
+    select="exists($processing-errors/in:error)" />
+
   <xd:doc>
     <xd:desc>Einstiegspunkt</xd:desc>
   </xd:doc>
@@ -45,6 +51,8 @@
         <rep:report>
           <xsl:attribute name="valid">
             <xsl:choose>
+<!-- processing errors always make the report invalid -->
+              <xsl:when test="$has-processing-error">false</xsl:when>
 <!-- reports without scenarios -->
               <xsl:when test="empty(s:scenario)">false</xsl:when>
               
@@ -201,23 +209,34 @@
   <xsl:template match="in:validationResultsSchematron">
     <xsl:variable name="schematron-output" as="element(svrl:schematron-output)?"
       select="in:results/svrl:schematron-output" />
-    <xsl:if test="empty($schematron-output)">
-      <xsl:message terminate="yes"
-        >Unexpected result from schematron validation - there is no svrl:schematron-output element!</xsl:message>
-    </xsl:if>
     <xsl:variable name="id" as="xs:string"
       select="concat('val-sch.', 1 + count(preceding-sibling::in:validationResultsSchematron))" />
-    <xsl:variable name="messages" as="element(rep:message)*">
-      <xsl:apply-templates
-        select="$schematron-output/(svrl:failed-assert | svrl:successful-report)">
-        <xsl:with-param name="parent-id" select="$id" />
-      </xsl:apply-templates>
-    </xsl:variable>
-    <rep:validationStepResult id="{$id}"
-      valid="{if ($messages[@level = ('warning', 'error')]) then false() else true()}">
-      <xsl:apply-templates select="s:resource" mode="copy" />
-      <xsl:sequence select="$messages" />
-    </rep:validationStepResult>
+    <xsl:choose>
+      <xsl:when test="empty($schematron-output)">
+        <rep:validationStepResult id="{$id}" valid="false">
+          <xsl:apply-templates select="s:resource" mode="copy" />
+          <xsl:if test="not(exists($processing-errors/in:error))">
+            <rep:message id="{$id}.processing-error" level="error" code="PROCESSING_ERROR"
+              xpathLocation="/">
+              <xsl:text>The Schematron validation did not produce an SVRL result. The validation step was not completed.</xsl:text>
+            </rep:message>
+          </xsl:if>
+        </rep:validationStepResult>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:variable name="messages" as="element(rep:message)*">
+          <xsl:apply-templates
+            select="$schematron-output/(svrl:failed-assert | svrl:successful-report)">
+            <xsl:with-param name="parent-id" select="$id" />
+          </xsl:apply-templates>
+        </xsl:variable>
+        <rep:validationStepResult id="{$id}"
+          valid="{if ($messages[@level = ('warning', 'error')]) then false() else true()}">
+          <xsl:apply-templates select="s:resource" mode="copy" />
+          <xsl:sequence select="$messages" />
+        </rep:validationStepResult>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:template>
 
 
@@ -294,6 +313,8 @@
     <rep:assessment>
       <xsl:variable name="element-name" as="xs:string">
         <xsl:choose>
+          <xsl:when test="$has-processing-error"
+            >reject</xsl:when>
           <xsl:when test="empty(rep:scenarioMatched/s:scenario)"
             >reject</xsl:when>
           <xsl:when
@@ -339,15 +360,22 @@
   </xd:doc>
   <xsl:function name="rep:custom-level" as="xs:string">
     <xsl:param name="message" as="element(rep:message)" />
-    <xsl:variable name="cl" as="element(s:customLevel)?"
-      select="$custom-levels[tokenize(., '\s+') = $message/@code]" />
-    <xsl:value-of
-      select="
-        if ($cl) then
-          $cl/@level
-        else
-          $message/@level"
-     />
+    <xsl:choose>
+      <xsl:when test="$message/@code = 'PROCESSING_ERROR'">
+        <xsl:value-of select="$message/@level" />
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:variable name="cl" as="element(s:customLevel)?"
+          select="$custom-levels[tokenize(., '\s+') = $message/@code]" />
+        <xsl:value-of
+          select="
+            if ($cl) then
+              $cl/@level
+            else
+              $message/@level"
+         />
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:function>
 
   <xsl:template name="explanations">
@@ -515,6 +543,8 @@
 
     <xsl:call-template name="html:document-metadata" />
 
+    <xsl:call-template name="html:processing-errors" />
+
     <xsl:call-template name="html:conformance" />
 
     <xsl:if test="//rep:message">
@@ -576,6 +606,22 @@
   </xsl:template>
 
   <xsl:template name="html:documentData" />
+
+  <xsl:template name="html:processing-errors" xmlns="http://www.w3.org/1999/xhtml">
+    <xsl:if test="exists($processing-errors)">
+      <div class="processing-errors">
+        <p class="important error">
+          <b>Verarbeitungsfehler: </b>
+          <xsl:text>Bei der Validierung sind Verarbeitungsfehler aufgetreten. Das Ergebnis ist unvollständig und nicht verwertbar.</xsl:text>
+        </p>
+        <ul>
+          <xsl:for-each select="$processing-errors/in:error">
+            <li><xsl:value-of select="."/></li>
+          </xsl:for-each>
+        </ul>
+      </div>
+    </xsl:if>
+  </xsl:template>
 
   <xd:doc>
     <xd:desc>
@@ -704,6 +750,12 @@
     <xsl:variable name="w" as="xs:integer"
       select="count(//rep:message[@level eq 'warning'])" />
     <xsl:choose>
+      <xsl:when test="$has-processing-error">
+        <p class="important error">
+          <b>Konformitätsprüfung: </b>
+          <xsl:text>Die Konformitätsprüfung konnte aufgrund eines Verarbeitungsfehlers nicht vollständig durchgeführt werden. Eine Aussage zur Konformität ist daher nicht möglich.</xsl:text>
+        </p>
+      </xsl:when>
       <xsl:when test="rep:scenarioMatched">
         <p class="important">
           <b>Konformitätsprüfung: </b>
@@ -747,6 +799,10 @@
       select="count(//rep:message[rep:custom-level(.) eq 'error'])" />
 
     <xsl:choose>
+      <xsl:when test="$has-processing-error">
+        <p class="important error"
+          >Bewertung: Die Validierung konnte nicht vollständig durchgeführt werden. Das Dokument sollte nicht automatisiert angenommen werden.</p>
+      </xsl:when>
       <xsl:when test="empty(rep:scenarioMatched) or rep:scenarioMatched/s:scenario/s:name[ contains( lower-case(text()), 'fallback')]">
         <p class="important error"
           >Bewertung: Es wird empfohlen das Dokument zurückzuweisen. Da kein Pruefszenario gegriffen hat.</p>

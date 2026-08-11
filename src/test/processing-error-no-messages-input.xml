@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Scenario: processingError present, no validationResultsSchematron at all -->
+<in:createReportInput
+  xmlns:in="http://www.xoev.de/de/validator/framework/1/createreportinput"
+  xmlns:s="http://www.xoev.de/de/validator/framework/1/scenarios"
+  frameworkVersion="1.0.0">
+  <in:engine>
+    <in:name>KoSIT Validator Test</in:name>
+  </in:engine>
+  <in:timestamp>2025-05-09T10:00:00</in:timestamp>
+  <in:documentIdentification>
+    <in:documentHash>
+      <in:hashAlgorithm>SHA-256</in:hashAlgorithm>
+      <in:hashValue>AAAA</in:hashValue>
+    </in:documentHash>
+    <in:documentReference>processing-error-no-messages-test</in:documentReference>
+  </in:documentIdentification>
+  <s:scenario>
+    <s:name>EN16931 XRechnung (UBL Invoice)</s:name>
+    <s:description/>
+    <s:resource>
+      <s:name>UBL Schema</s:name>
+      <s:location>ubl/2.1/xsd/maindoc/UBL-Invoice-2.1.xsd</s:location>
+    </s:resource>
+  </s:scenario>
+  <in:validationResultsXmlSchema>
+    <s:resource>
+      <s:name>UBL Schema</s:name>
+      <s:location>ubl/2.1/xsd/maindoc/UBL-Invoice-2.1.xsd</s:location>
+    </s:resource>
+  </in:validationResultsXmlSchema>
+  <in:processingError>
+    <in:error>Schematron execution failed</in:error>
+  </in:processingError>
+</in:createReportInput>

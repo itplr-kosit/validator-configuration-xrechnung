@@ -526,7 +526,116 @@
     </java>
   </target>
 
-  <target name="test" depends="init-test, test-validator-assertions,create-validator-reports-from-testsuite, test-cen-expected-behaviour, test-integration, create-validator-reports-from-custom-tests">
+  <target name="test-check-svrl" depends="abu-saxon-provider.provide-saxon"
+    description="Self-test for check-svrl.xsl: verify it passes on clean SVRL and fails on SVRL with failed-assert">
+
+    <makeurl file="${test.src.dir}/svrl/passing" property="svrl.test.passing.url"/>
+    <makeurl file="${test.src.dir}/svrl/failing" property="svrl.test.failing.url"/>
+
+    <echo>test-check-svrl: positive test (no failed-assert — must pass) ...</echo>
+    <java classname="net.sf.saxon.Transform" classpathref="cp.saxon.xslt" fork="yes" failonerror="yes">
+      <arg value="-s:${src.dir}/check-svrl.xsl"/>
+      <arg value="-xsl:${src.dir}/check-svrl.xsl"/>
+      <arg value="svrl.dir=${svrl.test.passing.url}"/>
+    </java>
+
+    <echo>test-check-svrl: negative test (failed-assert present — must fail) ...</echo>
+    <java classname="net.sf.saxon.Transform" classpathref="cp.saxon.xslt" fork="yes"
+      failonerror="false" resultproperty="check.svrl.failing.result">
+      <arg value="-s:${src.dir}/check-svrl.xsl"/>
+      <arg value="-xsl:${src.dir}/check-svrl.xsl"/>
+      <arg value="svrl.dir=${svrl.test.failing.url}"/>
+    </java>
+    <fail message="test-check-svrl: negative test failed — check-svrl.xsl did not detect the failed-assert">
+      <condition>
+        <equals arg1="${check.svrl.failing.result}" arg2="0"/>
+      </condition>
+    </fail>
+    <echo>test-check-svrl: all assertions passed.</echo>
+  </target>
+
+  <target name="test-processing-error" depends="init, abu-saxon-provider.provide-saxon"
+    description="Test that default-report.xsl correctly handles processingError and missing SVRL">
+
+    <!-- Scenario A: processingError present alongside partial schematron results -->
+    <local name="pe.out.a"/>
+    <local name="pe.content.a"/>
+    <property name="pe.out.a" location="${build.dir}/test-pe-a-report.xml"/>
+    <java classname="net.sf.saxon.Transform" classpathref="cp.saxon.xslt" fork="yes" failonerror="yes">
+      <arg value="-s:${test.src.dir}/processing-error-input.xml"/>
+      <arg value="-xsl:${src.dir}/default-report.xsl"/>
+      <arg value="-o:${pe.out.a}"/>
+      <arg value="input-document=${test.src.dir}/processing-error-input.xml"/>
+    </java>
+    <loadfile srcfile="${pe.out.a}" property="pe.content.a"/>
+    <fail message="[A] report must have valid=&quot;false&quot; when processingError is present">
+      <condition><not><contains string="${pe.content.a}" substring='valid="false"'/></not></condition>
+    </fail>
+    <fail message="[A] report must contain rep:reject (not rep:accept) when processingError is present">
+      <condition><contains string="${pe.content.a}" substring="rep:accept"/></condition>
+    </fail>
+    <fail message="[A] Verarbeitungsfehler banner must appear in HTML output">
+      <condition><not><contains string="${pe.content.a}" substring="Verarbeitungsfehler"/></not></condition>
+    </fail>
+    <fail message="[A] Inconclusive conformance text must appear">
+      <condition><not><contains string="${pe.content.a}" substring="nicht vollst"/></not></condition>
+    </fail>
+    <fail message="[A] 'Nicht automatisiert annehmen' rejection text must appear">
+      <condition><not><contains string="${pe.content.a}" substring="nicht automatisiert angenommen"/></not></condition>
+    </fail>
+    <echo>test-processing-error [A]: processingError with partial results — passed.</echo>
+
+    <!-- Scenario B: processingError present, no validation messages at all -->
+    <local name="pe.out.b"/>
+    <local name="pe.content.b"/>
+    <property name="pe.out.b" location="${build.dir}/test-pe-b-report.xml"/>
+    <java classname="net.sf.saxon.Transform" classpathref="cp.saxon.xslt" fork="yes" failonerror="yes">
+      <arg value="-s:${test.src.dir}/processing-error-no-messages-input.xml"/>
+      <arg value="-xsl:${src.dir}/default-report.xsl"/>
+      <arg value="-o:${pe.out.b}"/>
+      <arg value="input-document=${test.src.dir}/processing-error-no-messages-input.xml"/>
+    </java>
+    <loadfile srcfile="${pe.out.b}" property="pe.content.b"/>
+    <fail message="[B] report must have valid=&quot;false&quot; when only processingError, no validation messages">
+      <condition><not><contains string="${pe.content.b}" substring='valid="false"'/></not></condition>
+    </fail>
+    <fail message="[B] report must not contain rep:accept when only processingError present">
+      <condition><contains string="${pe.content.b}" substring="rep:accept"/></condition>
+    </fail>
+    <fail message="[B] conformance must be inconclusive (not 'konform'), not claim zero errors">
+      <condition><contains string="${pe.content.b}" substring="weder Fehler noch Warnungen"/></condition>
+    </fail>
+    <echo>test-processing-error [B]: processingError without validation messages — passed.</echo>
+
+    <!-- Scenario C: missing svrl:schematron-output, no in:processingError -->
+    <local name="pe.out.c"/>
+    <local name="pe.content.c"/>
+    <property name="pe.out.c" location="${build.dir}/test-pe-c-report.xml"/>
+    <java classname="net.sf.saxon.Transform" classpathref="cp.saxon.xslt" fork="yes" failonerror="yes">
+      <arg value="-s:${test.src.dir}/missing-svrl-input.xml"/>
+      <arg value="-xsl:${src.dir}/default-report.xsl"/>
+      <arg value="-o:${pe.out.c}"/>
+      <arg value="input-document=${test.src.dir}/missing-svrl-input.xml"/>
+    </java>
+    <loadfile srcfile="${pe.out.c}" property="pe.content.c"/>
+    <fail message="[C] report must have valid=&quot;false&quot; when SVRL result is missing">
+      <condition><not><contains string="${pe.content.c}" substring='valid="false"'/></not></condition>
+    </fail>
+    <fail message="[C] report must not contain rep:accept when SVRL is missing">
+      <condition><contains string="${pe.content.c}" substring="rep:accept"/></condition>
+    </fail>
+    <fail message="[C] PROCESSING_ERROR code must appear in report">
+      <condition><not><contains string="${pe.content.c}" substring="PROCESSING_ERROR"/></not></condition>
+    </fail>
+    <fail message="[C] 'validation step was not completed' message must appear">
+      <condition><not><contains string="${pe.content.c}" substring="not completed"/></not></condition>
+    </fail>
+    <echo>test-processing-error [C]: missing SVRL without processingError — passed.</echo>
+
+    <echo>test-processing-error: all scenarios passed.</echo>
+  </target>
+
+  <target name="test" depends="init-test, test-check-svrl, test-processing-error, test-validator-assertions,create-validator-reports-from-testsuite, test-cen-expected-behaviour, test-integration, create-validator-reports-from-custom-tests">
     <echo message="Testing all"/>
   </target>
 
