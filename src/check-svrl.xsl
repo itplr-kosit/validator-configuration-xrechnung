@@ -20,6 +20,8 @@
           select="count($failures)"/> assertion(s) failed across <xsl:value-of
           select="count(distinct-values($failures/base-uri(.)))"/> file(s). See messages above.</xsl:message>
     </xsl:if>
+
+    <xsl:message>No error reported in any svrl</xsl:message>
   </xsl:template>
 
 </xsl:stylesheet>
