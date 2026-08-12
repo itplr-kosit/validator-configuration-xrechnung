@@ -2,6 +2,14 @@
 
 This repository contains an ANT `build.xml` which allows downloading all necessary tools and artefacts for creating this validator configuration for XRechnung. It also allows testing the configuration against a few UBL and UN/CEFACT documents and creates a release zip file.
 
+## System Requirements
+
+### Java
+
+The build itself requires **Java 11 or later**. This is imposed by the KoSIT Validator (v1.6.0+), which is downloaded automatically during testing. Validator v1.6.0 was compiled for Java 11 (class file version 55.0) and will not run on Java 8.
+
+If you cannot upgrade to Java 11, you can temporarily use Validator v1.5.x instead. See [Using a different Validator version](#using-a-different-validator-version) below.
+
 ## Dependencies overview
 
 ### Compile time
@@ -152,6 +160,30 @@ ant test-cen-unexpected-behaviour
 ```
 
 This ant task is expected to fail. If not called manually, this task will be skipped.
+
+## Using a different Validator version
+
+The default Validator version is defined in `_vendor/xsbi-*/abu/abu-validator-provider.xml` and is set to v1.6.0. This version requires **Java 11 or later**.
+
+If you need to use an older Validator (e.g. v1.5.x, which still supports Java 8), you can override the version via a development properties file:
+
+1. Copy `development.build.properties.example` to `development.build.properties`.
+
+2. Uncomment and set the validator version, e.g.:
+
+   ```properties
+   validator.version=1.5.0
+   ```
+
+3. Manually copy the corresponding `validator-1.5.0-standalone.jar` from a previous release bundle into the `lib/` directory, since `abu-validator-provider.xml` derives the download URL from the configured version and v1.5.0 is available at `https://github.com/itplr-kosit/validator/releases/download/v1.5.0/`.
+
+4. Pass your properties file to Ant:
+
+   ```shell
+   ant -propertyfile development.build.properties
+   ```
+
+Note: Using an older Validator version is a temporary workaround only. We recommend upgrading to Java 11 or later.
 
 ## Distribution
 

@@ -8,6 +8,9 @@
  -->
 
   <property name="validator.major.version" value="1" />
+  <!-- Validator v1.6.x requires Java 11 or later (class file version 55.0).
+       To use v1.5.x (Java 8 compatible), override validator.version in your
+       development.build.properties file. See docs/development.md for details. -->
   <property name="validator.minor.version" value="6" />
 
   <property name="validator.version"

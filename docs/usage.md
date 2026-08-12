@@ -38,7 +38,7 @@ unzip validator-configuration.zip
 
 3. Run Validator
 
-Requires the `java` commandline application. See the [validator repository](https://github.com/itplr-kosit/validator) for system requirements.
+Requires the `java` commandline application with **Java 11 or later** (the validator bundled since release 2026-01-31 uses Validator v1.6.0, which requires Java 11+). See the [validator repository](https://github.com/itplr-kosit/validator) for full system requirements.
 
 ```shell
 java -jar ${jar_of_your_choice}.jar -s scenarios.xml -r ${PWD} -h ubl.xml
