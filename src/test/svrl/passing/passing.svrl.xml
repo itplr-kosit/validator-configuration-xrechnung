@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svrl:schematron-output xmlns:svrl="http://purl.oclc.org/dsdl/svrl" title="Passing SVRL fixture">
-  <svrl:active-pattern id="pattern-1" name="Test pattern"/>
-  <svrl:fired-rule context="rep:report"/>
-</svrl:schematron-output>
