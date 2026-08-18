@@ -636,7 +636,7 @@
     <echo>test-processing-error: all scenarios passed.</echo>
   </target>
 
-  <target name="test" depends="init-test, test-check-svrl, test-processing-error, test-validator-assertions,create-validator-reports-from-testsuite, test-cen-expected-behaviour, test-integration, create-validator-reports-from-custom-tests">
+  <target name="test" depends="init-test,test-validator-assertions,create-validator-reports-from-testsuite, test-cen-expected-behaviour, test-integration, create-validator-reports-from-custom-tests, test-check-svrl, test-processing-error">
     <echo message="Testing all"/>
   </target>
 
