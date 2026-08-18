@@ -13,7 +13,8 @@
    <property name="test.build.dir" location="${build.dir}/test" />
 
     <property name="xsbi.dir" location="${basedir}/_vendor/xsbi-0.5.0-SNAPSHOT/abu" />
-
+  <property name="xsbi.home" location="${basedir}/_vendor/xsbi-0.5.0-SNAPSHOT" />
+  
     <import file="${xsbi.dir}/abu-common.xml" />
     <include file="${xsbi.dir}/abu-saxon-provider.xml" />
     <include file="${xsbi.dir}/abu-schematron-schxslt.xml" />
