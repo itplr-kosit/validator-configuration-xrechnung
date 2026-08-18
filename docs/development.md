@@ -175,7 +175,14 @@ If you need to use an older Validator (e.g. v1.5.x, which still supports Java 8)
    validator.version=1.5.0
    ```
 
-3. Manually copy the corresponding standalone jar into the `lib/` directory. `abu-validator-provider.xml` derives both the download URL and the jar name from the configured version and expects the naming scheme `validator-${validator.version}.zip` containing `validator-${validator.version}-standalone.jar`. Up to and including v1.5.0 the Validator was still released under its old artifact id `validationtool` (the Maven coordinates changed from `de.kosit:validationtool` to `org.kosit:validator` in v1.5.1), so the automatic download and unpacking will not find the expected file names for v1.5.0.
+3. For Validator versions up to and including v1.5.0, set e.g.:
+
+   ```properties
+   validator.zip=validator-1.5.0-distribution.zip
+   validator.jar=validationtool-1.5.0-standalone.jar
+   ```
+
+   `abu-validator-provider.xml` derives both the download URL and the jar name from the configured version and expects the naming scheme `validator-${validator.version}.zip` containing `validator-${validator.version}-standalone.jar`. Up to and including v1.5.0 the Validator was still released under its old artifact name `validator-${validator.version}-distribution.zip`, the jar naming scheme being `validationtool-${validator.version}-standalone.jar`, so the automatic download and unpacking will not find the expected file names for v1.5.0.
 
 4. Pass your properties file to Ant:
 
