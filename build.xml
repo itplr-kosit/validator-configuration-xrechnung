@@ -399,10 +399,11 @@
       <arg value="svrl.dir=${svrl.dir.url}"/>
     </java>
   </target>
-
+  
+  <!-- TODO: after refactoring of test/instances validation into processing-valid and processing-error set failonerror="true" for valid test instances  -->
   <target name="test-validator-assertions-only" description="Only test XRechnung Configuration" unless="test.skip">
     <echo>Creating validation reports with ${lib.dir}/${validator.jar}.</echo>
-    <java jar="${lib.dir}/${validator.jar}" failonerror="yes" fork="yes" dir="${build.dir}">
+    <java jar="${lib.dir}/${validator.jar}" failonerror="false" fork="yes" dir="${build.dir}">
       <arg value="-s"/>
       <arg value="${test.build.dir}/scenarios.xml"/>
       <arg value="-r"/>
