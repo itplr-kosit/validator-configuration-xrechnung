@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." name="abu-genericode" default="provide-genericode">
+
+
+  <target name="init">
+    <echo message="Calling genericode.init task" />
+    <mkdir dir="${build.dir}" />
+    <mkdir dir="${lib.dir}" />
+  </target>
+
+  <available property="genericode.available"
+    file="${genericode.artifact.name}" />
+
+  <target name="resolve-genericode" depends="init"
+    unless="${genericode.available}" description="Download genericode to lib directory">
+
+    <property name="genericode.artifact.name" value="genericode-v1.0-cs02.zip" />
+
+    <property name="genericode.download.url"
+      value="https://docs.oasis-open.org/codelist/genericode/v1.0/cs02/${genericode.artifact.name}" />
+
+    <get src="${genericode.download.url}" dest="${lib.dir}" verbose="true"
+      skipexisting="true" usetimestamp="true" />
+
+  </target>
+
+  <target name="provide-genericode" depends="resolve-genericode">
+
+    <property name="xgc.validator.resource.dir" location="${build.dir}/xgc" />
+    <property name="genericode.xsd"
+      location="${xgc.validator.resource.dir}/genericode.xsd" />
+    <mkdir dir="${xgc.validator.resource.dir}" />
+
+    <unzip src="${lib.dir}/${genericode.artifact.name}" dest="${xgc.validator.resource.dir}">
+      <patternset>
+        <include name="sch/*.sch" />
+        <include name="xsd/*.xsd" />
+        <exclude name="xml/*.gc" />
+      </patternset>
+      <flattenmapper />
+    </unzip>
+
+  </target>
+
+
+</project>

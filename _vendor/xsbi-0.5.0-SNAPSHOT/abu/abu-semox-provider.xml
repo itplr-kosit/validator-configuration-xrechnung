@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." name="abu-semox" default="provide-semox">
+
+  <!-- 
+  Provides SeMox dependency either from most mature release destination 
+  or from local build based Deployment:
+    * 
+   -->
+
+  <property name="semox.major.version" value="1" />
+  <property name="semox.minor.version" value="0" />
+
+  <property name="semox.version"
+    value="${semox.major.version}.${semox.minor.version}.0-rc2" />
+
+  <property name="semox.zip.name" value="semox-${semox.version}.zip" />
+
+  <!-- Directory of installed (aka provided) semox  -->
+  <property name="semox.home" location="${lib.dir}/semox-${semox.version}" />
+
+  <property name="semo.xsd" location="${semox.home}/xsd/semo.xsd" />
+  <property name="semox.lib.dir" location="${semox.home}/lib" />
+  <property name="semox.download.url"
+    value="https://projekte.kosit.org/api/v4/projects/356/packages/maven/org/semo-xml/semox/${semox.version}/${semox.zip.name}" />
+
+  <target name="init">
+    <echo message="Calling ${ant.project.name} init task (from ${ant.file})" />
+    <!-- property defining the local directory containing the semox distribution zip-->
+    
+  </target>
+
+
+  <target name="dependency-resolve-local" depends="init" if="semox.dist.dir">
+    <fail message="Property 'semox.dist.dir'
+ is not set." unless="semox.dist.dir" />
+    <!--    <property name="semox.dist.dir" location="${basedir}/../semox/dist" />-->
+    <!-- directly unzip from semox as parent dist  -->
+    <copy  file="${semox.dist.dir}/${semox.zip.name}"
+    todir="${lib.dir}" />
+  </target>
+
+  <target name="dependency-resolve-xse-component-repository" depends="init" unless="semox.dist.dir">
+    <get src="${semox.download.url}" dest="${lib.dir}/" verbose="true"
+      skipexisting="true" usetimestamp="true" />
+  </target>
+ 
+  <target name="provide-semox"
+    depends="dependency-resolve-local, dependency-resolve-xse-component-repository">
+
+
+    <unzip src="${lib.dir}/${semox.zip.name}" dest="${semox.home}"
+      failonemptyarchive="true">
+      <cutdirsmapper dirs="1" />
+    </unzip>
+
+
+    <path id="generate.classpath">
+      <fileset dir="${semox.home}">
+        <include name="**/*.jar" />
+      </fileset>
+    </path>
+  </target>
+
+  <target name="check-validation-requirements" depends="init">
+    <length string="${model.file}" when="le" length="0" property="t" />
+    <echo message="t=${t}" />
+
+    <fail message="Property 'model.file'
+ is not set." unless="model.file" />
+
+    <fail message="SeMoX model not available at ${model.file}">
+      <condition>
+        <or>
+          <length string="${model.file}" when="equal" length="0" />
+          <not>
+            <available file="${model.file}" type="file" />
+          </not>
+        </or>
+      </condition>
+
+    </fail>
+
+    <fail message="Property 'semo.xsd'
+ is not set." unless="semo.xsd" />
+
+    <fail message="SeMoX XSD not available at ${semo.xsd}">
+      <condition>
+        <not>
+          <available file="${semo.xsd}" type="file" />
+        </not>
+      </condition>
+    </fail>
+  </target>
+
+  <target name="validate-model" depends="check-validation-requirements"
+    description="Validating a SeMoX model">
+    <echo message="Validating ${model.file} with ${semo.xsd}" />
+    <!-- TODO:  have to check if model file exists , cause schemavalidate won't complain otherwise-->
+    <schemavalidate fullchecking="true" failonerror="true" warn="true">
+      <schema namespace="http://semo-xml.org/2025/model" file="${semo.xsd}" />
+      <fileset file="${model.file}" />
+    </schemavalidate>
+  </target>
+
+
+  <target name="generate-html" depends="init">
+
+    <fail message="Property 'model.html.dir'
+ is not set." unless="model.html.dir" />
+    <fail message="Property 'model.structure.id'
+ is not set." unless="model.structure.id" />
+
+    <makeurl file="${model.html.dir}" property="model.html.url" />
+
+    <echo>Converting SeMoX model into HTML dir ${model.html.dir}</echo>
+
+
+    <property name="html.xsl" location="${semox.home}/generator/html/html.xsl" />
+
+    <xslt in="${model.file}" style="${html.xsl}"
+      out="${model.html.dir}/dummy.xml" force="true">
+      <classpath refid="generate.classpath" />
+      <factory name="net.sf.saxon.TransformerFactoryImpl" />
+      <param name="html.build.dir" expression="${model.html.url}" type="STRING" />
+
+      <!--      <param name="model.properties.url" expression="${model.properties.url}"
+        type="STRING" />
+-->
+      <param name="structure.id" expression="${model.structure.id}"
+        type="STRING" />
+
+      <param name="show.cardinality.tables"
+        expression="${model.show.cardinality.tables}" type="STRING" />
+
+    </xslt>
+  </target>
+
+
+</project>
