@@ -27,6 +27,15 @@
    <property name="test.docs.integration.dir" location="${test.docs.dir}/integration" />
    <property name="testsuite.instances.dir" location="${test.build.dir}/testsuite" />
 
+   <!-- src/test/instances is split by whether the validator can process the instance at all:
+        processing-valid instances yield a matched scenario, processing-error instances
+        (non-XML or not well-formed) yield noScenarioMatched plus a processing error. -->
+   <property name="test.docs.instances.dir" location="${test.docs.dir}/instances" />
+   <property name="test.docs.instances.processing-valid.dir"
+     location="${test.docs.instances.dir}/processing-valid" />
+   <property name="test.docs.instances.processing-error.dir"
+     location="${test.docs.instances.dir}/processing-error" />
+
    <!-- Naming -->
    <property name="xrechnung.version.major.minor" value="3.0" />
    <property name="xrechnung.version.patch" value="2" />
@@ -103,6 +112,19 @@
 
   <property name="reports.dir" location="${build.dir}/reports"/>
   <property name="svrl.dir" location="${reports.dir}/svrl"/>
+
+  <!-- report.sch checks the structure of the validator's own report output. It is a test
+       artifact, not part of the shipped configuration, so it is compiled into
+       ${build.dir}/schematron, which dist-only excludes from the distribution zip. -->
+  <property name="report.schematron.file" location="${src.dir}/report.sch"/>
+  <property name="report.schematron.dir" location="${build.dir}/schematron"/>
+  <property name="report.schematron.xsl" location="${report.schematron.dir}/report.xsl"/>
+
+  <!-- reports and SVRL results are kept per instances sub-directory -->
+  <property name="reports.processing-valid.dir" location="${reports.dir}/processing-valid"/>
+  <property name="reports.processing-error.dir" location="${reports.dir}/processing-error"/>
+  <property name="svrl.processing-valid.dir" location="${svrl.dir}/processing-valid"/>
+  <property name="svrl.processing-error.dir" location="${svrl.dir}/processing-error"/>
   
   <!-- ci/cd  -->
   <property name="project.group.id" value="de.xeinkauf" />
@@ -112,6 +134,78 @@
   <macrodef name="xslt-saxon">
     <sequential>
       <fail message="Not implemented yet" />
+    </sequential>
+  </macrodef>
+
+  <macrodef name="validate-instances"
+    description="Run the KoSIT validator over an instance directory with assertion checking">
+    <attribute name="instancedir" description="Directory holding the test instances" />
+    <attribute name="reportdir" description="Directory the validator writes its reports to" />
+    <attribute name="assertions" default="${test.src.dir}/assertions.xml"
+      description="Assertion file passed to --check-assertions" />
+    <sequential>
+      <mkdir dir="@{reportdir}" />
+      <echo>Creating validation reports for @{instancedir} with ${lib.dir}/${validator.jar}.</echo>
+      <java jar="${lib.dir}/${validator.jar}" failonerror="yes" fork="yes" dir="${build.dir}">
+        <arg value="-s" />
+        <arg value="${test.build.dir}/scenarios.xml" />
+        <arg value="-r" />
+        <arg value="${build.dir}" />
+        <arg value="--html" />
+        <arg value="-l" />
+        <arg value="INFO" />
+        <arg value="--check-assertions" />
+        <arg value="@{assertions}" />
+        <arg value="-o" />
+        <arg value="@{reportdir}" />
+        <arg value="@{instancedir}" />
+      </java>
+    </sequential>
+  </macrodef>
+
+  <macrodef name="check-reports"
+    description="Schema- and Schematron-validate validator reports, failing on any SVRL failed-assert">
+    <attribute name="reportdir" description="Directory holding the *-report.xml files" />
+    <attribute name="svrldir" description="Directory the SVRL results are written to" />
+    <sequential>
+      <echo>Schema validating reports in @{reportdir} against ${reports.schema.dir}/report.xsd ...</echo>
+      <schemavalidate fullchecking="yes" failonerror="yes">
+        <schema namespace="http://www.xoev.de/de/validator/varl/1"
+          file="${reports.schema.dir}/report.xsd" />
+        <schema namespace="http://www.xoev.de/de/validator/framework/1/scenarios"
+          file="${reports.schema.dir}/scenarios.xsd" />
+        <fileset dir="@{reportdir}" includes="*-report.xml" />
+      </schemavalidate>
+
+      <echo>Schematron validating reports in @{reportdir} with ${report.schematron.xsl} ...</echo>
+      <mkdir dir="@{svrldir}" />
+      <!-- basedir plus a relative include pattern: an absolute path in @includes matches nothing -->
+      <xslt style="${report.schematron.xsl}" basedir="@{reportdir}" includes="*-report.xml"
+        destdir="@{svrldir}" force="true" classpathref="cp.saxon.xslt">
+        <factory name="net.sf.saxon.TransformerFactoryImpl" />
+        <mapper type="glob" from="*.xml" to="*.svrl.xml" />
+      </xslt>
+
+      <!-- Guard against a vacuous pass: with no SVRL on disk check-svrl.xsl finds nothing to
+           complain about and the build would go green for the wrong reason. -->
+      <fail
+        message="No SVRL produced from @{reportdir} - the report.sch check would pass vacuously">
+        <condition>
+          <resourcecount when="equal" count="0">
+            <fileset dir="@{svrldir}" includes="*.svrl.xml" />
+          </resourcecount>
+        </condition>
+      </fail>
+
+      <echo>Checking SVRL in @{svrldir} for failed assertions ...</echo>
+      <local name="svrl.check.url" />
+      <makeurl file="@{svrldir}" property="svrl.check.url" />
+      <java classname="net.sf.saxon.Transform" classpathref="cp.saxon.xslt" fork="yes"
+        failonerror="yes">
+        <arg value="-s:${src.dir}/check-svrl.xsl" />
+        <arg value="-xsl:${src.dir}/check-svrl.xsl" />
+        <arg value="svrl.dir=${svrl.check.url}" />
+      </java>
     </sequential>
   </macrodef>
 
@@ -303,6 +397,26 @@
 
   <target name="compile-cen-rules" depends="retrieve-cen-rules,compile-cen-rules-only" description="Works for zip from master and release zips"/>
 
+  <target name="compile-report-schematron"
+    depends="abu-saxon-provider.provide-saxon,abu-schematron-schxslt.provide-schxslt"
+    description="Compile src/report.sch (report structure checks) to XSLT using SchXslt">
+    <mkdir dir="${report.schematron.dir}"/>
+    <!-- Deliberately not using the abu macrodef schematron-compile-schxslt here: it derives the
+         output name via <basename>, which sets an immutable Ant property, so the first
+         Schematron compiled in a build fixes the output filename for every later call. Driving
+         the SchXslt pipeline directly keeps the output name under this build's control. -->
+    <xslt in="${report.schematron.file}"
+      style="${lib.dir}/schxslt-${schxslt.version}/2.0/pipeline-for-svrl.xsl"
+      out="${report.schematron.xsl}" force="true" classpathref="cp.saxon.xslt">
+      <factory name="net.sf.saxon.TransformerFactoryImpl"/>
+    </xslt>
+    <fail message="Compiling ${report.schematron.file} did not produce ${report.schematron.xsl}">
+      <condition>
+        <not><available file="${report.schematron.xsl}"/></not>
+      </condition>
+    </fail>
+  </target>
+
   <target name="compile-scenario" depends="init">
     <filter token="build.date" value="${build.date}"/>
     <filter token="cen.spec.id" value="${cen.spec.id}"/>
@@ -373,49 +487,34 @@
     </xslt>
   </target>
 
-  <target name="test-validator-assertions" depends="init-test,provide-validator,test-validator-assertions-only,test-validator-report-with-schema-only" description="Test XRechnung Configuration">
+  <target name="test-validator-assertions"
+    depends="init-test,provide-validator,compile-report-schematron,test-validator-assertions-only"
+    description="Test XRechnung Configuration">
     <echo message="Testing with full build chain."/>
   </target>
 
-  <target name="test-validator-report-with-schema-only">
-    <echo>Schema validating reports against ${reports.schema.dir}/report.xsd ...</echo>
-    <schemavalidate fullchecking="yes" failonerror="yes">
-      <schema namespace="http://www.xoev.de/de/validator/varl/1" file="${reports.schema.dir}/report.xsd"/>
-      <schema namespace="http://www.xoev.de/de/validator/framework/1/scenarios" file="${reports.schema.dir}/scenarios.xsd"/>
-      <fileset dir="${reports.dir}" includes="*-report.xml"/>
-    </schemavalidate>
-    <echo>Schematron validating reports ...</echo>
-    <mkdir dir="${svrl.dir}"/>
-    <xslt style="${src.dir}/report.sch.xsl" includes="${reports.dir}/*.xml" destdir="${svrl.dir}" classpathref="cp.saxon.xslt">
-      <factory name="net.sf.saxon.TransformerFactoryImpl" />
-      <mapper type="glob" from="*.xml" to="*.svrl.xml"/>
-    </xslt>
-    <echo>Checking SVRL for failures ...</echo>
-    <makeurl file="${svrl.dir}" property="svrl.dir.url"/>
-    <java classname="net.sf.saxon.Transform" classpathref="cp.saxon.xslt" fork="yes" failonerror="yes">
-      <arg value="-s:${src.dir}/check-svrl.xsl"/>
-      <arg value="-xsl:${src.dir}/check-svrl.xsl"/>
-      <arg value="svrl.dir=${svrl.dir.url}"/>
-    </java>
+  <!-- One target per src/test/instances sub-directory. Both runs share assertions.xml: the
+       validator only executes the assertions whose report-doc belongs to the run at hand,
+       so the file needs no splitting. -->
+  <target name="test-instances-processing-valid" unless="test.skip"
+    description="Validate instances/processing-valid and check the resulting reports">
+    <validate-instances instancedir="${test.docs.instances.processing-valid.dir}"
+      reportdir="${reports.processing-valid.dir}"/>
+    <check-reports reportdir="${reports.processing-valid.dir}"
+      svrldir="${svrl.processing-valid.dir}"/>
   </target>
 
-  <target name="test-validator-assertions-only" description="Only test XRechnung Configuration" unless="test.skip">
-    <echo>Creating validation reports with ${lib.dir}/${validator.jar}.</echo>
-    <java jar="${lib.dir}/${validator.jar}" failonerror="yes" fork="yes" dir="${build.dir}">
-      <arg value="-s"/>
-      <arg value="${test.build.dir}/scenarios.xml"/>
-      <arg value="-r"/>
-      <arg value="${build.dir}"/>
-      <arg value="--html"/>
-      <arg value="-l"/>
-      <arg value="INFO"/>
-      <arg value="--check-assertions"/>
-      <arg value="${test.src.dir}/assertions.xml"/>
-      <arg value="-o"/>
-      <arg value="${reports.dir}"/>
-      <arg value="${test.docs.dir}/instances"/>
-    </java>
+  <target name="test-instances-processing-error" unless="test.skip"
+    description="Validate instances/processing-error (bin001, ubl007) and check the resulting reports">
+    <validate-instances instancedir="${test.docs.instances.processing-error.dir}"
+      reportdir="${reports.processing-error.dir}"/>
+    <check-reports reportdir="${reports.processing-error.dir}"
+      svrldir="${svrl.processing-error.dir}"/>
   </target>
+
+  <target name="test-validator-assertions-only"
+    depends="compile-report-schematron,test-instances-processing-valid,test-instances-processing-error"
+    description="Only test XRechnung Configuration"/>
 
 
   <!-- TODO name could be improved -->
@@ -557,10 +656,14 @@
   <target name="test-processing-error" depends="init, abu-saxon-provider.provide-saxon"
     description="Test that default-report.xsl correctly handles processingError and missing SVRL">
 
+    <!-- The generated reports go into ${test.build.dir}: dist-only zips ${build.dir} and
+         excludes test/**, so writing them directly into ${build.dir} would ship them. -->
+    <mkdir dir="${test.build.dir}"/>
+
     <!-- Scenario A: processingError present alongside partial schematron results -->
     <local name="pe.out.a"/>
     <local name="pe.content.a"/>
-    <property name="pe.out.a" location="${build.dir}/test-pe-a-report.xml"/>
+    <property name="pe.out.a" location="${test.build.dir}/test-pe-a-report.xml"/>
     <java classname="net.sf.saxon.Transform" classpathref="cp.saxon.xslt" fork="yes" failonerror="yes">
       <arg value="-s:${test.src.dir}/processing-error-input.xml"/>
       <arg value="-xsl:${src.dir}/default-report.xsl"/>
@@ -588,7 +691,7 @@
     <!-- Scenario B: processingError present, no validation messages at all -->
     <local name="pe.out.b"/>
     <local name="pe.content.b"/>
-    <property name="pe.out.b" location="${build.dir}/test-pe-b-report.xml"/>
+    <property name="pe.out.b" location="${test.build.dir}/test-pe-b-report.xml"/>
     <java classname="net.sf.saxon.Transform" classpathref="cp.saxon.xslt" fork="yes" failonerror="yes">
       <arg value="-s:${test.src.dir}/processing-error-no-messages-input.xml"/>
       <arg value="-xsl:${src.dir}/default-report.xsl"/>
@@ -610,7 +713,7 @@
     <!-- Scenario C: missing svrl:schematron-output, no in:processingError -->
     <local name="pe.out.c"/>
     <local name="pe.content.c"/>
-    <property name="pe.out.c" location="${build.dir}/test-pe-c-report.xml"/>
+    <property name="pe.out.c" location="${test.build.dir}/test-pe-c-report.xml"/>
     <java classname="net.sf.saxon.Transform" classpathref="cp.saxon.xslt" fork="yes" failonerror="yes">
       <arg value="-s:${test.src.dir}/missing-svrl-input.xml"/>
       <arg value="-xsl:${src.dir}/default-report.xsl"/>

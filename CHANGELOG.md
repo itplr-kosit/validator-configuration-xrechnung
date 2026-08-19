@@ -14,10 +14,52 @@ This release is compatible with XRechnung ?.?.?
 ### Added
 
 * custom level "error" for CII-SR-465 and CII-SR-466
+* The report structure check `src/report.sch` is compiled during the build (target
+  `compile-report-schematron`) and run against the generated validator reports; a failed
+  assertion now fails the build via `src/check-svrl.xsl`
+* Assertions in `src/report.sch` for reports in which no scenario matched: assessment shape
+  (reject, never accept), code and level of the wellformedness message, and per-fixture
+  expectations for `bin001.xml` and `ubl007.xml` from
+  `src/test/instances/processing-error`
+* Self-test for the SVRL failure check (target `test-check-svrl`), with SVRL fixtures in
+  `src/test/svrl`
+* Separate test targets per instance sub-directory: `test-instances-processing-valid` and
+  `test-instances-processing-error`
+* Test fixture `src/test/missing-svrl-input.xml` for a schematron step that produced no SVRL
 
 ### Changed
 
 * dummy IBANs in test files
+* Updated abu to xsbi-0.5.0-SNAPSHOT
+* `src/test/instances` is split into `processing-valid` and `processing-error`; `bin001.xml`
+  and `ubl007.xml` moved to `processing-error`. `.gitattributes` keeps pinning these instances
+  to CRLF, which the document hash assertions rely on
+* Validator reports and SVRL results are written per instance sub-directory
+* Target `test-validator-report-with-schema-only` was replaced by the `check-reports` macro,
+  which the two sub-directory targets invoke for their own reports
+* A document that could not be processed is no longer assessed as "Es wird empfohlen das
+  Dokument zurückzuweisen" but as "Das Dokument sollte nicht automatisiert angenommen werden";
+  the assertions for `bin001` and `ubl007` were adjusted accordingly
+
+### Fixed
+
+* The Schematron check of the validator reports never actually ran: `<xslt>` received an
+  absolute path in `@includes`, which matches nothing, so no SVRL was produced and the check
+  passed vacuously. It now uses `basedir` with a relative include pattern and fails when no
+  SVRL is produced
+* `abu-schematron-schxslt` derived the compiled XSLT filename through `<basename>`, which sets
+  an immutable Ant property. The first Schematron compiled in a build therefore fixed the
+  output filename for all later ones, so `compile-cen-cii` wrote to
+  `EN16931-UBL-validation.xsl` and `ant clean && ant release` failed on the missing
+  `EN16931-CII-validation.xsl`. Fixed in xs-build-infrastructure and re-vendored
+* `test-processing-error` wrote its generated reports into the build root, so
+  `test-pe-a/b/c-report.xml` ended up inside the distribution zip; they now go to
+  `${test.build.dir}`
+
+### Removed
+
+* The generated `src/report.sch.xsl` is no longer under version control; it is compiled to
+  `build/schematron/report.xsl` during the build and is gitignored
 
 
 ## 2026-01-31

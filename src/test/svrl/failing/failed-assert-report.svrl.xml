@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Fixture for target test-check-svrl (negative case).
+     A report.sch run containing a svrl:failed-assert. check-svrl.xsl must detect it,
+     report it and terminate with a non-zero exit code. -->
+<svrl:schematron-output xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+  xmlns:rep="http://www.xoev.de/de/validator/varl/1"
+  title="report.sch" schemaVersion="">
+  <svrl:ns-prefix-in-attribute-values prefix="rep" uri="http://www.xoev.de/de/validator/varl/1"/>
+  <svrl:active-pattern id="report-structure"/>
+  <svrl:fired-rule context="rep:report"/>
+  <svrl:failed-assert test="@varlVersion='1.0.0'" id="varl-version-check"
+    location="/rep:report">
+    <svrl:text>VARL version must be 1.0.0.</svrl:text>
+  </svrl:failed-assert>
+</svrl:schematron-output>

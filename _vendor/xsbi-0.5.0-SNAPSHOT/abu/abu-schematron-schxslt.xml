@@ -33,6 +33,10 @@
     <attribute name="property" default="xslt.output.file"
       description="Property name with derived XSLT filename as value" />
     <sequential>
+      <!-- schematron.basename must be local: <basename> uses setNewProperty, so without this
+           the first Schematron compiled in a build would fix the derived output filename for
+           every later invocation in the same build. -->
+      <local name="schematron.basename" />
       <basename file="@{schematron}" suffix="@{insuffix}"
         property="schematron.basename" />
       <property name="xslt.output.file"
