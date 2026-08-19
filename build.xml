@@ -13,7 +13,8 @@
    <property name="test.build.dir" location="${build.dir}/test" />
 
     <property name="xsbi.dir" location="${basedir}/_vendor/xsbi-0.5.0-SNAPSHOT/abu" />
-
+  <property name="xsbi.home" location="${basedir}/_vendor/xsbi-0.5.0-SNAPSHOT" />
+  
     <import file="${xsbi.dir}/abu-common.xml" />
     <include file="${xsbi.dir}/abu-saxon-provider.xml" />
     <include file="${xsbi.dir}/abu-schematron-schxslt.xml" />
@@ -625,27 +626,28 @@
     </java>
   </target>
 
-  <target name="test-check-svrl" depends="abu-saxon-provider.provide-saxon"
+  <target name="test-check-svrl" depends="abu-saxon-provider.provide-saxon,init-test"
     description="Self-test for check-svrl.xsl: verify it passes on clean SVRL and fails on SVRL with failed-assert">
+    <mkdir dir="${test.build.dir}/svrl/passing" />
+    <mkdir dir="${test.build.dir}/svrl/failing" />
+    <makeurl file="${test.build.dir}/svrl/passing" property="svrl.test.passing.url"/>
+    <makeurl file="${test.build.dir}/svrl/failing" property="svrl.test.failing.url"/>
 
-    <makeurl file="${test.src.dir}/svrl/passing" property="svrl.test.passing.url"/>
-    <makeurl file="${test.src.dir}/svrl/failing" property="svrl.test.failing.url"/>
-
-    <echo>test-check-svrl: positive test (no failed-assert — must pass) ...</echo>
+    <echo>test-check-svrl: positive test (no failed-assert - must pass) ...</echo>
     <java classname="net.sf.saxon.Transform" classpathref="cp.saxon.xslt" fork="yes" failonerror="yes">
       <arg value="-s:${src.dir}/check-svrl.xsl"/>
       <arg value="-xsl:${src.dir}/check-svrl.xsl"/>
       <arg value="svrl.dir=${svrl.test.passing.url}"/>
     </java>
 
-    <echo>test-check-svrl: negative test (failed-assert present — must fail) ...</echo>
+    <echo>test-check-svrl: negative test (failed-assert present - must fail) ...</echo>
     <java classname="net.sf.saxon.Transform" classpathref="cp.saxon.xslt" fork="yes"
       failonerror="false" resultproperty="check.svrl.failing.result">
       <arg value="-s:${src.dir}/check-svrl.xsl"/>
       <arg value="-xsl:${src.dir}/check-svrl.xsl"/>
       <arg value="svrl.dir=${svrl.test.failing.url}"/>
     </java>
-    <fail message="test-check-svrl: negative test failed — check-svrl.xsl did not detect the failed-assert">
+    <fail message="test-check-svrl: negative test failed - check-svrl.xsl did not detect the failed-assert">
       <condition>
         <equals arg1="${check.svrl.failing.result}" arg2="0"/>
       </condition>
@@ -738,7 +740,7 @@
     <echo>test-processing-error: all scenarios passed.</echo>
   </target>
 
-  <target name="test" depends="init-test, test-check-svrl, test-processing-error, test-validator-assertions,create-validator-reports-from-testsuite, test-cen-expected-behaviour, test-integration, create-validator-reports-from-custom-tests">
+  <target name="test" depends="init-test,test-validator-assertions,create-validator-reports-from-testsuite, test-cen-expected-behaviour, test-integration, create-validator-reports-from-custom-tests, test-check-svrl, test-processing-error">
     <echo message="Testing all"/>
   </target>
 
