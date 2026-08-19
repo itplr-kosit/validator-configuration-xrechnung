@@ -161,11 +161,11 @@ ant test-cen-unexpected-behaviour
 
 This ant task is expected to fail. If not called manually, this task will be skipped.
 
-## Using a different Validator version
+## Using legacy Validator version 1.5.x
 
-The default Validator version is defined in `_vendor/xsbi-*/abu/abu-validator-provider.xml` and is set to v1.6.0. This version requires **Java 11 or later**.
+The default Validator version is v1.6.x and requires **Java 11 or later**.
 
-If you need to use an older Validator (e.g. v1.5.x, which still supports Java 8), you can override the version via a development properties file:
+If you are still forced to use Java < 11 you need Validator v1.5.x ( which still supports Java 8). You can override the version via a development properties file:
 
 1. Copy `development.build.properties.example` to `development.build.properties`.
 
@@ -182,8 +182,6 @@ If you need to use an older Validator (e.g. v1.5.x, which still supports Java 8)
    validator.jar=validationtool-1.5.0-standalone.jar
    ```
 
-   `abu-validator-provider.xml` derives both the download URL and the jar name from the configured version and expects the naming scheme `validator-${validator.version}.zip` containing `validator-${validator.version}-standalone.jar`. Up to and including v1.5.0 the Validator was still released under its old artifact name `validator-${validator.version}-distribution.zip`, the jar naming scheme being `validationtool-${validator.version}-standalone.jar`, so the automatic download and unpacking will not find the expected file names for v1.5.0.
-
 4. Pass your properties file to Ant:
 
    ```shell
@@ -191,23 +189,6 @@ If you need to use an older Validator (e.g. v1.5.x, which still supports Java 8)
    ```
 
 Note: Using an older Validator version is a temporary workaround only. We recommend upgrading to Java 11 or later. Be aware that a downgrade changes the behaviour in case of processing errors, see [Processing errors](#processing-errors) below.
-
-## Processing errors
-
-A *processing error* is not a validation finding. It means that the Validator could not complete a validation step at all, e.g. because a Schematron transformation aborted or the final report could not be created. The Validator collects these errors as `in:error` elements below `in:processingError` in the report input document (`createReportInput`) and exposes them via `Result.getProcessingErrors()`; `Result.isProcessingSuccessful()` then returns `false`. On the command line they are counted separately in the summary line, e.g. `Acceptable: 0 Rejected: 1 Processing errors: 1`.
-
-A result with processing errors is incomplete. Its findings must not be read as a statement about conformance, because validation steps may have been skipped. The acceptance recommendation stays `UNDEFINED` in this case, so the document counts as not acceptable and the CLI terminates with a non-zero exit code.
-
-Note that the report transformation of this configuration (`src/default-report.xsl`) does not yet evaluate `in:processingError`. A Schematron step that produces no `svrl:schematron-output` currently aborts the report generation via `xsl:message terminate="yes"`. Improving this is tracked in [validator issue #165](https://github.com/itplr-kosit/validator/issues/165).
-
-### Differences between Validator v1.5.0 and v1.6.0
-
-The data model and the pipeline semantics for processing errors are unchanged between v1.5.0 and v1.6.0. What differs is *which* situations end up as a processing error, and how the CLI reports a faulty invocation:
-
-* **Bundled Saxon version.** v1.5.0 bundles Saxon-HE 11.4, v1.6.0 bundles Saxon-HE 12.8. This configuration compiles the Schematron rules with SchXslt 1.10.1 on Saxon-HE 12.8 (see `_vendor/xsbi-*/abu/abu-saxon-provider.xml` and `abu-schematron-schxslt.xml`). Executing the resulting XSLT 3.0 stylesheets on the older Saxon 11.4 of v1.5.0 can make the Schematron step fail. Such a failure surfaces as a processing error with a missing `svrl:schematron-output` — not as validation findings. Expect this when downgrading to v1.5.0.
-* **Exit code of invalid CLI invocations.** v1.6.0 maps the usage exit code of the command line parser to `HELP_REQUEST` (exit code `0`), whereas v1.5.0 returned `PARSING_ERROR` (exit code `-1`). A mistyped Validator call therefore no longer fails an Ant `<java failonerror="true">` step under v1.6.0. Detected validation problems still lead to a non-zero exit code in both versions.
-* **XML binding API.** v1.6.0 migrated from `javax.xml.bind` to `jakarta.xml.bind`. This only affects code that embeds the Validator as a library, not the CLI used by this build.
-* **Java 8 artefact.** v1.5.x additionally ships a `…-java8-standalone.jar`; v1.6.0 dropped Java 8 support and therefore does not.
 
 ## Distribution
 
