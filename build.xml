@@ -138,7 +138,7 @@
   <target name="prepare-saxon" depends="abu-saxon-provider.provide-saxon"/>
 
 
-  <target name="provide-validator" depends="abu-validator-provider.provide-validator"/>
+  <target name="provide-validator" depends="abu-validator-provider.provide-validator, abu-validator-provider.provide-scenario-xsd"/>
 
   <property name="xr.testsuite.zip" value="xrechnung-${xrechnung.version}-testsuite-${xr.testsuite.version}.zip"/>
 
