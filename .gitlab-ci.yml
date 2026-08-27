@@ -27,7 +27,7 @@ build-job:
       dotenv: build/build.env
 
 include:
-  - component: $CI_SERVER_FQDN/xse/xse-fab/gitlab-ci-cd-components/deploy-to-xse-component-repository@0.1.0
+  - component: $CI_SERVER_FQDN/xse/xse-fab/gitlab-ci-cd-components/deploy-to-xse-component-repository@0.1.1-rc1
     inputs:
       by: "maven"
       stage: "deploy"
@@ -40,4 +40,6 @@ include:
       package_version: ${PACKAGE_VERSION}
       package_binary: ${PACKAGE_BINARY}
       package_name: ${MAVEN_PACKAGE_NAME}
-      release_name: "Validator Configuration ${PACKAGE_VERSION} compatible with XRechnung ${XRECHNUNG_VERSION}"
+      # trim xrechnung version using bash shell parameter expansion
+      release_name: "Validator Configuration ${PACKAGE_VERSION} compatible with XRechnung ${XRECHNUNG_VERSION%.*}"
+      asset_link_name: ${PACKAGE_BINARY}
