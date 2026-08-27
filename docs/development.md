@@ -6,7 +6,7 @@ This repository contains an ANT `build.xml` which allows downloading all necessa
 
 ### Java
 
-The build itself requires **Java 11 or later**. This is imposed by the KoSIT Validator (v1.6.0+), which is downloaded automatically during testing. Validator v1.6.0 was compiled for Java 11 (class file version 55.0) and will not run on Java 8.
+The build itself requires **Java 11 or later**. This is imposed by the KoSIT Validator (v1.6.0+), which is downloaded automatically during testing. Validator v1.6.x was compiled for Java 11 (class file version 55.0) and will not run on Java 8.
 
 If you cannot upgrade to Java 11, you can temporarily use Validator v1.5.x instead. See [Using a different Validator version](#using-a-different-validator-version) below.
 
