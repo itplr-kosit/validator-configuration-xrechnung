@@ -141,6 +141,30 @@
 
     Should have error about CII-SR-466 in assessment
   </a:assertion>
+  
+  <a:assertion report-doc="cii-cii-sr-475-negative-test-report.xml"
+    test="/rep:report/rep:scenarioMatched[1]/rep:validationStepResult[2]/rep:message[ @code = 'CII-SR-475' and @level='warning']">
+    
+    Should have warning about CII-SR-475
+  </a:assertion>
+  
+  <a:assertion report-doc="cii-cii-sr-475-negative-test-report.xml"
+    test="/rep:report/rep:assessment/rep:accept/rep:explanation/html:html/html:body/html:table[2]/html:tbody/html:tr[@class = 'information']/html:td[text() = 'CII-SR-475']">
+    
+    Should have information about CII-SR-475
+  </a:assertion>
+  
+  <a:assertion report-doc="cii-cii-sr-476-negative-test-report.xml"
+    test="/rep:report/rep:scenarioMatched[1]/rep:validationStepResult[2]/rep:message[ @code = 'CII-SR-476' and @level='warning']">
+    
+    Should have warning about CII-SR-476
+  </a:assertion>
+  
+  <a:assertion report-doc="cii-cii-sr-476-negative-test-report.xml"
+    test="/rep:report/rep:assessment/rep:accept/rep:explanation/html:html/html:body/html:table[2]/html:tbody/html:tr[@class = 'information']/html:td[text() = 'CII-SR-476']">
+    
+    Should have information about CII-SR-476
+  </a:assertion>
 
   <a:assertion report-doc="ubl-cr-646-sub-invoice-lines-cius-report.xml" 
     test="/rep:report/rep:scenarioMatched[1]/rep:validationStepResult[2]/rep:message[ @code = 'UBL-CR-646' and @level='warning']">

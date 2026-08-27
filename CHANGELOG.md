@@ -14,6 +14,7 @@ This release is compatible with XRechnung ?.?.?
 ### Added
 
 * custom level "error" for CII-SR-465 and CII-SR-466
+* custom level "information" for CII-SR-475 and CII-SR-476 because both rules have a wrong rule context in CEN Schematron 1.3.16 (see https://github.com/ConnectingEurope/eInvoicing-EN16931/issues/508); replaced by BR-TMP-4 and BR-TMP-5 in XRechnung Schematron
 * The report structure check `src/report.sch` is compiled during the build (target
   `compile-report-schematron`) and run against the generated validator reports; a failed
   assertion now fails the build via `src/check-svrl.xsl`
@@ -29,6 +30,8 @@ This release is compatible with XRechnung ?.?.?
 
 ### Changed
 
+* Using [CEN Schematron Rules 1.3.16](https://github.com/ConnectingEurope/eInvoicing-EN16931/releases/tag/validation-1.3.16)
+* Using [KoSIT Validator v1.6.3](https://github.com/itplr-kosit/validator/releases/tag/v1.6.3)
 * dummy IBANs in test files
 * Updated abu to xsbi-0.5.0-SNAPSHOT
 * `src/test/instances` is split into `processing-valid` and `processing-error`; `bin001.xml`
@@ -60,7 +63,6 @@ This release is compatible with XRechnung ?.?.?
 
 * The generated `src/report.sch.xsl` is no longer under version control; it is compiled to
   `build/schematron/report.xsl` during the build and is gitignored
-
 
 ## 2026-01-31
 
