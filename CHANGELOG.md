@@ -19,6 +19,7 @@ This release is compatible with XRechnung ?.?.?
 ### Changed
 
 * Using [CEN Schematron Rules 1.3.16](https://github.com/ConnectingEurope/eInvoicing-EN16931/releases/tag/validation-1.3.16)
+* Using [KoSIT Validator v1.6.3](https://github.com/itplr-kosit/validator/releases/tag/v1.6.3)
 * dummy IBANs in test files
 
 ## 2026-01-31
