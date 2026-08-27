@@ -698,9 +698,9 @@
     test="rep:report/rep:assessment/rep:reject/rep:explanation/html:html[@data-report-type = 'report']"
     >HTML explanation for rejection exists</a:assertion>
   <a:assertion report-doc="ubl007-report.xml"
-    test="rep:report/rep:assessment/rep:reject/rep:explanation/html:html[@data-report-type = 'report']//*[contains(., 'Es wird empfohlen das Dokument zurückzuweisen')]"
-    >HTML explanation for rejection recommends
-                          rejection</a:assertion>
+    test="rep:report/rep:assessment/rep:reject/rep:explanation/html:html[@data-report-type = 'report']//*[contains(., 'nicht automatisiert angenommen werden')]"
+    >HTML explanation for rejection states that the document must not be accepted
+                          automatically, because validation hit a processing error</a:assertion>
   <a:assertion report-doc="ubl008-report.xml"
     test="not(rep:report/@valid = 'true')"
     >Report has
@@ -901,9 +901,9 @@
     test="rep:report/rep:assessment/rep:reject/rep:explanation/html:html[@data-report-type = 'report']"
     >HTML explanation for rejection exists</a:assertion>
   <a:assertion report-doc="bin001-report.xml"
-    test="rep:report/rep:assessment/rep:reject/rep:explanation/html:html[@data-report-type = 'report']//*[contains(., 'Es wird empfohlen das Dokument zurückzuweisen')]"
-    >HTML explanation for rejection recommends
-                          rejection</a:assertion>
+    test="rep:report/rep:assessment/rep:reject/rep:explanation/html:html[@data-report-type = 'report']//*[contains(., 'nicht automatisiert angenommen werden')]"
+    >HTML explanation for rejection states that the document must not be accepted
+                          automatically, because validation hit a processing error</a:assertion>
   <a:assertion report-doc="cii001-report.xml"
     test="not(rep:report/@valid = 'true')"
     >Report has
