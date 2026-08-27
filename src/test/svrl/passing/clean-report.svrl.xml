@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Fixture for target test-check-svrl (positive case).
+     A report.sch run in which every assertion held: fired rules, but no svrl:failed-assert.
+     check-svrl.xsl must terminate successfully on this directory. -->
+<svrl:schematron-output xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+  xmlns:rep="http://www.xoev.de/de/validator/varl/1"
+  title="report.sch" schemaVersion="">
+  <svrl:ns-prefix-in-attribute-values prefix="rep" uri="http://www.xoev.de/de/validator/varl/1"/>
+  <svrl:active-pattern id="report-structure"/>
+  <svrl:fired-rule context="rep:report"/>
+  <svrl:fired-rule context="rep:validationStepResult[not(rep:message[@level=('error','warning')])]"/>
+  <svrl:fired-rule context="rep:message"/>
+</svrl:schematron-output>

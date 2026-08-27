@@ -16,3 +16,6 @@ zz
 
 *.code-workspace
 *.xpr
+
+# compiled from src/report.sch by target compile-report-schematron
+src/report.sch.xsl

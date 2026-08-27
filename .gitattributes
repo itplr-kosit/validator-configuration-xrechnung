@@ -3,3 +3,4 @@
 
 # Declare files that will always have CRLF line endings on checkout.
 **/instances/*.xml text eol=crlf
+**/instances/**/*.xml text eol=crlf
