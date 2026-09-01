@@ -2,6 +2,14 @@
 
 This repository contains an ANT `build.xml` which allows downloading all necessary tools and artefacts for creating this validator configuration for XRechnung. It also allows testing the configuration against a few UBL and UN/CEFACT documents and creates a release zip file.
 
+## System Requirements
+
+### Java
+
+The build itself requires **Java 11 or later**. This is imposed by the KoSIT Validator (v1.6.0+), which is downloaded automatically during testing. Validator v1.6.x was compiled for Java 11 (class file version 55.0) and will not run on Java 8.
+
+If you cannot upgrade to Java 11, you can temporarily use Validator v1.5.x instead. See [Using a different Validator version](#using-a-different-validator-version) below.
+
 ## Dependencies overview
 
 ### Compile time
@@ -152,6 +160,35 @@ ant test-cen-unexpected-behaviour
 ```
 
 This ant task is expected to fail. If not called manually, this task will be skipped.
+
+## Using legacy Validator version 1.5.x
+
+The default Validator version is v1.6.x and requires **Java 11 or later**.
+
+If you are still forced to use Java < 11 you need Validator v1.5.x ( which still supports Java 8). You can override the version via a development properties file:
+
+1. Copy `development.build.properties.example` to `development.build.properties`.
+
+2. Uncomment and set the validator version, e.g.:
+
+   ```properties
+   validator.version=1.5.0
+   ```
+
+3. For Validator versions up to and including v1.5.0, set e.g.:
+
+   ```properties
+   validator.zip=validator-1.5.0-distribution.zip
+   validator.jar=validationtool-1.5.0-standalone.jar
+   ```
+
+4. Pass your properties file to Ant:
+
+   ```shell
+   ant -propertyfile development.build.properties
+   ```
+
+Note: Using an older Validator version is a temporary workaround only. We recommend upgrading to Java 11 or later. Be aware that a downgrade changes the behaviour in case of processing errors, see [Processing errors](#processing-errors) below.
 
 ## Distribution
 
