@@ -10,14 +10,11 @@ In an empty directory:
 1. Downloads:
 
 Note: We always refer the latest version of the validator. You can use a previous version according to your preference.
-Since Validator 1.6.1, the standalone.jar is separated from the distribution package. The required artifacts can be downloaded from [Maven Central](https://repo1.maven.org/maven2/org/kosit/validator/).
+Since Validator 1.6.1, the standalone.jar is separated from the distribution package. The required artifacts can be downloaded from [Maven Central](https://repo1.maven.org/maven2/org/kosit/validator/). The preferred way is using the standalone-JAR.
 
 ```shell
 # download validator standalone.jar
 curl -L "https://repo1.maven.org/maven2/org/kosit/validator/1.6.3/validator-1.6.3-standalone.jar" --output validator-1.6.3-standalone.jar
-
-# download validator distribution
-curl -L "https://repo1.maven.org/maven2/org/kosit/validator/1.6.3/validator-1.6.3.zip" --output validator.jar
 
 # download configuration (for 3.0.2)
 curl -L "https://github.com/itplr-kosit/validator-configuration-xrechnung/releases/download/v2026-08-31/xrechnung-3.0.2-validator-configuration-2026-08-31.zip" --output validator-configuration.zip
@@ -29,8 +26,6 @@ curl -L "https://projekte.kosit.org/xrechnung/xrechnung-testsuite/-/raw/master/s
 ls
 # should show something like this:
 # ubl.xml validator-${validator.version}-standalone.jar validator-configuration.zip
-# or (in case of full distribution download)
-# ubl.xml validator.zip  validator-configuration.zip
 ```
 
 2. Unzip
@@ -39,7 +34,6 @@ Requires the `unzip` commandline application.
 
 ```shell
 unzip validator-configuration.zip
-unzip validator.zip (if applicable)
 ```
 
 3. Run Validator
