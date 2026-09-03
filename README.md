@@ -17,6 +17,8 @@ In particular this Validator Configuration integrates the following third-party 
 * [XML Schema of UBL Invoice and CreditNote version 2.1](http://docs.oasis-open.org/ubl/os-UBL-2.1/)
 * [XML Schema of UN/CEFACT uncoupled version 16B](http://www.unece.org/cefact/xml_schemas/index.html)
 
+To preview/build releases yourself run [Apache Ant](https://ant.apache.org/) in the base directory. The output will be in the build directory, you may ignore the download and schematron-subdirectories.
+
 ## Versioning
 
 The git master branch always has the latest code. Since March 2018 new releases have the following naming and versioning scheme:
