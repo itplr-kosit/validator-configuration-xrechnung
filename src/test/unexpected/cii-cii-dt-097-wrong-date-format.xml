@@ -464,6 +464,10 @@
                 id="inv-bt-72-date" description="invalid date format" ?>
                     <?xmute mutator="identity" schematron-valid="cencii:CII-DT-097" 
                 id="valid-bt-72-date"?>
+                    <?xmute mutator="code" attribute="format" values="610,203" schematron-invalid="cencii:CII-DT-097"
+                id="inv-bt-72-format" description="expected-to-fail: format other than 102 should be detected" ?>
+                    <?xmute mutator="remove" attribute="format" schematron-invalid="cencii:CII-DT-097"
+                id="inv-bt-72-no-format" description="expected-to-fail: missing format attribute should be detected" ?>
                     <udt:DateTimeString format="102">20180413</udt:DateTimeString>
                 </ram:OccurrenceDateTime>
             </ram:ActualDeliverySupplyChainEvent>
