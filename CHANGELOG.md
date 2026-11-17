@@ -8,6 +8,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 This release is compatible with XRechnung ?.?
 
+### Added
+
+* Scenarios `EN16931:2026 (UBL Invoice)` and `EN16931:2026 (UBL CreditNote)` for documents with specification identifier (BT-24) `urn:cen.eu:en16931:2026`; they validate against the [UBL 2.5](https://docs.oasis-open.org/ubl/os-UBL-2.5/) XML Schema only, as CEN Schematron rules for EN16931:2026 are not available yet
+
 ## 2026-08-31
 
 This release is compatible with XRechnung 3.0

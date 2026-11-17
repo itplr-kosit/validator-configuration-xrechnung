@@ -693,6 +693,74 @@
     <acceptMatch>/rep:report/rep:assessment[1]/rep:accept[1]</acceptMatch>
   </scenario>
 
+  <scenario>
+    <name>EN16931:2026 (UBL Invoice)</name>
+    <description>
+      <p>Validates UBL Invoice in version @ubl25.version@ against EN16931:2026</p>
+      <p>Uses UBL Invoice @ubl25.version@ XML Schema only. No Schematron rules are applied,
+                because CEN Schematron rules for EN16931:2026 are not available yet.</p>
+      <p>Download of UBL XML Schema on @build.date@ from
+                @ubl25.download.url@</p>
+    </description>
+    <!-- UBL Invoice namespaces -->
+    <namespace prefix="cbc"
+      >urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2</namespace>
+    <namespace prefix="invoice"
+      >urn:oasis:names:specification:ubl:schema:xsd:Invoice-2</namespace>
+    <!-- Namespace for acceptMatch XPATH within validator report XML -->
+    <namespace prefix="rep">http://www.xoev.de/de/validator/varl/1</namespace>
+
+    <match>exists(/invoice:Invoice[ cbc:CustomizationID/text() = '@cen.spec.id.2026@' ])</match>
+    <validateWithXmlSchema>
+      <resource>
+        <name>XML Schema for UBL @ubl25.version@ Invoice</name>
+        <location>resources/ubl/@ubl25.version@/xsd/maindoc/UBL-Invoice-@ubl25.version@.xsd</location>
+      </resource>
+    </validateWithXmlSchema>
+
+    <createReport>
+      <resource>
+        <name>Validation report for EN16931:2026 (UBL Invoice)</name>
+        <location>resources/xrechnung-report.xsl</location>
+      </resource>
+    </createReport>
+    <acceptMatch>/rep:report/rep:assessment[1]/rep:accept[1]</acceptMatch>
+  </scenario>
+
+  <scenario>
+    <name>EN16931:2026 (UBL CreditNote)</name>
+    <description>
+      <p>Validates UBL CreditNote in version @ubl25.version@ against EN16931:2026</p>
+      <p>Uses UBL CreditNote @ubl25.version@ XML Schema only. No Schematron rules are applied,
+                because CEN Schematron rules for EN16931:2026 are not available yet.</p>
+      <p>Download of UBL XML Schema on @build.date@ from
+                @ubl25.download.url@</p>
+    </description>
+    <!-- UBL CreditNote namespaces -->
+    <namespace prefix="cbc"
+      >urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2</namespace>
+    <namespace prefix="creditnote"
+      >urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2</namespace>
+    <!-- Namespace for acceptMatch XPATH within validator report XML -->
+    <namespace prefix="rep">http://www.xoev.de/de/validator/varl/1</namespace>
+
+    <match>exists(/creditnote:CreditNote[ cbc:CustomizationID/text() = '@cen.spec.id.2026@' ])</match>
+    <validateWithXmlSchema>
+      <resource>
+        <name>XML Schema for UBL @ubl25.version@ CreditNote</name>
+        <location>resources/ubl/@ubl25.version@/xsd/maindoc/UBL-CreditNote-@ubl25.version@.xsd</location>
+      </resource>
+    </validateWithXmlSchema>
+
+    <createReport>
+      <resource>
+        <name>Validation report for EN16931:2026 (UBL CreditNote)</name>
+        <location>resources/xrechnung-report.xsl</location>
+      </resource>
+    </createReport>
+    <acceptMatch>/rep:report/rep:assessment[1]/rep:accept[1]</acceptMatch>
+  </scenario>
+
   <!-- In case none of the above scenarios matched/were applied -->
   <noScenarioReport>
     <resource>

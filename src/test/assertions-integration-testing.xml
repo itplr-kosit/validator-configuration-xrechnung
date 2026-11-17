@@ -239,4 +239,96 @@
     BR-DEX-01 must NOT fire for application/xml in Extension CII scenario
   </a:assertion>
 
+  <!-- EN16931:2026 (UBL 2.5): XML Schema validation only -->
+
+  <a:assertion report-doc="ubl25-en16931-2026-invoice-schema-valid-report.xml"
+    test="/rep:report/rep:scenarioMatched/s:scenario/s:name = 'EN16931:2026 (UBL Invoice)'">
+    Must match scenario EN16931:2026 (UBL Invoice)
+  </a:assertion>
+
+  <a:assertion report-doc="ubl25-en16931-2026-invoice-schema-valid-report.xml"
+    test="/rep:report/rep:scenarioMatched/rep:validationStepResult[@id = 'val-xsd']/s:resource/s:location = 'resources/ubl/2.5/xsd/maindoc/UBL-Invoice-2.5.xsd'">
+    Schema validation must use the UBL 2.5 XML Schema
+  </a:assertion>
+
+  <a:assertion report-doc="ubl25-en16931-2026-invoice-schema-valid-report.xml"
+    test="empty(/rep:report/rep:scenarioMatched/rep:validationStepResult[starts-with(@id, 'val-sch')])">
+    No Schematron validation step in the schema-only EN16931:2026 scenario
+  </a:assertion>
+
+  <a:assertion report-doc="ubl25-en16931-2026-invoice-schema-valid-report.xml"
+    test="/rep:report/rep:assessment/rep:accept">
+    Schema-valid document must be accepted
+  </a:assertion>
+
+  <a:assertion report-doc="ubl25-en16931-2026-invoice-schema-invalid-report.xml"
+    test="/rep:report/rep:scenarioMatched/s:scenario/s:name = 'EN16931:2026 (UBL Invoice)'">
+    Must match scenario EN16931:2026 (UBL Invoice)
+  </a:assertion>
+
+  <a:assertion report-doc="ubl25-en16931-2026-invoice-schema-invalid-report.xml"
+    test="/rep:report/rep:scenarioMatched/rep:validationStepResult[@id = 'val-xsd']/s:resource/s:location = 'resources/ubl/2.5/xsd/maindoc/UBL-Invoice-2.5.xsd'">
+    Schema validation must use the UBL 2.5 XML Schema
+  </a:assertion>
+
+  <a:assertion report-doc="ubl25-en16931-2026-invoice-schema-invalid-report.xml"
+    test="empty(/rep:report/rep:scenarioMatched/rep:validationStepResult[starts-with(@id, 'val-sch')])">
+    No Schematron validation step in the schema-only EN16931:2026 scenario
+  </a:assertion>
+
+  <a:assertion report-doc="ubl25-en16931-2026-invoice-schema-invalid-report.xml"
+    test="/rep:report/rep:scenarioMatched/rep:validationStepResult[@id = 'val-xsd' and @valid = 'false']/rep:message[@level = 'error']">
+    Schema validation must report an error (missing cac:LegalMonetaryTotal)
+  </a:assertion>
+
+  <a:assertion report-doc="ubl25-en16931-2026-invoice-schema-invalid-report.xml"
+    test="/rep:report/rep:assessment/rep:reject">
+    Schema-invalid document must be rejected
+  </a:assertion>
+
+  <a:assertion report-doc="ubl25-en16931-2026-creditnote-schema-valid-report.xml"
+    test="/rep:report/rep:scenarioMatched/s:scenario/s:name = 'EN16931:2026 (UBL CreditNote)'">
+    Must match scenario EN16931:2026 (UBL CreditNote)
+  </a:assertion>
+
+  <a:assertion report-doc="ubl25-en16931-2026-creditnote-schema-valid-report.xml"
+    test="/rep:report/rep:scenarioMatched/rep:validationStepResult[@id = 'val-xsd']/s:resource/s:location = 'resources/ubl/2.5/xsd/maindoc/UBL-CreditNote-2.5.xsd'">
+    Schema validation must use the UBL 2.5 XML Schema
+  </a:assertion>
+
+  <a:assertion report-doc="ubl25-en16931-2026-creditnote-schema-valid-report.xml"
+    test="empty(/rep:report/rep:scenarioMatched/rep:validationStepResult[starts-with(@id, 'val-sch')])">
+    No Schematron validation step in the schema-only EN16931:2026 scenario
+  </a:assertion>
+
+  <a:assertion report-doc="ubl25-en16931-2026-creditnote-schema-valid-report.xml"
+    test="/rep:report/rep:assessment/rep:accept">
+    Schema-valid document must be accepted
+  </a:assertion>
+
+  <a:assertion report-doc="ubl25-en16931-2026-creditnote-schema-invalid-report.xml"
+    test="/rep:report/rep:scenarioMatched/s:scenario/s:name = 'EN16931:2026 (UBL CreditNote)'">
+    Must match scenario EN16931:2026 (UBL CreditNote)
+  </a:assertion>
+
+  <a:assertion report-doc="ubl25-en16931-2026-creditnote-schema-invalid-report.xml"
+    test="/rep:report/rep:scenarioMatched/rep:validationStepResult[@id = 'val-xsd']/s:resource/s:location = 'resources/ubl/2.5/xsd/maindoc/UBL-CreditNote-2.5.xsd'">
+    Schema validation must use the UBL 2.5 XML Schema
+  </a:assertion>
+
+  <a:assertion report-doc="ubl25-en16931-2026-creditnote-schema-invalid-report.xml"
+    test="empty(/rep:report/rep:scenarioMatched/rep:validationStepResult[starts-with(@id, 'val-sch')])">
+    No Schematron validation step in the schema-only EN16931:2026 scenario
+  </a:assertion>
+
+  <a:assertion report-doc="ubl25-en16931-2026-creditnote-schema-invalid-report.xml"
+    test="/rep:report/rep:scenarioMatched/rep:validationStepResult[@id = 'val-xsd' and @valid = 'false']/rep:message[@level = 'error']">
+    Schema validation must report an error (missing cac:LegalMonetaryTotal)
+  </a:assertion>
+
+  <a:assertion report-doc="ubl25-en16931-2026-creditnote-schema-invalid-report.xml"
+    test="/rep:report/rep:assessment/rep:reject">
+    Schema-invalid document must be rejected
+  </a:assertion>
+
 </a:assertions>

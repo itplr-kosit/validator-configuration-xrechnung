@@ -43,6 +43,7 @@
   <property name="xrechnung.version"
     value="${xrechnung.version.major.minor}.${xrechnung.version.patch}" />
   <property name="cen.spec.id" value="urn:cen.eu:en16931:2017" />
+  <property name="cen.spec.id.2026" value="urn:cen.eu:en16931:2026" />
   <property name="xrechnung.spec.id"
     value="${cen.spec.id}#compliant#urn:xeinkauf.de:kosit:xrechnung_${xrechnung.version.major.minor}" />
   <property name="xrechnung.extension.id"
@@ -68,6 +69,12 @@
   <property name="ubl.schema.zip" value="UBL-${ubl.version}.zip"/>
 
   <property name="ubl.download.url" value="${ubl.download.url.prefix}/${ubl.schema.zip}"/>
+
+  <!-- UBL 2.5 for the EN16931:2026 scenarios (XML Schema validation only) -->
+  <property name="ubl25.version" value="2.5"/>
+  <property name="ubl25.download.url.prefix" value="https://docs.oasis-open.org/ubl/os-UBL-${ubl25.version}"/>
+  <property name="ubl25.schema.zip" value="UBL-${ubl25.version}.zip"/>
+  <property name="ubl25.download.url" value="${ubl25.download.url.prefix}/${ubl25.schema.zip}"/>
 
   <!-- set to "master" if you want latest code -->
   <property name="cen.rules.version" value="1.3.16"/>
@@ -370,6 +377,7 @@
 
   <target name="retrieve-ubl-schema" depends="init" description="Download UBL schemas to download directory">
     <get src="${ubl.download.url}" dest="${download.dir}" verbose="true" skipexisting="true" usetimestamp="true"/>
+    <get src="${ubl25.download.url}" dest="${download.dir}" verbose="true" skipexisting="true" usetimestamp="true"/>
   </target>
 
   <target name="retrieve-cii-schema" depends="init" description="Download UN/CEFACT CII schemas to download directory">
@@ -421,6 +429,7 @@
   <target name="compile-scenario" depends="init">
     <filter token="build.date" value="${build.date}"/>
     <filter token="cen.spec.id" value="${cen.spec.id}"/>
+    <filter token="cen.spec.id.2026" value="${cen.spec.id.2026}"/>
     <filter token="cen.rules.version" value="${cen.rules.version}"/>
     <filter token="cen.download.url.ubl" value="${cen.download.url.ubl}"/>
     <filter token="cen.download.url.cii" value="${cen.download.url.cii}"/>
@@ -435,6 +444,8 @@
     <filter token="xrechnung.cvd.id" value="${xrechnung.cvd.id}"/>
     <filter token="ubl.version" value="${ubl.version}"/>
     <filter token="ubl.download.url" value="${ubl.download.url}"/>
+    <filter token="ubl25.version" value="${ubl25.version}"/>
+    <filter token="ubl25.download.url" value="${ubl25.download.url}"/>
     <filter token="cii.version" value="${cii.version}"/>
     <filter token="cii.download.url" value="${cii.download.url}"/>
     <copy file="scenarios.xml" todir="${repository.dir}" failonerror="true" filtering="true"/>
@@ -454,6 +465,13 @@
         <include name="xsdrt/**/*.xsd"/>
       </patternset>
       <cutdirsmapper dirs="1"/>
+    </unzip>
+
+    <unzip src="${download.dir}/${ubl25.schema.zip}" dest="${resource.dir}/ubl/${ubl25.version}/xsd">
+      <patternset>
+        <include name="os-UBL-${ubl25.version}/xsdrt/**/*.xsd"/>
+      </patternset>
+      <cutdirsmapper dirs="2"/>
     </unzip>
 
     <unzip src="${download.dir}/${cii.schema.uncoupled.zip}" dest="${resource.dir}/cii/16b/xsd">
