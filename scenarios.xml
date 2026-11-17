@@ -564,10 +564,9 @@
   <scenario>
     <name>EN16931 (UBL Invoice)</name>
     <description>
-      <p>Validates UBL Invoice in version @ubl.version@</p>
-      <p>Uses UBL Invoice @ubl.version@ XML Schema,
-                Schematron rules from EN16931:2017, and XRechnung
-                @xrechnung.version@ </p>
+      <p>Validates UBL Invoice in version @ubl.version@ against EN16931:2017</p>
+      <p>Uses UBL Invoice @ubl.version@ XML Schema and
+                CEN Schematron rules for EN16931:2017 in version @cen.rules.version@</p>
       <p>Download of UBL XML Schema on @build.date@ from
                 @ubl.download.url@</p>
       <p>Download of UBL Schematron rules on @build.date@ from
@@ -607,10 +606,9 @@
   <scenario>
     <name>EN16931 (UBL CreditNote)</name>
     <description>
-      <p>Validates UBL CrediteNote version @ubl.version@</p>
-      <p>Uses UBL CreditNote @ubl.version@ XML Schema, 
-                Schematron rules from EN16931:2017, and XRechnung
-                @xrechnung.version@ </p>
+      <p>Validates UBL CreditNote in version @ubl.version@ against EN16931:2017</p>
+      <p>Uses UBL CreditNote @ubl.version@ XML Schema and
+                CEN Schematron rules for EN16931:2017 in version @cen.rules.version@</p>
       <p>Download of UBL XML Schema on @build.date@ from
                 @ubl.download.url@</p>
       <p>Download of UBL Schematron rules on @build.date@ from
@@ -652,10 +650,10 @@
     <name>EN16931 (CII)</name>
     <description>
       <p>Validates UN/CEFACT XML (SCRDM - CII uncoupled) version
-                @cii.version@</p>
+                @cii.version@ against EN16931:2017</p>
       <p>Uses UN/CEFACT (SCRDM - CII uncoupled) version
-                @cii.version@ XML Schema, Schematron rules from EN16931:2017,
-                and XRechnung Schematron rules version @xrechnung.version@ </p>
+                @cii.version@ XML Schema and CEN Schematron rules for EN16931:2017
+                in version @cen.rules.version@</p>
       <p>Download of CII uncoupled XML Schema on @build.date@ from
                 @cii.download.url@</p>
       <p>Download of CII Schematron rules on @build.date@ from

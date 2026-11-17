@@ -8,6 +8,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 This release is compatible with XRechnung ?.?
 
+### Fixed
+
+* Descriptions of the scenarios `EN16931 (UBL Invoice)`, `EN16931 (UBL CreditNote)`, and `EN16931 (CII)` no longer mention XRechnung Schematron rules, which these EN16931-only scenarios do not use; they now name the XML Schema and the CEN Schematron rules version actually applied
+
 ## 2026-08-31
 
 This release is compatible with XRechnung 3.0
