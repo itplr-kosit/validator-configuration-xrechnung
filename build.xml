@@ -1,793 +1,807 @@
 <project name="xrechnung-validation-configuration" default="compile" basedir="." >
-   <description>Build the XRechnung validation configuration for ITPLR-KoSIT
-         validator</description>
+    <description>Build the XRechnung validation configuration for ITPLR-KoSIT
+        validator</description>
 
     <!-- set global default properties for this build -->
-   <!-- main build directories (must be defined before importing ABUs) -->
-   <property name="src.dir" location="${basedir}/src" />
-   <property name="lib.dir" location="${basedir}/lib" />
-   <property name="build.dir" location="${basedir}/build" />
-   <property name="download.dir" location="${build.dir}/download" />
-   <property name="dist.dir" location="${basedir}/dist" />
-   <property name="test.src.dir" location="${src.dir}/test" />
-   <property name="test.build.dir" location="${build.dir}/test" />
+    <!-- main build directories (must be defined before importing ABUs) -->
+    <property name="src.dir" location="${basedir}/src" />
+    <property name="lib.dir" location="${basedir}/lib" />
+    <property name="build.dir" location="${basedir}/build" />
+    <property name="download.dir" location="${build.dir}/download" />
+    <property name="dist.dir" location="${basedir}/dist" />
+    <property name="test.src.dir" location="${src.dir}/test" />
+    <property name="test.build.dir" location="${build.dir}/test" />
 
-   <property name="xsbi.dir" location="${basedir}/_vendor/xsbi-0.5.0-SNAPSHOT/abu" />
+    <property name="xsbi.dir" location="${basedir}/_vendor/xsbi-0.5.0-SNAPSHOT/abu" />
 
-   <import file="${xsbi.dir}/abu-common.xml" />
-   <include file="${xsbi.dir}/abu-marant.xml" />
-   <include file="${xsbi.dir}/abu-saxon-provider.xml" />
-   <include file="${xsbi.dir}/abu-schematron-schxslt.xml" />
-   <include file="${xsbi.dir}/abu-validator-provider.xml" />
-  
-
-   <property name="test.docs.custom.dir" location="${test.src.dir}/custom"></property>
-   <property name="test.docs.dir" location="${test.build.dir}" />
-   <property name="test.docs.cen.unit.unexpected.dir" location="${test.docs.dir}/unexpected" />
-   <property name="test.docs.cen.unit.dir" location="${test.docs.dir}/cen-unit-test" />
-   <property name="test.docs.integration.dir" location="${test.docs.dir}/integration" />
-   <property name="testsuite.instances.dir" location="${test.build.dir}/testsuite" />
-
-   <!-- src/test/instances is split by whether the validator can process the instance at all:
-        processing-valid instances yield a matched scenario, processing-error instances
-        (non-XML or not well-formed) yield noScenarioMatched plus a processing error. -->
-   <property name="test.docs.instances.dir" location="${test.docs.dir}/instances" />
-   <property name="test.docs.instances.processing-valid.dir"
-     location="${test.docs.instances.dir}/processing-valid" />
-   <property name="test.docs.instances.processing-error.dir"
-     location="${test.docs.instances.dir}/processing-error" />
-
-   <!-- Naming -->
-   <property name="xrechnung.version.major.minor" value="3.0" />
-   <property name="xrechnung.version.patch" value="2" />
-  <property name="xrechnung.version"
-    value="${xrechnung.version.major.minor}.${xrechnung.version.patch}" />
-  <property name="cen.spec.id" value="urn:cen.eu:en16931:2017" />
-  <property name="xrechnung.spec.id"
-    value="${cen.spec.id}#compliant#urn:xeinkauf.de:kosit:xrechnung_${xrechnung.version.major.minor}" />
-  <property name="xrechnung.extension.id"
-    value="${xrechnung.spec.id}#conformant#urn:xeinkauf.de:kosit:extension:xrechnung_${xrechnung.version.major.minor}" />
-  <property name="xrechnung.cvd.version.major.minor" value="0.9" />
-  <property name="xrechnung.cvd.id"
-    value="${xrechnung.spec.id}#compliant#urn:xeinkauf.de:kosit:xrechnung:cvd_${xrechnung.cvd.version.major.minor}" />
-  <property name="validator.configuration.version.full" value="2027-07-31-SNAPSHOT" />
-  <property name="dist.name"
-    value="xrechnung-${xrechnung.version}-validator-configuration-${validator.configuration.version.full}.zip" />
-
-  <!-- 3rd party resources -->
-
-  <!-- the name of the Saxon JAR file in the lib dir (provided by abu-saxon-provider) -->
-  <property name="saxon.jar" value="${saxon-he.jar.name}" />
-  <property name="cii.version" value="D16B"/>
-  <property name="cii.schema.artifact.id" value="D16B_SCRDM__Subset__CII"/>
-  <property name="cii.schema.zip" value="${cii.schema.artifact.id}-${cii.version}.zip"/>
-  <property name="cii.schema.uncoupled.zip" value="d16b-cii-uncoupled.zip"/>
-  <property name="cii.download.url" value="https://projekte.kosit.org/api/v4/projects/356/packages/maven/de/xeinkauf/${cii.schema.artifact.id}/${cii.version}/${cii.schema.zip}"/>
-  <property name="ubl.version" value="2.1"/>
-  <property name="ubl.download.url.prefix" value="https://docs.oasis-open.org/ubl/os-UBL-${ubl.version}"/>
-  <property name="ubl.schema.zip" value="UBL-${ubl.version}.zip"/>
-
-  <property name="ubl.download.url" value="${ubl.download.url.prefix}/${ubl.schema.zip}"/>
-
-  <!-- set to "master" if you want latest code -->
-  <property name="cen.rules.version" value="1.3.16"/>
-  <property name="cen.rules.version.download" value="${cen.rules.version}"/>
-  <property name="cen.download.url.owner" value="ConnectingEurope"/>
-  <property name="cen.download.url.prefix" value="https://github.com/${cen.download.url.owner}/eInvoicing-EN16931/releases/download/validation-${cen.rules.version}"/>
-  <property name="cen.download.url.ubl" value="${cen.download.url.prefix}/en16931-ubl-${cen.rules.version.download}.zip"/>
-  <property name="cen.download.url.cii" value="${cen.download.url.prefix}/en16931-cii-${cen.rules.version.download}.zip"/>
-  <property name="cen.download.url.master.prefix" value="https://github.com/${cen.download.url.owner}/eInvoicing-EN16931/"/>
+    <import file="${xsbi.dir}/abu-common.xml" />
+    <include file="${xsbi.dir}/abu-marant.xml" />
+    <include file="${xsbi.dir}/abu-saxon-provider.xml" />
+    <include file="${xsbi.dir}/abu-schematron-schxslt.xml" />
+    <include file="${xsbi.dir}/abu-validator-provider.xml" />
 
 
-  <!-- XRechnung Schematron Rules section -->
-  <property name="xr.schematron.version.major.minor" value="2.6"/>
-  <property name="xr.schematron.version.patch" value="0"/>
-  <property name="xr.schematron.version.full" value="${xr.schematron.version.major.minor}.${xr.schematron.version.patch}"/>
+    <property name="test.docs.custom.dir" location="${test.src.dir}/custom"></property>
+    <property name="test.docs.dir" location="${test.build.dir}" />
+    <property name="test.docs.cen.unit.unexpected.dir" location="${test.docs.dir}/unexpected" />
+    <property name="test.docs.cen.unit.dir" location="${test.docs.dir}/cen-unit-test" />
+    <property name="test.docs.integration.dir" location="${test.docs.dir}/integration" />
+    <property name="testsuite.instances.dir" location="${test.build.dir}/testsuite" />
 
-  <property name="xr.schematron.download.url.prefix" value="https://projekte.kosit.org/api/v4/projects/356/packages/maven/de/xeinkauf/xrechnung-${xrechnung.version}-schematron/${xr.schematron.version.full}"/>
-  <property name="xr.schematron.zip" value="xrechnung-${xrechnung.version}-schematron-${xr.schematron.version.full}.zip"/>
-  <property name="xr.schematron.download.url" value="${xr.schematron.download.url.prefix}/${xr.schematron.zip}"/>
+    <!-- src/test/instances is split by whether the validator can process the instance at all:
+         processing-valid instances yield a matched scenario, processing-error instances
+         (non-XML or not well-formed) yield noScenarioMatched plus a processing error. -->
+    <property name="test.docs.instances.dir" location="${test.docs.dir}/instances" />
+    <property name="test.docs.instances.processing-valid.dir"
+              location="${test.docs.instances.dir}/processing-valid" />
+    <property name="test.docs.instances.processing-error.dir"
+              location="${test.docs.instances.dir}/processing-error" />
 
-  <property name="xr.testsuite.version" value="2026-08-31" />
-  <property name="xr.testsuite.download.url.prefix"
-    value="https://projekte.kosit.org/api/v4/projects/356/packages/maven/de/xeinkauf/xrechnung-${xrechnung.version}-testsuite/${xr.testsuite.version}" />
-  <property name="xrechnung.testsuite.zip" value="xrechnung-${xrechnung.version}-testsuite-${xr.testsuite.version}.zip" />
+    <!-- Naming -->
+    <property name="xrechnung.version.major.minor" value="3.0" />
+    <property name="xrechnung.version.patch" value="2" />
+    <property name="xrechnung.version"
+              value="${xrechnung.version.major.minor}.${xrechnung.version.patch}" />
+    <property name="cen.spec.id" value="urn:cen.eu:en16931:2017" />
+    <property name="xrechnung.spec.id"
+              value="${cen.spec.id}#compliant#urn:xeinkauf.de:kosit:xrechnung_${xrechnung.version.major.minor}" />
+    <property name="xrechnung.extension.id"
+              value="${xrechnung.spec.id}#conformant#urn:xeinkauf.de:kosit:extension:xrechnung_${xrechnung.version.major.minor}" />
+    <property name="xrechnung.cvd.version.major.minor" value="0.9" />
+    <property name="xrechnung.cvd.id"
+              value="${xrechnung.spec.id}#compliant#urn:xeinkauf.de:kosit:xrechnung:cvd_${xrechnung.cvd.version.major.minor}" />
+    <property name="validator.configuration.version.full" value="2027-07-31-SNAPSHOT" />
+    <property name="dist.name"
+              value="xrechnung-${xrechnung.version}-validator-configuration-${validator.configuration.version.full}.zip" />
 
-  <property name="xmute.version.full" value="0.6" />
-  <property name="xmute.jar" value="xml-mutate-${xmute.version.full}.jar" />
-  <property name="xmute.download.url" 
-    value="https://projekte.kosit.org/api/v4/projects/356/packages/maven/de/kosit/xml-mutate/${xmute.version.full}/${xmute.jar}" />
+    <!-- 3rd party resources -->
 
-  <!-- root/work directory where KoSIT validationtool expects Schema(s)-and trons -->
-  <property name="repository.dir" location="${build.dir}"/>
-  <property name="resource.dir" location="${repository.dir}/resources"/>
-  <property name="resource.xr.dir" location="${resource.dir}/xrechnung/${xrechnung.version}/xsl"/>
-  <property name="resource.xsl.cen.ubl" location="${resource.dir}/ubl/2.1/xsl/EN16931-UBL-validation.xsl"/>
-  <property name="resource.xsl.cen.cii" location="${resource.dir}/cii/16b/xsl/EN16931-CII-validation.xsl"/>
+    <!-- the name of the Saxon JAR file in the lib dir (provided by abu-saxon-provider) -->
+    <property name="saxon.jar" value="${saxon-he.jar.name}" />
+    <property name="cii.version" value="D16B"/>
+    <property name="cii.schema.artifact.id" value="D16B_SCRDM__Subset__CII"/>
+    <property name="cii.schema.zip" value="${cii.schema.artifact.id}-${cii.version}.zip"/>
+    <property name="cii.schema.uncoupled.zip" value="d16b-cii-uncoupled.zip"/>
+    <property name="cii.download.url" value="https://projekte.kosit.org/api/v4/projects/356/packages/maven/de/xeinkauf/${cii.schema.artifact.id}/${cii.version}/${cii.schema.zip}"/>
+    <property name="ubl.version" value="2.1"/>
+    <property name="ubl.download.url.prefix" value="https://docs.oasis-open.org/ubl/os-UBL-${ubl.version}"/>
+    <property name="ubl.schema.zip" value="UBL-${ubl.version}.zip"/>
 
-  <property name="resource.xsl.xr.ubl" location="${resource.xr.dir}/XRechnung-UBL-validation.xsl"/>
-  <property name="resource.xsl.xr.cii" location="${resource.xr.dir}/XRechnung-CII-validation.xsl"/>
+    <property name="ubl.download.url" value="${ubl.download.url.prefix}/${ubl.schema.zip}"/>
 
-  <!-- Resource directories -->
-  <property name="reports.schema.dir" location="${resource.dir}/xsd"/>
+    <!-- set to "master" if you want latest code -->
+    <property name="cen.rules.version" value="1.3.16"/>
+    <property name="cen.rules.version.download" value="${cen.rules.version}"/>
+    <property name="cen.download.url.owner" value="ConnectingEurope"/>
+    <property name="cen.download.url.prefix" value="https://github.com/${cen.download.url.owner}/eInvoicing-EN16931/releases/download/validation-${cen.rules.version}"/>
+    <property name="cen.download.url.ubl" value="${cen.download.url.prefix}/en16931-ubl-${cen.rules.version.download}.zip"/>
+    <property name="cen.download.url.cii" value="${cen.download.url.prefix}/en16931-cii-${cen.rules.version.download}.zip"/>
+    <property name="cen.download.url.master.prefix" value="https://github.com/${cen.download.url.owner}/eInvoicing-EN16931/"/>
 
-  <property name="reports.dir" location="${build.dir}/reports"/>
-  <property name="svrl.dir" location="${reports.dir}/svrl"/>
 
-  <!-- report.sch checks the structure of the validator's own report output. It is a test
-       artifact, not part of the shipped configuration, so it is compiled into
-       ${build.dir}/schematron, which dist-only excludes from the distribution zip. -->
-  <property name="report.schematron.file" location="${src.dir}/report.sch"/>
-  <property name="report.schematron.dir" location="${build.dir}/schematron"/>
-  <property name="report.schematron.xsl" location="${report.schematron.dir}/report.xsl"/>
+    <!-- XRechnung Schematron Rules section -->
+    <property name="xr.schematron.version.major.minor" value="2.6"/>
+    <property name="xr.schematron.version.patch" value="0"/>
+    <property name="xr.schematron.version.full" value="${xr.schematron.version.major.minor}.${xr.schematron.version.patch}"/>
 
-  <!-- reports and SVRL results are kept per instances sub-directory -->
-  <property name="reports.processing-valid.dir" location="${reports.dir}/processing-valid"/>
-  <property name="reports.processing-error.dir" location="${reports.dir}/processing-error"/>
-  <property name="svrl.processing-valid.dir" location="${svrl.dir}/processing-valid"/>
-  <property name="svrl.processing-error.dir" location="${svrl.dir}/processing-error"/>
-  
-  <!-- ci/cd  -->
-  <property name="project.group.id" value="de.xeinkauf" />
-  <property name="project.artifact.id"
-    value="xrechnung-${xrechnung.version}-validator-configuration" />
+    <property name="xr.schematron.download.url.prefix" value="https://projekte.kosit.org/api/v4/projects/356/packages/maven/de/xeinkauf/xrechnung-${xrechnung.version}-schematron/${xr.schematron.version.full}"/>
+    <property name="xr.schematron.zip" value="xrechnung-${xrechnung.version}-schematron-${xr.schematron.version.full}.zip"/>
+    <property name="xr.schematron.download.url" value="${xr.schematron.download.url.prefix}/${xr.schematron.zip}"/>
 
-  <macrodef name="xslt-saxon">
-    <sequential>
-      <fail message="Not implemented yet" />
-    </sequential>
-  </macrodef>
+    <property name="xr.testsuite.version" value="2026-08-31" />
+    <property name="xr.testsuite.download.url.prefix"
+              value="https://projekte.kosit.org/api/v4/projects/356/packages/maven/de/xeinkauf/xrechnung-${xrechnung.version}-testsuite/${xr.testsuite.version}" />
+    <property name="xrechnung.testsuite.zip" value="xrechnung-${xrechnung.version}-testsuite-${xr.testsuite.version}.zip" />
 
-  <macrodef name="validate-instances"
-    description="Run the KoSIT validator over an instance directory with assertion checking">
-    <attribute name="instancedir" description="Directory holding the test instances" />
-    <attribute name="reportdir" description="Directory the validator writes its reports to" />
-    <attribute name="assertions" default="${test.src.dir}/assertions.xml"
-      description="Assertion file passed to --check-assertions" />
-    <sequential>
-      <mkdir dir="@{reportdir}" />
-      <echo>Creating validation reports for @{instancedir} with ${lib.dir}/${validator.jar}.</echo>
-      <java jar="${lib.dir}/${validator.jar}" failonerror="yes" fork="yes" dir="${build.dir}">
-        <arg value="-s" />
-        <arg value="${test.build.dir}/scenarios.xml" />
-        <arg value="-r" />
-        <arg value="${build.dir}" />
-        <arg value="--html" />
-        <arg value="-l" />
-        <arg value="INFO" />
-        <arg value="--check-assertions" />
-        <arg value="@{assertions}" />
-        <arg value="-o" />
-        <arg value="@{reportdir}" />
-        <arg value="@{instancedir}" />
-      </java>
-    </sequential>
-  </macrodef>
+    <property name="xmute.version.full" value="0.6" />
+    <property name="xmute.jar" value="xml-mutate-${xmute.version.full}.jar" />
+    <property name="xmute.download.url"
+              value="https://projekte.kosit.org/api/v4/projects/356/packages/maven/de/kosit/xml-mutate/${xmute.version.full}/${xmute.jar}" />
 
-  <macrodef name="check-reports"
-    description="Schema- and Schematron-validate validator reports, failing on any SVRL failed-assert">
-    <attribute name="reportdir" description="Directory holding the *-report.xml files" />
-    <attribute name="svrldir" description="Directory the SVRL results are written to" />
-    <sequential>
-      <echo>Schema validating reports in @{reportdir} against ${reports.schema.dir}/report.xsd ...</echo>
-      <schemavalidate fullchecking="yes" failonerror="yes">
-        <schema namespace="http://www.xoev.de/de/validator/varl/1"
-          file="${reports.schema.dir}/report.xsd" />
-        <schema namespace="http://www.xoev.de/de/validator/framework/1/scenarios"
-          file="${reports.schema.dir}/scenarios.xsd" />
-        <fileset dir="@{reportdir}" includes="*-report.xml" />
-      </schemavalidate>
+    <!-- root/work directory where KoSIT validationtool expects Schema(s)-and trons -->
+    <property name="repository.dir" location="${build.dir}"/>
+    <property name="resource.dir" location="${repository.dir}/resources"/>
+    <property name="resource.xr.dir" location="${resource.dir}/xrechnung/${xrechnung.version}/xsl"/>
+    <property name="resource.xsl.cen.ubl" location="${resource.dir}/ubl/2.1/xsl/EN16931-UBL-validation.xsl"/>
+    <property name="resource.xsl.cen.cii" location="${resource.dir}/cii/16b/xsl/EN16931-CII-validation.xsl"/>
 
-      <echo>Schematron validating reports in @{reportdir} with ${report.schematron.xsl} ...</echo>
-      <mkdir dir="@{svrldir}" />
-      <!-- basedir plus a relative include pattern: an absolute path in @includes matches nothing -->
-      <xslt style="${report.schematron.xsl}" basedir="@{reportdir}" includes="*-report.xml"
-        destdir="@{svrldir}" force="true" classpathref="cp.saxon.xslt">
-        <factory name="net.sf.saxon.TransformerFactoryImpl" />
-        <mapper type="glob" from="*.xml" to="*.svrl.xml" />
-      </xslt>
+    <property name="resource.xsl.xr.ubl" location="${resource.xr.dir}/XRechnung-UBL-validation.xsl"/>
+    <property name="resource.xsl.xr.cii" location="${resource.xr.dir}/XRechnung-CII-validation.xsl"/>
 
-      <!-- Guard against a vacuous pass: with no SVRL on disk check-svrl.xsl finds nothing to
-           complain about and the build would go green for the wrong reason. -->
-      <fail
-        message="No SVRL produced from @{reportdir} - the report.sch check would pass vacuously">
-        <condition>
-          <resourcecount when="equal" count="0">
-            <fileset dir="@{svrldir}" includes="*.svrl.xml" />
-          </resourcecount>
+    <!-- Resource directories -->
+    <property name="reports.schema.dir" location="${resource.dir}/xsd"/>
+
+    <property name="reports.dir" location="${build.dir}/reports"/>
+    <property name="svrl.dir" location="${reports.dir}/svrl"/>
+
+    <!-- report.sch checks the structure of the validator's own report output. It is a test
+         artifact, not part of the shipped configuration, so it is compiled into
+         ${build.dir}/schematron, which dist-only excludes from the distribution zip. -->
+    <property name="report.schematron.file" location="${src.dir}/report.sch"/>
+    <property name="report.schematron.dir" location="${build.dir}/schematron"/>
+    <property name="report.schematron.xsl" location="${report.schematron.dir}/report.xsl"/>
+
+    <!-- reports and SVRL results are kept per instances sub-directory -->
+    <property name="reports.processing-valid.dir" location="${reports.dir}/processing-valid"/>
+    <property name="reports.processing-error.dir" location="${reports.dir}/processing-error"/>
+    <property name="svrl.processing-valid.dir" location="${svrl.dir}/processing-valid"/>
+    <property name="svrl.processing-error.dir" location="${svrl.dir}/processing-error"/>
+
+    <!-- ci/cd  -->
+    <property name="project.group.id" value="de.xeinkauf" />
+    <property name="project.artifact.id"
+              value="xrechnung-${xrechnung.version}-validator-configuration" />
+
+    <macrodef name="xslt-saxon">
+        <sequential>
+            <fail message="Not implemented yet" />
+        </sequential>
+    </macrodef>
+
+    <macrodef name="validate-instances"
+              description="Run the KoSIT validator over an instance directory with assertion checking">
+        <attribute name="instancedir" description="Directory holding the test instances" />
+        <attribute name="reportdir" description="Directory the validator writes its reports to" />
+        <attribute name="assertions" default="${test.src.dir}/assertions.xml"
+                   description="Assertion file passed to --check-assertions" />
+        <sequential>
+            <mkdir dir="@{reportdir}" />
+            <echo>Creating validation reports for @{instancedir} with ${lib.dir}/${validator.jar}.</echo>
+            <java jar="${lib.dir}/${validator.jar}" failonerror="yes" fork="yes" dir="${build.dir}">
+                <arg value="-s" />
+                <arg value="${test.build.dir}/scenarios.xml" />
+                <arg value="-r" />
+                <arg value="${build.dir}" />
+                <arg value="--html" />
+                <arg value="-l" />
+                <arg value="INFO" />
+                <arg value="--check-assertions" />
+                <arg value="@{assertions}" />
+                <arg value="-o" />
+                <arg value="@{reportdir}" />
+                <arg value="@{instancedir}" />
+            </java>
+        </sequential>
+    </macrodef>
+
+    <macrodef name="check-reports"
+              description="Schema- and Schematron-validate validator reports, failing on any SVRL failed-assert">
+        <attribute name="reportdir" description="Directory holding the *-report.xml files" />
+        <attribute name="svrldir" description="Directory the SVRL results are written to" />
+        <sequential>
+            <echo>Schema validating reports in @{reportdir} against ${reports.schema.dir}/report.xsd ...</echo>
+            <schemavalidate fullchecking="yes" failonerror="yes">
+                <schema namespace="http://www.xoev.de/de/validator/varl/1"
+                        file="${reports.schema.dir}/report.xsd" />
+                <schema namespace="http://www.xoev.de/de/validator/framework/1/scenarios"
+                        file="${reports.schema.dir}/scenarios.xsd" />
+                <fileset dir="@{reportdir}" includes="*-report.xml" />
+            </schemavalidate>
+
+            <echo>Schematron validating reports in @{reportdir} with ${report.schematron.xsl} ...</echo>
+            <mkdir dir="@{svrldir}" />
+            <!-- basedir plus a relative include pattern: an absolute path in @includes matches nothing -->
+            <xslt style="${report.schematron.xsl}" basedir="@{reportdir}" includes="*-report.xml"
+                  destdir="@{svrldir}" force="true" classpathref="cp.saxon.xslt">
+                <factory name="net.sf.saxon.TransformerFactoryImpl" />
+                <mapper type="glob" from="*.xml" to="*.svrl.xml" />
+            </xslt>
+
+            <!-- Guard against a vacuous pass: with no SVRL on disk check-svrl.xsl finds nothing to
+                 complain about and the build would go green for the wrong reason. -->
+            <fail
+                    message="No SVRL produced from @{reportdir} - the report.sch check would pass vacuously">
+                <condition>
+                    <resourcecount when="equal" count="0">
+                        <fileset dir="@{svrldir}" includes="*.svrl.xml" />
+                    </resourcecount>
+                </condition>
+            </fail>
+
+            <echo>Checking SVRL in @{svrldir} for failed assertions ...</echo>
+            <local name="svrl.check.url" />
+            <makeurl file="@{svrldir}" property="svrl.check.url" />
+            <java classname="net.sf.saxon.Transform" classpathref="cp.saxon.xslt" fork="yes"
+                  failonerror="yes">
+                <arg value="-s:${src.dir}/check-svrl.xsl" />
+                <arg value="-xsl:${src.dir}/check-svrl.xsl" />
+                <arg value="svrl.dir=${svrl.check.url}" />
+            </java>
+        </sequential>
+    </macrodef>
+
+    <target name="init" depends="abu-common.init">
+
+        <!-- sets the property cen.master.target if version is set to master and the only downloads from master instaead of release.  -->
+        <condition property="cen.master.target">
+            <equals arg1="${cen.rules.version}" arg2="master"/>
         </condition>
-      </fail>
 
-      <echo>Checking SVRL in @{svrldir} for failed assertions ...</echo>
-      <local name="svrl.check.url" />
-      <makeurl file="@{svrldir}" property="svrl.check.url" />
-      <java classname="net.sf.saxon.Transform" classpathref="cp.saxon.xslt" fork="yes"
-        failonerror="yes">
-        <arg value="-s:${src.dir}/check-svrl.xsl" />
-        <arg value="-xsl:${src.dir}/check-svrl.xsl" />
-        <arg value="svrl.dir=${svrl.check.url}" />
-      </java>
-    </sequential>
-  </macrodef>
+        <condition property="xmute.jar.available">
+            <available file="${lib.dir}/${xmute.jar}"/>
+        </condition>
 
-  <target name="init" depends="abu-common.init">
+        <!-- Create timestamps -->
+        <tstamp>
+            <format property="build.date" pattern="yyyy-MM-dd"/>
+        </tstamp>
+        <echo>Build date: ${build.date}</echo>
 
-    <!-- sets the property cen.master.target if version is set to master and the only downloads from master instaead of release.  -->
-    <condition property="cen.master.target">
-      <equals arg1="${cen.rules.version}" arg2="master"/>
-    </condition>
+        <mkdir dir="${download.dir}"/>
+    </target>
 
-    <condition property="xmute.jar.available">
-      <available file="${lib.dir}/${xmute.jar}"/>
-    </condition>
-
-    <!-- Create timestamps -->
-    <tstamp>
-      <format property="build.date" pattern="yyyy-MM-dd"/>
-    </tstamp>
-    <echo>Build date: ${build.date}</echo>
-
-    <mkdir dir="${download.dir}"/>
-  </target>
-
-  <target name="prepare-saxon" depends="abu-saxon-provider.provide-saxon"/>
+    <target name="prepare-saxon" depends="abu-saxon-provider.provide-saxon"/>
 
 
-  <target name="provide-validator" depends="abu-validator-provider.provide-validator, abu-validator-provider.provide-scenario-xsd"/>
+    <target name="provide-validator" depends="abu-validator-provider.provide-validator, abu-validator-provider.provide-scenario-xsd"/>
 
-  <property name="xr.testsuite.zip" value="xrechnung-${xrechnung.version}-testsuite-${xr.testsuite.version}.zip"/>
+    <property name="xr.testsuite.zip" value="xrechnung-${xrechnung.version}-testsuite-${xr.testsuite.version}.zip"/>
 
-  <target name="retrieve-xr-testsuite-from-local-build" depends="init" if="develop.local.xr.testsuite">
-    <get src="${xr.testsuite.download.url.prefix}/${xr.testsuite.zip}" dest="${download.dir}" verbose="true" skipexisting="false" usetimestamp="false" httpusecaches="false"/>
-  </target>
+    <target name="retrieve-xr-testsuite-from-local-build" depends="init" if="develop.local.xr.testsuite">
+        <get src="${xr.testsuite.download.url.prefix}/${xr.testsuite.zip}" dest="${download.dir}" verbose="true" skipexisting="false" usetimestamp="false" httpusecaches="false"/>
+    </target>
 
-  <target name="retrieve-xr-testsuite-from-component-repository" depends="init-test" unless="develop.local.xr.testsuite">
+    <target name="retrieve-xr-testsuite-from-component-repository" depends="init-test" unless="develop.local.xr.testsuite">
 
-    <get src="${xr.testsuite.download.url.prefix}/${xr.testsuite.zip}" dest="${download.dir}" verbose="true" skipexisting="true" usetimestamp="true"/>
-  </target>
+        <get src="${xr.testsuite.download.url.prefix}/${xr.testsuite.zip}" dest="${download.dir}" verbose="true" skipexisting="true" usetimestamp="true"/>
+    </target>
 
-  <target name="retrieve-xr-testsuite" depends="init-test, retrieve-xr-testsuite-from-local-build, retrieve-xr-testsuite-from-component-repository">
+    <target name="retrieve-xr-testsuite" depends="init-test, retrieve-xr-testsuite-from-local-build, retrieve-xr-testsuite-from-component-repository">
 
-    <!-- add check something was downloaded -->
-  </target>
+        <!-- add check something was downloaded -->
+    </target>
 
-  <target name="provide-testsuite" depends="init-test, retrieve-xr-testsuite" description="Download and prepare KoSIT xrechnung-testsuite for testing">
+    <target name="provide-testsuite" depends="init-test, retrieve-xr-testsuite" description="Download and prepare KoSIT xrechnung-testsuite for testing">
 
-    <unzip src="${download.dir}/${xr.testsuite.zip}" dest="${testsuite.instances.dir}">
-      <patternset>
-        <include name="**/*.xml"/>
-      </patternset>
-      <flattenmapper/>
-    </unzip>
+        <unzip src="${download.dir}/${xr.testsuite.zip}" dest="${testsuite.instances.dir}">
+            <patternset>
+                <include name="**/*.xml"/>
+            </patternset>
+            <flattenmapper/>
+        </unzip>
 
 
-  </target>
+    </target>
 
-  <target name="retrieve-cen-rules" depends="retrieve-cen-rules-from-master,retrieve-cen-rules-from-release,init">
-    <fail message="No cen rule zip files available :(!">
-      <condition>
-        <not>
-          <or>
-            <resourceexists>
-              <file file="${download.dir}/master.zip"/>
-            </resourceexists>
-            <and>
-              <resourceexists>
-                <file file="${download.dir}/en16931-cii-${cen.rules.version.download}.zip"/>
-              </resourceexists>
-              <resourceexists>
-                <file file="${download.dir}/en16931-ubl-${cen.rules.version.download}.zip"/>
-              </resourceexists>
-            </and>
-          </or>
-        </not>
-      </condition>
-    </fail>
-    <unzip dest="${download.dir}" failonemptyarchive="true">
-      <!-- If master.zip or the other gets finally extracted depends on download targets -->
-      <fileset dir="${download.dir}">
-        <include name="en16931-*-${cen.rules.version.download}.zip"/>
-        <include name="master.zip"/>
-      </fileset>
+    <target name="retrieve-cen-rules" depends="retrieve-cen-rules-from-master,retrieve-cen-rules-from-release,init">
+        <fail message="No cen rule zip files available :(!">
+            <condition>
+                <not>
+                    <or>
+                        <resourceexists>
+                            <file file="${download.dir}/master.zip"/>
+                        </resourceexists>
+                        <and>
+                            <resourceexists>
+                                <file file="${download.dir}/en16931-cii-${cen.rules.version.download}.zip"/>
+                            </resourceexists>
+                            <resourceexists>
+                                <file file="${download.dir}/en16931-ubl-${cen.rules.version.download}.zip"/>
+                            </resourceexists>
+                        </and>
+                    </or>
+                </not>
+            </condition>
+        </fail>
+        <unzip dest="${download.dir}" failonemptyarchive="true">
+            <!-- If master.zip or the other gets finally extracted depends on download targets -->
+            <fileset dir="${download.dir}">
+                <include name="en16931-*-${cen.rules.version.download}.zip"/>
+                <include name="master.zip"/>
+            </fileset>
 
-      <regexpmapper from=".*/(schematron/.*\.sch$$)" to="\1"/>
-    </unzip>
-    <!-- Testing if important files were unzipped -->
-    <path id="schematron-path">
-      <fileset dir="${download.dir}" includes="**schematron/**.sch"/>
-    </path>
-    <fail message="Could not extract CEN schematron rules file EN16931-UBL-validation.sch does not exist in ${download.dir}">
-      <condition>
-        <not>
-          <available file="EN16931-UBL-validation.sch">
-            <filepath refid="schematron-path"/>
-          </available>
-        </not>
-      </condition>
-    </fail>
-    <fail message="Could not extract file EN16931-CII-validation.sch">
-      <condition>
-        <not>
-          <available file="EN16931-CII-validation.sch">
-            <filepath refid="schematron-path"/>
-          </available>
-        </not>
-      </condition>
-    </fail>
+            <regexpmapper from=".*/(schematron/.*\.sch$$)" to="\1"/>
+        </unzip>
+        <!-- Testing if important files were unzipped -->
+        <path id="schematron-path">
+            <fileset dir="${download.dir}" includes="**schematron/**.sch"/>
+        </path>
+        <fail message="Could not extract CEN schematron rules file EN16931-UBL-validation.sch does not exist in ${download.dir}">
+            <condition>
+                <not>
+                    <available file="EN16931-UBL-validation.sch">
+                        <filepath refid="schematron-path"/>
+                    </available>
+                </not>
+            </condition>
+        </fail>
+        <fail message="Could not extract file EN16931-CII-validation.sch">
+            <condition>
+                <not>
+                    <available file="EN16931-CII-validation.sch">
+                        <filepath refid="schematron-path"/>
+                    </available>
+                </not>
+            </condition>
+        </fail>
 
-  </target>
+    </target>
 
 
 
-  <target name="retrieve-cen-rules-from-master" depends="init" if="${cen.master.target}" description="Download CEN business rules (schematron) from master branch to download directory">
-    <get src="${cen.download.url.master.prefix}/archive/master.zip" dest="${download.dir}" verbose="true" skipexisting="true" usetimestamp="true"/>
-  </target>
+    <target name="retrieve-cen-rules-from-master" depends="init" if="${cen.master.target}" description="Download CEN business rules (schematron) from master branch to download directory">
+        <get src="${cen.download.url.master.prefix}/archive/master.zip" dest="${download.dir}" verbose="true" skipexisting="true" usetimestamp="true"/>
+    </target>
 
-  <target name="retrieve-cen-rules-from-release" depends="init" unless="${cen.master.target}" description="Download CEN business rules (schematron) version ${cen.rules.version.download} to download directory">
-    <!-- download UBL specific rules -->
-    <get src="${cen.download.url.ubl}" dest="${download.dir}" verbose="true" skipexisting="true" usetimestamp="true"/>
-    <!-- download CII specific rules -->
-    <get src="${cen.download.url.cii}" dest="${download.dir}" verbose="true" skipexisting="true" usetimestamp="true"/>
-  </target>
-
-
-  <target name="retrieve-xrechnung-schematron-from-local-build" depends="init" if="develop.local.xr.schematron">
-    <echo message="Loading from file ${xr.schematron.download.url}"/>
-
-    <get src="${xr.schematron.download.url}" dest="${download.dir}" verbose="true" skipexisting="false" usetimestamp="false" httpusecaches="false"/>
-  </target>
-
-  <target name="retrieve-xrechnung-schematron-from-component-repository" depends="init" unless="develop.local.xr.schematron">
-    <echo message="Loading from GitHub ${xr.schematron.download.url}"/>
-    <get src="${xr.schematron.download.url}" dest="${download.dir}" verbose="true" skipexisting="true" usetimestamp="true"/>
-  </target>
+    <target name="retrieve-cen-rules-from-release" depends="init" unless="${cen.master.target}" description="Download CEN business rules (schematron) version ${cen.rules.version.download} to download directory">
+        <!-- download UBL specific rules -->
+        <get src="${cen.download.url.ubl}" dest="${download.dir}" verbose="true" skipexisting="true" usetimestamp="true"/>
+        <!-- download CII specific rules -->
+        <get src="${cen.download.url.cii}" dest="${download.dir}" verbose="true" skipexisting="true" usetimestamp="true"/>
+    </target>
 
 
-  <target name="provide-xrechnung-schematron"
-    depends="init, retrieve-xrechnung-schematron-from-local-build, retrieve-xrechnung-schematron-from-component-repository, abu-saxon-provider.provide-saxon"
-    description="Retrieve and prepare XRechnung Schematron with static rule IDs">
-    <!-- Extract pre-compiled XRechnung Schematron XSL files -->
-    <unzip src="${download.dir}/${xr.schematron.zip}" dest="${download.dir}/xrechnung-schematron">
-      <patternset>
-        <include name="**/XRechnung*.xsl"/>
-      </patternset>
-    </unzip>
+    <target name="retrieve-xrechnung-schematron-from-local-build" depends="init" if="develop.local.xr.schematron">
+        <echo message="Loading from file ${xr.schematron.download.url}"/>
 
-    <!-- Convert dynamic id attributes to static for xml-mutate compatibility -->
-    <xslt in="${download.dir}/xrechnung-schematron/schematron/ubl/XRechnung-UBL-validation.xsl"
-          out="${resource.xsl.xr.ubl}"
-          style="${src.dir}/convert-dynamic-id-to-static.xsl" classpathref="cp.saxon.xslt">
-      <factory name="net.sf.saxon.TransformerFactoryImpl" />
-    </xslt>
-    
-    <xslt in="${download.dir}/xrechnung-schematron/schematron/cii/XRechnung-CII-validation.xsl"
-          out="${resource.xsl.xr.cii}"
-          style="${src.dir}/convert-dynamic-id-to-static.xsl" classpathref="cp.saxon.xslt">
-      <factory name="net.sf.saxon.TransformerFactoryImpl" />
-    </xslt>
-  </target>
+        <get src="${xr.schematron.download.url}" dest="${download.dir}" verbose="true" skipexisting="false" usetimestamp="false" httpusecaches="false"/>
+    </target>
+
+    <target name="retrieve-xrechnung-schematron-from-component-repository" depends="init" unless="develop.local.xr.schematron">
+        <echo message="Loading from GitHub ${xr.schematron.download.url}"/>
+        <get src="${xr.schematron.download.url}" dest="${download.dir}" verbose="true" skipexisting="true" usetimestamp="true"/>
+    </target>
 
 
-  <target name="retrieve-ubl-schema" depends="init" description="Download UBL schemas to download directory">
-    <get src="${ubl.download.url}" dest="${download.dir}" verbose="true" skipexisting="true" usetimestamp="true"/>
-  </target>
+    <target name="provide-xrechnung-schematron"
+            depends="init, retrieve-xrechnung-schematron-from-local-build, retrieve-xrechnung-schematron-from-component-repository, abu-saxon-provider.provide-saxon"
+            description="Retrieve and prepare XRechnung Schematron with static rule IDs">
+        <!-- Extract pre-compiled XRechnung Schematron XSL files -->
+        <unzip src="${download.dir}/${xr.schematron.zip}" dest="${download.dir}/xrechnung-schematron">
+            <patternset>
+                <include name="**/XRechnung*.xsl"/>
+            </patternset>
+        </unzip>
 
-  <target name="retrieve-cii-schema" depends="init" description="Download UN/CEFACT CII schemas to download directory">
-    <get src="${cii.download.url}" dest="${download.dir}" verbose="true" skipexisting="true" usetimestamp="true"/>
-    <unzip src="${download.dir}/${cii.schema.zip}" dest="${download.dir}">
-      <patternset>
-        <include name="**/D16B*uncoupled.zip"/>
-      </patternset>
-      <mergemapper to="${cii.schema.uncoupled.zip}"/>
-    </unzip>
-  </target>
+        <!-- Convert dynamic id attributes to static for xml-mutate compatibility -->
+        <xslt in="${download.dir}/xrechnung-schematron/schematron/ubl/XRechnung-UBL-validation.xsl"
+              out="${resource.xsl.xr.ubl}"
+              style="${src.dir}/convert-dynamic-id-to-static.xsl" classpathref="cp.saxon.xslt">
+            <factory name="net.sf.saxon.TransformerFactoryImpl" />
+        </xslt>
 
-  <target name="retrieve-all-schema-rules" depends="retrieve-ubl-schema,retrieve-cen-rules,provide-xrechnung-schematron,retrieve-cii-schema" description="Retrieve and prepare all 3rd party XSDs and XSLTs"/>
-
-  <target name="compile-cen-rules-only" depends="abu-saxon-provider.provide-saxon,abu-schematron-schxslt.provide-schxslt,compile-cen-ubl,compile-cen-cii" description="Works for zip from master and release zips"/>
-
-  <target name="compile-cen-ubl">
-    <schematron-compile-schxslt schematron="${download.dir}/schematron/EN16931-UBL-validation.sch" outdir="${build.dir}"/>
-    <copy file="${build.dir}/EN16931-UBL-validation.xsl" tofile="${resource.xsl.cen.ubl}" overwrite="true"/>
-  </target>
-
-  <target name="compile-cen-cii">
-    <schematron-compile-schxslt schematron="${download.dir}/schematron/EN16931-CII-validation.sch" outdir="${build.dir}"/>
-    <copy file="${build.dir}/EN16931-CII-validation.xsl" tofile="${resource.xsl.cen.cii}" overwrite="true"/>
-  </target>
-
-  <target name="compile-cen-rules" depends="retrieve-cen-rules,compile-cen-rules-only" description="Works for zip from master and release zips"/>
-
-  <target name="compile-report-schematron"
-    depends="abu-saxon-provider.provide-saxon,abu-schematron-schxslt.provide-schxslt"
-    description="Compile src/report.sch (report structure checks) to XSLT using SchXslt">
-    <mkdir dir="${report.schematron.dir}"/>
-    <!-- Deliberately not using the abu macrodef schematron-compile-schxslt here: it derives the
-         output name via <basename>, which sets an immutable Ant property, so the first
-         Schematron compiled in a build fixes the output filename for every later call. Driving
-         the SchXslt pipeline directly keeps the output name under this build's control. -->
-    <xslt in="${report.schematron.file}"
-      style="${lib.dir}/schxslt-${schxslt.version}/2.0/pipeline-for-svrl.xsl"
-      out="${report.schematron.xsl}" force="true" classpathref="cp.saxon.xslt">
-      <factory name="net.sf.saxon.TransformerFactoryImpl"/>
-    </xslt>
-    <fail message="Compiling ${report.schematron.file} did not produce ${report.schematron.xsl}">
-      <condition>
-        <not><available file="${report.schematron.xsl}"/></not>
-      </condition>
-    </fail>
-  </target>
-
-  <target name="compile-scenario" depends="init">
-    <filter token="build.date" value="${build.date}"/>
-    <filter token="cen.spec.id" value="${cen.spec.id}"/>
-    <filter token="cen.rules.version" value="${cen.rules.version}"/>
-    <filter token="cen.download.url.ubl" value="${cen.download.url.ubl}"/>
-    <filter token="cen.download.url.cii" value="${cen.download.url.cii}"/>
-    <!-- This is actually the schematron part of it -->
-    <filter token="xrechnung.download.url" value="${xr.schematron.download.url}"/>
-    <filter token="xrechnung.rules.version.full" value="${xr.schematron.version.full}"/>
-    <filter token="xrechnung.rules.version.major.minor" value="${xr.schematron.version.major.minor}"/>
-    <!-- This is actually the specification part of it -->
-    <filter token="xrechnung.version" value="${xrechnung.version}"/>
-    <filter token="xrechnung.spec.id" value="${xrechnung.spec.id}"/>
-    <filter token="xrechnung.extension.id" value="${xrechnung.extension.id}"/>
-    <filter token="xrechnung.cvd.id" value="${xrechnung.cvd.id}"/>
-    <filter token="ubl.version" value="${ubl.version}"/>
-    <filter token="ubl.download.url" value="${ubl.download.url}"/>
-    <filter token="cii.version" value="${cii.version}"/>
-    <filter token="cii.download.url" value="${cii.download.url}"/>
-    <copy file="scenarios.xml" todir="${repository.dir}" failonerror="true" filtering="true"/>
-  </target>
+        <xslt in="${download.dir}/xrechnung-schematron/schematron/cii/XRechnung-CII-validation.xsl"
+              out="${resource.xsl.xr.cii}"
+              style="${src.dir}/convert-dynamic-id-to-static.xsl" classpathref="cp.saxon.xslt">
+            <factory name="net.sf.saxon.TransformerFactoryImpl" />
+        </xslt>
+    </target>
 
 
-  <target name="compile"
-    depends="compile-scenario,retrieve-all-schema-rules,compile-cen-rules,abu-saxon-provider.provide-saxon"
-    description="Compile XSDs and XSLTs into validation configuration conformat repository directory">
-    <echo>Compiling Schemas and XSLTs ...</echo>
-    <copy file="${src.dir}/default-report.xsl" todir="${resource.dir}"/>
-    <copy file="${src.dir}/xrechnung-report.xsl" todir="${resource.dir}"/>
-    <copy file="${src.dir}/report.xsd" todir="${resource.dir}/xsd"/>
+    <target name="retrieve-ubl-schema" depends="init" description="Download UBL schemas to download directory">
+        <get src="${ubl.download.url}" dest="${download.dir}" verbose="true" skipexisting="true" usetimestamp="true"/>
+    </target>
 
-    <unzip src="${download.dir}/${ubl.schema.zip}" dest="${resource.dir}/ubl/2.1/xsd">
-      <patternset>
-        <include name="xsdrt/**/*.xsd"/>
-      </patternset>
-      <cutdirsmapper dirs="1"/>
-    </unzip>
+    <target name="retrieve-cii-schema" depends="init" description="Download UN/CEFACT CII schemas to download directory">
+        <get src="${cii.download.url}" dest="${download.dir}" verbose="true" skipexisting="true" usetimestamp="true"/>
+        <unzip src="${download.dir}/${cii.schema.zip}" dest="${download.dir}">
+            <patternset>
+                <include name="**/D16B*uncoupled.zip"/>
+            </patternset>
+            <mergemapper to="${cii.schema.uncoupled.zip}"/>
+        </unzip>
+    </target>
 
-    <unzip src="${download.dir}/${cii.schema.uncoupled.zip}" dest="${resource.dir}/cii/16b/xsd">
-      <patternset>
-        <include name="**/CrossIndustryInvoice*.xsd"/>
-      </patternset>
-      <flattenmapper/>
-    </unzip>
+    <target name="retrieve-all-schema-rules" depends="retrieve-ubl-schema,retrieve-cen-rules,provide-xrechnung-schematron,retrieve-cii-schema" description="Retrieve and prepare all 3rd party XSDs and XSLTs"/>
 
-  </target>
+    <target name="compile-cen-rules-only" depends="abu-saxon-provider.provide-saxon,abu-schematron-schxslt.provide-schxslt,compile-cen-ubl,compile-cen-cii" description="Works for zip from master and release zips"/>
 
+    <target name="compile-cen-ubl">
+        <schematron-compile-schxslt schematron="${download.dir}/schematron/EN16931-UBL-validation.sch" outdir="${build.dir}"/>
+        <copy file="${build.dir}/EN16931-UBL-validation.xsl" tofile="${resource.xsl.cen.ubl}" overwrite="true"/>
+    </target>
 
-  <target name="compile-test-sources">
+    <target name="compile-cen-cii">
+        <schematron-compile-schxslt schematron="${download.dir}/schematron/EN16931-CII-validation.sch" outdir="${build.dir}"/>
+        <copy file="${build.dir}/EN16931-CII-validation.xsl" tofile="${resource.xsl.cen.cii}" overwrite="true"/>
+    </target>
 
-    <filter token="xrechnung.spec.id" value="${xrechnung.spec.id}"/>
-    <copy todir="${test.build.dir}" failonerror="true" filtering="true">
-      <fileset dir="${test.src.dir}" casesensitive="false">
-        <include name="**/*.xml"/>
-      </fileset>
-    </copy>
-  </target>
+    <target name="compile-cen-rules" depends="retrieve-cen-rules,compile-cen-rules-only" description="Works for zip from master and release zips"/>
 
-  <target name="init-test" depends="init, compile, compile-scenario, compile-test-sources" description="Initializes test directory structure">
-    <mkdir dir="${test.build.dir}"/>
-    <!-- XSDs for validating e.g. scenario.xml and the output report -->
-    <mkdir dir="${resource.dir}/xsd"/>
-    <mkdir dir="${testsuite.instances.dir}"/>
-    <!-- customize scenarios.xml for testing purpose -->
-    <xslt in="${repository.dir}/scenarios.xml" out="${test.build.dir}/scenarios.xml"
-      style="${src.dir}/create-test-scenario.xsl" classpathref="cp.saxon.xslt">
-      <factory name="net.sf.saxon.TransformerFactoryImpl" />
-    </xslt>
-  </target>
+    <target name="compile-report-schematron"
+            depends="abu-saxon-provider.provide-saxon,abu-schematron-schxslt.provide-schxslt"
+            description="Compile src/report.sch (report structure checks) to XSLT using SchXslt">
+        <mkdir dir="${report.schematron.dir}"/>
+        <!-- Deliberately not using the abu macrodef schematron-compile-schxslt here: it derives the
+             output name via <basename>, which sets an immutable Ant property, so the first
+             Schematron compiled in a build fixes the output filename for every later call. Driving
+             the SchXslt pipeline directly keeps the output name under this build's control. -->
+        <xslt in="${report.schematron.file}"
+              style="${lib.dir}/schxslt-${schxslt.version}/2.0/pipeline-for-svrl.xsl"
+              out="${report.schematron.xsl}" force="true" classpathref="cp.saxon.xslt">
+            <factory name="net.sf.saxon.TransformerFactoryImpl"/>
+        </xslt>
+        <fail message="Compiling ${report.schematron.file} did not produce ${report.schematron.xsl}">
+            <condition>
+                <not><available file="${report.schematron.xsl}"/></not>
+            </condition>
+        </fail>
+    </target>
 
-  <target name="test-validator-assertions"
-    depends="init-test,provide-validator,compile-report-schematron,test-validator-assertions-only"
-    description="Test XRechnung Configuration">
-    <echo message="Testing with full build chain."/>
-  </target>
-
-  <!-- One target per src/test/instances sub-directory. Both runs share assertions.xml: the
-       validator only executes the assertions whose report-doc belongs to the run at hand,
-       so the file needs no splitting. -->
-  <target name="test-instances-processing-valid" unless="test.skip"
-    description="Validate instances/processing-valid and check the resulting reports">
-    <validate-instances instancedir="${test.docs.instances.processing-valid.dir}"
-      reportdir="${reports.processing-valid.dir}"/>
-    <check-reports reportdir="${reports.processing-valid.dir}"
-      svrldir="${svrl.processing-valid.dir}"/>
-  </target>
-
-  <target name="test-instances-processing-error" unless="test.skip"
-    description="Validate instances/processing-error (bin001, ubl007) and check the resulting reports">
-    <validate-instances instancedir="${test.docs.instances.processing-error.dir}"
-      reportdir="${reports.processing-error.dir}"/>
-    <check-reports reportdir="${reports.processing-error.dir}"
-      svrldir="${svrl.processing-error.dir}"/>
-  </target>
-
-  <target name="test-validator-assertions-only"
-    depends="compile-report-schematron,test-instances-processing-valid,test-instances-processing-error"
-    description="Only test XRechnung Configuration"/>
+    <target name="compile-scenario" depends="init">
+        <filter token="build.date" value="${build.date}"/>
+        <filter token="cen.spec.id" value="${cen.spec.id}"/>
+        <filter token="cen.rules.version" value="${cen.rules.version}"/>
+        <filter token="cen.download.url.ubl" value="${cen.download.url.ubl}"/>
+        <filter token="cen.download.url.cii" value="${cen.download.url.cii}"/>
+        <!-- This is actually the schematron part of it -->
+        <filter token="xrechnung.download.url" value="${xr.schematron.download.url}"/>
+        <filter token="xrechnung.rules.version.full" value="${xr.schematron.version.full}"/>
+        <filter token="xrechnung.rules.version.major.minor" value="${xr.schematron.version.major.minor}"/>
+        <!-- This is actually the specification part of it -->
+        <filter token="xrechnung.version" value="${xrechnung.version}"/>
+        <filter token="xrechnung.spec.id" value="${xrechnung.spec.id}"/>
+        <filter token="xrechnung.extension.id" value="${xrechnung.extension.id}"/>
+        <filter token="xrechnung.cvd.id" value="${xrechnung.cvd.id}"/>
+        <filter token="ubl.version" value="${ubl.version}"/>
+        <filter token="ubl.download.url" value="${ubl.download.url}"/>
+        <filter token="cii.version" value="${cii.version}"/>
+        <filter token="cii.download.url" value="${cii.download.url}"/>
+        <copy file="scenarios.xml" todir="${repository.dir}" failonerror="true" filtering="true"/>
+    </target>
 
 
-  <!-- TODO name could be improved -->
-  <target name="create-validator-reports-from-testsuite" depends="init-test, provide-validator, provide-testsuite" description="Only test XRechnung Configuration" unless="test.skip">
-    <fail unless="testsuite.instances.dir" message="Property testsuite.instances.dir must exist for this target to work"/>
+    <target name="compile"
+            depends="compile-scenario,retrieve-all-schema-rules,compile-cen-rules,abu-saxon-provider.provide-saxon"
+            description="Compile XSDs and XSLTs into validation configuration conformat repository directory">
+        <echo>Compiling Schemas and XSLTs ...</echo>
+        <copy file="${src.dir}/default-report.xsl" todir="${resource.dir}"/>
+        <copy file="${src.dir}/xrechnung-report.xsl" todir="${resource.dir}"/>
+        <copy file="${src.dir}/report.xsd" todir="${resource.dir}/xsd"/>
 
-    <echo>Creating validation reports with ${lib.dir}/${validator.jar} for ${testsuite.instances.dir}.</echo>
-    <java jar="${lib.dir}/${validator.jar}" failonerror="true" fork="true" dir="${build.dir}">
-      <arg value="-s"/>
-      <arg value="scenarios.xml"/>
-      <arg value="-r"/>
-      <arg value="${build.dir}"/>
-      <arg value="--html"/>
-      <arg value="-o"/>
-      <arg value="${reports.dir}/testsuite"/>
-      <arg value="${testsuite.instances.dir}"/>
+        <!-- Modern HTML report stylesheets -->
+        <copy file="${src.dir}/modern-html-head.xsl" todir="${resource.dir}"/>
+        <copy file="${src.dir}/modern-report.xsl" todir="${resource.dir}"/>
+        <copy file="${src.dir}/modern-default-report.xsl" todir="${resource.dir}"/>
 
-    </java>
-  </target>
+        <unzip src="${download.dir}/${ubl.schema.zip}" dest="${resource.dir}/ubl/2.1/xsd">
+            <patternset>
+                <include name="xsdrt/**/*.xsd"/>
+            </patternset>
+            <cutdirsmapper dirs="1"/>
+        </unzip>
 
-  <target name="check-custom-tests-folder-is-empty">
-    <fileset dir="${test.docs.custom.dir}" id="custom"/>
-    <pathconvert refid="custom" property="fileset.nonempty" setonempty="false"/>
-  </target>
+        <unzip src="${download.dir}/${cii.schema.uncoupled.zip}" dest="${resource.dir}/cii/16b/xsd">
+            <patternset>
+                <include name="**/CrossIndustryInvoice*.xsd"/>
+            </patternset>
+            <flattenmapper/>
+        </unzip>
 
-  <target name="create-validator-reports-from-custom-tests" depends="init-test, provide-validator, check-custom-tests-folder-is-empty" description="Validate custom test" unless="test.skip" if="fileset.nonempty">
-    <fail unless="test.docs.custom.dir" message="Property test.docs.custom.dir must exist for this target to work"/>
-    <echo>Creating validation reports with ${lib.dir}/${validator.jar} for ${test.docs.custom.dir}.</echo>
-    <java jar="${lib.dir}/${validator.jar}" failonerror="true" fork="true" dir="${build.dir}">
-      <arg value="-s"/>
-      <arg value="scenarios.xml"/>
-      <arg value="-r"/>
-      <arg value="${build.dir}"/>
-      <arg value="--html"/>
-      <arg value="-o"/>
-      <arg value="${reports.dir}/custom-tests"/>
-      <arg value="${test.docs.custom.dir}"/>
-    </java>
-  </target>
-  
+    </target>
+
+
+    <target name="compile-test-sources">
+
+        <filter token="xrechnung.spec.id" value="${xrechnung.spec.id}"/>
+        <copy todir="${test.build.dir}" failonerror="true" filtering="true">
+            <fileset dir="${test.src.dir}" casesensitive="false">
+                <include name="**/*.xml"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="init-test" depends="init, compile, compile-scenario, compile-test-sources" description="Initializes test directory structure">
+        <mkdir dir="${test.build.dir}"/>
+        <!-- XSDs for validating e.g. scenario.xml and the output report -->
+        <mkdir dir="${resource.dir}/xsd"/>
+        <mkdir dir="${testsuite.instances.dir}"/>
+        <!-- customize scenarios.xml for testing purpose -->
+        <xslt in="${repository.dir}/scenarios.xml" out="${test.build.dir}/scenarios.xml"
+              style="${src.dir}/create-test-scenario.xsl" classpathref="cp.saxon.xslt">
+            <factory name="net.sf.saxon.TransformerFactoryImpl" />
+        </xslt>
+    </target>
+
+    <target name="test-validator-assertions"
+            depends="init-test,provide-validator,compile-report-schematron,test-validator-assertions-only"
+            description="Test XRechnung Configuration">
+        <echo message="Testing with full build chain."/>
+    </target>
+
+    <!-- One target per src/test/instances sub-directory. Both runs share assertions.xml: the
+         validator only executes the assertions whose report-doc belongs to the run at hand,
+         so the file needs no splitting. -->
+    <target name="test-instances-processing-valid" unless="test.skip"
+            description="Validate instances/processing-valid and check the resulting reports">
+        <validate-instances instancedir="${test.docs.instances.processing-valid.dir}"
+                            reportdir="${reports.processing-valid.dir}"/>
+        <check-reports reportdir="${reports.processing-valid.dir}"
+                       svrldir="${svrl.processing-valid.dir}"/>
+    </target>
+
+    <target name="test-instances-processing-error" unless="test.skip"
+            description="Validate instances/processing-error (bin001, ubl007) and check the resulting reports">
+        <validate-instances instancedir="${test.docs.instances.processing-error.dir}"
+                            reportdir="${reports.processing-error.dir}"/>
+        <check-reports reportdir="${reports.processing-error.dir}"
+                       svrldir="${svrl.processing-error.dir}"/>
+    </target>
+
+    <target name="test-validator-assertions-only"
+            depends="compile-report-schematron,test-instances-processing-valid,test-instances-processing-error"
+            description="Only test XRechnung Configuration"/>
+
+
+    <!-- TODO name could be improved -->
+    <target name="create-validator-reports-from-testsuite" depends="init-test, provide-validator, provide-testsuite" description="Only test XRechnung Configuration" unless="test.skip">
+        <fail unless="testsuite.instances.dir" message="Property testsuite.instances.dir must exist for this target to work"/>
+
+        <echo>Creating validation reports with ${lib.dir}/${validator.jar} for ${testsuite.instances.dir}.</echo>
+        <java jar="${lib.dir}/${validator.jar}" failonerror="true" fork="true" dir="${build.dir}">
+            <arg value="-s"/>
+            <arg value="scenarios.xml"/>
+            <arg value="-r"/>
+            <arg value="${build.dir}"/>
+            <arg value="--html"/>
+            <arg value="-o"/>
+            <arg value="${reports.dir}/testsuite"/>
+            <arg value="${testsuite.instances.dir}"/>
+
+        </java>
+    </target>
+
+    <target name="check-custom-tests-folder-is-empty">
+        <fileset dir="${test.docs.custom.dir}" id="custom"/>
+        <pathconvert refid="custom" property="fileset.nonempty" setonempty="false"/>
+    </target>
+
+    <target name="create-validator-reports-from-custom-tests" depends="init-test, provide-validator, check-custom-tests-folder-is-empty" description="Validate custom test" unless="test.skip" if="fileset.nonempty">
+        <fail unless="test.docs.custom.dir" message="Property test.docs.custom.dir must exist for this target to work"/>
+        <echo>Creating validation reports with ${lib.dir}/${validator.jar} for ${test.docs.custom.dir}.</echo>
+        <java jar="${lib.dir}/${validator.jar}" failonerror="true" fork="true" dir="${build.dir}">
+            <arg value="-s"/>
+            <arg value="scenarios.xml"/>
+            <arg value="-r"/>
+            <arg value="${build.dir}"/>
+            <arg value="--html"/>
+            <arg value="-o"/>
+            <arg value="${reports.dir}/custom-tests"/>
+            <arg value="${test.docs.custom.dir}"/>
+        </java>
+    </target>
+
     <target name="retrieve-xmute" depends="init" unless="xmute.jar.available">
-    <echo message="Downloading xml-mutate ${xmute.version.full} from GitLab xse-component-repository" />
-    <get src="${xmute.download.url}"
-           dest="${lib.dir}/${xmute.jar}" verbose="true" skipexisting="false" usetimestamp="true" />
-  </target>
+        <echo message="Downloading xml-mutate ${xmute.version.full} from GitLab xse-component-repository" />
+        <get src="${xmute.download.url}"
+             dest="${lib.dir}/${xmute.jar}" verbose="true" skipexisting="false" usetimestamp="true" />
+    </target>
 
-  <target name="test-cen-expected-behaviour" depends="compile, init-test, retrieve-xmute" description="Test Schematron Rules with XML-Mutate">
-    <echo>Generate and test instances with expected behaviour ...</echo>
-    <java jar="${lib.dir}/${xmute.jar}" failonerror="true" fork="true" dir="${basedir}">
-      <arg value="--schematron"/>
-      <arg value="xrubl=${resource.xsl.xr.ubl}"/>
-      <arg value="--schematron"/>
-      <arg value="cenubl=${resource.xsl.cen.ubl}"/>
-      <arg value="--schematron"/>
-      <arg value="cencii=${resource.xsl.cen.cii}"/>
-      <arg value="--target ${test.docs.dir}/generated"/>
-      <arg value="${test.docs.cen.unit.dir}"/>
-    </java>
-  </target>
+    <target name="test-cen-expected-behaviour" depends="compile, init-test, retrieve-xmute" description="Test Schematron Rules with XML-Mutate">
+        <echo>Generate and test instances with expected behaviour ...</echo>
+        <java jar="${lib.dir}/${xmute.jar}" failonerror="true" fork="true" dir="${basedir}">
+            <arg value="--schematron"/>
+            <arg value="xrubl=${resource.xsl.xr.ubl}"/>
+            <arg value="--schematron"/>
+            <arg value="cenubl=${resource.xsl.cen.ubl}"/>
+            <arg value="--schematron"/>
+            <arg value="cencii=${resource.xsl.cen.cii}"/>
+            <arg value="--target ${test.docs.dir}/generated"/>
+            <arg value="${test.docs.cen.unit.dir}"/>
+        </java>
+    </target>
 
-  <target name="test-integration" depends="init-test, provide-validator, provide-testsuite, test-cen-expected-behaviour, test-integration-only" description="Integration testing result of XRechnung Configuration"/>
+    <target name="test-integration" depends="init-test, provide-validator, provide-testsuite, test-cen-expected-behaviour, test-integration-only" description="Integration testing result of XRechnung Configuration"/>
 
-  <target name="test-cen-unexpected-behaviour" depends="compile, init-test, retrieve-xmute" description="Test for unexpected behaviour in CEN Schematron Rules">
-    <echo>Generate and test instances with unexpected behaviour ...</echo>
-    <java jar="${lib.dir}/${xmute.jar}" failonerror="true" fork="true" dir="${basedir}">
-      <arg value="--schematron"/>
-      <arg value="xrubl=${resource.xsl.xr.ubl}"/>
-      <arg value="--schematron"/>
-      <arg value="cenubl=${resource.xsl.cen.ubl}"/>
-      <arg value="--schematron"/>
-      <arg value="cencii=${resource.xsl.cen.cii}"/>
-      <arg value="--target ${test.docs.dir}/generated"/>
-      <arg value="${test.docs.cen.unit.unexpected.dir}"/>
-    </java>
-  </target>
+    <target name="test-cen-unexpected-behaviour" depends="compile, init-test, retrieve-xmute" description="Test for unexpected behaviour in CEN Schematron Rules">
+        <echo>Generate and test instances with unexpected behaviour ...</echo>
+        <java jar="${lib.dir}/${xmute.jar}" failonerror="true" fork="true" dir="${basedir}">
+            <arg value="--schematron"/>
+            <arg value="xrubl=${resource.xsl.xr.ubl}"/>
+            <arg value="--schematron"/>
+            <arg value="cenubl=${resource.xsl.cen.ubl}"/>
+            <arg value="--schematron"/>
+            <arg value="cencii=${resource.xsl.cen.cii}"/>
+            <arg value="--target ${test.docs.dir}/generated"/>
+            <arg value="${test.docs.cen.unit.unexpected.dir}"/>
+        </java>
+    </target>
 
-  <target name="test-integration-only" description="Nothing but integration testing">
-    <echo message="Compiling instances for integration tests"/>
-    <!-- Requires output of XML Mutate -->
-    <copy todir="${test.docs.integration.dir}" verbose="true">
-      <fileset dir="${test.docs.cen.unit.dir}">
-        <include name="cii-br-s-08-rounding-rule.xml"/>
-        <include name="cii-bt-20-cardinality-check.xml"/>
-        <include name="cii-bt-20-cardinality-check-2.xml"/>
-        <include name="cii-cii-sr-454-negative-test.xml"/>
-        <include name="cii-cii-sr-465-negative-test.xml"/>
-        <include name="cii-cii-sr-466-negative-test.xml"/>
-        <include name="cii-cii-sr-475-negative-test.xml"/>
-        <include name="cii-cii-sr-476-negative-test.xml"/>
-        <!-- Local files - not in repository -->
-        <include name="XRechnung-CEFACT*.xml"/>
-      </fileset>
-      <fileset dir="${test.src.dir}/integration"/>
-    </copy>
+    <target name="test-integration-only" description="Nothing but integration testing">
+        <echo message="Compiling instances for integration tests"/>
+        <!-- Requires output of XML Mutate -->
+        <copy todir="${test.docs.integration.dir}" verbose="true">
+            <fileset dir="${test.docs.cen.unit.dir}">
+                <include name="cii-br-s-08-rounding-rule.xml"/>
+                <include name="cii-bt-20-cardinality-check.xml"/>
+                <include name="cii-bt-20-cardinality-check-2.xml"/>
+                <include name="cii-cii-sr-454-negative-test.xml"/>
+                <include name="cii-cii-sr-465-negative-test.xml"/>
+                <include name="cii-cii-sr-466-negative-test.xml"/>
+                <include name="cii-cii-sr-475-negative-test.xml"/>
+                <include name="cii-cii-sr-476-negative-test.xml"/>
+                <!-- Local files - not in repository -->
+                <include name="XRechnung-CEFACT*.xml"/>
+            </fileset>
+            <fileset dir="${test.src.dir}/integration"/>
+        </copy>
 
-    <echo>Creating validation reports with ${lib.dir}/${validator.jar} for ${test.docs.integration.dir}</echo>
-    <java jar="${lib.dir}/${validator.jar}" failonerror="true" fork="true" dir="${build.dir}">
-      <arg value="-l"/>
-      <arg value="DEBUG"/>
-      <arg value="-s"/>
-      <arg value="scenarios.xml"/>
-      <arg value="-r"/>
-      <arg value="${build.dir}"/>
-      <arg value="--check-assertions"/>
-      <arg value="${test.src.dir}/assertions-integration-testing.xml"/>
-      <arg value="--html"/>
-      <arg value="-o"/>
-      <arg value="${reports.dir}/integration"/>
-      <arg value="${test.docs.integration.dir}"/>
-    </java>
-  </target>
+        <echo>Creating validation reports with ${lib.dir}/${validator.jar} for ${test.docs.integration.dir}</echo>
+        <java jar="${lib.dir}/${validator.jar}" failonerror="true" fork="true" dir="${build.dir}">
+            <arg value="-l"/>
+            <arg value="DEBUG"/>
+            <arg value="-s"/>
+            <arg value="scenarios.xml"/>
+            <arg value="-r"/>
+            <arg value="${build.dir}"/>
+            <arg value="--check-assertions"/>
+            <arg value="${test.src.dir}/assertions-integration-testing.xml"/>
+            <arg value="--html"/>
+            <arg value="-o"/>
+            <arg value="${reports.dir}/integration"/>
+            <arg value="${test.docs.integration.dir}"/>
+        </java>
+    </target>
 
-  <target name="test-check-svrl" depends="abu-saxon-provider.provide-saxon,init-test"
-    description="Self-test for check-svrl.xsl: verify it passes on clean SVRL and fails on SVRL with failed-assert">
-    <mkdir dir="${test.build.dir}/svrl/passing" />
-    <mkdir dir="${test.build.dir}/svrl/failing" />
-    <makeurl file="${test.build.dir}/svrl/passing" property="svrl.test.passing.url"/>
-    <makeurl file="${test.build.dir}/svrl/failing" property="svrl.test.failing.url"/>
+    <target name="test-check-svrl" depends="abu-saxon-provider.provide-saxon,init-test"
+            description="Self-test for check-svrl.xsl: verify it passes on clean SVRL and fails on SVRL with failed-assert">
+        <mkdir dir="${test.build.dir}/svrl/passing" />
+        <mkdir dir="${test.build.dir}/svrl/failing" />
+        <makeurl file="${test.build.dir}/svrl/passing" property="svrl.test.passing.url"/>
+        <makeurl file="${test.build.dir}/svrl/failing" property="svrl.test.failing.url"/>
 
-    <echo>test-check-svrl: positive test (no failed-assert - must pass) ...</echo>
-    <java classname="net.sf.saxon.Transform" classpathref="cp.saxon.xslt" fork="yes" failonerror="yes">
-      <arg value="-s:${src.dir}/check-svrl.xsl"/>
-      <arg value="-xsl:${src.dir}/check-svrl.xsl"/>
-      <arg value="svrl.dir=${svrl.test.passing.url}"/>
-    </java>
+        <echo>test-check-svrl: positive test (no failed-assert - must pass) ...</echo>
+        <java classname="net.sf.saxon.Transform" classpathref="cp.saxon.xslt" fork="yes" failonerror="yes">
+            <arg value="-s:${src.dir}/check-svrl.xsl"/>
+            <arg value="-xsl:${src.dir}/check-svrl.xsl"/>
+            <arg value="svrl.dir=${svrl.test.passing.url}"/>
+        </java>
 
-    <echo>test-check-svrl: negative test (failed-assert present - must fail) ...</echo>
-    <java classname="net.sf.saxon.Transform" classpathref="cp.saxon.xslt" fork="yes"
-      failonerror="false" resultproperty="check.svrl.failing.result">
-      <arg value="-s:${src.dir}/check-svrl.xsl"/>
-      <arg value="-xsl:${src.dir}/check-svrl.xsl"/>
-      <arg value="svrl.dir=${svrl.test.failing.url}"/>
-    </java>
-    <fail message="test-check-svrl: negative test failed - check-svrl.xsl did not detect the failed-assert">
-      <condition>
-        <equals arg1="${check.svrl.failing.result}" arg2="0"/>
-      </condition>
-    </fail>
-    <echo>test-check-svrl: all assertions passed.</echo>
-  </target>
+        <echo>test-check-svrl: negative test (failed-assert present - must fail) ...</echo>
+        <java classname="net.sf.saxon.Transform" classpathref="cp.saxon.xslt" fork="yes"
+              failonerror="false" resultproperty="check.svrl.failing.result">
+            <arg value="-s:${src.dir}/check-svrl.xsl"/>
+            <arg value="-xsl:${src.dir}/check-svrl.xsl"/>
+            <arg value="svrl.dir=${svrl.test.failing.url}"/>
+        </java>
+        <fail message="test-check-svrl: negative test failed - check-svrl.xsl did not detect the failed-assert">
+            <condition>
+                <equals arg1="${check.svrl.failing.result}" arg2="0"/>
+            </condition>
+        </fail>
+        <echo>test-check-svrl: all assertions passed.</echo>
+    </target>
 
-  <target name="test-processing-error" depends="init, abu-saxon-provider.provide-saxon"
-    description="Test that default-report.xsl correctly handles processingError and missing SVRL">
+    <target name="test-processing-error" depends="init, abu-saxon-provider.provide-saxon"
+            description="Test that default-report.xsl correctly handles processingError and missing SVRL">
 
-    <!-- The generated reports go into ${test.build.dir}: dist-only zips ${build.dir} and
-         excludes test/**, so writing them directly into ${build.dir} would ship them. -->
-    <mkdir dir="${test.build.dir}"/>
+        <!-- The generated reports go into ${test.build.dir}: dist-only zips ${build.dir} and
+             excludes test/**, so writing them directly into ${build.dir} would ship them. -->
+        <mkdir dir="${test.build.dir}"/>
 
-    <!-- Scenario A: processingError present alongside partial schematron results -->
-    <local name="pe.out.a"/>
-    <local name="pe.content.a"/>
-    <property name="pe.out.a" location="${test.build.dir}/test-pe-a-report.xml"/>
-    <java classname="net.sf.saxon.Transform" classpathref="cp.saxon.xslt" fork="yes" failonerror="yes">
-      <arg value="-s:${test.src.dir}/processing-error-input.xml"/>
-      <arg value="-xsl:${src.dir}/default-report.xsl"/>
-      <arg value="-o:${pe.out.a}"/>
-      <arg value="input-document=${test.src.dir}/processing-error-input.xml"/>
-    </java>
-    <loadfile srcfile="${pe.out.a}" property="pe.content.a"/>
-    <fail message="[A] report must have valid=&quot;false&quot; when processingError is present">
-      <condition><not><contains string="${pe.content.a}" substring='valid="false"'/></not></condition>
-    </fail>
-    <fail message="[A] report must contain rep:reject (not rep:accept) when processingError is present">
-      <condition><contains string="${pe.content.a}" substring="rep:accept"/></condition>
-    </fail>
-    <fail message="[A] Verarbeitungsfehler banner must appear in HTML output">
-      <condition><not><contains string="${pe.content.a}" substring="Verarbeitungsfehler"/></not></condition>
-    </fail>
-    <fail message="[A] Inconclusive conformance text must appear">
-      <condition><not><contains string="${pe.content.a}" substring="nicht vollst"/></not></condition>
-    </fail>
-    <fail message="[A] 'Nicht automatisiert annehmen' rejection text must appear">
-      <condition><not><contains string="${pe.content.a}" substring="nicht automatisiert angenommen"/></not></condition>
-    </fail>
-    <echo>test-processing-error [A]: processingError with partial results — passed.</echo>
+        <!-- Scenario A: processingError present alongside partial schematron results -->
+        <local name="pe.out.a"/>
+        <local name="pe.content.a"/>
+        <property name="pe.out.a" location="${test.build.dir}/test-pe-a-report.xml"/>
+        <java classname="net.sf.saxon.Transform" classpathref="cp.saxon.xslt" fork="yes" failonerror="yes">
+            <arg value="-s:${test.src.dir}/processing-error-input.xml"/>
+            <arg value="-xsl:${src.dir}/default-report.xsl"/>
+            <arg value="-o:${pe.out.a}"/>
+            <arg value="input-document=${test.src.dir}/processing-error-input.xml"/>
+        </java>
+        <loadfile srcfile="${pe.out.a}" property="pe.content.a"/>
+        <fail message="[A] report must have valid=&quot;false&quot; when processingError is present">
+            <condition><not><contains string="${pe.content.a}" substring='valid="false"'/></not></condition>
+        </fail>
+        <fail message="[A] report must contain rep:reject (not rep:accept) when processingError is present">
+            <condition><contains string="${pe.content.a}" substring="rep:accept"/></condition>
+        </fail>
+        <fail message="[A] Verarbeitungsfehler banner must appear in HTML output">
+            <condition><not><contains string="${pe.content.a}" substring="Verarbeitungsfehler"/></not></condition>
+        </fail>
+        <fail message="[A] Inconclusive conformance text must appear">
+            <condition><not><contains string="${pe.content.a}" substring="nicht vollst"/></not></condition>
+        </fail>
+        <fail message="[A] 'Nicht automatisiert annehmen' rejection text must appear">
+            <condition><not><contains string="${pe.content.a}" substring="nicht automatisiert angenommen"/></not></condition>
+        </fail>
+        <echo>test-processing-error [A]: processingError with partial results — passed.</echo>
 
-    <!-- Scenario B: processingError present, no validation messages at all -->
-    <local name="pe.out.b"/>
-    <local name="pe.content.b"/>
-    <property name="pe.out.b" location="${test.build.dir}/test-pe-b-report.xml"/>
-    <java classname="net.sf.saxon.Transform" classpathref="cp.saxon.xslt" fork="yes" failonerror="yes">
-      <arg value="-s:${test.src.dir}/processing-error-no-messages-input.xml"/>
-      <arg value="-xsl:${src.dir}/default-report.xsl"/>
-      <arg value="-o:${pe.out.b}"/>
-      <arg value="input-document=${test.src.dir}/processing-error-no-messages-input.xml"/>
-    </java>
-    <loadfile srcfile="${pe.out.b}" property="pe.content.b"/>
-    <fail message="[B] report must have valid=&quot;false&quot; when only processingError, no validation messages">
-      <condition><not><contains string="${pe.content.b}" substring='valid="false"'/></not></condition>
-    </fail>
-    <fail message="[B] report must not contain rep:accept when only processingError present">
-      <condition><contains string="${pe.content.b}" substring="rep:accept"/></condition>
-    </fail>
-    <fail message="[B] conformance must be inconclusive (not 'konform'), not claim zero errors">
-      <condition><contains string="${pe.content.b}" substring="weder Fehler noch Warnungen"/></condition>
-    </fail>
-    <echo>test-processing-error [B]: processingError without validation messages — passed.</echo>
+        <!-- Scenario B: processingError present, no validation messages at all -->
+        <local name="pe.out.b"/>
+        <local name="pe.content.b"/>
+        <property name="pe.out.b" location="${test.build.dir}/test-pe-b-report.xml"/>
+        <java classname="net.sf.saxon.Transform" classpathref="cp.saxon.xslt" fork="yes" failonerror="yes">
+            <arg value="-s:${test.src.dir}/processing-error-no-messages-input.xml"/>
+            <arg value="-xsl:${src.dir}/default-report.xsl"/>
+            <arg value="-o:${pe.out.b}"/>
+            <arg value="input-document=${test.src.dir}/processing-error-no-messages-input.xml"/>
+        </java>
+        <loadfile srcfile="${pe.out.b}" property="pe.content.b"/>
+        <fail message="[B] report must have valid=&quot;false&quot; when only processingError, no validation messages">
+            <condition><not><contains string="${pe.content.b}" substring='valid="false"'/></not></condition>
+        </fail>
+        <fail message="[B] report must not contain rep:accept when only processingError present">
+            <condition><contains string="${pe.content.b}" substring="rep:accept"/></condition>
+        </fail>
+        <fail message="[B] conformance must be inconclusive (not 'konform'), not claim zero errors">
+            <condition><contains string="${pe.content.b}" substring="weder Fehler noch Warnungen"/></condition>
+        </fail>
+        <echo>test-processing-error [B]: processingError without validation messages — passed.</echo>
 
-    <!-- Scenario C: missing svrl:schematron-output, no in:processingError -->
-    <local name="pe.out.c"/>
-    <local name="pe.content.c"/>
-    <property name="pe.out.c" location="${test.build.dir}/test-pe-c-report.xml"/>
-    <java classname="net.sf.saxon.Transform" classpathref="cp.saxon.xslt" fork="yes" failonerror="yes">
-      <arg value="-s:${test.src.dir}/missing-svrl-input.xml"/>
-      <arg value="-xsl:${src.dir}/default-report.xsl"/>
-      <arg value="-o:${pe.out.c}"/>
-      <arg value="input-document=${test.src.dir}/missing-svrl-input.xml"/>
-    </java>
-    <loadfile srcfile="${pe.out.c}" property="pe.content.c"/>
-    <fail message="[C] report must have valid=&quot;false&quot; when SVRL result is missing">
-      <condition><not><contains string="${pe.content.c}" substring='valid="false"'/></not></condition>
-    </fail>
-    <fail message="[C] report must not contain rep:accept when SVRL is missing">
-      <condition><contains string="${pe.content.c}" substring="rep:accept"/></condition>
-    </fail>
-    <fail message="[C] PROCESSING_ERROR code must appear in report">
-      <condition><not><contains string="${pe.content.c}" substring="PROCESSING_ERROR"/></not></condition>
-    </fail>
-    <fail message="[C] 'validation step was not completed' message must appear">
-      <condition><not><contains string="${pe.content.c}" substring="not completed"/></not></condition>
-    </fail>
-    <echo>test-processing-error [C]: missing SVRL without processingError — passed.</echo>
+        <!-- Scenario C: missing svrl:schematron-output, no in:processingError -->
+        <local name="pe.out.c"/>
+        <local name="pe.content.c"/>
+        <property name="pe.out.c" location="${test.build.dir}/test-pe-c-report.xml"/>
+        <java classname="net.sf.saxon.Transform" classpathref="cp.saxon.xslt" fork="yes" failonerror="yes">
+            <arg value="-s:${test.src.dir}/missing-svrl-input.xml"/>
+            <arg value="-xsl:${src.dir}/default-report.xsl"/>
+            <arg value="-o:${pe.out.c}"/>
+            <arg value="input-document=${test.src.dir}/missing-svrl-input.xml"/>
+        </java>
+        <loadfile srcfile="${pe.out.c}" property="pe.content.c"/>
+        <fail message="[C] report must have valid=&quot;false&quot; when SVRL result is missing">
+            <condition><not><contains string="${pe.content.c}" substring='valid="false"'/></not></condition>
+        </fail>
+        <fail message="[C] report must not contain rep:accept when SVRL is missing">
+            <condition><contains string="${pe.content.c}" substring="rep:accept"/></condition>
+        </fail>
+        <fail message="[C] PROCESSING_ERROR code must appear in report">
+            <condition><not><contains string="${pe.content.c}" substring="PROCESSING_ERROR"/></not></condition>
+        </fail>
+        <fail message="[C] 'validation step was not completed' message must appear">
+            <condition><not><contains string="${pe.content.c}" substring="not completed"/></not></condition>
+        </fail>
+        <echo>test-processing-error [C]: missing SVRL without processingError — passed.</echo>
 
-    <echo>test-processing-error: all scenarios passed.</echo>
-  </target>
+        <echo>test-processing-error: all scenarios passed.</echo>
+    </target>
 
-  <target name="test" depends="init-test,test-validator-assertions,create-validator-reports-from-testsuite, test-cen-expected-behaviour, test-integration, create-validator-reports-from-custom-tests, test-check-svrl, test-processing-error">
-    <echo message="Testing all"/>
-  </target>
+    <target name="test" depends="init-test,test-validator-assertions,create-validator-reports-from-testsuite, test-cen-expected-behaviour, test-integration, create-validator-reports-from-custom-tests, test-check-svrl, test-processing-error">
+        <echo message="Testing all"/>
+    </target>
 
-  <target name="dist-only" description="Generate the distribution without testing">
-    <mkdir dir="${build.dir}/docs"/>
-    <copy todir="${build.dir}">
-      <fileset dir="${basedir}">
-        <include name="README.md"/>
-        <include name="CHANGELOG.md"/>
-      </fileset>
-    </copy>
-    <copy file="docs/usage.md" todir="${build.dir}/docs" failonerror="true" filtering="true"/>
-    <zip destfile="${dist.dir}/${dist.name}" basedir="${build.dir}" excludes="download/**,test/**,schematron/**,reports/**,build.env"/>
-  </target>
+    <target name="dist-only" description="Generate the distribution without testing">
+        <mkdir dir="${build.dir}/docs"/>
+        <mkdir dir="${dist.dir}"/>
 
-  <target name="dist" depends="compile,test, dist-only" description="Generate the distribution"> </target>
+        <copy todir="${build.dir}">
+            <fileset dir="${basedir}">
+                <include name="README.md"/>
+                <include name="CHANGELOG.md"/>
+            </fileset>
+        </copy>
 
-  <!-- CI/CD targets -->
-  <target name="release-env-file" depends="dist-only"
-    description="Generate build.env file with Maven coordinates for CI/CD deployment">
-    <property name="build.env.file" value="${build.dir}/build.env" />
-    
-    <loadresource property="project.group.id.path">
-      <concat>de.kosit</concat>
-      <filterchain>
-        <replaceregex pattern="\." replace="/" />
-      </filterchain>
-    </loadresource>
-    
-    <echo file="${build.env.file}" append="false" encoding="UTF-8"
-      message="GROUP_ID=${project.group.id}${line.separator}" />
-    <echo file="${build.env.file}" append="true" encoding="UTF-8"
-      message="ARTIFACT_ID=${project.artifact.id}${line.separator}" />
-    <echo file="${build.env.file}" append="true" encoding="UTF-8"
-      message="PACKAGE_VERSION=${validator.configuration.version.full}${line.separator}" />
-    <echo file="${build.env.file}" append="true" encoding="UTF-8"
-      message="PACKAGE_BINARY=${dist.name}${line.separator}" />
-    <echo file="${build.env.file}" append="true" encoding="UTF-8"
-      message="MAVEN_PACKAGE_NAME=${project.group.id.path}/${project.artifact.id}${line.separator}" />
-    <echo file="${build.env.file}" append="true" encoding="UTF-8"
-      message="XRECHNUNG_VERSION=${xrechnung.version}${line.separator}" />
+        <copy file="docs/usage.md"
+              todir="${build.dir}/docs"
+              failonerror="true"
+              filtering="true"/>
 
-  </target>
+        <zip destfile="${dist.dir}/${dist.name}"
+             basedir="${build.dir}"
+             excludes="download/**,test/**,schematron/**,reports/**,build.env"/>
+    </target>
 
-  <target name="release" depends="compile, test, dist-only, release-env-file"
-    description="Build distribution and generate CI/CD metadata for release" />
+    <target name="dist" depends="compile,test, dist-only" description="Generate the distribution"> </target>
+
+    <!-- CI/CD targets -->
+    <target name="release-env-file" depends="dist-only"
+            description="Generate build.env file with Maven coordinates for CI/CD deployment">
+        <property name="build.env.file" value="${build.dir}/build.env" />
+
+        <loadresource property="project.group.id.path">
+            <concat>de.kosit</concat>
+            <filterchain>
+                <replaceregex pattern="\." replace="/" />
+            </filterchain>
+        </loadresource>
+
+        <echo file="${build.env.file}" append="false" encoding="UTF-8"
+              message="GROUP_ID=${project.group.id}${line.separator}" />
+        <echo file="${build.env.file}" append="true" encoding="UTF-8"
+              message="ARTIFACT_ID=${project.artifact.id}${line.separator}" />
+        <echo file="${build.env.file}" append="true" encoding="UTF-8"
+              message="PACKAGE_VERSION=${validator.configuration.version.full}${line.separator}" />
+        <echo file="${build.env.file}" append="true" encoding="UTF-8"
+              message="PACKAGE_BINARY=${dist.name}${line.separator}" />
+        <echo file="${build.env.file}" append="true" encoding="UTF-8"
+              message="MAVEN_PACKAGE_NAME=${project.group.id.path}/${project.artifact.id}${line.separator}" />
+        <echo file="${build.env.file}" append="true" encoding="UTF-8"
+              message="XRECHNUNG_VERSION=${xrechnung.version}${line.separator}" />
+
+    </target>
+
+    <target name="release" depends="compile, test, dist-only, release-env-file"
+            description="Build distribution and generate CI/CD metadata for release" />
 
 </project>
